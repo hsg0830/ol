@@ -1,0 +1,253 @@
+@charset "UTF-8";
+
+@import 'variables';
+
+/*---------------------------
+  規範原文ページのメイン領域
+---------------------------*/
+
+// ページのタイトル
+.page-title {
+  width: 100%;
+  margin: 2rem auto 1.1rem;
+  padding: 0.5rem 0;
+  background-color: $red;
+  box-shadow: 0 0 0 0.4rem $red;
+  border: dashed 0.2rem $white;
+  color: $white;
+  font-family: $krSunflower;
+  font-size: 2.5rem;
+  font-weight: bold;
+  letter-spacing: 0.5rem;
+  text-align: center;
+
+  @media screen and (min-width: 768px) {
+    // width: 100%;
+    margin-top: 3rem;
+    font-size: 3.5rem;
+  }
+
+  position: relative;
+
+  &:after {
+    position: absolute;
+    content: '';
+    left: -0.8rem;
+    top: -0.7rem;
+    border-width: 0 0 3rem 3rem;
+    border-style: solid;
+    border-color: $base $base $brown;
+    box-shadow: 0.2rem 0.2rem 0.2rem rgba(silver, 0.5);
+  }
+}
+
+// 全例表示切り替えボタン
+.all-ex-btn {
+  display: block;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  background-color: $white;
+  color: $red;
+  border-radius: 0.3rem;
+  box-shadow: 0.2rem 0.2rem 0.5rem 0 rgba(black, 0.5);
+
+  &:hover,
+  &:active {
+    background-color: $red;
+    color: $white;
+    box-shadow: none;
+  }
+}
+
+// タイトル部共通
+.title {
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+  font-size: 2rem;
+  // font-weight: bold;
+  font-weight: 500;
+  font-family: $krNoto;
+}
+
+// 章の部分
+.chapter {
+  margin-bottom: 1.5rem;
+
+  &__title {
+    margin-bottom: 3rem;
+    background-color: $beige;
+    color: $gray;
+    border-bottom: solid 0.5rem $brown;
+
+    & span {
+      color: $brown;
+      font-weight: 600;
+    }
+  }
+}
+
+// 項の部分
+.term {
+  margin-bottom: 4rem;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 5rem;
+  }
+
+  &__head-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    width: 95%;
+    color: $gray;
+    background: transparent;
+    border-left: solid 0.5rem $brown;
+
+    & span {
+      color: $brown;
+      font-weight: 600;
+    }
+  }
+
+  & .ex-btn {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    background-color: rgba($brown, 0.8);
+    color: $white;
+    text-align: center;
+    line-height: 3rem;
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba($lightBrown, 0.8);
+    }
+  }
+}
+
+// 項の1), 2) ...の部分
+.term__detail {
+  &__title {
+    margin-bottom: 1rem;
+    padding-left: 0;
+
+    & span {
+      color: $brown;
+    }
+  }
+}
+
+// 項の(1), (2) ...の部分
+.term__detail__case {
+  &__title {
+    padding: 0;
+
+    & span {
+      color: $lightBrown;
+    }
+  }
+}
+
+// 序文
+.introduction {
+  margin-bottom: 3rem;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 5rem;
+  }
+
+  & span {
+    font-family: $krSongmyong;
+    font-size: 1.8rem;
+
+    @media screen and (min-width: 768px) {
+      font-size: 2.1rem;
+    }
+  }
+}
+
+// 解説ブロック
+.term__description {
+  color: $gray;
+
+  @media screen and (min-width: 768px) {
+    margin-left: 2rem;
+  }
+
+  & .complement {
+    display: block;
+    margin-bottom: 0.5rem;
+    width: 5rem;
+    background-color: $lightBrown;
+    border: 1px solid $brown;
+    border-radius: 0.3rem;
+    color: $white;
+    text-align: center;
+  }
+}
+
+// 解説部分
+.description {
+  margin-bottom: 2rem;
+
+  &.indent {
+    display: flex;
+    justify-content: space-between;
+
+    & .indent__mark {
+      width: 5%;
+      margin-right: 0.5rem;
+      color: $lightBrown;
+      font-weight: bold;
+    }
+  }
+}
+
+// 例示部分
+.example {
+  table {
+    width: 100%;
+    margin-bottom: 3rem;
+    background-color: $yellow;
+    border-radius: 1rem;
+
+    & tr {
+      & th,
+      & td {
+        text-align: center;
+        padding: 1.2rem 1.2rem;
+        border: 1px solid $base;
+
+        &.text-left {
+          text-align-last: left;
+        }
+
+        & .underline {
+          border-bottom: 2px solid $brown;
+        }
+
+        // @media (max-width: 767px) {
+        //   & span {
+        //     font-size: 1.1rem;
+        //   }
+        // }
+      }
+    }
+  }
+}
+
+// 補足説明枠部分
+.auxiliary {
+  margin-bottom: 3rem;
+  padding: 1rem;
+  background-color: $beige;
+  border: 2px dotted $brown;
+
+  & .mb-0 {
+    margin-bottom: 0;
+  }
+}
+
