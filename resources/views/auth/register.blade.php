@@ -3,7 +3,7 @@
 @section('breadcrumb')
   <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      <a itemprop="item" href="#">
+      <a itemprop="item" href="/">
         <span itemprop="name">홈</span>
       </a>
       <meta itemprop="position" content="1" />
@@ -31,6 +31,7 @@
         <div class="form-group">
           <label for="check-code">암호</label>
           <input type="password" id="check-code" v-model="checkCode">
+          <p class="form-tip"><i class="fas fa-exclamation-circle"></i>&nbsp;학교에서 전달된 확인용암호를 입력하십시오.</p>
         </div>
         <div class="form-group">
           <button type="button" class="btn global-btn" @click="confirmCheckCode()">보내기</button>
@@ -100,24 +101,31 @@
 
         <div class="form-group">
           <label for="email">메일주소</label>
-          <input type="email" id="email" v-model="email" />
+          <input type="email" id="email" oncopy="return false" onpaste="return false" oncontextmenu="return false"
+            v-model="email" />
           <v-errors :error="errors.email"></v-errors>
         </div>
 
         <div class="form-group">
           <label for="email_confirmation">메일주소 (확인용)</label>
-          <input type="email" id="email_confirmation" v-model="emailConfirmation" />
+          <input type="email" id="email_confirmation" oncopy="return false" onpaste="return false"
+            oncontextmenu="return false" v-model="emailConfirmation" />
+          <p class="form-tip"><i class="fas fa-exclamation-circle"></i>&nbsp;정확히 입력되였는지 확인하기 위하여 다시 입력하십시오.</p>
         </div>
 
         <div class="form-group">
           <label for="password">암호</label>
-          <input type="password" id="password" v-model="password" />
+          <input type="password" id="password" oncopy="return false" onpaste="return false" oncontextmenu="return false"
+            v-model="password" />
+          <p class="form-tip"><i class="fas fa-exclamation-circle"></i>&nbsp;암호는 8글자이상이여야 합니다.</p>
           <v-errors :error="errors.password"></v-errors>
         </div>
 
         <div class="form-group">
           <label for="password_confirmation">암호 (확인용)</label>
-          <input type="password" id="password_confirmation" v-model="passwordConfirmation" />
+          <input type="password" id="password_confirmation" oncopy="return false" onpaste="return false"
+            oncontextmenu="return false" v-model="passwordConfirmation" />
+          <p class="form-tip"><i class="fas fa-exclamation-circle"></i>&nbsp;정확히 입력되였는지 확인하기 위하여 다시 입력하십시오.</p>
         </div>
 
         <div class="form-group">
@@ -153,14 +161,15 @@
       data() {
         return {
           checkCode: '',
-          checkStatus: false,
+          // checkStatus: false,
+          checkStatus: true,
           registered: false,
           name: '',
           birthYear: '',
           birthMonth: '',
           birthDay: '',
           sex: '',
-          schoolId: '',
+          schoolId: '학교이름을 선택하십시오.',
           email: '',
           emailConfirmation: '',
           password: '',

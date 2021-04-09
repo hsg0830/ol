@@ -215,10 +215,16 @@ select {
 }
 
 .error-message {
-  background-color: salmon;
+  background-color: #fad5d1;
   color: #ab243b;
+  margin-bottom: 1rem;
   padding: 1.5rem;
   border-radius: 1rem;
+}
+
+.form-tip {
+  padding: 0 1.5rem;
+  color: #6a421f;
 }
 
 /*---------------------------
