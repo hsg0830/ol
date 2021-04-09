@@ -60,9 +60,11 @@
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
   <!-- 共通 -->
+  @yield('js-files')
+
   <script src="{{ asset('js/main.js') }}"></script>
 
-  @yield('js')
+  @yield('js-script')
 </body>
 
 @env('local')

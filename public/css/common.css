@@ -214,6 +214,19 @@ select {
   border-bottom: 2px dotted #cba67e;
 }
 
+.error-message {
+  background-color: #fad5d1;
+  color: #ab243b;
+  margin-bottom: 1rem;
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
+
+.form-tip {
+  padding: 0 1.5rem;
+  color: #6a421f;
+}
+
 /*---------------------------
   ヘッダー
 ---------------------------*/
@@ -264,6 +277,10 @@ select {
 
 .cover__btn-group button:not(:first-child) {
   margin-left: 2.5rem;
+}
+
+.cover__btn-group form {
+  display: inline;
 }
 
 .cover__logo {
