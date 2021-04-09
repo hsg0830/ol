@@ -74,6 +74,7 @@
           <v-errors :error="errors.birth_year"></v-errors>
           <v-errors :error="errors.birth_month"></v-errors>
           <v-errors :error="errors.birth_day"></v-errors>
+          <v-errors :error="errors.birth_date"></v-errors>
 
         </div>
 

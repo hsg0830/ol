@@ -10,6 +10,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class RegisteredUserController extends Controller
 {
@@ -55,11 +56,18 @@ class RegisteredUserController extends Controller
       return ['result' => $result];
     }
 
+    // 細かくて恐縮なのですが、例えば 2000-02-31 を拒否するために `birth_date` を追加しています。
+    $birth_date = $request->birth_year . '-' .
+        Str::padLeft($request->birth_month, 2, '0') . '-' .
+        Str::padLeft($request->birth_day, 2, '0');
+    $request->merge(['birth_date' => $birth_date]);
+
     $request->validate([
       'name' => 'required|string|max:100',
       'birth_year' => 'required|integer',
       'birth_month' => 'required|integer|between:1,12',
       'birth_day' => 'required|integer|between:1,31',
+      'birth_date' => 'required|date|date_format:Y-m-d',
       'sex' => 'required|integer|between:1,2',
       'school_id' => 'required|integer|exists:schools,id',
       'email' => 'required|string|email|max:255|unique:users',
@@ -74,7 +82,6 @@ class RegisteredUserController extends Controller
     //   'school_id.required' => '소속학교를 선택하셔야 합니다.',
     // ];
 
-    $birth_date = $request->birth_year . '-' . $request->birth_month . '-' . $request->birth_day;
     $now = now();
 
     Auth::login($user = User::create([
