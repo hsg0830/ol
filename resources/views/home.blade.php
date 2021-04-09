@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 <!-- ↓↓↓パンくずリスト↓↓↓ -->
-@section('breadcrumb')
+{{-- @section('breadcrumb')
   <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
       <a itemprop="item" href="#">
@@ -17,7 +17,7 @@
       <meta itemprop="position" content="2" />
     </li>
   </ol>
-@endsection
+@endsection --}}
 <!-- ↑↑↑パンくずリスト↑↑↑ -->
 
 <!-- ↓↓↓.wrapper：メイン＋サイド↓↓↓ -->

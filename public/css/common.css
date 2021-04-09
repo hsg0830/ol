@@ -214,6 +214,13 @@ select {
   border-bottom: 2px dotted #cba67e;
 }
 
+.error-message {
+  background-color: salmon;
+  color: #ab243b;
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
+
 /*---------------------------
   ヘッダー
 ---------------------------*/
@@ -264,6 +271,10 @@ select {
 
 .cover__btn-group button:not(:first-child) {
   margin-left: 2.5rem;
+}
+
+.cover__btn-group form {
+  display: inline;
 }
 
 .cover__logo {

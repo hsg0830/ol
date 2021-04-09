@@ -8,9 +8,18 @@
       <button class="sp-btn"></button>
     </div>
     <div class="cover__btn-group">
-      <button class="global-btn" onclick="location.href='{{ route('register') }}'">회원등록</button>
-      <button class="global-btn" onclick="location.href='{{ route('login') }}'">로 그 인</button>
+      @guest
+        <button class="global-btn" onclick="location.href='{{ route('register') }}'">회원등록</button>
+        <button class="global-btn" onclick="location.href='{{ route('login') }}'">로 그 인</button>
+      @endguest
+      @auth()
+        <form method="POST" action="{{ route('logout') }}">
+          @csrf
+          <button class="global-btn" onclick="location.href='{{ route('logout') }}'">로그아우트</button>
+        </form>
+      @endauth
       <button class="global-btn" onclick="location.href='#'">문의하기</button>
+
     </div>
     <div class="cover__logo">
       <a href="#"><img src="{{ asset('img/logo_pc_white_orange.png') }}" alt="얼 -우리 말 배움터-" /></a>
@@ -29,7 +38,7 @@
       <li><a href="#">자료실</a></li>
       <li><a href="#">질문게시판</a></li>
     </ul>
-    <button class="nav-login-btn global-btn" onclick="location.href='#'">로 그 인</button>
+    <button class="nav-login-btn global-btn" onclick="location.href='{{ route('login') }}'">로 그 인</button>
   </nav>
   <!-- SPハンバーガー用のナビゲーション -->
   <nav class="sp-nav">

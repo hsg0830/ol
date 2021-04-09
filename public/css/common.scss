@@ -163,6 +163,13 @@ select {
   border-bottom: 2px dotted $lightBrown;
 }
 
+.error-message {
+  background-color: salmon;
+  color: $red;
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
+
 /*---------------------------
   ヘッダー
 ---------------------------*/
@@ -213,6 +220,10 @@ select {
       &:not(:first-child) {
         margin-left: 2.5rem;
       }
+    }
+
+    & form {
+      display: inline;
     }
   }
 

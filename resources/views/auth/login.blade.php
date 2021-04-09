@@ -1,56 +1,56 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.app')
 
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+@section('breadcrumb')
+  <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a itemprop="item" href="#">
+        <span itemprop="name">홈</span>
+      </a>
+      <meta itemprop="position" content="1" />
+    </li>
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <!-- <a itemprop="item" href="カテゴリー2のURL"> -->
+      <span itemprop="name">로그인</span>
+      <!-- </a> -->
+      <meta itemprop="position" content="2" />
+    </li>
+  </ol>
+@endsection
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+@section('content')
+  <!-- ↓↓↓メインコンテンツ↓↓↓ -->
+  <main id="one-column">
+    <form class="login-form" method="POST" action="{{ route('login') }}">
+      @csrf
 
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
+      <div class="form-group">
+        <label for="email">메일주소</label>
+        <input type="email" id="email" name="email" :value="old('email')" required autofocus>
+      </div>
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
+      <div class="form-group">
+        <label for="password">암호</label>
+        <input type="password" id="password" name="password" required autocomplete="current-password">
+      </div>
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
+      <div class="form-group">
+        <button type="submit" class="btn global-btn">보내기</button>
+      </div>
 
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
+    </form>
 
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
+    <div class="message">
+      <p>회원등록을 하시렵니까?</p>
+      <a href="{{ route('register') }}" class="text-underline">회원등록페지에로</a>
+    </div>
 
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+    @if (Route::has('password.request'))
+      <div class="message">
+        <p>암호가 기억나지 않으십니까?</p>
+        <a href="{{ route('password.request') }}" class="text-underline">회원등록페지에로</a>
+      </div>
+    @endif
+  </main>
+  <!-- ↑↑↑メインコンテンツ↑↑↑ -->
+@endsection

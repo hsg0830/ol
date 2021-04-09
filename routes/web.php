@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,8 @@ Route::get('/', function () {
     // return view('welcome');
     return view('home');
 });
+
+Route::post('check-code', [RegisteredUserController::class, 'confirm_code']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
