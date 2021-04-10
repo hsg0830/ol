@@ -23,7 +23,7 @@
   <main id="one-column">
 
     <div v-if="!registered">
-      <form class="login-form" v-if="!checkStatus">
+      <form class="login-form pw-comfirm" v-if="!checkStatus">
         <div style="text-align: center; color: red; font-weight: bold;">
           【作業用メモ】チェックコード：korea1234
         </div>
@@ -103,14 +103,15 @@
         <div class="form-group">
           <label for="email">메일주소</label>
           <input type="email" id="email" oncopy="return false" onpaste="return false" oncontextmenu="return false"
-            v-model="email" />
+            v-model="email" @input="confirmEmail" />
           <v-errors :error="errors.email"></v-errors>
         </div>
 
         <div class="form-group">
           <label for="email_confirmation">메일주소 (확인용)</label>
           <input type="email" id="email_confirmation" oncopy="return false" onpaste="return false"
-            oncontextmenu="return false" v-model="emailConfirmation" />
+            oncontextmenu="return false" v-model="emailConfirmation" @input="confirmEmail" />
+          <p class="error-message" v-if="emailConfirmationStatus === false">매일주소가 일치하지 않습니다.</p>
           <p class="form-tip"><i class="fas fa-exclamation-circle"></i>&nbsp;정확히 입력되였는지 확인하기 위하여 다시 입력하십시오.</p>
         </div>
 
@@ -141,8 +142,9 @@
     </div>
 
     <div v-if="registered">
-      <div class="message">
+      <div class="message block">
         <p>회원등록이 성과적으로 끝났습니다.</p>
+        <p>2초후에 자동적으로 첫페지에로 이동됩니다.</p>
         <a href="/" class="text-underline">첫페지에로</a>
       </div>
     </div>
@@ -162,9 +164,10 @@
       data() {
         return {
           checkCode: '',
-          // checkStatus: false,
-          checkStatus: true,
+          checkStatus: false,
+          // checkStatus: true,
           registered: false,
+          // registered: true,
           name: '',
           birthYear: '',
           birthMonth: '',
@@ -173,6 +176,7 @@
           schoolId: '학교이름을 선택하십시오.',
           email: '',
           emailConfirmation: '',
+          emailConfirmationStatus: '',
           password: '',
           passwordConfirmation: '',
           errors: {},
@@ -207,6 +211,12 @@
               console.log(error);
             });
         },
+        confirmEmail() {
+          if (this.email !== this.emailConfirmation) {
+            return this.emailConfirmationStatus = false;
+          }
+          return this.emailConfirmationStatus = true;
+        },
         onSave() {
           if (confirm('회원정보를 등록하시렵니까?')) {
             const url = '/register';
@@ -230,7 +240,9 @@
               .post(url, params)
               .then((response) => {
                 if (response.data.result === true) {
-                  // alert('会員登録が完了しました。')
+                  setTimeout(() => {
+                    window.location.href = response.data.url;
+                  }, 2000);
                   return this.registered = true;
                 }
               })

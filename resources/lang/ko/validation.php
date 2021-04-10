@@ -66,18 +66,18 @@ return [
         'string'  => ':attribute의 길이는 :value보다 같거나 짧아야 합니다.',
     ],
     'max'                  => [
-        'array'   => ':attribute은(는) :max개보다 많을 수 없습니다.',
-        'file'    => ':attribute은(는) :max킬로바이트보다 클 수 없습니다.',
-        'numeric' => ':attribute은(는) :max보다 클 수 없습니다.',
-        'string'  => ':attribute은(는) :max자보다 클 수 없습니다.',
+        'array'   => ':attribute은(는) :max개보다 많을수 없습니다.',
+        'file'    => ':attribute은(는) :max킬로바이트보다 클수 없습니다.',
+        'numeric' => ':attribute은(는) :max보다 클수 없습니다.',
+        'string'  => ':attribute은(는) :max자보다 클수 없습니다.',
     ],
     'mimes'                => ':attribute은(는) 다음의 파일 형식이어야 합니다: :values.',
     'mimetypes'            => ':attribute은(는) 다음의 파일 형식이어야 합니다: :values.',
     'min'                  => [
         'array'   => ':attribute은(는) 최소한 :min개의 항목이 있어야 합니다.',
-        'file'    => ':attribute은(는) 최소한 :min킬로바이트이어야 합니다.',
-        'numeric' => ':attribute은(는) 최소한 :min이어야 합니다.',
-        'string'  => ':attribute은(는) 최소한 :min자이어야 합니다.',
+        'file'    => ':attribute은(는) 최소한 :min킬로바이트이여야 합니다.',
+        'numeric' => ':attribute은(는) 최소한 :min이여야 합니다.',
+        'string'  => ':attribute은(는) 최소한 :min자이여야 합니다.',
     ],
     'multiple_of'          => ':attribute 는 :value 의 배수여야 합니다.',
     'not_in'               => '선택된 :attribute이(가) 올바르지 않습니다.',
@@ -107,7 +107,7 @@ return [
     'starts_with'          => ':attribute은(는) :values 중 하나로 시작해야 합니다.',
     'string'               => ':attribute은(는) 문자열이어야 합니다.',
     'timezone'             => ':attribute은(는) 올바른 시간대 이어야 합니다.',
-    'unique'               => ':attribute은(는) 이미 사용 중입니다.',
+    'unique'               => ':attribute은(는) 이미 사용중입니다.',
     'uploaded'             => ':attribute을(를) 업로드하지 못했습니다.',
     'url'                  => ':attribute 형식은 올바르지 않습니다.',
     'uuid'                 => ':attribute은(는) 유효한UUID여야합니다.',
@@ -117,12 +117,10 @@ return [
         ],
     ],
 
-
     'attributes' => [
       'name' => '이름',
       'sex' => '성별',
       'email' => '메일주소',
-      'birth_year' => '（誕生年）',
-      // その他は省略しています
+      'birth_date' => '생년월일',
     ],
 ];

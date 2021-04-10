@@ -214,6 +214,38 @@ select {
   border-bottom: 2px dotted #cba67e;
 }
 
+.message {
+  width: 80%;
+  margin: 0 auto 4rem;
+  text-align: center;
+}
+
+.message a {
+  color: #cba67e;
+}
+
+.message.block {
+  width: 100%;
+  padding: 4rem;
+  margin-top: 3rem;
+  background-color: #d6c7ba;
+  border-radius: 1rem;
+  line-height: 4rem;
+}
+
+@media screen and (min-width: 768px) {
+  .message.block {
+    width: 70%;
+    margin-top: 12rem;
+    margin-bottom: 22rem;
+    line-height: 6rem;
+  }
+}
+
+.message.block a {
+  color: #6a421f;
+}
+
 .error-message {
   background-color: #fad5d1;
   color: #ab243b;
@@ -225,6 +257,27 @@ select {
 .form-tip {
   padding: 0 1.5rem;
   color: #6a421f;
+}
+
+/*---------------------------
+  ログイン画面のフォームなど
+---------------------------*/
+.login-form,
+.register-form {
+  width: 80%;
+  margin: 0 auto;
+  padding: 2rem 0 4rem;
+}
+
+.login-form .birth_date,
+.register-form .birth_date {
+  display: inline-block;
+  width: 23%;
+}
+
+.login-form.pw-comfirm,
+.register-form.pw-comfirm {
+  margin-bottom: 18rem;
 }
 
 /*---------------------------
@@ -732,32 +785,6 @@ html.open,
   #one-column {
     width: 90%;
   }
-}
-
-/*---------------------------
-  ログイン画面のフォームなど
----------------------------*/
-.login-form,
-.register-form {
-  width: 80%;
-  margin: 0 auto;
-  padding: 2rem 0 4rem;
-}
-
-.login-form .birth_date,
-.register-form .birth_date {
-  display: inline-block;
-  width: 23%;
-}
-
-.message {
-  width: 80%;
-  margin: 0 auto 4rem;
-  text-align: center;
-}
-
-.message a {
-  color: #cba67e;
 }
 
 /*---------------------------

@@ -163,6 +163,36 @@ select {
   border-bottom: 2px dotted $lightBrown;
 }
 
+.message {
+  width: 80%;
+  margin: 0 auto 4rem;
+  text-align: center;
+
+  & a {
+    color: $lightBrown;
+  }
+
+  &.block {
+    width: 100%;
+    padding: 4rem;
+    margin-top: 3rem;
+    background-color: $beige;
+    border-radius: 1rem;
+    line-height: 4rem;
+
+    @media screen and (min-width: 768px) {
+      width: 70%;
+      margin-top: 12rem;
+      margin-bottom: 22rem;
+      line-height: 6rem;
+    }
+
+    & a {
+      color: $brown;
+    }
+  }
+}
+
 .error-message {
   background-color: rgb(250, 213, 209);
   color: $red;
@@ -174,6 +204,25 @@ select {
 .form-tip {
   padding: 0 1.5rem;
   color: $brown;
+}
+
+/*---------------------------
+  ログイン画面のフォームなど
+---------------------------*/
+.login-form,
+.register-form {
+  width: 80%;
+  margin: 0 auto;
+  padding: 2rem 0 4rem;
+
+  & .birth_date {
+    display: inline-block;
+    width: 23%;
+  }
+
+  &.pw-comfirm {
+    margin-bottom: 18rem;
+  }
 }
 
 /*---------------------------
@@ -642,31 +691,6 @@ html.open,
 
   @media screen and (min-width: 768px) {
     width: 90%;
-  }
-}
-
-/*---------------------------
-  ログイン画面のフォームなど
----------------------------*/
-.login-form,
-.register-form {
-  width: 80%;
-  margin: 0 auto;
-  padding: 2rem 0 4rem;
-
-  & .birth_date {
-    display: inline-block;
-    width: 23%;
-  }
-}
-
-.message {
-  width: 80%;
-  margin: 0 auto 4rem;
-  text-align: center;
-
-  & a {
-    color: $lightBrown;
   }
 }
 
