@@ -56,10 +56,10 @@ class RegisteredUserController extends Controller
       return ['result' => $result];
     }
 
-    // 細かくて恐縮なのですが、例えば 2000-02-31 を拒否するために `birth_date` を追加しています。
     $birth_date = $request->birth_year . '-' .
-        Str::padLeft($request->birth_month, 2, '0') . '-' .
-        Str::padLeft($request->birth_day, 2, '0');
+      Str::padLeft($request->birth_month, 2, '0') . '-' .
+      Str::padLeft($request->birth_day, 2, '0');
+
     $request->merge(['birth_date' => $birth_date]);
 
     $request->validate([
@@ -72,15 +72,16 @@ class RegisteredUserController extends Controller
       'school_id' => 'required|integer|exists:schools,id',
       'email' => 'required|string|email|max:255|unique:users',
       'password' => 'required|string|confirmed|min:8',
+    ], [
+      'birth_year.required' => '태여난 해를 선택하셔야 합니다.',
+      'birth_month.required' => '태여난 달을 선택하셔야 합니다.',
+      'birth_day.required' => '태여난 날을 선택하셔야 합니다.',
+      'birth_date.date' => '생년월일을 정확히 선택했는지 확인하십시오.',
+      'sex.required' => '성별을 선택하셔야 합니다.',
+      'school_id.required' => '소속학교를 선택하셔야 합니다.',
+      'email.unique' => '이미 등록된 메일주소입니다.',
+      'password.min' => '암호는 8글자이상이 되게 설정하십시오.',
     ]);
-
-    // $messages = [
-    //   'birth_year.required' => '태여난 해를 선택하셔야 합니다.',
-    //   'birth_month.required' => '태여난 달을 선택하셔야 합니다.',
-    //   'birth_day.required' => '태여난 날을 선택하셔야 합니다.',
-    //   'sex.required' => '성별을 선택하셔야 합니다.',
-    //   'school_id.required' => '소속학교를 선택하셔야 합니다.',
-    // ];
 
     $now = now();
 
@@ -98,9 +99,14 @@ class RegisteredUserController extends Controller
     ]));
 
     event(new Registered($user));
+
     $result = true;
+    $url = url('/');
 
     // return redirect(RouteServiceProvider::HOME);
-    return ['result' => $result];
+    return [
+      'result' => $result,
+      'url' => $url,
+    ];
   }
 }

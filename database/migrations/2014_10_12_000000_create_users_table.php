@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
       $table->date('birth_date')->comment('生年月日');
       $table->unsignedBigInteger('school_id')->comment('所属校ID');
       $table->string('password')->comment('パスワード');
+      $table->unsignedInteger('acceptance')->default(0)->comment('承認状況');
       $table->unsignedBigInteger('login_count')->default(1)->comment('ログイン回数');
       $table->date('last_login')->comment('最終ログイン日');
       $table->timestamp('email_verified_at')->nullable();
