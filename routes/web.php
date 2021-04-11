@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\MultiAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +16,19 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 */
 
 Route::get('/', function () {
-    // return view('welcome');
-    return view('home');
+  return view('home');
 });
 
+// 会員登コード認証用ルーティング
 Route::post('check-code', [RegisteredUserController::class, 'confirm_code']);
 
+// 管理者ログイン
+Route::get('editor/login', [MultiAuthController::class, 'showLoginForm']);
+Route::post('editor/login', [MultiAuthController::class, 'login'])->name('editor.login');
+Route::post('editor/logout', [MultiAuthController::class, 'logout'])->name('editor.logout');
+
 Route::get('/dashboard', function () {
-    return view('dashboard');
+  return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

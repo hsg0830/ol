@@ -46,6 +46,11 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+
+        'editors' => [
+          'driver' => 'session',
+          'provider' => 'editors',
+      ],
     ],
 
     /*
@@ -75,6 +80,11 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        'editors' => [
+          'driver' => 'eloquent',
+          'model' => App\Models\Editor::class,
+      ],
     ],
 
     /*
