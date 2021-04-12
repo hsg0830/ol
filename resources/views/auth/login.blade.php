@@ -21,6 +21,8 @@
 @section('content')
   <!-- ↓↓↓メインコンテンツ↓↓↓ -->
   <main id="one-column">
+    <h1 class="category-title">로그인</h1>
+
     <form class="login-form" method="POST" action="{{ route('login') }}">
       @csrf
 
