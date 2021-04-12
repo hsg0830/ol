@@ -12,23 +12,20 @@
         <button class="global-btn" onclick="location.href='{{ route('register') }}'">회원등록</button>
         <button class="global-btn" onclick="location.href='{{ route('login') }}'">로 그 인</button>
       @endguest
-      {{-- @auth()
-      @endauth --}}
-      {{-- @auth('editors')
-      @endauth --}}
 
-      @if (Auth::guard('editors')->check())
-        <form method="POST" action="{{ route('editors.logout') }}">
-          @csrf
-          <button class="global-btn" onclick="location.href='{{ route('editors.logout') }}'">로그아우트</button>
-        </form>
-      @elseif (Auth::check())
-        <form method="POST" action="{{ route('logout') }}">
-          @csrf
-          <button class="global-btn" onclick="location.href='{{ route('logout') }}'">로그아우트</button>
-        </form>
-      @endif
-      
+      @auth('editors')
+          <form method="POST" action="{{ route('editors.logout') }}">
+              @csrf
+              <button class="global-btn">로그아우트</button>
+          </form>
+      @endauth
+      @auth('web')
+          <form method="POST" action="{{ route('logout') }}">
+              @csrf
+              <button class="global-btn">로그아우트</button>
+          </form>
+      @endauth
+
       <button class="global-btn" onclick="location.href='#'">문의하기</button>
 
     </div>
