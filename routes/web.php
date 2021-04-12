@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\MediaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,13 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 Route::get('/', function () {
     // return view('welcome');
     return view('home');
+});
+
+//ファイル保存・一覧表示機能のテスト
+Route::prefix('media')->group(function () {
+  Route::get('/', [MediaController::class, 'index']);
+  Route::get('/list', [MediaController::class, 'list']);
+  Route::post('upload', [MediaController::class, 'store']);
 });
 
 Route::post('check-code', [RegisteredUserController::class, 'confirm_code']);
