@@ -25,7 +25,7 @@ Route::post('check-code', [RegisteredUserController::class, 'confirm_code']);
 
 Route::prefix('editors')->group(function () {
   // 管理者ログイン・ログアウト
-  Route::middleware('guest')->group(function () {
+  Route::middleware('guest:editors')->group(function () {
     Route::get('login', [MultiAuthController::class, 'showLoginForm']);
     Route::post('login', [MultiAuthController::class, 'login'])->name('editors.login');
   });
