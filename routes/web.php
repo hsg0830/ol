@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\MultiAuthController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,13 +23,23 @@ Route::get('/', function () {
 // 会員登コード認証用ルーティング
 Route::post('check-code', [RegisteredUserController::class, 'confirm_code']);
 
-// 管理者ログイン
-Route::get('editor/login', [MultiAuthController::class, 'showLoginForm']);
-Route::post('editor/login', [MultiAuthController::class, 'login'])->name('editor.login');
-Route::post('editor/logout', [MultiAuthController::class, 'logout'])->name('editor.logout');
+Route::prefix('editors')->group(function () {
+  // 管理者ログイン・ログアウト
+  Route::middleware('guest')->group(function () {
+    Route::get('login', [MultiAuthController::class, 'showLoginForm']);
+    Route::post('login', [MultiAuthController::class, 'login'])->name('editors.login');
+  });
+  Route::middleware('auth:editors')->group(function () {
+    // 管理者ログアウト
+    // Route::post('logout', [MultiAuthController::class, 'logout'])->name('editors.logout');
+    Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('editors.logout');
+    // 管理者トップページ
+    Route::get('/', [MultiAuthController::class, 'index'])->name('editors.top');
+  });
+});
 
-Route::get('/dashboard', function () {
-  return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//   return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';

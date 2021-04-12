@@ -19,7 +19,7 @@ class MultiAuthController extends Controller
       $remember = $request->has('remember');
 
       if (Auth::guard($guard)->attempt($credentials, $remember)) {
-          return view('editors.top');
+          return redirect('editors');
       }
 
       return back()->withErrors([
@@ -27,10 +27,14 @@ class MultiAuthController extends Controller
       ]);
   }
 
-  public function logout(Request $request) {
-      Auth::logout();
-      $request->session()->invalidate();
-      $request->session()->regenerateToken();
-      return redirect('/editor/login');
+  // public function logout(Request $request) {
+  //     Auth::logout();
+  //     $request->session()->invalidate();
+  //     $request->session()->regenerateToken();
+  //     return redirect('/editors/login');
+  // }
+
+  public function index() {
+    return view('editors/top');
   }
 }

@@ -7,6 +7,8 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+
 
 class AuthenticatedSessionController extends Controller
 {
@@ -53,6 +55,12 @@ class AuthenticatedSessionController extends Controller
     $request->session()->invalidate();
 
     $request->session()->regenerateToken();
+
+    $uri = $request->path();
+
+    if (Str::startsWith($uri, 'editors')) {
+      return redirect('editors');
+    }
 
     return redirect('/');
   }

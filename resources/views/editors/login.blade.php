@@ -1,27 +1,10 @@
 @extends('layouts.app')
 
-{{-- @section('breadcrumb')
-  <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
-    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      <a itemprop="item" href="#">
-        <span itemprop="name">홈</span>
-      </a>
-      <meta itemprop="position" content="1" />
-    </li>
-
-    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      <!-- <a itemprop="item" href="カテゴリー2のURL"> -->
-      <span itemprop="name">로그인</span>
-      <!-- </a> -->
-      <meta itemprop="position" content="2" />
-    </li>
-  </ol>
-@endsection --}}
-
 @section('content')
   <!-- ↓↓↓メインコンテンツ↓↓↓ -->
   <main id="one-column">
-    <form class="login-form" method="POST" action="{{ route('editor.login') }}">
+    <h1 class="category-title">편집자 로그인</h1>
+    <form class="login-form" method="POST" action="{{ route('editors.login') }}">
       @csrf
 
       @error('auth')

@@ -1,6 +1,12 @@
-管理者トップページ
+@extends('layouts.app')
 
-<form method="POST" action="{{ route('editor.logout') }}">
-  @csrf
-  <button class="global-btn" onclick="location.href='{{ route('editor.logout') }}'">로그아우트</button>
-</form>
+<!-- ↓↓↓.wrapper：メイン＋サイド↓↓↓ -->
+@section('content')
+  <!-- ↓↓↓メインコンテンツ↓↓↓ -->
+  <main id="one-column">
+    <h1 class="category-title">管理者トップ画面</h1>
+  </main>
+  <!-- ↑↑↑メインコンテンツ↑↑↑ -->
+
+@endsection
+<!-- ↑↑↑.wrapper：メイン＋サイド↑↑↑ -->
