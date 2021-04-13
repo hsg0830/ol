@@ -21,6 +21,8 @@ class CreateMediaTable extends Migration
             $table->string('poster')->comment('サムネイルのファイル名');
             $table->string('memo')->nullable()->comment('メモ');
             $table->timestamps();
+
+            $table->foreign('editor_id')->references('id')->on('editors');
         });
     }
 

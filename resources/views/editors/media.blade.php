@@ -27,7 +27,8 @@
         <p class="label">画像ファイルを選択してください</p>
         <div class="mb-5 input-group">
           {{-- <label for="image" class="input-group-text">画像ファイルを選択してください</label> --}}
-          <input class="form-control" type="file" accept=".jpg,.jpeg,.png,.gif, image/jpeg,image/png,image/gif" id="image" ref="image" @change="onFileChange">
+          <input class="form-control" type="file" accept=".jpg,.jpeg,.png,.gif, image/jpeg,image/png,image/gif" id="image"
+            ref="image" @change="onFileChange">
         </div>
 
         <div class="mb-5">
@@ -138,7 +139,7 @@
       },
       methods: {
         getList() {
-          const url = '/media/list';
+          const url = '/editors/media/list';
           axios.get(url)
             .then(response => {
               this.media = response.data;
@@ -197,7 +198,9 @@
             formData.append('poster', this.posterImg);
             formData.append('medium', this.uplodedFile);
 
-            axios.post('/media/upload', formData)
+            const url = '/editors/media/upload';
+
+            axios.post(url, formData)
               .then(response => {
                 if (response.data.result) {
                   this.getList();

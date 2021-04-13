@@ -26,7 +26,7 @@ class MediaTableSeeder extends Seeder
         : '.mp4';
 
       $medium = new Medium();
-      $medium->editor_id = rand(1, 3);
+      $medium->editor_id = 1;
       $medium->type = $type;
       $medium->filename = Str::random() . $extension;
       $medium->poster = Str::random() . 'jpg';

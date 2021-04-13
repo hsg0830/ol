@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Medium;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class MediaController extends Controller
 {
   function index()
   {
-    return view('media');
+    return view('editors.media');
   }
 
   function list()
@@ -37,7 +38,7 @@ class MediaController extends Controller
       $filename = basename($path);
 
       $medium = new Medium;
-      $medium->editor_id = 1; // 臨時！！！
+      $medium->editor_id = Auth::id();
       $medium->type = $request->type;
       $medium->memo = $request->memo;
       $medium->filename = $filename;
