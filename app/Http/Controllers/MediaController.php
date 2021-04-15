@@ -11,7 +11,11 @@ class MediaController extends Controller
 {
   function index()
   {
-    return view('editors.media');
+    $media_types = config('media.types');
+
+    return view('editors.media')->with([
+        'media_types' => $media_types
+    ]);
   }
 
   function list()
@@ -21,11 +25,13 @@ class MediaController extends Controller
 
   function store(Request $request)
   {
+    $media_types = config('media.types'); // 一元管理しておくと、config/media.php を変更するだけで自動的にこちらも変更になるので便利かもしれません ^^
+
     $request->validate([
-      'type' => ['required', Rule::in('image', 'video')],
+      'type' => ['required', Rule::in($media_types)],
       'medium' => ($request->type === 'image')
         ? ['required', 'image', 'max:5000'] // max 5 MB
-        : ['required', 'mimetypes:video/x-ms-asf,video/x-flv,video/mp4,application/x-mpegURL,video/MP2T,video/3gpp,video/quicktime,video/x-msvideo,video/x-ms-wmv,video/avi', 'max:50000000'], //50MB
+        : ['required', 'mimetypes:video/mp4', 'max:50000000'], //50MB
       'poster' => ($request->type === 'video')
         ? ['required', 'image', 'max:5000'] : '', // max 5 MB
     ]);
@@ -55,5 +61,10 @@ class MediaController extends Controller
     }
 
     return ['result' => $result];
+
+    $article_categories = \App\Models\ArticleCategory::get(); // 1,2,3,4
+    $categories = \App\Models\Category::get(); // all
+
+
   }
 }

@@ -29,7 +29,7 @@ class MediaTableSeeder extends Seeder
       $medium->editor_id = 1;
       $medium->type = $type;
       $medium->filename = Str::random() . $extension;
-      $medium->poster = Str::random() . 'jpg';
+      $medium->poster = Str::random() . '.jpg';
       $medium->memo = $i . '個目のファイル';
       $medium->save();
     }

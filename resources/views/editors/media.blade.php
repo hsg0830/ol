@@ -94,7 +94,7 @@
         <p class="alert alert-success text-center">それぞれのサムネイルの枠内をクリックするとURLがコピーされます。</p>
 
         <div class="d-flex flex-wrap justify-content-around">
-          <div class="my-4 mx-2 p-3 border" v-for="medium in filterdList" :key="media.id"
+          <div class="my-4 mx-2 p-3 border" v-for="medium in filteredMedia" :key="media.id"
             @click="copyToClipboard(medium)">
             <div>
               <img :src="medium.url" alt="No Image" style="max-height:200px;" v-if="medium.type=='image'">
@@ -120,12 +120,9 @@
       data() {
         return {
           media: [],
-          types: {
-            1: 'image',
-            2: 'video'
-          },
+          types: {!! $media_types !!},
           uploadType: 1,
-          uplodedFile: {},
+          uploadedFile: {},
           posterImg: '',
           previewImage: '',
           memo: '',
@@ -133,7 +130,7 @@
         };
       },
       computed: {
-        filterdList() {
+        filteredMedia() {
           return this.media.filter((item) => item.type === this.types[parseInt(this.currentType)]);
         }
       },
@@ -173,7 +170,7 @@
             this.createImage(file);
             this.posterImg = '';
           }
-          this.uplodedFile = file;
+          this.uploadedFile = file;
         },
         onPosterChange(e) {
           const file = e.target.files[0];
@@ -196,7 +193,7 @@
             formData.append('type', this.types[parseInt(this.uploadType)]);
             formData.append('memo', this.memo);
             formData.append('poster', this.posterImg);
-            formData.append('medium', this.uplodedFile);
+            formData.append('medium', this.uploadedFile);
 
             const url = '/editors/media/upload';
 
@@ -209,8 +206,8 @@
                   this.posterImg = '';
                   this.previewImage = '';
                   alert('アップロード成功！');
-                  // this.$refs['image'].value = '';
-                  // this.$refs['poster'].value = '';
+                  this.$refs['image'].value = '';
+                  this.$refs['poster'].value = '';
                 }
               })
               .catch(error => {
@@ -221,6 +218,15 @@
       },
       mounted() {
         this.getList();
+      },
+      setup() {
+
+          // Vue 3 の ref はここが必要になってきます（v2 のが良かったですよね.. ^^;）
+          return {
+              image: Vue.ref(null),
+              poster: Vue.ref(null),
+          }
+
       }
     }).mount('#app');
 
