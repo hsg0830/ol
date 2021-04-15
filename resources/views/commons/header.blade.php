@@ -8,7 +8,7 @@
       <button class="sp-btn"></button>
     </div>
     <div class="cover__btn-group">
-      @guest
+      @guest('web')
         <button class="global-btn" onclick="location.href='{{ route('register') }}'">회원등록</button>
         <button class="global-btn" onclick="location.href='{{ route('login') }}'">로 그 인</button>
       @endguest
