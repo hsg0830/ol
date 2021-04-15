@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\MultiAuthController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\MediaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,13 +34,17 @@ Route::prefix('editors')->group(function () {
     // 管理者ログアウト
     // Route::post('logout', [MultiAuthController::class, 'logout'])->name('editors.logout');
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('editors.logout');
+
     // 管理者トップページ
     Route::get('/', [MultiAuthController::class, 'index'])->name('editors.top');
+
+    //ファイル保存・一覧表示機能
+    Route::prefix('media')->group(function () {
+      Route::get('/', [MediaController::class, 'index'])->name('media');
+      Route::get('/list', [MediaController::class, 'list']);
+      Route::post('upload', [MediaController::class, 'store']);
+    });
   });
 });
-
-// Route::get('/dashboard', function () {
-//   return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__ . '/auth.php';
