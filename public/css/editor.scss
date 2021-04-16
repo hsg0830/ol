@@ -13,12 +13,40 @@ body {
   color: $black;
 }
 
+.navbar {
+  background-color: $brown;
+}
+
+.navbar-light {
+  & .navbar-brand {
+    padding: 1rem;
+    color: $white;
+  }
+
+  & .navbar-nav {
+    & .nav-link {
+      color: $white;
+    }
+  }
+}
+
 .page-title {
   margin: 2rem auto;
   text-align: center;
   font-weight: bold;
   font-size: 3rem;
   color: $brown;
+}
+
+.form-group {
+  & label {
+    font-weight: bold;
+  }
+
+  & input {
+    line-height: 2rem;
+    padding: 0.2rem 0.5rem;
+  }
 }
 
 // モーダル（メディア管理、学習室投稿）

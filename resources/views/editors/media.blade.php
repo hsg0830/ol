@@ -2,10 +2,6 @@
 
 @section('title', '얼 -- メディア管理画面')
 
-@section('css')
-  <link rel="stylesheet" href="{{ asset('css/editor.css') }}">
-@endsection
-
 @section('content')
 
   <div id="app">

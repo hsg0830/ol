@@ -25,12 +25,34 @@ body {
   color: #231815;
 }
 
+.navbar {
+  background-color: #6a421f;
+}
+
+.navbar-light .navbar-brand {
+  padding: 1rem;
+  color: #ffffff;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: #ffffff;
+}
+
 .page-title {
   margin: 2rem auto;
   text-align: center;
   font-weight: bold;
   font-size: 3rem;
   color: #6a421f;
+}
+
+.form-group label {
+  font-weight: bold;
+}
+
+.form-group input {
+  line-height: 2rem;
+  padding: 0.2rem 0.5rem;
 }
 
 .modal {

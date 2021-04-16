@@ -1,9 +1,10 @@
 @extends('layouts.editor')
 
+@section('title', '얼 -- 学習室記事画面')
+
 @section('css')
   <link rel="stylesheet" href="{{ asset('css/destyle.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/common.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/editor.css') }}">
 @endsection
 
 @section('content')
