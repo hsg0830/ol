@@ -25,6 +25,12 @@ Route::get('/', function () {
 // 会員登コード認証用ルーティング
 Route::post('check-code', [RegisteredUserController::class, 'confirm_code']);
 
+// 学習室
+Route::prefix('articles')->group(function () {
+  Route::get('{article}', [ArticlesController::class, 'show'])->name('article.show');
+});
+
+// 管理者関連
 Route::prefix('editors')->group(function () {
 
   // 管理者ログイン
@@ -35,7 +41,6 @@ Route::prefix('editors')->group(function () {
 
   Route::middleware('auth:editors')->group(function () {
     // 管理者ログアウト
-    // Route::post('logout', [MultiAuthController::class, 'logout'])->name('editors.logout');
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('editors.logout');
 
     // 管理者トップページ

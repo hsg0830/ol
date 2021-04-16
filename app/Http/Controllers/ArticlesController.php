@@ -83,4 +83,10 @@ class ArticlesController extends Controller
 
     return ['result' => $result];
   }
+
+  public function show(Article $article) {
+    return view('articles.show', [
+      'article' => $article
+    ]);
+  }
 }
