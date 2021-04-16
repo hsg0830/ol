@@ -827,19 +827,19 @@ html.open,
       font-size: 1.2rem;
       font-family: $krSunflower;
 
-      &.category-01 {
+      &.category-100 {
         background-color: $green;
       }
 
-      &.category-02 {
+      &.category-200 {
         background-color: $navy;
       }
 
-      &.category-03 {
+      &.category-300 {
         background-color: $vermilion;
       }
 
-      &.category-04 {
+      &.category-400 {
         background-color: $purple;
       }
 
@@ -1156,16 +1156,16 @@ html.open,
           border: 1px dashed $gray;
           border-radius: 0.3rem;
 
-          &.category-01 {
+          &.category-100 {
             color: $green;
           }
-          &.category-02 {
+          &.category-200 {
             color: $navy;
           }
-          &.category-03 {
+          &.category-300 {
             color: $vermilion;
           }
-          &.category-04 {
+          &.category-400 {
             color: $purple;
           }
         }
@@ -1386,16 +1386,16 @@ html.open,
         border-radius: 0.5rem;
         font-size: 1.5rem;
 
-        &.category-01 {
+        &.category-100 {
           background-color: $green;
         }
-        &.category-02 {
+        &.category-200 {
           background-color: $navy;
         }
-        &.category-03 {
+        &.category-300 {
           background-color: $vermilion;
         }
-        &.category-04 {
+        &.category-400 {
           background-color: $purple;
         }
       }
@@ -1658,19 +1658,19 @@ html.open,
       border: 1px dashed $gray;
       border-radius: 1rem;
 
-      &.category-01 {
+      &.category-100 {
         color: $green;
       }
 
-      &.category-02 {
+      &.category-200 {
         color: $navy;
       }
 
-      &.category-03 {
+      &.category-300 {
         color: $vermilion;
       }
 
-      &.category-04 {
+      &.category-400 {
         color: $purple;
       }
     }

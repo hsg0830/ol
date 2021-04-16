@@ -917,19 +917,19 @@ html.open,
   font-family: "Sunflower", sans-serif;
 }
 
-.list__recently li .list__category.category-01 {
+.list__recently li .list__category.category-100 {
   background-color: #19775f;
 }
 
-.list__recently li .list__category.category-02 {
+.list__recently li .list__category.category-200 {
   background-color: #2a3773;
 }
 
-.list__recently li .list__category.category-03 {
+.list__recently li .list__category.category-300 {
   background-color: #d44a28;
 }
 
-.list__recently li .list__category.category-04 {
+.list__recently li .list__category.category-400 {
   background-color: #9e1e53;
 }
 
@@ -1276,19 +1276,19 @@ html.open,
   border-radius: 0.3rem;
 }
 
-.list-container__wrapper .list-item__content .info .category.category-01 {
+.list-container__wrapper .list-item__content .info .category.category-100 {
   color: #19775f;
 }
 
-.list-container__wrapper .list-item__content .info .category.category-02 {
+.list-container__wrapper .list-item__content .info .category.category-200 {
   color: #2a3773;
 }
 
-.list-container__wrapper .list-item__content .info .category.category-03 {
+.list-container__wrapper .list-item__content .info .category.category-300 {
   color: #d44a28;
 }
 
-.list-container__wrapper .list-item__content .info .category.category-04 {
+.list-container__wrapper .list-item__content .info .category.category-400 {
   color: #9e1e53;
 }
 
@@ -1532,19 +1532,19 @@ html.open,
   font-size: 1.5rem;
 }
 
-.qa-item__question .mark_and_category .category.category-01 {
+.qa-item__question .mark_and_category .category.category-100 {
   background-color: #19775f;
 }
 
-.qa-item__question .mark_and_category .category.category-02 {
+.qa-item__question .mark_and_category .category.category-200 {
   background-color: #2a3773;
 }
 
-.qa-item__question .mark_and_category .category.category-03 {
+.qa-item__question .mark_and_category .category.category-300 {
   background-color: #d44a28;
 }
 
-.qa-item__question .mark_and_category .category.category-04 {
+.qa-item__question .mark_and_category .category.category-400 {
   background-color: #9e1e53;
 }
 
@@ -1806,19 +1806,19 @@ html.open,
   border-radius: 1rem;
 }
 
-.ask__info .category.category-01 {
+.ask__info .category.category-100 {
   color: #19775f;
 }
 
-.ask__info .category.category-02 {
+.ask__info .category.category-200 {
   color: #2a3773;
 }
 
-.ask__info .category.category-03 {
+.ask__info .category.category-300 {
   color: #d44a28;
 }
 
-.ask__info .category.category-04 {
+.ask__info .category.category-400 {
   color: #9e1e53;
 }
 
