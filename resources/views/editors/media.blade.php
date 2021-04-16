@@ -220,13 +220,10 @@
         this.getList();
       },
       setup() {
-
-          // Vue 3 の ref はここが必要になってきます（v2 のが良かったですよね.. ^^;）
-          return {
-              image: Vue.ref(null),
-              poster: Vue.ref(null),
-          }
-
+        return {
+          image: Vue.ref(null),
+          poster: Vue.ref(null),
+        }
       }
     }).mount('#app');
 

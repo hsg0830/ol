@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\MultiAuthController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\MediaController;
+use App\Http\Controllers\ArticlesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,11 +26,13 @@ Route::get('/', function () {
 Route::post('check-code', [RegisteredUserController::class, 'confirm_code']);
 
 Route::prefix('editors')->group(function () {
-  // 管理者ログイン・ログアウト
+
+  // 管理者ログイン
   Route::middleware('guest:editors')->group(function () {
     Route::get('login', [MultiAuthController::class, 'showLoginForm']);
     Route::post('login', [MultiAuthController::class, 'login'])->name('editors.login');
   });
+
   Route::middleware('auth:editors')->group(function () {
     // 管理者ログアウト
     // Route::post('logout', [MultiAuthController::class, 'logout'])->name('editors.logout');
@@ -42,7 +45,14 @@ Route::prefix('editors')->group(function () {
     Route::prefix('media')->group(function () {
       Route::get('/', [MediaController::class, 'index'])->name('media');
       Route::get('/list', [MediaController::class, 'list']);
-      Route::post('upload', [MediaController::class, 'store']);
+      Route::post('/upload', [MediaController::class, 'store']);
+    });
+
+    // 学習室の記事管理
+    Route::prefix('articles')->group(function () {
+      Route::get('/create', [ArticlesController::class, 'create'])->name('articles.create');
+      Route::get('/categories', [ArticlesController::class, 'categories']);
+      Route::post('/', [ArticlesController::class, 'store']);
     });
   });
 });

@@ -33,19 +33,6 @@ body {
   color: #6a421f;
 }
 
-/*---------------------------
-  メディア管理画面
----------------------------*/
-@media screen and (min-width: 768px) {
-  #file-upload {
-    width: 70%;
-  }
-}
-
-.label {
-  font-weight: bold;
-}
-
 .modal {
   /* display: none; */
   height: 100vh;
@@ -72,5 +59,33 @@ body {
   width: 80%;
   max-height: 80%;
   overflow: auto;
+}
+
+/*---------------------------
+  メディア管理画面
+---------------------------*/
+@media screen and (min-width: 768px) {
+  #file-upload {
+    width: 70%;
+  }
+}
+
+.label {
+  font-weight: bold;
+}
+
+/*---------------------------
+  学習室記事投稿画面
+---------------------------*/
+.post-form {
+  max-width: 1400px;
+}
+
+.post-form .btn, .post-form .form-control, .post-form .form-select {
+  font-size: 1.6rem;
+}
+
+.article-modal {
+  background-color: #eee5df;
 }
 /*# sourceMappingURL=editor.css.map */

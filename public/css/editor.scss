@@ -21,21 +21,7 @@ body {
   color: $brown;
 }
 
-/*---------------------------
-  メディア管理画面
----------------------------*/
-// ファイルアップロードフォームブロック
-#file-upload {
-  @media screen and (min-width: 768px) {
-    width: 70%;
-  }
-}
-
-.label {
-  font-weight: bold;
-}
-
-// モーダル
+// モーダル（メディア管理、学習室投稿）
 .modal {
   /* display: none; */
   height: 100vh;
@@ -61,4 +47,34 @@ body {
   width: 80%;
   max-height: 80%;
   overflow: auto;
+}
+
+/*---------------------------
+  メディア管理画面
+---------------------------*/
+// ファイルアップロードフォームブロック
+#file-upload {
+  @media screen and (min-width: 768px) {
+    width: 70%;
+  }
+}
+
+.label {
+  font-weight: bold;
+}
+
+/*---------------------------
+  学習室記事投稿画面
+---------------------------*/
+
+.post-form {
+  max-width: $maxWidth;
+
+  & .btn, .form-control, .form-select {
+    font-size: 1.6rem;
+  }
+}
+
+.article-modal {
+  background-color: $base;
 }
