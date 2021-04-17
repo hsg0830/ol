@@ -29,6 +29,7 @@ class ArticlesTableSeeder extends Seeder
       }
       $article->title = $i . '番目の記事';
       $article->introduction = $i . '番目の記事のイントロダクショです。';
+      $article->viewd_count = rand(1, 100);
       $article->save();
     }
   }

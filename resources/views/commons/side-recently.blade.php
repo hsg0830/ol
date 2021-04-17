@@ -5,17 +5,19 @@
     <ol class="list list__recently">
       @foreach ($topArticles as $topArticle)
       <li>
-        <a href="#">
+        {{-- <a href="{{ route('articles.show', $topArticle->id) }}"> --}}
+        <a href="{{ $topArticle->url }}">
           <p class="list__category category-{{ $topArticle->category->id }}">{{ $topArticle
           ->category->name }}</p>
-          <p class="list__date">{{ $topArticle->created_at }}</p>
+          {{-- <p class="list__date">{{ $topArticle->created_at->format('Y-m-d') }}</p> --}}
+          <p class="list__date">{{ $topArticle->date }}</p>
           <p class="list__title">{{ $topArticle->title }}</p>
         </a>
       </li>
       @endforeach
     </ol>
     <div class="list-more">
-      <a href="#"> <i class="fas fa-angle-double-right"></i>더보기 </a>
+      <a href="{{ route('articles.index') }}"> <i class="fas fa-angle-double-right"></i>더보기 </a>
     </div>
   </div>
 </aside>

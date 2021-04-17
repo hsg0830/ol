@@ -34,7 +34,7 @@
       <a href="#"><img src="{{ asset('img/logo_sp_white.png') }}" alt="얼 우리 말 배움터" /></a>
     </div>
     <ul>
-      <li><a href="#">학습실</a></li>
+      <li><a href="{{ route('articles.index') }}">학습실</a></li>
       <li><a href="#">일문일답</a></li>
       <li><a href="#">규범원문</a></li>
       <li><a href="#">자료실</a></li>
@@ -47,7 +47,7 @@
     <ul>
       <li><a href="{{ route('register') }}">회원등록</a></li>
       <li><a href="{{ route('login') }}">로그인</a></li>
-      <li><a href="#">학습실</a></li>
+      <li><a href="{{ route('articles.index') }}">학습실</a></li>
       <li><a href="#">일문일답</a></li>
       <li><a href="#">자료실</a></li>
       <li><a href="#">질문게시판</a></li>

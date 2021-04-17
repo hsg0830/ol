@@ -10,9 +10,9 @@
     </li>
 
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      <!-- <a itemprop="item" href="カテゴリー2のURL"> -->
-      <span itemprop="name">학습실</span>
-      <!-- </a> -->
+      <a itemprop="item" href="{{ route('articles.index') }}">
+        <span itemprop="name">학습실</span>
+      </a>
       <meta itemprop="position" content="2" />
     </li>
   </ol>

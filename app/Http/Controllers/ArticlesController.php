@@ -12,6 +12,27 @@ use Illuminate\Validation\Rule;
 
 class ArticlesController extends Controller
 {
+  public function index()
+  {
+    return view('articles.index');
+  }
+
+  public function paginate(Request $request)
+  {
+    $category_id = intval($request->categoryNo);
+
+    $query = Article::query();
+
+    if ($category_id > 0) {
+      $query->where('category_id', $category_id);
+    }
+
+    $articles = $query->with('category')->paginate(12);
+    $categories = ArticleCategory::select('id', 'name')->get();
+
+    return [$articles, $categories];
+  }
+
   public function create()
   {
     return view('articles.create');
@@ -84,7 +105,11 @@ class ArticlesController extends Controller
     return ['result' => $result];
   }
 
-  public function show(Article $article) {
+  public function show(Article $article)
+  {
+    $article->viewd_count += 1;
+    $article->save();
+
     return view('articles.show', [
       'article' => $article
     ]);

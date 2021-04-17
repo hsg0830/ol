@@ -259,6 +259,32 @@ select {
   color: #6a421f;
 }
 
+.v-pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.v-pagination li {
+  border: 1px solid #6a421f;
+  padding: 0.6rem 1.2rem;
+  text-align: center;
+  color: #6a421f;
+  cursor: pointer;
+}
+
+.v-pagination li.active {
+  background-color: #6a421f;
+  color: #fff;
+}
+
+.v-pagination li.disabled {
+  cursor: not-allowed;
+}
+
 /*---------------------------
   ログイン画面のフォームなど
 ---------------------------*/
@@ -1160,10 +1186,42 @@ html.open,
   color: #ffffff;
 }
 
+.list-container__selector ul li:hover.category-100 {
+  background-color: #2a3773;
+}
+
+.list-container__selector ul li:hover.category-200 {
+  background-color: #19775f;
+}
+
+.list-container__selector ul li:hover.category-300 {
+  background-color: #d44a28;
+}
+
+.list-container__selector ul li:hover.category-400 {
+  background-color: #9e1e53;
+}
+
 .list-container__selector ul li.active {
   background-color: #ab243b;
   color: #ffffff;
   position: relative;
+}
+
+.list-container__selector ul li.active.category-100 {
+  background-color: #2a3773;
+}
+
+.list-container__selector ul li.active.category-200 {
+  background-color: #19775f;
+}
+
+.list-container__selector ul li.active.category-300 {
+  background-color: #d44a28;
+}
+
+.list-container__selector ul li.active.category-400 {
+  background-color: #9e1e53;
 }
 
 .list-container__selector ul li.active::after {
@@ -1177,6 +1235,22 @@ html.open,
   border-top: 1rem solid #ab243b;
   width: 0;
   height: 0;
+}
+
+.list-container__selector ul li.active.category-100::after {
+  border-top: 1rem solid #2a3773;
+}
+
+.list-container__selector ul li.active.category-200::after {
+  border-top: 1rem solid #19775f;
+}
+
+.list-container__selector ul li.active.category-300::after {
+  border-top: 1rem solid #d44a28;
+}
+
+.list-container__selector ul li.active.category-400::after {
+  border-top: 1rem solid #9e1e53;
 }
 
 @media screen and (min-width: 768px) {
@@ -1236,7 +1310,6 @@ html.open,
 
 @media screen and (min-width: 768px) {
   .list-container__wrapper .list-item__header .title {
-    top: 10%;
     font-size: 1.8rem;
   }
 }

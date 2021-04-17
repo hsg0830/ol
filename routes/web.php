@@ -27,7 +27,9 @@ Route::post('check-code', [RegisteredUserController::class, 'confirm_code']);
 
 // 学習室
 Route::prefix('articles')->group(function () {
-  Route::get('{article}', [ArticlesController::class, 'show'])->name('article.show');
+  Route::get('/', [ArticlesController::class, 'index'])->name('articles.index');
+  Route::get('/pagination', [ArticlesController::class, 'paginate']);
+  Route::get('/{article}', [ArticlesController::class, 'show'])->name('articles.show');
 });
 
 // 管理者関連
