@@ -17,8 +17,41 @@
       </ul>
     </div>
 
+    {{-- 入力補助フォーム --}}
+    <div class="form-tag-sample border border-info border-3 rounded-3 p-3 position-fixed" style="width: 60%;">
+      <div class="d-flex justify-content-around my-3">
+        <button id="01" class="btn btn-info form-btn" @click="copyFormTemplate">段落</button>
+        <button id="02" class="btn btn-info form-btn" @click="copyFormTemplate">引用ブロック</button>
+        <button id="03" class="btn btn-info form-btn" @click="copyFormTemplate">太字で強調</button>
+        <button id="04" class="btn btn-info form-btn" @click="copyFormTemplate">アンダーライン</button>
+        <button id="05" class="btn btn-info form-btn" @click="copyFormTemplate">脚注</button>
+        <button id="06" class="btn btn-info form-btn" @click="copyFormTemplate">画像</button>
+        <button id="07" class="btn btn-info form-btn" @click="copyFormTemplate">動画</button>
+      </div>
+
+      <div class="d-flex justify-content-around" style="position: absolute; left: -9999px">
+        <textarea readonly id="form-01" cols="20" rows="3"><p>内容</p></textarea>
+
+        <textarea readonly id="form-02" cols="20"
+          rows="3"><blockquote class="quote">引用ブロック（中にpタグ可能）</blockquote></textarea>
+
+        <textarea readonly id="form-03" cols="20" rows="3"><span class="emphasis">太字で強調</span></textarea>
+
+        <textarea readonly id="form-04" cols="20" rows="3"><span class="moving-underline">アンダーライン</span></textarea>
+
+        <textarea readonly id="form-05" cols="20"
+          rows="3"><p><sup class="caption tooltip" title="脚注の内容">[1]←脚注番号</sup></p></textarea>
+
+        <textarea readonly id="form-06" cols="20"
+          rows="3"><div class="article-media"><img src="ソースURL" alt="No Image"></div></textarea>
+
+        <textarea readonly id="form-07" cols="20" rows="3"><div class="article-media"><video src="ソースURL" controls controlsList="nodownload" oncontextmenu="return false;"></video></div>
+            </textarea>
+      </div>
+    </div>
+
     {{-- タイトル部 --}}
-    <div style="border: 2px solid brown; padding:0.5rem; background-color: lemonchiffon; margin: 2rem 0">
+    <div style="border: 2px solid brown; padding:0.5rem; background-color: lemonchiffon; margin: 11rem 0 2rem">
       <div class="mb-3">
         <p class="label">カテゴリー</p>
         {{-- <label for="category">カテゴリー：</label> --}}
@@ -149,6 +182,13 @@
               this.categories = response.data[0];
               this.subCategories = response.data[1];
             });
+        },
+        copyFormTemplate(e) {
+          const selector = e.target.getAttribute('id');
+          const formEl = document.querySelector(`#form-${selector}`);
+          formEl.select();
+          document.execCommand('copy');
+          alert(`コピーできました！ : ${formEl.value}`);
         },
         addFormBlock() {
           // フォームブロックの数を追加
