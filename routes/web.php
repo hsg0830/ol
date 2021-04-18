@@ -24,6 +24,13 @@ Route::get('/', function () {
 // 会員登コード認証用ルーティング
 Route::post('check-code', [RegisteredUserController::class, 'confirm_code']);
 
+// 規範原文
+Route::get('/norms/{filename}', function ($filename) {
+  return view('norms.' . $filename);
+})->name('norms');
+
+// route('norms', 'grammer');
+
 Route::prefix('editors')->group(function () {
   // 管理者ログイン・ログアウト
   Route::middleware('guest:editors')->group(function () {
