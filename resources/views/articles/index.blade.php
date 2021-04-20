@@ -112,10 +112,13 @@
           this.getItems();
         },
         getHashValue() {
-          const hashPage = parseInt(location.hash.substring(1));
-          console.log(hashPage);
-          const hashCategoryNo = parseInt(location.hash.substring(1).slice(-3));
-          console.log(hashCategoryNo);
+          // const hashPage = parseInt(location.hash.substring(1));
+          // const hashCategoryNo = parseInt(location.hash.substring(1).slice(-3));
+          // console.log(hashPage);
+          // console.log(hashCategoryNo);
+
+          // カテゴリ番号が「0」の場合、hashCategoryNo がページ番号になるため、分割する形にさせていただきました。
+          const [hashPage, hashCategoryNo] = location.hash.substring(1).split('%');
 
           if (hashPage > 0) {
             this.page = hashPage;
@@ -131,11 +134,11 @@
         },
         selectCategory(categoryNo) {
           this.categoryNo = categoryNo;
-          const hashCategoryNo = parseInt(location.hash.substring(1).slice(-3));
+          // const hashCategoryNo = parseInt(location.hash.substring(1).slice(-3));
 
-          if (this.categoryNo !== hashCategoryNo) {
+          // if (this.categoryNo !== hashCategoryNo) {
             this.page = 1;
-          }
+          // }
 
           location.hash = `${this.page}%${this.categoryNo}`;
           this.getItems();
@@ -146,7 +149,9 @@
       },
       mounted() {
         this.getHashValue();
-        this.selectCategory(this.categoryNo);
+        this.getItems();
+        // 戻るボタン対策で変更しています
+        // this.selectCategory(this.categoryNo);
       }
     });
 
