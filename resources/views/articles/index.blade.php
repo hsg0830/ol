@@ -46,11 +46,14 @@
         <div class="list-item" v-for="item in items.data">
           <a :href="item.url">
             <div class="list-item__header">
-              <img src="{{ asset('img/bg_memo_thum.png') }}" alt="" />
-              <p class="title color" v-text="item.title"></p>
+              <img src="{{ asset('img/bg_black-board_thum.png') }}" alt="" v-if="item.category.id === 100"/>
+              <img src="{{ asset('img/bg_white-board_thum.png') }}" alt="" v-else-if="item.category.id === 200"/>
+              <img src="{{ asset('img/bg_memo_thum.png') }}" alt="" v-else-if="item.category.id === 300"/>
+              <img src="{{ asset('img/928-500x375.jpg') }}" alt="" v-else-if="item.category.id === 400"/>
+              <p class="title" :class="getTextClass(item.category.id)" v-text="item.title"></p>
             </div>
             <div class="list-item__content">
-              <p class="lead" v-text="item.introduction"></p>
+              <p class="lead" v-text="item.head_line"></p>
               <div class="info">
                 {{-- ??年月日だけに変更するには？？？ --}}
                 {{-- <p class="date" v-text="item.created_at"></p> --}}
@@ -102,8 +105,8 @@
               }
             })
             .then((response) => {
-              this.items = response.data[0];
-              this.categories = response.data[1];
+              this.items = response.data.articles;
+              this.categories = response.data.categories;
             });
         },
         movePage(page) {
@@ -112,12 +115,6 @@
           this.getItems();
         },
         getHashValue() {
-          // const hashPage = parseInt(location.hash.substring(1));
-          // const hashCategoryNo = parseInt(location.hash.substring(1).slice(-3));
-          // console.log(hashPage);
-          // console.log(hashCategoryNo);
-
-          // カテゴリ番号が「0」の場合、hashCategoryNo がページ番号になるため、分割する形にさせていただきました。
           const [hashPage, hashCategoryNo] = location.hash.substring(1).split('%');
 
           if (hashPage > 0) {
@@ -134,24 +131,22 @@
         },
         selectCategory(categoryNo) {
           this.categoryNo = categoryNo;
-          // const hashCategoryNo = parseInt(location.hash.substring(1).slice(-3));
-
-          // if (this.categoryNo !== hashCategoryNo) {
-            this.page = 1;
-          // }
-
+          this.page = 1;
           location.hash = `${this.page}%${this.categoryNo}`;
           this.getItems();
         },
         getCategoryClass(index) {
           return `category-${index}`;
         },
+        getTextClass(index) {
+          if (parseInt(index) === 100) {
+            return 'color-white'
+          }
+        }
       },
       mounted() {
         this.getHashValue();
         this.getItems();
-        // 戻るボタン対策で変更しています
-        // this.selectCategory(this.categoryNo);
       }
     });
 

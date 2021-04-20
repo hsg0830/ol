@@ -27,7 +27,7 @@ class ArticlesTableSeeder extends Seeder
         $article->sub_category_id = $category->sub_categories->random()->id;
       }
       $article->title = $i . '番目の記事';
-      $article->introduction = $i . '番目の記事のイントロダクションです。';
+      $article->introduction = $i . '番目の記事のイントロダクションです。文章が続きます。文章が続きます。文章が続きます。文章が続きます。文章が続きます。文章が続きます。文章が続きます。文章が続きます。文章が続きます。文章が続きます。文章が続きます。';
       $article->viewed_count = rand(1, 100);
       $article->save();
     }

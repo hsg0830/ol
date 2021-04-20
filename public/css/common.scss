@@ -209,24 +209,36 @@ select {
 // pagination
 .v-pagination {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  margin-top: 2rem;
 }
 
 .v-pagination li {
   border: 1px solid $brown;
+  border-radius: 0.3rem;
   padding: 0.6rem 1.2rem;
   text-align: center;
+  background-color: $lightBrown;
   color: $brown;
   cursor: pointer;
-}
 
-.v-pagination li.active {
-  background-color: $brown;
-  color: #fff;
-}
+  &:not(:last-child) {
+    margin-right: 2rem;
+  }
 
-.v-pagination li.disabled {
-  cursor: not-allowed;
+  &.active {
+    background-color: $brown;
+    color: #fff;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+
+  &:hover {
+    background-color: rgba($brown, 0.6);
+    color: #fff;
+  }
 }
 
 /*---------------------------
@@ -1081,11 +1093,11 @@ html.open,
         color: $white;
 
         &.category-100 {
-          background-color: $navy;
+          background-color: $green;
         }
 
         &.category-200 {
-          background-color: $green;
+          background-color: $navy;
         }
 
         &.category-300 {
@@ -1103,11 +1115,11 @@ html.open,
         position: relative;
 
         &.category-100 {
-          background-color: $navy;
+          background-color: $green;
         }
 
         &.category-200 {
-          background-color: $green;
+          background-color: $navy;
         }
 
         &.category-300 {
@@ -1131,11 +1143,11 @@ html.open,
         }
 
         &.category-100::after {
-          border-top: 1rem solid $navy;
+          border-top: 1rem solid $green;
         }
 
         &.category-200::after {
-          border-top: 1rem solid $green;
+          border-top: 1rem solid $navy;
         }
 
         &.category-300::after {
@@ -1188,7 +1200,7 @@ html.open,
         top: 20%;
         left: 50%;
         transform: translateX(-50%);
-        color: $white;
+        color: $black;
         font-family: $krPoor;
         font-size: 2.5rem;
 
@@ -1197,8 +1209,8 @@ html.open,
           font-size: 1.8rem;
         }
 
-        &.color {
-          color: $black;
+        &.color-white {
+          color: $white;
         }
       }
     }
@@ -1207,6 +1219,7 @@ html.open,
       margin: 1rem 0 0.5rem;
 
       & .lead {
+        margin-bottom: 1.5rem;
         padding: 0 0.3rem;
         font-size: 1.6rem;
         line-height: 1.5;
@@ -1251,7 +1264,6 @@ html.open,
 .title-block {
   width: 80%;
   margin: 0 auto 3rem;
-  color: $white;
   position: relative;
 
   &__title {
@@ -1266,7 +1278,12 @@ html.open,
     font-weight: bold;
     letter-spacing: 0.2rem;
     line-height: 1.2;
-    text-shadow: 0.1rem 0.2rem 0.5rem $brown;
+    text-shadow: 0.1rem 0.2rem 0.5rem rgba($beige, 0.8);
+
+    &.color-white {
+      color: $white;
+      text-shadow: 0.1rem 0.2rem 0.5rem $brown;
+    }
 
     @media screen and (min-width: 560px) {
       font-size: 3.5rem;
@@ -1285,6 +1302,10 @@ html.open,
     left: 50%;
     transform: translateX(-50%);
     font-size: 1.4rem;
+
+    &.color-white {
+      color: $white;
+    }
   }
 
   &__category {
@@ -1295,7 +1316,7 @@ html.open,
     font-size: 1.3rem;
     font-family: $krPoor;
     border-radius: 0.4rem;
-    box-shadow: 0.2rem 0.2rem 0.5rem rgba($white, 0.5);
+    box-shadow: 0.2rem 0.2rem 0.5rem rgba($lightBrown, 0.5);
     position: absolute;
     top: 7%;
     right: 4%;

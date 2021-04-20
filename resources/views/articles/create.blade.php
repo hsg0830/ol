@@ -18,14 +18,14 @@
     </div>
 
     {{-- 入力補助フォーム --}}
-    <div class="form-tag-sample border border-info border-3 rounded-3 p-3 position-fixed" style="width: 60%;">
-      <div class="d-flex justify-content-around my-3">
-        <button id="01" class="btn btn-info form-btn" @click="copyFormTemplate">段落</button>
-        <button id="02" class="btn btn-info form-btn" @click="copyFormTemplate">引用ブロック</button>
-        <button id="03" class="btn btn-info form-btn" @click="copyFormTemplate">太字で強調</button>
-        <button id="04" class="btn btn-info form-btn" @click="copyFormTemplate">アンダーライン</button>
-        <button id="05" class="btn btn-info form-btn" @click="copyFormTemplate">脚注</button>
-        <button id="06" class="btn btn-info form-btn" @click="copyFormTemplate">画像</button>
+    <div class="form-tag-sample border border-info border-3 rounded-3 p-3 position-fixed">
+      <div class="d-flex my-3">
+        <button id="01" class="btn btn-info form-btn me-4" @click="copyFormTemplate">段落</button>
+        <button id="02" class="btn btn-info form-btn me-4" @click="copyFormTemplate">引用ブロック</button>
+        <button id="03" class="btn btn-info form-btn me-4" @click="copyFormTemplate">太字で強調</button>
+        <button id="04" class="btn btn-info form-btn me-4" @click="copyFormTemplate">アンダーライン</button>
+        <button id="05" class="btn btn-info form-btn me-4" @click="copyFormTemplate">脚注</button>
+        <button id="06" class="btn btn-info form-btn me-4" @click="copyFormTemplate">画像</button>
         <button id="07" class="btn btn-info form-btn" @click="copyFormTemplate">動画</button>
       </div>
 
@@ -46,7 +46,7 @@
           rows="3"><div class="article-media"><img src="ソースURL" alt="No Image"></div></textarea>
 
         <textarea readonly id="form-07" cols="20" rows="3"><div class="article-media"><video src="ソースURL" controls controlsList="nodownload" oncontextmenu="return false;"></video></div>
-            </textarea>
+                </textarea>
       </div>
     </div>
 
@@ -99,29 +99,12 @@
 
         <div class="mb-3">
           <label :for="`sub-content-${index}`">本文：</label>
-          <textarea :id="`sub-content-${index}`" class="form-control" rows="10" v-model="subContent.description"></textarea>
+          <textarea :id="`sub-content-${index}`" class="form-control" rows="10"
+            v-model="subContent.description"></textarea>
         </div>
 
       </div>
     </div>
-{{--    <div id="sub-form-area" class="p-3" style="background-color:skyblue">--}}
-{{--      <div id="sub-section-0" class="mb-3" style="background-color:pink">--}}
-{{--        <div class="mb-3">--}}
-{{--          <label for="sub-no-0">サブタイトル番号：</label>--}}
-{{--          <input id="sub-no-0" type="text" class="form-control" value="1" readonly />--}}
-{{--        </div>--}}
-
-{{--        <div class="mb-3">--}}
-{{--          <label for="sub-title-0">サブタイトル：</label>--}}
-{{--          <input id="sub-title-0" type="text" class="form-control" />--}}
-{{--        </div>--}}
-
-{{--        <div class="mb-3">--}}
-{{--          <label for="sub-content-0">本文：</label>--}}
-{{--          <textarea id="sub-content-0" class="form-control" rows="10"></textarea>--}}
-{{--        </div>--}}
-{{--      </div>--}}
-{{--    </div>--}}
 
     {{-- 各種ボタン --}}
     <div class="buttons my-5 mx-auto d-flex justify-content-around">
@@ -129,7 +112,7 @@
 
       <button class="btn btn-primary" @click="addFormBlock">入力フォームを追加</button>
 
-      <button class="btn btn-success" @click="preview">投稿内容をプレビュー</button>
+      <button class="btn btn-success" @click="modalOpen">投稿内容をプレビュー</button>
     </div>
 
     {{-- プレビュー用モーダル --}}
@@ -180,12 +163,10 @@
       data() {
         return {
           categories: [],
-          // subCategories: [],
           articleCategory: '',
           subCategory: '',
           articleTitle: '',
           articleIntroduction: '',
-          // formBlockCount: 0,
           subContents: [],
           errors: {},
         }
@@ -193,13 +174,15 @@
       created() {
         this.getCategories();
       },
+      mounted() {
+        this.addFormBlock(); // ページ読み込みが完了したらフォーム・ブロックを１つ追加
+      },
       methods: {
         getCategories() {
           const url = '/editors/articles/categories';
           axios.get(url)
             .then((response) => {
               this.categories = response.data.categories;
-              // this.subCategories = response.data[1];
             });
         },
         copyFormTemplate(e) {
@@ -210,97 +193,15 @@
           alert(`コピーできました！ : ${formEl.value}`);
         },
         addFormBlock() {
-
           const newOrderNumber = this.subContents.length + 1;
           this.subContents.push({
             order: newOrderNumber,
             title: '',
             description: '',
           });
-
-          // // フォームブロックの数を追加
-          // this.formBlockCount++;
-          //
-          // // 最後にformBlock要素をappendする親要素
-          // const formArea = document.querySelector('#sub-form-area');
-          //
-          // // フォームブロックを作成
-          // const formBlock = document.createElement('div');
-          // formBlock.id = `sub-section-${this.formBlockCount}`;
-          // formBlock.classList.add('mb-3');
-          // formBlock.style.backgroundColor = 'pink';
-          //
-          // // サブタイトル番号エリア
-          // const subNoBlock = document.createElement('div');
-          // subNoBlock.classList.add('mb-3');
-          // const subNoLabel = document.createElement('label');
-          // subNoLabel.htmlFor = `sub-no-${this.formBlockCount}`;
-          // subNoLabel.textContent = 'サブタイトルの番号：';
-          // subNoBlock.appendChild(subNoLabel);
-          // const subNoInput = document.createElement('input');
-          // subNoInput.id = `sub-no-${this.formBlockCount}`;
-          // subNoInput.type = 'text';
-          // subNoInput.value = this.formBlockCount + 1;
-          // subNoInput.readOnly = true;
-          // subNoInput.classList.add('form-control');
-          // subNoBlock.appendChild(subNoInput);
-          // formBlock.appendChild(subNoBlock);
-          //
-          // // サブタイトルエリア
-          // const subTitleBlock = document.createElement('div');
-          // subTitleBlock.classList.add('mb-3');
-          // const subTitleLabel = document.createElement('label');
-          // subTitleLabel.htmlFor = `sub-title-${this.formBlockCount}`;
-          // subTitleLabel.textContent = 'サブタイトル：';
-          // subTitleBlock.appendChild(subTitleLabel);
-          // const subTitleInput = document.createElement('input');
-          // subTitleInput.id = `sub-title-${this.formBlockCount}`;
-          // subTitleInput.type = 'text';
-          // subTitleInput.classList.add('form-control');
-          // subTitleBlock.appendChild(subTitleInput);
-          // formBlock.appendChild(subTitleBlock);
-          //
-          // // 本文エリア
-          // const subContentBlock = document.createElement('div');
-          // subContentBlock.classList.add('mb-3');
-          // const subContentLabel = document.createElement('label');
-          // subContentLabel.htmlFor = `sub-content-${this.formBlockCount}`;
-          // subContentLabel.textContent = '本文：';
-          // subContentBlock.appendChild(subContentLabel);
-          // const subContentInput = document.createElement('textarea');
-          // subContentInput.id = `sub-content-${this.formBlockCount}`;
-          // subContentInput.classList.add('form-control');
-          // subContentInput.rows = 10;
-          // subContentBlock.appendChild(subContentInput);
-          // formBlock.appendChild(subContentBlock);
-          //
-          // // formBlockをformAreaに追加
-          // formArea.appendChild(formBlock);
         },
         removeForm() {
-          // const removeObj = document.querySelector(`#sub-section-${this.formBlockCount}`);
-          // removeObj.remove();
-          // this.formBlockCount--;
-          this.subContents.splice(-1,1);
-        },
-        preview() {
-          // this.subContents = [];
-
-          // for (let i = 0; i < this.formBlockCount + 1; i++) {
-          //   const order = document.querySelector(`#sub-no-${i}`).value;
-          //   const title = document.querySelector(`#sub-title-${i}`).value;
-          //   const content = document.querySelector(`#sub-content-${i}`).value;
-          //
-          //   const subContent = {
-          //     order: parseInt(order),
-          //     title: title,
-          //     description: content,
-          //   };
-          //
-          //   this.subContents.push(subContent);
-          //
-          // }
-          this.modalOpen();
+          this.subContents.splice(-1, 1);
         },
         modalOpen() {
           $('.js-modal').fadeIn();
@@ -352,30 +253,22 @@
           }
         },
         clearParams() {
-
           this.errors = {};
           this.articleTitle = '';
           this.articleCategory = '';
           this.subCategory = '';
           this.articleIntroduction = '';
           this.subContents = [];
-
         }
       },
       computed: {
         currentCategory() {
-
           return this.categories.find(category => {
-
             return (parseInt(category.id) === parseInt(this.articleCategory))
-
           }) || {}; // 存在しない場合は空オブジェクト
-
         },
         currentSubCategories() {
-
           return this.currentCategory.sub_categories;
-
         }
       },
       watch: {
@@ -383,11 +276,6 @@
           this.subCategory = ''; // バリデーションが反応してしまうので、カテゴリ変更時はサブカテゴリを初期化
         }
       },
-      mounted() {
-
-        this.addFormBlock(); // ページ読み込みが完了したらフォーム・ブロックを１つ追加
-
-      }
     });
 
     app.mount('#one-column');

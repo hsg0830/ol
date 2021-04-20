@@ -15,8 +15,6 @@ class CreateSubCategoriesTable extends Migration
   {
     Schema::create('sub_categories', function (Blueprint $table) {
       $table->id();
-
-      // 親カテゴリのIDを追加し 1:多 で結合するようにすると、将来的に新カテゴリにサブカテゴリが追加されてもOKになるので楽できるかもしれません ^^
       $table->unsignedBigInteger('category_id')->comment('親カテゴリーID');
       $table->string('name', 10)->comment('サブカテゴリー名');
       $table->timestamps();

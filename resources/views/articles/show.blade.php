@@ -22,10 +22,30 @@
   <main id="main">
     <!-- タイトル部 -->
     <div class="title-block">
-      <img src="{{ asset('img/bg_black-board_thum.png') }}" alt="" />
+      @if ($article->category->id == 100)
+        <img src="{{ asset('img/bg_black-board_thum.png') }}" alt="" />
+      @elseif($article->category->id == 200)
+        <img src="{{ asset('img/bg_white-board_thum.png') }}" alt="" />
+      @elseif($article->category->id == 300)
+        <img src="{{ asset('img/bg_memo_thum.png') }}" alt="" />
+      @elseif($article->category->id == 400)
+        <img src="{{ asset('img/928-500x375.jpg') }}" alt="" />
+      @endif
+
       <div class="title-block__category">{{ $article->category->name }}</div>
-      <h1 class="title-block__title">{{ $article->title }}</h1>
-      <div class="title-block__date">갱신날자: <time>{{ $article->created_at }}</time></div>
+
+      @if ($article->category->id != 100)
+        <h1 class="title-block__title">{{ $article->title }}</h1>
+      @else
+        <h1 class="title-block__title color-white">{{ $article->title }}</h1>
+      @endif
+
+      @if ($article->category->id != 100)
+        <div class="title-block__date">갱신날자: <time>{{ $article->created_at }}</time></div>
+      @else
+        <div class="title-block__date color-white">갱신날자: <time>{{ $article->created_at }}</time></div>
+      @endif
+
     </div>
     <!-- タイトル部 -->
 

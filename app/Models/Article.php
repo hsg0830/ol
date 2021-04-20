@@ -9,7 +9,7 @@ class Article extends Model
 {
   use HasFactory;
 
-  protected $appends = ['url', 'date'];
+  protected $appends = ['url', 'date', 'head_line'];
 
   public function getUrlAttribute()
   {
@@ -19,6 +19,11 @@ class Article extends Model
   public function getDateAttribute()
   {
     return $this->created_at->format('Y-m-d');
+  }
+
+  public function getHeadlineAttribute()
+  {
+    return mb_strimwidth($this->introduction, 0, 50, '…');
   }
 
   public function category()
