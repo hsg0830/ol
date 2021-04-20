@@ -40,28 +40,37 @@ class ArticlesController extends Controller
 
   public function categories()
   {
-    $categories = ArticleCategory::select('id', 'name')->get();
-    $subCategories = SubCategory::select('id', 'name')->get();
+    // DB構造を変更したので、リレーションシップでサブカテゴリを取得
+    $categories = ArticleCategory::with('sub_categories')->select('id', 'name')->get();
+//    $subCategories = SubCategory::select('id', 'name')->get();
 
     return [
-      $categories,
-      $subCategories,
+      'categories' => $categories,
+//      $subCategories,
     ];
   }
 
   public function store(Request $request)
   {
-    // $category_ids = ArticleCategory::select('id')->get()->all();
-    // $sub_category_ids = SubCategory::select('id')->get()->toArray();
-
-    // dd($category_ids);
+    // ちょっと長くなってしまいましたので、専用の ArticleRequest をつくって分割してもいいかもしれません。
+    $category_id = $request->category_id;
+    $sub_category_id = $request->sub_category_id;
+    $category_ids = ArticleCategory::pluck('id');
+    $has_sub_category = SubCategory::where('category_id', $category_id)->exists();
 
     $request->validate([
       'title' => ['required', 'max:50'],
-      // 'category_id' => ['required', Rule::in($category_ids)],
-      'category_id' => ['required', Rule::in([100, 200, 300, 400])],
-      // 'sub_category_id' => [Rule::in($sub_category_ids)],
-      'sub_category_id' => [Rule::in([100, 200, 300, 400])],
+      'category_id' => ['required', Rule::in($category_ids)],
+      'sub_category_id' => [
+          'nullable',
+          Rule::requiredIf($has_sub_category),
+          Rule::exists('sub_categories', 'id')->where(function($query) use($category_id, $sub_category_id) {
+
+              return $query->where('id', $sub_category_id)
+                  ->where('category_id', $category_id);
+
+          }),
+      ],
       'subContents' => ['required'],
       'subContents.*.order' => ['required', 'integer', 'min:1'],
       'subContents.*.title' => ['required', 'string', 'max:50'],
@@ -107,7 +116,7 @@ class ArticlesController extends Controller
 
   public function show(Article $article)
   {
-    $article->viewd_count += 1;
+    $article->viewed_count += 1;
     $article->save();
 
     return view('articles.show', [

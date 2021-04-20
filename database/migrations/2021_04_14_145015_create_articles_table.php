@@ -22,7 +22,7 @@ class CreateArticlesTable extends Migration
       $table->text('introduction')->comment('イントロダクション');
       $table->boolean('status')->default(false)->comment('公開ステータス');
       $table->dateTime('released_at')->nullable()->comment('公開日時');
-      $table->unsignedInteger('viewd_count')->default(0)->comment('閲覧数');
+      $table->unsignedInteger('viewed_count')->default(0)->comment('閲覧数');
       $table->timestamps();
 
       $table->foreign('editor_id')->references('id')->on('editors');
