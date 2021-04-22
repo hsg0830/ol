@@ -4,7 +4,7 @@
   <main id="main" class="container">
     <h1 class="page-title">학습실 기사 관리</h1>
 
-    <a href="{{ route('articles.create') }}" class="btn btn-primary">投稿画面へ</a>
+    <a href="{{ route('articles.create') }}" class="btn btn-primary">新規投稿画面へ</a>
 
     <div class="row mt-5 mb-3">
       <div class="col-3">

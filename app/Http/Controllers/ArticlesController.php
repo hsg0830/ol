@@ -19,6 +19,18 @@ class ArticlesController extends Controller
     return view('articles.index');
   }
 
+  public function show(Article $article)
+  {
+    if (!Auth::guard('editors')->check()) {
+      $article->viewed_count += 1;
+      $article->save();
+    }
+
+    return view('articles.show', [
+      'article' => $article
+    ]);
+  }
+
   public function paginate(Request $request)
   {
     $category_id = intval($request->categoryNo);
@@ -38,17 +50,6 @@ class ArticlesController extends Controller
     ];
   }
 
-  public function create()
-  {
-    return view('articles.create');
-  }
-
-  public function edit(Article $article) {
-    return view('articles.create', [
-      'article' => $article
-    ]);
-  }
-  
   public function categories()
   {
     $categories = ArticleCategory::with('sub_categories')->select('id', 'name')->get();
@@ -56,6 +57,18 @@ class ArticlesController extends Controller
     return [
       'categories' => $categories,
     ];
+  }
+
+  public function create()
+  {
+    return view('articles.create');
+  }
+
+  public function edit(Article $article)
+  {
+    return view('articles.create', [
+      'article' => $article
+    ]);
   }
 
   public function store(ArticleRequest $request)
@@ -66,16 +79,20 @@ class ArticlesController extends Controller
 
     try {
       $article = new Article();
-      $article->editor_id = 1; //臨時！！
+      $article->editor_id = Auth::id();
+
       if ($request->status == 1) {
         $article->status = 1;
         $article->released_at = now();
       }
+
       $article->title = $request->title;
       $article->category_id = $request->category_id;
+
       if ($request->category_id == 300) {
         $article->sub_category_id = $request->sub_category_id;
       }
+
       $article->introduction = $request->introduction;
       $article->save();
 
@@ -101,16 +118,62 @@ class ArticlesController extends Controller
     return ['result' => $result];
   }
 
-  public function show(Article $article)
+  public function update(ArticleRequest $request, Article $article)
   {
-    if (! Auth::guard('editors')->check()) {
-      $article->viewed_count += 1;
+    $result = false;
+
+    DB::beginTransaction();
+
+    try {
+      if ($request->status == 1 && $article->status == 0) {
+        $article->status = 1;
+        $article->released_at = now();
+      }
+
+      $article->title = $request->title;
+      $article->category_id = $request->category_id;
+
+      if ($request->category_id == 300) {
+        $article->sub_category_id = $request->sub_category_id;
+      }
+
+      $article->introduction = $request->introduction;
       $article->save();
+
+      if (count($request->subContents) > 0) {
+        // 既存のsubContentを一旦全削除？？
+        $subContents = $article->subContents;
+        foreach ($subContents as $subContent) {
+          $subContent->delete();
+        }
+
+        foreach ($request->subContents as $requestSubContent) {
+          $subContent = new SubContent();
+          $subContent->order = $requestSubContent['order'];
+          $subContent->title = $requestSubContent['title'];
+          $subContent->article_id = $article->id;
+          $subContent->description = $requestSubContent['description'];
+          $subContent->save();
+        }
+      }
+
+      DB::commit();
+
+      $result = true;
+    } catch (\Exception $e) {
+      DB::rollBack();
+      // dd($e->getMessage()); // 例外の内容
     }
 
-    return view('articles.show', [
+    return ['result' => $result];
+  }
+
+  public function getEditArticle($id)
+  {
+    $article = Article::with('subContents')->find($id);
+    return [
       'article' => $article
-    ]);
+    ];
   }
 
   public function showArticlesList()

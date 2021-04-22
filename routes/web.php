@@ -61,6 +61,8 @@ Route::prefix('editors')->group(function () {
       Route::get('/categories', [ArticlesController::class, 'categories']);
       Route::post('/', [ArticlesController::class, 'store']);
       Route::get('/{article}/edit', [ArticlesController::class, 'edit'])->name('articles.edit');
+      Route::get('/edit-article/{id}', [ArticlesController::class, 'getEditArticle']);
+      Route::put('/{article}', [ArticlesController::class, 'update']);
       Route::get('/list', [ArticlesController::class, 'showArticlesList'])->name('articles.list');
       Route::get('/get-list', [ArticlesController::class, 'getArticlesList']);
       Route::post('/change-status/{article}', [ArticlesController::class, 'changeStatus']);

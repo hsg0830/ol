@@ -48,7 +48,7 @@
           rows="3"><div class="article-media"><img src="ソースURL" alt="No Image"></div></textarea>
 
         <textarea readonly id="form-07" cols="20" rows="3"><div class="article-media"><video src="ソースURL" controls controlsList="nodownload" oncontextmenu="return false;"></video></div>
-                    </textarea>
+                </textarea>
       </div>
     </div>
 
@@ -176,8 +176,6 @@
       data() {
         return {
           categories: [],
-          currentArticle: '',
-          currentMode: 'create',
           articleCategory: '',
           subCategory: '',
           status: 0,
@@ -189,21 +187,9 @@
       },
       created() {
         this.getCategories();
-
-        if (document.URL.includes('edit')) {
-          const pathParts = location.pathname.split('/');
-          const articleId = pathParts[3];
-          this.currentMode = 'edit';
-          this.getArticle(articleId);
-        }
       },
       mounted() {
-        if (document.URL.includes('edit')) {
-          // console.log(this.currentArticle);
-          // this.subCategory = this.currentArticle.sub_category_id;
-        } else {
-          this.addFormBlock(); // ページ読み込みが完了したらフォーム・ブロックを１つ追加
-        }
+        this.addFormBlock(); // ページ読み込みが完了したらフォーム・ブロックを１つ追加
       },
       methods: {
         getCategories() {
@@ -211,22 +197,6 @@
           axios.get(url)
             .then((response) => {
               this.categories = response.data.categories;
-            });
-        },
-        getArticle(articleId) {
-          const url = `/editors/articles/edit-article/${articleId}`;
-          axios.get(url)
-            .then((response) => {
-              const article = response.data.article;
-
-              this.currentArticle = article;
-
-              this.articleCategory = article.category_id;
-              //this.subCategory = article.sub_category_id; //watchが引っかかってnullになってしまう。。。
-              this.status = article.status;
-              this.articleTitle = article.title;
-              this.articleIntroduction = article.introduction;
-              this.subContents = article.sub_contents;
             });
         },
         copyFormTemplate(e) {
@@ -255,19 +225,9 @@
         },
         onSave() {
           if (confirm('保存します。よろしいですか？')) {
-            let url = '';
-            let method = '';
+            const url = '/editors/articles';
+            const method = 'POST';
 
-            if (this.currentMode == 'create') {
-              url = '/editors/articles';
-              method = 'POST';
-            } else {
-              url = `/editors/articles/${this.currentArticle.id}`;
-              method = 'PUT';
-            }
-
-            console.log(url);
-            
             const params = {
               _method: method,
               status: this.status,
