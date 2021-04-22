@@ -29,6 +29,10 @@ class ArticlesTableSeeder extends Seeder
       $article->title = $i . '番目の記事';
       $article->introduction = $i . '番目の記事のイントロダクションです。文章が続きます。文章が続きます。文章が続きます。文章が続きます。文章が続きます。文章が続きます。文章が続きます。文章が続きます。文章が続きます。文章が続きます。文章が続きます。';
       $article->viewed_count = rand(1, 100);
+      $article->status = rand(0, 1);
+      if ($article->status == 1) {
+        $article->released_at = now();
+      }
       $article->save();
     }
   }

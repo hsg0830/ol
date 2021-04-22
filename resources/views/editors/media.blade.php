@@ -4,7 +4,7 @@
 
 @section('content')
 
-  <div id="app">
+  <div id="main">
     <h1 class="page-title">メディア管理画面</h1>
 
     {{-- ファイルアップロードブロック --}}
@@ -108,6 +108,7 @@
     </div>
 
   </div>
+
 @endsection
 
 @section('js-script')
@@ -221,7 +222,7 @@
           poster: Vue.ref(null),
         }
       }
-    }).mount('#app');
+    }).mount('#main');
 
   </script>
 @endsection

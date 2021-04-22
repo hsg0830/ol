@@ -21,7 +21,7 @@ class CreateArticlesTable extends Migration
       $table->string('title')->comment('タイトル');
       $table->text('introduction')->comment('イントロダクション');
       $table->boolean('status')->default(false)->comment('公開ステータス');
-      $table->dateTime('released_at')->nullable()->comment('公開日時');
+      $table->timestamp('released_at')->nullable()->comment('公開日時');
       $table->unsignedInteger('viewed_count')->default(0)->comment('閲覧数');
       $table->timestamps();
 

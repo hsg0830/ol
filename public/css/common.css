@@ -104,6 +104,12 @@ img {
   vertical-align: bottom;
 }
 
+video {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -599,7 +605,7 @@ html.open,
   display: block;
 }
 
-.global-nav ul li a:hover {
+.global-nav ul li a:hover, .global-nav ul li a.active {
   color: #ed8400;
   opacity: 1;
 }
@@ -1565,6 +1571,18 @@ html.open,
   font-size: 2rem;
   line-height: 1;
   font-weight: bold;
+}
+
+.article-media {
+  max-width: 95%;
+  margin: 2rem auto 3rem;
+}
+
+@media screen and (min-width: 768px) {
+  .article-media {
+    max-width: 80%;
+    margin: 4rem auto 5rem;
+  }
 }
 
 /*---------------------------

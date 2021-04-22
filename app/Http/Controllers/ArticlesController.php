@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Article;
 use App\Models\SubContent;
 use App\Models\ArticleCategory;
@@ -28,7 +29,7 @@ class ArticlesController extends Controller
       $query->where('category_id', $category_id);
     }
 
-    $articles = $query->with('category')->paginate(12);
+    $articles = $query->where('status', 1)->with('category')->paginate(12);
     $categories = ArticleCategory::select('id', 'name')->get();
 
     return [
@@ -42,6 +43,12 @@ class ArticlesController extends Controller
     return view('articles.create');
   }
 
+  public function edit(Article $article) {
+    return view('articles.create', [
+      'article' => $article
+    ]);
+  }
+  
   public function categories()
   {
     $categories = ArticleCategory::with('sub_categories')->select('id', 'name')->get();
@@ -60,6 +67,10 @@ class ArticlesController extends Controller
     try {
       $article = new Article();
       $article->editor_id = 1; //臨時！！
+      if ($request->status == 1) {
+        $article->status = 1;
+        $article->released_at = now();
+      }
       $article->title = $request->title;
       $article->category_id = $request->category_id;
       if ($request->category_id == 300) {
@@ -92,11 +103,49 @@ class ArticlesController extends Controller
 
   public function show(Article $article)
   {
-    $article->viewed_count += 1;
-    $article->save();
+    if (! Auth::guard('editors')->check()) {
+      $article->viewed_count += 1;
+      $article->save();
+    }
 
     return view('articles.show', [
       'article' => $article
     ]);
+  }
+
+  public function showArticlesList()
+  {
+    return view('articles.list');
+  }
+
+  public function getArticlesList()
+  {
+    $articles = Article::with('category')->get();
+
+    return ['articles' => $articles];
+  }
+
+  public function changeStatus(Article $article)
+  {
+    if ($article->status == 0) {
+      $article->status = 1;
+      $article->released_at = now();
+    } else {
+      $article->status = 0;
+      $article->released_at = null;
+    }
+
+    $result = $article->save();
+
+    return [
+      'result' => $result,
+    ];
+  }
+
+  public function destroy(Article $article)
+  {
+    return [
+      'result' => $article->delete()
+    ];
   }
 }

@@ -60,6 +60,11 @@ Route::prefix('editors')->group(function () {
       Route::get('/create', [ArticlesController::class, 'create'])->name('articles.create');
       Route::get('/categories', [ArticlesController::class, 'categories']);
       Route::post('/', [ArticlesController::class, 'store']);
+      Route::get('/{article}/edit', [ArticlesController::class, 'edit'])->name('articles.edit');
+      Route::get('/list', [ArticlesController::class, 'showArticlesList'])->name('articles.list');
+      Route::get('/get-list', [ArticlesController::class, 'getArticlesList']);
+      Route::post('/change-status/{article}', [ArticlesController::class, 'changeStatus']);
+      Route::delete('/{article}', [ArticlesController::class, 'destroy']);
     });
   });
 });

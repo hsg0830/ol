@@ -9,16 +9,22 @@ class Article extends Model
 {
   use HasFactory;
 
-  protected $appends = ['url', 'date', 'head_line'];
+  protected $appends = ['url', 'edit_url', 'date', 'head_line'];
 
   public function getUrlAttribute()
   {
     return route('articles.show', $this->id);
   }
 
+  public function getEditUrlAttribute() {
+    return route('articles.edit', $this->id);
+  }
+
   public function getDateAttribute()
   {
     return $this->created_at->format('Y-m-d');
+    // return $this->status == 1 ? $this->released_at->format('Y-m-d') : '';
+    // return $this->released_at != null ? $this->released_at->format('Y-m-d') : '';
   }
 
   public function getHeadlineAttribute()

@@ -38,6 +38,33 @@ body {
   color: #ffffff;
 }
 
+.wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 2.5rem 2rem;
+}
+
+@media screen and (min-width: 560px) {
+  .wrapper {
+    padding: 1rem 4rem 2rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    padding: 1rem 8rem 5.5rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+}
+
+#main {
+  width: 100%;
+}
+
 .page-title {
   margin: 2rem auto;
   text-align: center;
@@ -53,6 +80,17 @@ body {
 .form-group input {
   line-height: 2rem;
   padding: 0.2rem 0.5rem;
+}
+
+.btn,
+.form-control,
+.form-select {
+  font-size: 16px !important;
+  padding: 3.5px 7.5px !important;
+}
+
+.label {
+  font-weight: bold;
 }
 
 .modal {
@@ -84,29 +122,8 @@ body {
 }
 
 /*---------------------------
-  メディア管理画面
----------------------------*/
-@media screen and (min-width: 768px) {
-  #file-upload {
-    width: 70%;
-  }
-}
-
-.label {
-  font-weight: bold;
-}
-
-/*---------------------------
   学習室記事投稿画面
 ---------------------------*/
-.post-form {
-  max-width: 1400px;
-}
-
-.post-form .btn, .post-form .form-control, .post-form .form-select {
-  font-size: 1.6rem;
-}
-
 .article-modal {
   background-color: #eee5df;
 }

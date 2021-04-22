@@ -11,6 +11,8 @@
   <div id="one-column" class="post-form">
     <h1 class="page-title">学習室の記事の投稿フォーム</h1>
 
+    <a href="{{ route('articles.list') }}" class="btn btn-primary mb-3">一覧画面へ</a>
+
     <div class="error-message" v-if="Object.keys(errors).length">
       <ul>
         <li v-for="error in errors" v-text="error"></li>
@@ -52,13 +54,24 @@
 
     {{-- タイトル部 --}}
     <div style="border: 2px solid brown; padding:0.5rem; background-color: lemonchiffon; margin: 11rem 0 2rem">
-      <div class="mb-3">
-        <p class="label">カテゴリー</p>
-        {{-- <label for="category">カテゴリー：</label> --}}
-        <select id="category" class="form-select" v-model="articleCategory">
-          <option>--------</option>
-          <option v-for="category in categories" v-text="category.name" :value="category.id"></option>
-        </select>
+      <div class="d-flex mb-3">
+        <div class="me-5">
+          <p class="label">カテゴリー</p>
+          {{-- <label for="category">カテゴリー：</label> --}}
+          <select id="category" class="form-select" v-model="articleCategory">
+            <option>--------</option>
+            <option v-for="category in categories" v-text="category.name" :value="category.id"></option>
+          </select>
+        </div>
+
+        <div>
+          <p class="label">公開状態</p>
+          {{-- <label for="category">カテゴリー：</label> --}}
+          <select id="status" class="form-select" v-model="status">
+            <option value="0">非公開</option>
+            <option value="1">公開</option>
+          </select>
+        </div>
       </div>
 
       <div class="mb-3" v-if="currentCategory.has_sub_category">
@@ -165,6 +178,7 @@
           categories: [],
           articleCategory: '',
           subCategory: '',
+          status: 0,
           articleTitle: '',
           articleIntroduction: '',
           subContents: [],
@@ -216,6 +230,7 @@
 
             const params = {
               _method: method,
+              status: this.status,
               title: this.articleTitle,
               category_id: this.articleCategory,
               sub_category_id: this.subCategory,
@@ -254,6 +269,7 @@
         },
         clearParams() {
           this.errors = {};
+          this.status = 0;
           this.articleTitle = '';
           this.articleCategory = '';
           this.subCategory = '';
