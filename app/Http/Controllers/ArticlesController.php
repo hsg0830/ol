@@ -74,6 +74,7 @@ class ArticlesController extends Controller
   public function store(ArticleRequest $request)
   {
     $result = false;
+    $article = '';
 
     DB::beginTransaction();
 
@@ -115,7 +116,10 @@ class ArticlesController extends Controller
       // dd($e->getMessage()); // 例外の内容
     }
 
-    return ['result' => $result];
+    return [
+      'result' => $result,
+      'article' => $article,
+    ];
   }
 
   public function update(ArticleRequest $request, Article $article)
@@ -165,7 +169,10 @@ class ArticlesController extends Controller
       // dd($e->getMessage()); // 例外の内容
     }
 
-    return ['result' => $result];
+    return [
+      'result' => $result,
+      'article' => $article,
+    ];
   }
 
   public function getEditArticle($id)

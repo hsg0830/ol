@@ -19,6 +19,10 @@
       </ul>
     </div>
 
+    <div v-if="articleUrl" class="mb-4">
+      <a :href="articleUrl" target="_blank" class="btn btn-success">記事を確認</a>
+    </div>
+
     {{-- 入力補助フォーム --}}
     <div class="form-tag-sample border border-info border-3 rounded-3 p-3 position-fixed">
       <div class="d-flex my-3">
@@ -178,6 +182,7 @@
           categories: [],
           currentArticle: '',
           currentMode: 'create',
+          articleUrl: '',
           articleCategory: '',
           subCategory: '',
           status: 0,
@@ -190,7 +195,7 @@
       created() {
         this.getCategories();
 
-        if (document.URL.includes('edit')) {
+        if (document.URL.endsWith('edit')) {
           const pathParts = location.pathname.split('/');
           const articleId = pathParts[3];
           this.currentMode = 'edit';
@@ -198,7 +203,7 @@
         }
       },
       mounted() {
-        if (document.URL.includes('edit')) {
+        if (this.currentMode === 'edit') {
           // console.log(this.currentArticle);
           // this.subCategory = this.currentArticle.sub_category_id;
         } else {
@@ -221,6 +226,7 @@
 
               this.currentArticle = article;
 
+              this.articleUrl = article.url;
               this.articleCategory = article.category_id;
               //this.subCategory = article.sub_category_id; //watchが引っかかってnullになってしまう。。。
               this.status = article.status;
@@ -258,7 +264,7 @@
             let url = '';
             let method = '';
 
-            if (this.currentMode == 'create') {
+            if (this.currentMode === 'create') {
               url = '/editors/articles';
               method = 'POST';
             } else {
@@ -267,7 +273,7 @@
             }
 
             console.log(url);
-            
+
             const params = {
               _method: method,
               status: this.status,
@@ -282,9 +288,18 @@
               .post(url, params)
               .then((response) => {
                 if (response.data.result === true) {
-                  alert('記事を保存しました。');
-                  this.clearParams();
-                  this.addFormBlock();
+                  this.articleUrl = response.data.article.url;
+
+                  alert(`
+                    記事を保存しました。
+                    ${this.articleUrl}
+                    `);
+
+                  if (this.currentMode === 'create') {
+                    this.clearParams();
+                    this.addFormBlock();
+                  }
+
                   this.modalClose();
                   scrollTo(0, 0);
                 }
