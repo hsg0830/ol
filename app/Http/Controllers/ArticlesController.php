@@ -21,6 +21,10 @@ class ArticlesController extends Controller
 
   public function show(Article $article)
   {
+    if (!Auth::guard('editors')->check() && $article->status == 0) {
+      return redirect()->route('articles.index');
+    }
+    
     if (!Auth::guard('editors')->check()) {
       $article->viewed_count += 1;
       $article->save();
