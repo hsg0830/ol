@@ -77,11 +77,11 @@ updateButton();
 /*------------------
 ツールチップ
 ------------------*/
-$(document).ready(function () {
-  $('.tooltip').tooltipster({
-    theme: 'tooltipster-noir',
-  });
-});
+// $(document).ready(function () {
+//   $('.tooltip').tooltipster({
+//     theme: 'tooltipster-noir',
+//   });
+// });
 
 /*------------------
 QAページ・規範原文ページの内容の表示/非表示切り替え

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\ArticleSaving;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,6 +11,12 @@ class Article extends Model
   use HasFactory;
 
   protected $appends = ['url', 'edit_url', 'date', 'head_line'];
+  protected $casts = [
+      'released_at' => 'date'
+  ];
+  protected $dispatchesEvents = [
+      'saving' => ArticleSaving::class
+  ];
 
   public function getUrlAttribute()
   {
@@ -22,9 +29,7 @@ class Article extends Model
 
   public function getDateAttribute()
   {
-    return $this->created_at->format('Y-m-d');
-    // return $this->status == 1 ? $this->released_at->format('Y-m-d') : '';
-    // return $this->released_at != null ? $this->released_at->format('Y-m-d') : '';
+     return !is_null($this->released_at) ? $this->released_at->format('Y/m/d') : '';
   }
 
   public function getHeadlineAttribute()
