@@ -50,7 +50,7 @@
             <a v-if="article.status === 1" class="btn btn-success" @click="changeStatus(article)">공개</a>
             <a v-else class="btn btn-warning" @click="changeStatus(article)">미공개</a>
           </td>
-          <td v-text="article.released_at"></td>
+          <td v-text="article.date"></td>
           <td v-text="article.viewed_count"></td>
           <td class="d-flex justify-content-around">
             <a :href="article.edit_url" target="_blank" class="btn btn-primary">편집</a>

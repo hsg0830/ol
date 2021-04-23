@@ -35,7 +35,7 @@
       <p>여기에 이 코너에 대한 설명글이 들어갑니다. 여기에 이 코너에 대한 설명글이 들어갑니다. 여기에 이 코너에 대한 설명글이 들어갑니다.</p>
     </div>
 
-    <div class="list-container">
+    <div id="list-container" class="list-container">
       {{-- カテゴリーセレクトボタン --}}
       <div class="list-container__selector">
         <category-select-button :categories="categories" v-model="categoryNo" @child-click="selectCategory">
@@ -113,6 +113,12 @@
           this.page = page;
           location.hash = `${this.page}%${this.categoryNo}`;
           this.getItems();
+          Vue.nextTick(() => {
+            const scrollTop = $('#list-container').offset().top - 50;
+            $('html,body').animate({
+              scrollTop: scrollTop
+            }, 'fast');
+          });
         },
         getHashValue() {
           const [hashPage, hashCategoryNo] = location.hash.substring(1).split('%');

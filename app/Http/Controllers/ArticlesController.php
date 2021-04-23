@@ -5,12 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Article;
 use App\Models\SubContent;
 use App\Models\ArticleCategory;
-use App\Models\SubCategory;
 
 class ArticlesController extends Controller
 {
@@ -21,11 +19,10 @@ class ArticlesController extends Controller
 
   public function show(Article $article)
   {
-    if (!Auth::guard('editors')->check() && $article->status == 0) {
-      return redirect()->route('articles.index');
-    }
-    
     if (!Auth::guard('editors')->check()) {
+      if ($article->status == 0) {
+        return redirect()->route('articles.index');
+      }
       $article->viewed_count += 1;
       $article->save();
     }
@@ -70,6 +67,8 @@ class ArticlesController extends Controller
 
   public function edit(Article $article)
   {
+    $article->load('subContents');
+
     return view('articles.create', [
       'article' => $article
     ]);
@@ -77,106 +76,13 @@ class ArticlesController extends Controller
 
   public function store(ArticleRequest $request)
   {
-    $result = false;
-    $article = '';
-
-    DB::beginTransaction();
-
-    try {
       $article = new Article();
-      $article->editor_id = Auth::id();
-
-      if ($request->status == 1) {
-        $article->status = 1;
-        $article->released_at = now();
-      }
-
-      $article->title = $request->title;
-      $article->category_id = $request->category_id;
-
-      if ($request->category_id == 300) {
-        $article->sub_category_id = $request->sub_category_id;
-      }
-
-      $article->introduction = $request->introduction;
-      $article->save();
-
-      if (count($request->subContents) > 0) {
-        foreach ($request->subContents as $requestSubContent) {
-          $subContent = new SubContent();
-          $subContent->order = $requestSubContent['order'];
-          $subContent->title = $requestSubContent['title'];
-          $subContent->article_id = $article->id;
-          $subContent->description = $requestSubContent['description'];
-          $subContent->save();
-        }
-      }
-
-      DB::commit();
-
-      $result = true;
-    } catch (\Exception $e) {
-      DB::rollBack();
-      // dd($e->getMessage()); // 例外の内容
-    }
-
-    return [
-      'result' => $result,
-      'article' => $article,
-    ];
+      return $this->saveArticle($request, $article);
   }
 
   public function update(ArticleRequest $request, Article $article)
   {
-    $result = false;
-
-    DB::beginTransaction();
-
-    try {
-      if ($request->status == 1 && $article->status == 0) {
-        $article->status = 1;
-        $article->released_at = now();
-      }
-
-      $article->title = $request->title;
-      $article->category_id = $request->category_id;
-
-      if ($request->category_id == 300) {
-        $article->sub_category_id = $request->sub_category_id;
-      }
-
-      $article->introduction = $request->introduction;
-      $article->save();
-
-      if (count($request->subContents) > 0) {
-        // 既存のsubContentを一旦全削除？？
-        $subContents = $article->subContents;
-        foreach ($subContents as $subContent) {
-          $subContent->delete();
-        }
-
-        foreach ($request->subContents as $requestSubContent) {
-          $subContent = new SubContent();
-          $subContent->order = $requestSubContent['order'];
-          $subContent->title = $requestSubContent['title'];
-          $subContent->article_id = $article->id;
-          $subContent->description = $requestSubContent['description'];
-          $subContent->save();
-        }
-      }
-
-      DB::commit();
-
-      $result = true;
-    } catch (\Exception $e) {
-      DB::rollBack();
-      // dd($e->getMessage()); // 例外の内容
-    }
-
-    return [
-      'result' => $result,
-      'article' => $article,
-    ];
+      return $this->saveArticle($request, $article);
   }
 
   public function getEditArticle($id)
@@ -201,14 +107,7 @@ class ArticlesController extends Controller
 
   public function changeStatus(Article $article)
   {
-    if ($article->status == 0) {
-      $article->status = 1;
-      $article->released_at = now();
-    } else {
-      $article->status = 0;
-      $article->released_at = null;
-    }
-
+    $article->status = !($article->status);
     $result = $article->save();
 
     return [
@@ -221,5 +120,60 @@ class ArticlesController extends Controller
     return [
       'result' => $article->delete()
     ];
+  }
+
+  private function saveArticle(Request $request, Article $article) {
+
+      $result = false;
+
+      DB::beginTransaction();
+
+      try {
+
+          if(!$article->exists) {
+
+              $article->editor_id = Auth::id();
+
+          }
+
+          $article->title = $request->title;
+          $article->category_id = $request->category_id;
+          $article->sub_category_id = $request->sub_category_id;
+          $article->introduction = $request->introduction;
+          $article->status = $request->status;
+          $article->save();
+
+          if (count($request->subContents) > 0) {
+              // 既存のsubContentを一旦全削除？？
+              // > 私もこの形を使いますよ。^^b
+              $subContents = $article->subContents;
+              foreach ($subContents as $subContent) {
+                  $subContent->delete();
+              }
+
+              foreach ($request->subContents as $requestSubContent) {
+                  $subContent = new SubContent();
+                  $subContent->order = $requestSubContent['order'];
+                  $subContent->title = $requestSubContent['title'];
+                  $subContent->article_id = $article->id;
+                  $subContent->description = $requestSubContent['description'];
+                  $subContent->save();
+              }
+          }
+
+          DB::commit();
+          $result = true;
+
+      } catch (\Exception $e) {
+
+          DB::rollBack();
+
+      }
+
+      return [
+          'result' => $result,
+          'article' => $article,
+      ];
+
   }
 }

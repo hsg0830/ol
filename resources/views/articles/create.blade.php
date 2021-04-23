@@ -62,7 +62,7 @@
         <div class="me-5">
           <p class="label">カテゴリー</p>
           {{-- <label for="category">カテゴリー：</label> --}}
-          <select id="category" class="form-select" v-model="articleCategory">
+          <select id="category" class="form-select" v-model="articleCategory" @change="onChangeCategory">
             <option>--------</option>
             <option v-for="category in categories" v-text="category.name" :value="category.id"></option>
           </select>
@@ -180,7 +180,7 @@
       data() {
         return {
           categories: [],
-          currentArticle: '',
+          currentArticle: {!! $article ?? 'null' !!},
           currentMode: 'create',
           articleUrl: '',
           articleCategory: '',
@@ -192,22 +192,19 @@
           errors: {},
         }
       },
-      created() {
-        this.getCategories();
-
-        if (document.URL.endsWith('edit')) {
-          const pathParts = location.pathname.split('/');
-          const articleId = pathParts[3];
-          this.currentMode = 'edit';
-          this.getArticle(articleId);
-        }
-      },
       mounted() {
-        if (this.currentMode === 'edit') {
-          // console.log(this.currentArticle);
-          // this.subCategory = this.currentArticle.sub_category_id;
+        this.getCategories();
+        if (this.currentArticle === null) {
+          this.addFormBlock();
         } else {
-          this.addFormBlock(); // ページ読み込みが完了したらフォーム・ブロックを１つ追加
+          this.currentMode = 'edit';
+          this.articleUrl = this.currentArticle.url;
+          this.articleCategory = this.currentArticle.category_id;
+          this.subCategory = this.currentArticle.sub_category_id;
+          this.status = this.currentArticle.status;
+          this.articleTitle = this.currentArticle.title;
+          this.articleIntroduction = this.currentArticle.introduction;
+          this.subContents = this.currentArticle.sub_contents;
         }
       },
       methods: {
@@ -216,23 +213,6 @@
           axios.get(url)
             .then((response) => {
               this.categories = response.data.categories;
-            });
-        },
-        getArticle(articleId) {
-          const url = `/editors/articles/edit-article/${articleId}`;
-          axios.get(url)
-            .then((response) => {
-              const article = response.data.article;
-
-              this.currentArticle = article;
-
-              this.articleUrl = article.url;
-              this.articleCategory = article.category_id;
-              //this.subCategory = article.sub_category_id; //watchが引っかかってnullになってしまう。。。
-              this.status = article.status;
-              this.articleTitle = article.title;
-              this.articleIntroduction = article.introduction;
-              this.subContents = article.sub_contents;
             });
         },
         copyFormTemplate(e) {
@@ -259,8 +239,12 @@
         modalClose() {
           $('.js-modal').fadeOut();
         },
+        onChangeCategory() {
+          this.subCategory = '';
+        },
         onSave() {
           if (confirm('保存します。よろしいですか？')) {
+            this.errors = {};
             let url = '';
             let method = '';
 
@@ -290,10 +274,7 @@
                 if (response.data.result === true) {
                   this.articleUrl = response.data.article.url;
 
-                  alert(`
-                    記事を保存しました。
-                    ${this.articleUrl}
-                    `);
+                  alert("記事を保存しました。\n"+ this.articleUrl);
 
                   if (this.currentMode === 'create') {
                     this.clearParams();
@@ -336,15 +317,10 @@
         currentCategory() {
           return this.categories.find(category => {
             return (parseInt(category.id) === parseInt(this.articleCategory))
-          }) || {}; // 存在しない場合は空オブジェクト
+          }) || {};
         },
         currentSubCategories() {
           return this.currentCategory.sub_categories;
-        }
-      },
-      watch: {
-        articleCategory() {
-          this.subCategory = ''; // バリデーションが反応してしまうので、カテゴリ変更時はサブカテゴリを初期化
         }
       },
     });
