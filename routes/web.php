@@ -25,6 +25,11 @@ Route::get('/', function () {
 // メール送信テスト
 Route::get('/mail', [MailSendController::class, 'index']);
 
+// email-verifyテスト
+Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
+  return view('test.verified');
+})->name('verified');
+
 // 会員登コード認証用ルーティング
 Route::post('check-code', [RegisteredUserController::class, 'confirm_code']);
 

@@ -134,6 +134,10 @@ select {
   text-align: left;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .text-emphasis {
   font-weight: bold;
 }
@@ -167,6 +171,7 @@ select {
   width: 80%;
   margin: 0 auto 4rem;
   text-align: center;
+  line-height: 4.5rem;
 
   & a {
     color: $lightBrown;
@@ -200,6 +205,7 @@ select {
   padding: 1.5rem;
   border-radius: 1rem;
 }
+
 
 .form-tip {
   padding: 0 1.5rem;
@@ -243,6 +249,11 @@ select {
   box-shadow: 0 0 0.1rem silver;
   text-align: center;
   font-family: $krPoor;
+
+  &.large {
+    width: 15rem;
+    height: 5rem;
+  }
 
   &:hover {
     opacity: 0.9;

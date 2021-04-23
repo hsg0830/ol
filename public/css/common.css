@@ -186,6 +186,10 @@ select {
   text-align: left;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .text-emphasis {
   font-weight: bold;
 }
@@ -218,6 +222,7 @@ select {
   width: 80%;
   margin: 0 auto 4rem;
   text-align: center;
+  line-height: 4.5rem;
 }
 
 .message a {
@@ -297,6 +302,11 @@ select {
           box-shadow: 0 0 0.1rem silver;
   text-align: center;
   font-family: "Poor Story", cursive;
+}
+
+.global-btn.large {
+  width: 15rem;
+  height: 5rem;
 }
 
 .global-btn:hover {
