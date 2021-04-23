@@ -13,6 +13,43 @@ body {
   color: $black;
 }
 
+.navbar {
+  background-color: $brown;
+}
+
+.navbar-light {
+  & .navbar-brand {
+    padding: 1rem;
+    color: $white;
+  }
+
+  & .navbar-nav {
+    & .nav-link {
+      color: $white;
+    }
+  }
+}
+
+.wrapper {
+  max-width: $maxWidth;
+  margin: 0 auto;
+  padding: 1rem 2.5rem 2rem;
+
+  @media screen and (min-width: 560px) {
+    padding: 1rem 4rem 2rem;
+  }
+
+  @media screen and (min-width: 768px) {
+    padding: 1rem 8rem 5.5rem;
+    display: flex;
+    justify-content: space-around;
+  }
+}
+
+#main {
+  width: 100%;
+}
+
 .page-title {
   margin: 2rem auto;
   text-align: center;
@@ -21,21 +58,29 @@ body {
   color: $brown;
 }
 
-/*---------------------------
-  メディア管理画面
----------------------------*/
-// ファイルアップロードフォームブロック
-#file-upload {
-  @media screen and (min-width: 768px) {
-    width: 70%;
+.form-group {
+  & label {
+    font-weight: bold;
   }
+
+  & input {
+    line-height: 2rem;
+    padding: 0.2rem 0.5rem;
+  }
+}
+
+.btn,
+.form-control,
+.form-select {
+  font-size: 16px !important;
+  padding: 3.5px 7.5px !important;
 }
 
 .label {
   font-weight: bold;
 }
 
-// モーダル
+// モーダル（メディア管理、学習室投稿）
 .modal {
   /* display: none; */
   height: 100vh;
@@ -62,3 +107,12 @@ body {
   max-height: 80%;
   overflow: auto;
 }
+
+/*---------------------------
+  学習室記事投稿画面
+---------------------------*/
+
+.article-modal {
+  background-color: $base;
+}
+

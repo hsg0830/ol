@@ -11,7 +11,7 @@ class Medium extends Model
 
   use HasFactory;
 
-  // Accessor こっちは現不使用
+  // Accessor こっちは現在不使用
   public function getPathAttribute()
   {
     return storage_path('app/public/media/' . $this->filename);
