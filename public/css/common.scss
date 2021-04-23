@@ -201,11 +201,19 @@ select {
 .error-message {
   background-color: rgb(250, 213, 209);
   color: $red;
-  margin-bottom: 1rem;
+  margin: 1rem auto;
   padding: 1.5rem;
   border-radius: 1rem;
 }
 
+.notification {
+  width: 80%;
+  background-color: rgb(222, 247, 207);
+  color: $green;
+  margin: 1rem auto 3rem;
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
 
 .form-tip {
   padding: 0 1.5rem;

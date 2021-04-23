@@ -12,7 +12,7 @@
     </div>
 
     @if (session('status') == 'verification-link-sent')
-      <div class="error-message text-center">
+      <div class="notification text-center">
         <p>확인용 이메일을 다시 보내드렸습니다. </p>
         <p>이메일을 확인하십시오.</p>
         <p>이메일을 받지 못한 경우애는 문의하기를 통하여 문의해주십시오.</p>

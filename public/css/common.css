@@ -254,7 +254,16 @@ select {
 .error-message {
   background-color: #fad5d1;
   color: #ab243b;
-  margin-bottom: 1rem;
+  margin: 1rem auto;
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
+
+.notification {
+  width: 80%;
+  background-color: #def7cf;
+  color: #19775f;
+  margin: 1rem auto 3rem;
   padding: 1.5rem;
   border-radius: 1rem;
 }
