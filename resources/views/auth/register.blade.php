@@ -3,7 +3,7 @@
 @section('breadcrumb')
   <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      <a itemprop="item" href="/">
+      <a itemprop="item" href="{{ url('/') }}">
         <span itemprop="name">홈</span>
       </a>
       <meta itemprop="position" content="1" />

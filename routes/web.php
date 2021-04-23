@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\MultiAuthController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\MediaController;
+use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\UsersController;
 
 /*
@@ -25,8 +26,17 @@ Route::get('/', function () {
 // 会員登コード認証用ルーティング
 Route::post('check-code', [RegisteredUserController::class, 'confirm_code']);
 
+// 学習室
+Route::prefix('articles')->group(function () {
+  Route::get('/', [ArticlesController::class, 'index'])->name('articles.index');
+  Route::get('/pagination', [ArticlesController::class, 'paginate']);
+  Route::get('/{article}', [ArticlesController::class, 'show'])->name('articles.show');
+});
+
+// 管理者関連
 Route::prefix('editors')->group(function () {
-  // 管理者ログイン・ログアウト
+
+  // 管理者ログイン
   Route::middleware('guest:editors')->group(function () {
     Route::get('login', [MultiAuthController::class, 'showLoginForm']);
     Route::post('login', [MultiAuthController::class, 'login'])->name('editors.login');
@@ -34,7 +44,6 @@ Route::prefix('editors')->group(function () {
 
   Route::middleware('auth:editors')->group(function () {
     // 管理者ログアウト
-    // Route::post('logout', [MultiAuthController::class, 'logout'])->name('editors.logout');
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('editors.logout');
 
     // 管理者トップページ
@@ -44,7 +53,21 @@ Route::prefix('editors')->group(function () {
     Route::prefix('media')->group(function () {
       Route::get('/', [MediaController::class, 'index'])->name('media');
       Route::get('/list', [MediaController::class, 'list']);
-      Route::post('upload', [MediaController::class, 'store']);
+      Route::post('/upload', [MediaController::class, 'store']);
+    });
+
+    // 学習室の記事管理
+    Route::prefix('articles')->group(function () {
+      Route::get('/create', [ArticlesController::class, 'create'])->name('articles.create');
+      Route::get('/categories', [ArticlesController::class, 'categories']);
+      Route::post('/', [ArticlesController::class, 'store']);
+      Route::get('/{article}/edit', [ArticlesController::class, 'edit'])->name('articles.edit');
+      Route::get('/edit-article/{id}', [ArticlesController::class, 'getEditArticle']);
+      Route::put('/{article}', [ArticlesController::class, 'update']);
+      Route::get('/list', [ArticlesController::class, 'showArticlesList'])->name('articles.list');
+      Route::get('/get-list', [ArticlesController::class, 'getArticlesList']);
+      Route::post('/change-status/{article}', [ArticlesController::class, 'changeStatus']);
+      Route::delete('/{article}', [ArticlesController::class, 'destroy']);
     });
 
     // ユーザー管理
