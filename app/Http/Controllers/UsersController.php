@@ -10,7 +10,7 @@ class UsersController extends Controller
 {
   public function index()
   {
-    return view('editors.users');
+    return view('users.index');
   }
 
   public function list()
@@ -29,5 +29,11 @@ class UsersController extends Controller
     return [
       'result' => $user->delete(),
     ];
+  }
+
+  public function show(User $user) {
+    return view('users.show', [
+      'user' => $user
+    ]);
   }
 }

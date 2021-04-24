@@ -33,6 +33,10 @@ Route::prefix('articles')->group(function () {
   Route::get('/{article}', [ArticlesController::class, 'show'])->name('articles.show');
 });
 
+Route::prefix('users')->group(function () {
+  Route::get('/{user}', [UsersController::class, 'show'])->name('users.show');
+});
+
 // 管理者関連
 Route::prefix('editors')->group(function () {
 
