@@ -9,39 +9,38 @@
         총회원수: @{{ users.length }}
       </div>
       <div class="col-3">
-        조건에 맞는 회원수: @{{ filteredList.length }}
+        조건에 맞는 회원수: @{{ filteredUsers.length }}
       </div>
     </div>
 
     <div class="row mt-3 mb-3">
       <div class="col-2">
-        <select class="form-select" v-model="selectedSchool" @change="filteringList">
+        <select class="form-select" v-model="selectedSchool">
           <option value="0" selected>전체기관</option>
           <option v-for="school in schools" :value="school.id" v-text="school.name"></option>
         </select>
       </div>
 
       <div class="col-2">
-        <select class="form-select" v-model="nameOrder" @change="filteringList">
+        <select class="form-select" v-model="nameOrder">
           <option value="0" selected>이름순</option>
           <option value="1">이름거꿀순</option>
         </select>
       </div>
 
       <div class="col-2">
-        <select class="form-select" v-model="selectedSex" @change="filteringList">
+        <select class="form-select" v-model="selectedSex">
           <option value="0" selected>성별</option>
           <option v-for="(sex, key) in sexes" v-text="sex" :value="key"></option>
         </select>
       </div>
 
       <div class="col-2">
-        <select class="form-select" v-model="registeredOrder" @change="filteringList">
+        <select class="form-select" v-model="registeredOrder">
           <option value="0" selected>등록순</option>
           <option value="1">등록거꿀순</option>
         </select>
       </div>
-
 
     </div>
 
@@ -60,11 +59,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="text-center" v-for="user in filteredList">
-          {{-- <tr class="text-center" v-for="user in users"> --}}
+        <tr class="text-center" v-for="user in filteredUsers">
           <th scope="row" v-text="user.id"></th>
           <td v-text="user.name"></td>
-          {{-- <td v-text="user.email"></td> --}}
           <td>
             <a class="mailtoui" :href="getEmailLink(user)" v-text="user.email"></a>
           </td>
@@ -82,9 +79,9 @@
   </main>
 @endsection
 
-{{-- @section('js-files')
-  <script src="https://cdn.jsdelivr.net/npm/mailtoui@1.0.3/dist/mailtoui-min.js"></script>
-@endsection --}}
+@section('js-files')
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+@endsection
 
 @section('js-script')
   <script>
@@ -92,7 +89,6 @@
       data() {
         return {
           users: [],
-          filteredList: [],
           schools: [],
           sexes: {
             1: "남",
@@ -109,60 +105,8 @@
           const url = '/editors/users-list';
           axios.get(url).then((response) => {
             this.users = response.data.users;
-            this.filteredList = this.users;
             this.schools = response.data.schools;
           });
-        },
-        filteringList() {
-          //所属期間でのフィルタリング
-          if (this.selectedSchool > 0) {
-            this.filteredList = this.users.filter(user => user.school_id === this.selectedSchool);
-          } else {
-            this.filteredList = this.users;
-          }
-
-          // 名前順で並べ替え
-          if (this.nameOrder == 1) {
-            this.filteredList.sort((a, b) => {
-              if (a.name > b.name) {
-                return 1;
-              } else {
-                return -1;
-              }
-            })
-          } else {
-            this.filteredList.sort((a, b) => {
-              if (b.name > a.name) {
-                return 1;
-              } else {
-                return -1;
-              }
-            })
-          }
-
-          // 性別でのフィルタリング
-          if (this.selectedSex > 0) {
-            this.filteredList = this.filteredList.filter(user => user.sex == this.selectedSex);
-          }
-
-          // 登録順で並べ替え
-          if (this.registeredOrder == 1) {
-            this.filteredList.sort((a, b) => {
-              if (b.created_at > a.created_at) {
-                return 1;
-              } else {
-                return -1;
-              }
-            })
-          } else {
-            this.filteredList.sort((a, b) => {
-              if (a.created_at > b.created_at) {
-                return 1;
-              } else {
-                return -1;
-              }
-            })
-          }
         },
         getEmailLink(user) {
           return `mailto:${user.email}`;
@@ -178,6 +122,43 @@
             });
           }
         },
+      },
+      computed: {
+        // computed はキャッシュが効くのでおすすめです ^^b
+        // ご参考URL： https://blog.capilano-fw.com/?p=485
+        filteredUsers() {
+
+          let users = this.users;
+
+          //所属期間でのフィルタリング
+          users = users.filter(user => {
+            const selectedSchool = parseInt(this.selectedSchool);
+            return (
+              selectedSchool === 0 ||
+              selectedSchool === parseInt(user.school_id)
+            )
+          });
+
+          // 性別でのフィルタリング
+          users = users.filter(user => {
+            const selectedSex = parseInt(this.selectedSex);
+            return (
+              selectedSex === 0 ||
+              selectedSex === parseInt(user.sex)
+            )
+          });
+
+          // 名前順で並べ替え
+          const nameDirection = (parseInt(this.nameOrder) === 1) ? 'asc' : 'desc';
+          users = _.orderBy(users, 'name', nameDirection);
+
+          // 名前順で並べ替え
+          const registeredDirection = (parseInt(this.registeredOrder) === 1) ? 'asc' : 'desc';
+          users = _.orderBy(users, 'created_at', registeredDirection);
+
+          return users;
+
+        }
       },
       mounted() {
         this.getList();
