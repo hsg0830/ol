@@ -1187,6 +1187,29 @@ html.open,
   }
 }
 
+// 記事数
+.list-container__count {
+  text-align: right;
+  padding-right: 1rem;
+
+  & i {
+    color:$lightBrown;
+  }
+
+  & span {
+    font-size: 2rem;
+    font-weight: bold;
+    color: $brown;
+  }
+}
+
+// 個別記事ページの関連記事紹介
+.list-container__related {
+  color: $brown;
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+}
+
 // メイン領域のコンテンツ部分
 .list-container__wrapper {
   @media screen and (min-width: 768px) {

@@ -11,7 +11,7 @@ class ViewServiceProvider extends ServiceProvider
   public function boot()
   {
     View::composer('*', function ($view) {
-      $topArticles = Article::orderBy('viewed_count', 'desc')->take(5)->get();
+      $topArticles = Article::where('status', 1)->orderBy('viewed_count', 'desc')->take(5)->get();
       $view->with('topArticles', $topArticles);
     });
   }

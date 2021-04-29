@@ -1290,6 +1290,27 @@ html.open,
   border-top: 1rem solid #9e1e53;
 }
 
+.list-container__count {
+  text-align: right;
+  padding-right: 1rem;
+}
+
+.list-container__count i {
+  color: #cba67e;
+}
+
+.list-container__count span {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #6a421f;
+}
+
+.list-container__related {
+  color: #6a421f;
+  font-weight: bold;
+  letter-spacing: 0.2rem;
+}
+
 @media screen and (min-width: 768px) {
   .list-container__wrapper {
     margin-top: 1.3rem;

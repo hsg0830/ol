@@ -194,6 +194,7 @@
       },
       mounted() {
         this.getCategories();
+        
         if (this.currentArticle === null) {
           this.addFormBlock();
         } else {

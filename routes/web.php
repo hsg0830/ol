@@ -5,7 +5,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\MultiAuthController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\MediaController;
-use App\Http\Controllers\MailSendController;
+use App\Http\Controllers\MailSendController; //テスト臨時
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\UsersController;
 
@@ -32,7 +32,7 @@ Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
   return view('test.verified');
 })->name('verified');
 
-// 会員登コード認証用ルーティング
+// 会員登録コード認証用ルーティング
 Route::post('check-code', [RegisteredUserController::class, 'confirm_code']);
 
 // 規範原文
@@ -47,6 +47,7 @@ Route::prefix('articles')->group(function () {
   Route::get('/{article}', [ArticlesController::class, 'show'])->name('articles.show');
 });
 
+// マイページ
 Route::prefix('users')->group(function () {
   Route::get('/{user}', [UsersController::class, 'show'])->name('users.show');
 });
@@ -80,11 +81,10 @@ Route::prefix('editors')->group(function () {
       Route::get('/categories', [ArticlesController::class, 'categories']);
       Route::post('/', [ArticlesController::class, 'store']);
       Route::get('/{article}/edit', [ArticlesController::class, 'edit'])->name('articles.edit');
-      Route::get('/edit-article/{id}', [ArticlesController::class, 'getEditArticle']);
       Route::put('/{article}', [ArticlesController::class, 'update']);
       Route::get('/list', [ArticlesController::class, 'showArticlesList'])->name('articles.list');
       Route::get('/get-list', [ArticlesController::class, 'getArticlesList']);
-      Route::post('/change-status/{article}', [ArticlesController::class, 'changeStatus']);
+      Route::post('/{article}/change-status', [ArticlesController::class, 'changeStatus']);
       Route::delete('/{article}', [ArticlesController::class, 'destroy']);
     });
 

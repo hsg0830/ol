@@ -65,6 +65,40 @@
       </div>
       <!-- 本文部 -->
     @endif
+
+    {{-- 関連記事 --}}
+    <div id="list-container" class="list-container">
+      <div class="list-container__related">관련기사</div>
+
+      <div class="list-container__wrapper">
+        @foreach ($relatedArticles as $item)
+          <div class="list-item">
+            <a href="{{ $item->url }}">
+              <div class="list-item__header">
+                @if ($item->category_id == 100)
+                  <img src="{{ asset('img/bg_black-board_thum.png') }}" alt="" />
+                @elseif ($item->category_id == 200)
+                  <img src="{{ asset('img/bg_white-board_thum.png') }}" alt="" />
+                @elseif ($item->category_id == 300)
+                  <img src="{{ asset('img/bg_memo_thum.png') }}" alt="" />
+                @elseif ($item->category_id == 400)
+                  <img src="{{ asset('img/928-500x375.jpg') }}" alt="" />
+                @endif
+                <p class="title {{ $item->category_id == 100 ? 'color-white' : '' }}" >
+                  {{ $item->title }}</p>
+              </div>
+              <div class="list-item__content">
+                <p class="lead">{{ $item->head_line }}</p>
+                <div class="info">
+                  <p class="date">{{ $item->date }}</p>
+                  <p class="category" class="category-{{ $item->category_id }}">{{ $item->category->name }}</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        @endforeach
+      </div>
+    </div>
   </main>
 
   @include('commons.side-recently')
