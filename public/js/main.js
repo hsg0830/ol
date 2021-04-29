@@ -77,11 +77,11 @@ updateButton();
 /*------------------
 ツールチップ
 ------------------*/
-$(document).ready(function () {
-  $('.tooltip').tooltipster({
-    theme: 'tooltipster-noir',
-  });
-});
+// $(document).ready(function () {
+//   $('.tooltip').tooltipster({
+//     theme: 'tooltipster-noir',
+//   });
+// });
 
 /*------------------
 QAページ・規範原文ページの内容の表示/非表示切り替え
@@ -153,17 +153,17 @@ $(window).scroll(() => {
 /*------------------
 一覧の切り替えタブ
 ------------------*/
-const showTab = (selector) => {
-  const idValue = selector.slice(-1);
-  $('.list-container__selector li').removeClass('active');
-  $(`#${selector}`).addClass('active');
-  $('.list-container__wrapper').hide();
-  $(`#tabs-content-${idValue}`).show();
-};
+// const showTab = (selector) => {
+//   const idValue = selector.slice(-1);
+//   $('.list-container__selector li').removeClass('active');
+//   $(`#${selector}`).addClass('active');
+//   $('.list-container__wrapper').hide();
+//   $(`#tabs-content-${idValue}`).show();
+// };
 
-$('.list-container__selector li').on('click', (e) => {
-  const selector = $(e.target).attr('id');
-  showTab(selector);
-});
+// $('.list-container__selector li').on('click', (e) => {
+//   const selector = $(e.target).attr('id');
+//   showTab(selector);
+// });
 
-showTab('tabs-menu-a');
+// showTab('tabs-menu-a');

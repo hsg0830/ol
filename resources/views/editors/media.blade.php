@@ -2,13 +2,9 @@
 
 @section('title', '얼 -- メディア管理画面')
 
-@section('css')
-  <link rel="stylesheet" href="{{ asset('css/editor.css') }}">
-@endsection
-
 @section('content')
 
-  <div id="app">
+  <div id="main">
     <h1 class="page-title">メディア管理画面</h1>
 
     {{-- ファイルアップロードブロック --}}
@@ -112,6 +108,7 @@
     </div>
 
   </div>
+
 @endsection
 
 @section('js-script')
@@ -220,15 +217,12 @@
         this.getList();
       },
       setup() {
-
-          // Vue 3 の ref はここが必要になってきます（v2 のが良かったですよね.. ^^;）
-          return {
-              image: Vue.ref(null),
-              poster: Vue.ref(null),
-          }
-
+        return {
+          image: Vue.ref(null),
+          poster: Vue.ref(null),
+        }
       }
-    }).mount('#app');
+    }).mount('#main');
 
   </script>
 @endsection

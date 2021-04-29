@@ -1,10 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.editor')
 
 @section('content')
   <!-- ↓↓↓メインコンテンツ↓↓↓ -->
-  <main id="one-column">
-    <h1 class="category-title">편집자 로그인</h1>
-    <form class="login-form" method="POST" action="{{ route('editors.login') }}">
+  <main id="one-column" class="container">
+    <h1 class="page-title">편집자 로그인</h1>
+
+    <form class="p-5" method="POST" action="{{ route('editors.login') }}">
       @csrf
 
       @error('auth')
@@ -13,22 +14,21 @@
         </div>
       @enderror
 
-      <div class="form-group">
-        <label for="email">메일주소</label>
-        <input type="email" id="email" name="email" :value="old('email')" required autofocus>
-      </div>
+        <div class="row form-group mb-4 justify-content-center">
+          <label class="col-2" for="email">메일주소</label>
+          <input class="col-6" type="email" id="email" name="email" :value="old('email')" required autofocus>
+        </div>
 
-      <div class="form-group">
-        <label for="password">암호</label>
-        <input type="password" id="password" name="password" required autocomplete="current-password">
-      </div>
+        <div class="row form-group mb-5 justify-content-center">
+          <label class="col-2" for="password">암호</label>
+          <input class="col-6" type="password" id="password" name="password" required autocomplete="current-password">
+        </div>
 
-      <input type="hidden" name="guard" value="editors" />
+        <input type="hidden" name="guard" value="editors" />
 
-      <div class="form-group">
-        <button type="submit" class="btn global-btn">보내기</button>
-      </div>
-
+        <div class="row form-group justify-content-center">
+          <button type="submit" class="col-6 btn btn-success btn-block">보내기</button>
+        </div>
 
     </form>
   </main>
