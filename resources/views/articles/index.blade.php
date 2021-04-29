@@ -47,7 +47,7 @@
               <img src="{{ asset('img/bg_black-board_thum.png') }}" alt="" v-if="item.category.id === 100" />
               <img src="{{ asset('img/bg_white-board_thum.png') }}" alt="" v-else-if="item.category.id === 200" />
               <img src="{{ asset('img/bg_memo_thum.png') }}" alt="" v-else-if="item.category.id === 300" />
-              <img src="{{ asset('img/928-500x375.jpg') }}" alt="" v-else-if="item.category.id === 400" />
+              <img src="{{ asset('img/bg_film_thum.png') }}" alt="" v-else-if="item.category.id === 400" />
               <p class="title" :class="getTextClass(item.category.id)" v-text="item.title"></p>
             </div>
             <div class="list-item__content">

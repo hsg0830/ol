@@ -1205,9 +1205,11 @@ html.open,
 
 // 個別記事ページの関連記事紹介
 .list-container__related {
-  color: $brown;
+  font-size: 2.2rem;
   font-weight: bold;
   letter-spacing: 0.2rem;
+  color: $brown;
+  margin-bottom: 1rem;
 }
 
 // メイン領域のコンテンツ部分
@@ -1372,7 +1374,7 @@ html.open,
 }
 
 // 本文部
-.content-block {
+.introduction-block, .content-block {
   width: 95%;
   margin: 2.5rem auto 0;
 }

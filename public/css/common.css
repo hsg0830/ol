@@ -1306,9 +1306,11 @@ html.open,
 }
 
 .list-container__related {
-  color: #6a421f;
+  font-size: 2.2rem;
   font-weight: bold;
   letter-spacing: 0.2rem;
+  color: #6a421f;
+  margin-bottom: 1rem;
 }
 
 @media screen and (min-width: 768px) {
@@ -1502,7 +1504,7 @@ html.open,
   right: 4%;
 }
 
-.content-block {
+.introduction-block, .content-block {
   width: 95%;
   margin: 2.5rem auto 0;
 }
