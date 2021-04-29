@@ -41,7 +41,6 @@
 
 <body>
   @include('commons.header')
-  {{-- @include('common.breadcrumb') --}}
 
   <!-- ↓↓↓パンくずリスト↓↓↓ -->
   @yield('breadcrumb')

@@ -25,6 +25,11 @@ Route::get('/', function () {
 // 会員登コード認証用ルーティング
 Route::post('check-code', [RegisteredUserController::class, 'confirm_code']);
 
+// 規範原文
+Route::get('/norms/{filename}', function ($filename) {
+  return view('norms.' . $filename);
+})->name('norms');
+
 // 学習室
 Route::prefix('articles')->group(function () {
   Route::get('/', [ArticlesController::class, 'index'])->name('articles.index');
