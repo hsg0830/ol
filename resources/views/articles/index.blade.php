@@ -51,7 +51,7 @@
               <p class="title" :class="getTextClass(item.category.id)" v-text="item.title"></p>
             </div>
             <div class="list-item__content">
-              <p class="lead" v-text="item.head_line"></p>
+              <p class="lead" v-html="item.head_line"></p>
               <div class="info">
                 <p class="date" v-text="item.date"></p>
                 <p class="category" :class="getCategoryClass(item.category.id)" v-text="item.category.name"></p>

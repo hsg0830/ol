@@ -53,10 +53,10 @@
     <div class="introduction-block">
       {!! $article->introduction !!}
     </div>
-
     {{-- イントロダクション --}}
+
+    <!-- 本文部 -->
     @if (count($article->subContents) > 0)
-      <!-- 本文部 -->
       <div class="content-block">
         @foreach ($article->subContents as $subContent)
           <section class="content-section">
@@ -69,12 +69,12 @@
           </section>
         @endforeach
       </div>
-      <!-- 本文部 -->
     @endif
+    <!-- 本文部 -->
 
     {{-- 関連記事 --}}
     <div id="list-container" class="list-container">
-      <div class="list-container__related">관련기사</div>
+      <div class="list-container__related"><i class="fas fa-book-reader"></i> 관련기사</div>
 
       <div class="list-container__wrapper">
         @foreach ($relatedArticles as $item)
@@ -90,7 +90,7 @@
                 @elseif ($item->category_id == 400)
                   <img src="{{ asset('img/bg_film_thum.png') }}" alt="" />
                 @endif
-                <p class="title {{ $item->category_id == 100 ? 'color-white' : '' }}" >
+                <p class="title {{ $item->category_id == 100 ? 'color-white' : '' }}">
                   {{ $item->title }}</p>
               </div>
               <div class="list-item__content">

@@ -58,28 +58,28 @@ class ArticlesController extends Controller
     ]);
   }
 
-  public function categories()
+  private function categories()
   {
-    $categories = ArticleCategory::with('sub_categories')->select('id', 'name')->get();
-
-    return [
-      'categories' => $categories,
-    ];
+    return ArticleCategory::with('sub_categories')->select('id', 'name')->get();
   }
 
   public function create()
   {
-    // $categories = ArticleCategory::with('sub_categories')->select('id', 'name')->get();
-    // dd($categories);
-    return view('articles.post');
+    $categories = $this->categories();
+
+    return view('articles.post', [
+      'categories' => $categories,
+    ]);
   }
 
   public function edit(Article $article)
   {
     $article->load('subContents');
+    $categories = $this->categories();
 
     return view('articles.post', [
-      'article' => $article
+      'article' => $article,
+      'categories' => $categories
     ]);
   }
 
