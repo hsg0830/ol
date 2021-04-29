@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\MultiAuthController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\MediaController;
+use App\Http\Controllers\MailSendController;
 use App\Http\Controllers\ArticlesController;
 
 /*
@@ -21,6 +22,14 @@ use App\Http\Controllers\ArticlesController;
 Route::get('/', function () {
   return view('home');
 });
+
+// メール送信テスト
+Route::get('/mail', [MailSendController::class, 'index']);
+
+// email-verifyテスト
+Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
+  return view('test.verified');
+})->name('verified');
 
 // 会員登コード認証用ルーティング
 Route::post('check-code', [RegisteredUserController::class, 'confirm_code']);

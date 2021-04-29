@@ -101,7 +101,7 @@ class RegisteredUserController extends Controller
     event(new Registered($user));
 
     $result = true;
-    $url = url('/');
+    $url = url('/verify-email');
 
     // return redirect(RouteServiceProvider::HOME);
     return [

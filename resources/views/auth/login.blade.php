@@ -47,12 +47,10 @@
       <a href="{{ route('register') }}" class="text-underline">회원등록페지에로</a>
     </div>
 
-    @if (Route::has('password.request'))
       <div class="message">
         <p>암호가 기억나지 않으십니까?</p>
-        <a href="{{ route('password.request') }}" class="text-underline">회원등록페지에로</a>
+        <a href="{{ route('password.request') }}" class="text-underline">암호재설정페지에로</a>
       </div>
-    @endif
   </main>
   <!-- ↑↑↑メインコンテンツ↑↑↑ -->
 @endsection

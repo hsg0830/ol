@@ -144,8 +144,8 @@
     <div v-if="registered">
       <div class="message block">
         <p>회원등록이 성과적으로 끝났습니다.</p>
-        <p>2초후에 자동적으로 첫페지에로 이동됩니다.</p>
-        <a href="/" class="text-underline">첫페지에로</a>
+        <p>2초후에 자동적으로 이동됩니다.</p>
+        {{-- <a href="/" class="text-underline">첫페지에로</a> --}}
       </div>
     </div>
   </main>
