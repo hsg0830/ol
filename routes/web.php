@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\MailSendController;
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,10 @@ Route::prefix('articles')->group(function () {
   Route::get('/{article}', [ArticlesController::class, 'show'])->name('articles.show');
 });
 
+Route::prefix('users')->group(function () {
+  Route::get('/{user}', [UsersController::class, 'show'])->name('users.show');
+});
+
 // 管理者関連
 Route::prefix('editors')->group(function () {
 
@@ -82,6 +87,11 @@ Route::prefix('editors')->group(function () {
       Route::post('/change-status/{article}', [ArticlesController::class, 'changeStatus']);
       Route::delete('/{article}', [ArticlesController::class, 'destroy']);
     });
+
+    // ユーザー管理
+    Route::get('/users', [UsersController::class, 'index'])->name('users.management');
+    Route::get('/users-list', [UsersController::class, 'list']);
+    Route::delete('users/{user}', [UsersController::class, 'destroy']);
   });
 });
 
