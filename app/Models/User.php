@@ -48,6 +48,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = ['registered_date'];
+
+    public function getRegisteredDateAttribute()
+    {
+      return $this->created_at->format('Y-m-d');
+    }
+
     public function school() {
       return $this->belongsTo(School::class);
     }

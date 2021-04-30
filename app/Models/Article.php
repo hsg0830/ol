@@ -11,11 +11,13 @@ class Article extends Model
   use HasFactory;
 
   protected $appends = ['url', 'edit_url', 'date', 'head_line'];
+
   protected $casts = [
-      'released_at' => 'date'
+    'released_at' => 'date'
   ];
+
   protected $dispatchesEvents = [
-      'saving' => ArticleSaving::class
+    'saving' => ArticleSaving::class
   ];
 
   public function getUrlAttribute()
@@ -23,13 +25,14 @@ class Article extends Model
     return route('articles.show', $this->id);
   }
 
-  public function getEditUrlAttribute() {
+  public function getEditUrlAttribute()
+  {
     return route('articles.edit', $this->id);
   }
 
   public function getDateAttribute()
   {
-     return !is_null($this->released_at) ? $this->released_at->format('Y/m/d') : '';
+    return !is_null($this->released_at) ? $this->released_at->format('Y/m/d') : '';
   }
 
   public function getHeadlineAttribute()

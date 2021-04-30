@@ -1,11 +1,5 @@
 @extends('layouts.app')
 
-@section('css')
-  <style>
-
-  </style>
-@endsection
-
 @section('breadcrumb')
   <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
@@ -42,21 +36,23 @@
         </category-select-button>
       </div>
 
+      <div class="list-container__count">
+        <i class="fas fa-file-signature"></i> 해당되는 기사수: <span v-text="items.total"></span>건
+      </div>
+
       <div class="list-container__wrapper">
         <div class="list-item" v-for="item in items.data">
           <a :href="item.url">
             <div class="list-item__header">
-              <img src="{{ asset('img/bg_black-board_thum.png') }}" alt="" v-if="item.category.id === 100"/>
-              <img src="{{ asset('img/bg_white-board_thum.png') }}" alt="" v-else-if="item.category.id === 200"/>
-              <img src="{{ asset('img/bg_memo_thum.png') }}" alt="" v-else-if="item.category.id === 300"/>
-              <img src="{{ asset('img/928-500x375.jpg') }}" alt="" v-else-if="item.category.id === 400"/>
+              <img src="{{ asset('img/bg_black-board_thum.png') }}" alt="" v-if="item.category.id === 100" />
+              <img src="{{ asset('img/bg_white-board_thum.png') }}" alt="" v-else-if="item.category.id === 200" />
+              <img src="{{ asset('img/bg_memo_thum.png') }}" alt="" v-else-if="item.category.id === 300" />
+              <img src="{{ asset('img/bg_film_thum.png') }}" alt="" v-else-if="item.category.id === 400" />
               <p class="title" :class="getTextClass(item.category.id)" v-text="item.title"></p>
             </div>
             <div class="list-item__content">
-              <p class="lead" v-text="item.head_line"></p>
+              <p class="lead" v-html="item.head_line"></p>
               <div class="info">
-                {{-- ??年月日だけに変更するには？？？ --}}
-                {{-- <p class="date" v-text="item.created_at"></p> --}}
                 <p class="date" v-text="item.date"></p>
                 <p class="category" :class="getCategoryClass(item.category.id)" v-text="item.category.name"></p>
               </div>

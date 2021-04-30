@@ -29,7 +29,7 @@
       @elseif($article->category->id == 300)
         <img src="{{ asset('img/bg_memo_thum.png') }}" alt="" />
       @elseif($article->category->id == 400)
-        <img src="{{ asset('img/928-500x375.jpg') }}" alt="" />
+        <img src="{{ asset('img/bg_film_thum.png') }}" alt="" />
       @endif
 
       <div class="title-block__category">{{ $article->category->name }}</div>
@@ -41,16 +41,22 @@
       @endif
 
       @if ($article->category->id != 100)
-        <div class="title-block__date">갱신날자: <time>{{ $article->created_at }}</time></div>
+        <div class="title-block__date"><time>{{ $article->date }}</time></div>
       @else
-        <div class="title-block__date color-white">갱신날자: <time>{{ $article->created_at }}</time></div>
+        <div class="title-block__date color-white"><time>{{ $article->date }}</time></div>
       @endif
 
     </div>
     <!-- タイトル部 -->
 
+    {{-- イントロダクション --}}
+    <div class="introduction-block">
+      {!! $article->introduction !!}
+    </div>
+    {{-- イントロダクション --}}
+
+    <!-- 本文部 -->
     @if (count($article->subContents) > 0)
-      <!-- 本文部 -->
       <div class="content-block">
         @foreach ($article->subContents as $subContent)
           <section class="content-section">
@@ -63,8 +69,42 @@
           </section>
         @endforeach
       </div>
-      <!-- 本文部 -->
     @endif
+    <!-- 本文部 -->
+
+    {{-- 関連記事 --}}
+    <div id="list-container" class="list-container">
+      <div class="list-container__related"><i class="fas fa-book-reader"></i> 관련기사</div>
+
+      <div class="list-container__wrapper">
+        @foreach ($relatedArticles as $item)
+          <div class="list-item">
+            <a href="{{ $item->url }}">
+              <div class="list-item__header">
+                @if ($item->category_id == 100)
+                  <img src="{{ asset('img/bg_black-board_thum.png') }}" alt="" />
+                @elseif ($item->category_id == 200)
+                  <img src="{{ asset('img/bg_white-board_thum.png') }}" alt="" />
+                @elseif ($item->category_id == 300)
+                  <img src="{{ asset('img/bg_memo_thum.png') }}" alt="" />
+                @elseif ($item->category_id == 400)
+                  <img src="{{ asset('img/bg_film_thum.png') }}" alt="" />
+                @endif
+                <p class="title {{ $item->category_id == 100 ? 'color-white' : '' }}">
+                  {{ $item->title }}</p>
+              </div>
+              <div class="list-item__content">
+                <p class="lead">{{ $item->head_line }}</p>
+                <div class="info">
+                  <p class="date">{{ $item->date }}</p>
+                  <p class="category category-{{ $item->category_id }}">{{ $item->category->name }}</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        @endforeach
+      </div>
+    </div>
   </main>
 
   @include('commons.side-recently')

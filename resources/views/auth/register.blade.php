@@ -145,7 +145,6 @@
       <div class="message block">
         <p>회원등록이 성과적으로 끝났습니다.</p>
         <p>2초후에 자동적으로 이동됩니다.</p>
-        {{-- <a href="/" class="text-underline">첫페지에로</a> --}}
       </div>
     </div>
   </main>
@@ -165,9 +164,7 @@
         return {
           checkCode: '',
           checkStatus: false,
-          // checkStatus: true,
           registered: false,
-          // registered: true,
           name: '',
           birthYear: '',
           birthMonth: '',

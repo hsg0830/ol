@@ -6,9 +6,18 @@
 
     <a href="{{ route('articles.create') }}" class="btn btn-primary">新規投稿画面へ</a>
 
-    <div class="row mt-5 mb-3">
+    <div class="row bg-light mt-3 p-3 border border-3">
+      <div class="col-sm-3">
+        총기사수: @{{ articles . length }}
+      </div>
       <div class="col-3">
-        <select class="form-select" v-model="selectedCtegory" @change="filteringList">
+        조건에 맞는 기사수: @{{ filteredArticles . length }}
+      </div>
+    </div>
+
+    <div class="row mt-3 mb-3">
+      <div class="col-2">
+        <select class="form-select" v-model="selectedCtegory">
           <option value="0" selected>분류</option>
           <option value="100">어휘</option>
           <option value="200">문법</option>
@@ -17,11 +26,25 @@
         </select>
       </div>
 
-      <div class="col-3">
-        <select class="form-select" v-model="selectedStatus" @change="filteringList">
+      <div class="col-2">
+        <select class="form-select" v-model="selectedStatus">
           <option value="2" selected>공개상태</option>
           <option value="1">공개</option>
           <option value="0">미공개</option>
+        </select>
+      </div>
+
+      <div class="col-2" v-if="selectedStatus == 1">
+        <select class="form-select" v-model="viewedOrder">
+          <option value="1" selected>열람자순</option>
+          <option value="0">열람자거꿀순</option>
+        </select>
+      </div>
+
+      <div class="col-2">
+        <select class="form-select" v-model="registeredOrder">
+          <option value="0" selected>등록순</option>
+          <option value="1">등록거꿀순</option>
         </select>
       </div>
     </div>
@@ -39,8 +62,7 @@
         </tr>
       </thead>
       <tbody>
-        <!-- <tr class="text-center" v-for="article in filteredList"> -->
-        <tr class="text-center" v-for="article in list">
+        <tr class="text-center" v-for="article in filteredArticles">
           <th scope="row" v-text="article.id"></th>
           <td v-text="article.category.name"></td>
           <td class="text-start">
@@ -62,52 +84,67 @@
   </main>
 @endsection
 
+@section('js-files')
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+@endsection
+
 @section('js-script')
   <script>
     const app = Vue.createApp({
       data() {
         return {
           articles: [],
-          list: [],
           selectedCtegory: 0,
           selectedStatus: 2,
+          viewedOrder: 1,
+          registeredOrder: 0,
         };
       },
       computed: {
-        // filteredList() {
-        //   return this.articles.filter((article) => {
-        //     if (this.selectedCtegory !== 0) {
-        //       article.category == this.selectedCtegory;
-        //     } else {
-        //       article.category != this.selectedCtegory;
-        //     }
-        //   });
-        // },
+        filteredArticles() {
+          let articles = this.articles;
+
+          // カテゴリーでフィルタリング
+          articles = articles.filter(article => {
+            const selectedCtegory = parseInt(this.selectedCtegory);
+            return (
+              selectedCtegory === 0 ||
+              selectedCtegory === parseInt(article.category_id)
+            )
+          });
+
+          // 公開ステータスでフィルタリング
+          articles = articles.filter(article => {
+            const selectedStatus = parseInt(this.selectedStatus);
+            return (
+              selectedStatus === 2 ||
+              selectedStatus === parseInt(article.status)
+            )
+          });
+
+          if (parseInt(this.selectedStatus) === 1) {
+            // 閲覧者数順で並べ替え
+            const viewedDirection = (parseInt(this.viewedOrder) === 0) ? 'asc' : 'desc';
+            articles = _.orderBy(articles, 'viewed_count', viewedDirection);
+          } else {
+            // 登録順で並べ替え
+            const registeredDirection = (parseInt(this.registeredOrder) === 0) ? 'asc' : 'desc';
+            articles = _.orderBy(articles, 'created_at', registeredDirection);
+          }
+
+          return articles;
+        },
       },
       methods: {
         getList() {
           const url = '/editors/articles/get-list';
           axios.get(url).then((response) => {
             this.articles = response.data.articles;
-            this.list = this.articles;
           });
-        },
-        filteringList() {
-          if (this.selectedCtegory != 0) {
-            this.list = this.articles.filter(article => article.category_id == this.selectedCtegory);
-          } else {
-            this.list = this.articles;
-          }
-
-          if (this.selectedStatus != 2) {
-            this.list = this.list.filter(item => item.status == this.selectedStatus);
-          } else {
-            this.list = this.list;
-          }
         },
         changeStatus(article) {
           if (confirm('公開状況を変更します。よろしいですか？')) {
-            const url = `/editors/articles/change-status/${article.id}`;
+            const url = `/editors/articles/${article.id}/change-status`;
             const method = 'POST';
             const params = {
               _method: method,

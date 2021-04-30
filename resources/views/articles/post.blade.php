@@ -179,7 +179,7 @@
     const app = Vue.createApp({
       data() {
         return {
-          categories: [],
+          categories: {!! $categories !!},
           currentArticle: {!! $article ?? 'null' !!},
           currentMode: 'create',
           articleUrl: '',
@@ -193,7 +193,6 @@
         }
       },
       mounted() {
-        this.getCategories();
         if (this.currentArticle === null) {
           this.addFormBlock();
         } else {
@@ -208,13 +207,6 @@
         }
       },
       methods: {
-        getCategories() {
-          const url = '/editors/articles/categories';
-          axios.get(url)
-            .then((response) => {
-              this.categories = response.data.categories;
-            });
-        },
         copyFormTemplate(e) {
           const selector = e.target.getAttribute('id');
           const formEl = document.querySelector(`#form-${selector}`);
@@ -240,6 +232,7 @@
           $('.js-modal').fadeOut();
         },
         onChangeCategory() {
+          console.log('change category')
           this.subCategory = '';
         },
         onSave() {
