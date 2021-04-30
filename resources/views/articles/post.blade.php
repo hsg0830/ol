@@ -193,8 +193,6 @@
         }
       },
       mounted() {
-        // this.getCategories();
-
         if (this.currentArticle === null) {
           this.addFormBlock();
         } else {
@@ -209,13 +207,6 @@
         }
       },
       methods: {
-        // getCategories() {
-        //   const url = '/editors/articles/categories';
-        //   axios.get(url)
-        //     .then((response) => {
-        //       this.categories = response.data.categories;
-        //     });
-        // },
         copyFormTemplate(e) {
           const selector = e.target.getAttribute('id');
           const formEl = document.querySelector(`#form-${selector}`);

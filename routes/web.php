@@ -78,7 +78,6 @@ Route::prefix('editors')->group(function () {
     // 学習室の記事管理
     Route::prefix('articles')->group(function () {
       Route::get('/create', [ArticlesController::class, 'create'])->name('articles.create');
-      // Route::get('/categories', [ArticlesController::class, 'categories']);
       Route::post('/', [ArticlesController::class, 'store']);
       Route::get('/{article}/edit', [ArticlesController::class, 'edit'])->name('articles.edit');
       Route::put('/{article}', [ArticlesController::class, 'update']);

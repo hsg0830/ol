@@ -58,11 +58,6 @@ class ArticlesController extends Controller
     ]);
   }
 
-  private function categories()
-  {
-    return ArticleCategory::with('sub_categories')->select('id', 'name')->get();
-  }
-
   public function create()
   {
     $categories = $this->categories();
@@ -94,6 +89,7 @@ class ArticlesController extends Controller
     return $this->saveArticle($request, $article);
   }
 
+  // 記事管理ページ用
   public function showArticlesList()
   {
     return view('articles.list');
@@ -123,9 +119,14 @@ class ArticlesController extends Controller
     ];
   }
 
+  // プライベートファンクション
+  private function categories()
+  {
+    return ArticleCategory::with('sub_categories')->select('id', 'name')->get();
+  }
+
   private function saveArticle(Request $request, Article $article)
   {
-
     $result = false;
 
     DB::beginTransaction();
