@@ -20,6 +20,21 @@ class Article extends Model
     'saving' => ArticleSaving::class
   ];
 
+  public function category()
+  {
+    return $this->belongsTo(ArticleCategory::class);
+  }
+
+  public function subCategory()
+  {
+    return $this->belongsTo(SubCategory::class);
+  }
+
+  public function subContents()
+  {
+    return $this->hasMany(SubContent::class);
+  }
+
   public function getUrlAttribute()
   {
     return route('articles.show', $this->id);
@@ -38,20 +53,5 @@ class Article extends Model
   public function getHeadlineAttribute()
   {
     return mb_strimwidth($this->introduction, 0, 50, '…');
-  }
-
-  public function category()
-  {
-    return $this->belongsTo(ArticleCategory::class);
-  }
-
-  public function subCategory()
-  {
-    return $this->belongsTo(SubCategory::class);
-  }
-
-  public function subContents()
-  {
-    return $this->hasMany(SubContent::class);
   }
 }
