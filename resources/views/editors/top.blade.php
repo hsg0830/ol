@@ -13,6 +13,7 @@
         <li><a href="{{ route('articles.list') }}">● 学習室記事管理画面</a></li>
         <li><a href="{{ route('articles.create') }}">● 学習室記事投稿画面</a></li>
         <li><a href="{{ route('users.management') }}">● 会員管理画面</a></li>
+        <li><a href="{{ route('contacts.list') }}">● 問い合わせ一覧画面</a></li>
       </ul>
     </div>
   </main>

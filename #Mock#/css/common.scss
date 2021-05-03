@@ -140,10 +140,6 @@ select {
   text-align: left;
 }
 
-.text-center {
-  text-align: center;
-}
-
 .text-emphasis {
   font-weight: bold;
 }
@@ -177,7 +173,6 @@ select {
   width: 80%;
   margin: 0 auto 4rem;
   text-align: center;
-  line-height: 4.5rem;
 
   & a {
     color: $lightBrown;
@@ -207,16 +202,7 @@ select {
 .error-message {
   background-color: rgb(250, 213, 209);
   color: $red;
-  margin: 1rem auto;
-  padding: 1.5rem;
-  border-radius: 1rem;
-}
-
-.notification {
-  width: 80%;
-  background-color: rgb(222, 247, 207);
-  color: $green;
-  margin: 1rem auto 3rem;
+  margin-bottom: 1rem;
   padding: 1.5rem;
   border-radius: 1rem;
 }
@@ -298,11 +284,6 @@ select {
   box-shadow: 0 0 0.1rem silver;
   text-align: center;
   font-family: $krPoor;
-
-  &.large {
-    width: 15rem;
-    height: 5rem;
-  }
 
   &:hover {
     opacity: 0.9;
@@ -537,7 +518,8 @@ html.open,
       a {
         display: block;
 
-        &:hover, &.active {
+        &:hover,
+        &.active {
           color: $orange;
           opacity: 1;
         }
@@ -1187,31 +1169,6 @@ html.open,
   }
 }
 
-// 記事数
-.list-container__count {
-  text-align: right;
-  padding-right: 1rem;
-
-  & i {
-    color:$lightBrown;
-  }
-
-  & span {
-    font-size: 2rem;
-    font-weight: bold;
-    color: $brown;
-  }
-}
-
-// 個別記事ページの関連記事紹介
-.list-container__related {
-  font-size: 2.2rem;
-  font-weight: bold;
-  letter-spacing: 0.2rem;
-  color: $brown;
-  margin-bottom: 1rem;
-}
-
 // メイン領域のコンテンツ部分
 .list-container__wrapper {
   @media screen and (min-width: 768px) {
@@ -1374,7 +1331,7 @@ html.open,
 }
 
 // 本文部
-.introduction-block, .content-block {
+.content-block {
   width: 95%;
   margin: 2.5rem auto 0;
 }

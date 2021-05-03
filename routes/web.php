@@ -8,6 +8,7 @@ use App\Http\Controllers\MediaController;
 use App\Http\Controllers\MailSendController; //テスト臨時
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ContactsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +24,6 @@ use App\Http\Controllers\UsersController;
 Route::get('/', function () {
   return view('home');
 });
-
-// メール送信テスト
-Route::get('/mail', [MailSendController::class, 'index']);
 
 // email-verifyテスト
 Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
@@ -50,6 +48,12 @@ Route::prefix('articles')->group(function () {
 // マイページ
 Route::prefix('users')->group(function () {
   Route::get('/{user}', [UsersController::class, 'show'])->name('users.show');
+});
+
+// 問い合わせ
+Route::prefix('contact')->group(function () {
+  Route::get('/', [ContactsController::class, 'showForm'])->name('contact.form');
+  Route::post('/', [ContactsController::class, 'send']);
 });
 
 // 管理者関連
@@ -91,6 +95,15 @@ Route::prefix('editors')->group(function () {
     Route::get('/users', [UsersController::class, 'index'])->name('users.management');
     Route::get('/users-list', [UsersController::class, 'list']);
     Route::delete('users/{user}', [UsersController::class, 'destroy']);
+
+    // 問い合わせ管理
+    Route::prefix('contacts')->group(function () {
+      Route::get('/', [ContactsController::class, 'list'])->name('contacts.list');
+      Route::get('/get-list', [ContactsController::class, 'getContactsList']);
+      Route::get('{contact}', [ContactsController::class, 'showReplyForm'])->name('contacts.reply');
+      Route::put('{contact}', [ContactsController::class, 'reply']);
+      Route::delete('{contact}', [ContactsController::class, 'destroy']);
+    });
   });
 });
 
