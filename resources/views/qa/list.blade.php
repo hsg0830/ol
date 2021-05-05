@@ -78,8 +78,20 @@
     </table>
 
     {{-- pagination --}}
-    <v-pagination :data="data" @move-page="movePage($event)"></v-pagination>
+    <v-pagination
+      v-model="page"
+      :page-count="pageCount"
+      :click-handler="movePage"
+      prev-text="&laquo;"
+      next-text="&raquo;"
+      container-class="v-pagination">
+    </v-pagination>
   </main>
+@endsection
+
+@section('css')
+{{--  pagination用： 本来は editors.blade.php へセットすべきなのですが、ログイン画面などに影響するようでしたので、こちらへセットしています。--}}
+  <link rel="stylesheet" href="{{ asset('css/destyle.css') }}" />
 @endsection
 
 @section('js-files')
@@ -92,7 +104,7 @@
       data() {
         return {
           categories: {!! $categories !!},
-          data: [],
+          data: {},
           questions: [],
           page: 1,
           selectedCategory: 0,
@@ -161,15 +173,10 @@
           }
         },
         movePage(page) {
-          console.log(page);
           this.page = page;
           location.hash = `${this.page}`;
           this.getList();
           Vue.nextTick(() => {
-            // const scrollTop = $('.page-title').offset();
-            // $('html,body').animate({
-            //   scrollTop: scrollTop
-            // }, 'fast');
             scrollTo(0, 0);
           });
         },
@@ -183,6 +190,11 @@
             });
           }
         },
+      },
+      computed: {
+        pageCount() {
+          return parseInt(this.data.last_page) || 0;
+        }
       },
       mounted() {
         this.getList();

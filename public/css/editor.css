@@ -159,14 +159,12 @@ body {
 }
 
 .v-pagination li {
-  list-style: none;
   border: 1px solid #6a421f;
   border-radius: 0.3rem;
-  padding: 0.6rem 1.2rem;
+  padding: 0;
   text-align: center;
   background-color: #cba67e;
   color: #6a421f;
-  cursor: pointer;
 }
 
 .v-pagination li:not(:last-child) {
@@ -185,5 +183,9 @@ body {
 .v-pagination li:hover {
   background-color: rgba(106, 66, 31, 0.6);
   color: #fff;
+}
+
+.v-pagination li button {
+  padding: 0.6rem 1.2rem;
 }
 /*# sourceMappingURL=editor.css.map */
