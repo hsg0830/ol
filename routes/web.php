@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\MailSendController; //テスト臨時
 use App\Http\Controllers\ArticlesController;
+use App\Http\Controllers\QuestionsController;
 use App\Http\Controllers\UsersController;
 
 /*
@@ -35,17 +36,24 @@ Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
 // 会員登録コード認証用ルーティング
 Route::post('check-code', [RegisteredUserController::class, 'confirm_code']);
 
-// 規範原文
-Route::get('/norms/{filename}', function ($filename) {
-  return view('norms.' . $filename);
-})->name('norms');
-
 // 学習室
 Route::prefix('articles')->group(function () {
   Route::get('/', [ArticlesController::class, 'index'])->name('articles.index');
   Route::get('/pagination', [ArticlesController::class, 'paginate']);
   Route::get('/{article}', [ArticlesController::class, 'show'])->name('articles.show');
 });
+
+// QA
+Route::prefix('qa')->group(function () {
+  Route::get('/', [QuestionsController::class, 'index'])->name('qa.index');
+  Route::get('/pagination', [QuestionsController::class, 'paginate']);
+  Route::post('/{question}/increment', [QuestionsController::class, 'addViewedCount']);
+});
+
+// 規範原文
+Route::get('/norms/{filename}', function ($filename) {
+  return view('norms.' . $filename);
+})->name('norms');
 
 // マイページ
 Route::prefix('users')->group(function () {
@@ -85,6 +93,18 @@ Route::prefix('editors')->group(function () {
       Route::get('/get-list', [ArticlesController::class, 'getArticlesList']);
       Route::post('/{article}/change-status', [ArticlesController::class, 'changeStatus']);
       Route::delete('/{article}', [ArticlesController::class, 'destroy']);
+    });
+
+    // QA管理
+    Route::prefix('qa')->group(function () {
+      Route::get('/create', [QuestionsController::class, 'create'])->name('qa.create');
+      Route::post('/', [QuestionsController::class, 'store']);
+      Route::get('{question}/edit', [QuestionsController::class, 'edit'])->name('qa.edit');
+      Route::put('/{question}', [QuestionsController::class, 'update']);
+      Route::get('/list', [QuestionsController::class, 'showQuestionsList'])->name('qa.list');
+      Route::get('/get-list', [QuestionsController::class, 'getQuestionsList']);
+      Route::post('/{question}/change-status', [QuestionsController::class, 'changeStatus']);
+      Route::delete('/{question}', [QuestionsController::class, 'destroy']);
     });
 
     // ユーザー管理

@@ -109,10 +109,69 @@ body {
 }
 
 /*---------------------------
-  学習室記事投稿画面
+  学習室記事・QA投稿画面
 ---------------------------*/
 
-.article-modal {
+.article-modal, .qa-modal {
   background-color: $base;
 }
 
+.qa-modal {
+  &__wrapper {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-weight: bold;
+    color: $brown;
+    font-size: 1.5rem;
+    border-bottom: 2px solid $brown;
+    margin-bottom: 2rem;
+  }
+
+  &__answer {
+    background-color: $yellow;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    padding: 2rem;
+  }
+}
+
+// pagination
+.v-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.v-pagination li {
+  border: 1px solid $brown;
+  border-radius: 0.3rem;
+  padding: 0;
+  text-align: center;
+  background-color: $lightBrown;
+  color: $brown;
+
+  &:not(:last-child) {
+    margin-right: 2rem;
+  }
+
+  &.active {
+    background-color: $brown;
+    color: #fff;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+
+  &:hover {
+    background-color: rgba($brown, 0.6);
+    color: #fff;
+  }
+}
+
+.v-pagination li button {
+  padding: 0.6rem 1.2rem;
+}

@@ -11,7 +11,7 @@
 
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
       {{-- <a itemprop="item" href="{{ route('articles.index') }}"> --}}
-      <span itemprop="name">학습실</span>
+      <span itemprop="name">일문일답</span>
       {{-- </a> --}}
       <meta itemprop="position" content="2" />
     </li>
@@ -20,9 +20,10 @@
 
 @section('content')
   <main id="main">
+    <!-- <h1 class="category-title">언어규범과 관련한 Q&A</h1> -->
     <div class="category-page-title">
-      <img src="{{ asset('img/articles_top.png') }}" alt="" />
-      <h1>학습실</h1>
+      <img src="{{ asset('img/norms_top.png') }}" alt="" />
+      <h1>일문일답</h1>
     </div>
 
     <div class="category-page-introduction">
@@ -30,35 +31,43 @@
     </div>
 
     <div id="list-container" class="list-container">
+
       {{-- カテゴリーセレクトボタン --}}
       <div class="list-container__selector">
         <category-select-button :categories="categories" v-model="categoryNo" @child-click="selectCategory">
         </category-select-button>
       </div>
 
+      <div class="search-form">
+        <p class="search-form__title">키워드로 검색</p>
+        <div class="search-form__wrapper">
+          <input type="text" class="form-control" v-model="searchWord" @keypress.enter="searchQuestions">
+          <button class="global-btn" @click="searchQuestions">검색</button>
+        </div>
+      </div>
       <div class="list-container__count">
-        <i class="fas fa-file-signature"></i> 해당되는 기사수: <span v-text="items.total"></span>건
+        <i class="fas fa-file-signature"></i> 해당되는 물음수: <span v-text="questions.total"></span>건
       </div>
 
       <div class="list-container__wrapper">
-        <div class="list-item" v-for="item in items.data">
-          <a :href="item.url">
-            <div class="list-item__header">
-              <img src="{{ asset('img/bg_black-board_thum.png') }}" alt="" v-if="item.category.id === 100" />
-              <img src="{{ asset('img/bg_white-board_thum.png') }}" alt="" v-else-if="item.category.id === 200" />
-              <img src="{{ asset('img/bg_memo_thum.png') }}" alt="" v-else-if="item.category.id === 300" />
-              <img src="{{ asset('img/bg_film_thum.png') }}" alt="" v-else-if="item.category.id === 400" />
-              <p class="title" :class="getTextClass(item.category.id)" v-text="item.title"></p>
+        {{-- QAの一アイテム --}}
+        <div class="qa-item" v-for="question in questions.data" :key="question.id">
+          <div class="qa-item__question">
+            <div class="mark_and_category">
+              <span class="mark">Q</span>
+              <span class="category" :class="getCategoryClass(question.category_id)"
+                v-text="question.category.name"></span>
             </div>
-            <div class="list-item__content">
-              <p class="lead" v-html="item.head_line"></p>
-              <div class="info">
-                <p class="date" v-text="item.date"></p>
-                <p class="category" :class="getCategoryClass(item.category.id)" v-text="item.category.name"></p>
-              </div>
-            </div>
-          </a>
+            <p class="question-sentence" v-text="question.title"></p>
+            <span class="question-date" v-text="question.date"></span>
+            <i class="qa-ex-btn fas fa-plus" @click="changeView(question.id, $event)"></i>
+          </div>
+          <div class="qa-item__answer" style="display: none;">
+            <span class="mark">A</span>
+            <p class="answer-message" v-html="question.answer"></p>
+          </div>
         </div>
+        {{-- QAの一アイテム ここまで --}}
       </div>
     </div>
 
@@ -71,6 +80,7 @@
       next-text="&raquo;"
       container-class="v-pagination">
     </v-pagination>
+
   </main>
 
   @include('commons.side-recently')
@@ -82,14 +92,16 @@
 @endsection
 
 @section('js-script')
+
   <script>
     const app = Vue.createApp({
       data() {
         return {
           page: 1,
           categoryNo: 0,
-          items: {},
+          questions: {},
           categories: [],
+          searchWord: '',
         }
       },
       components: {
@@ -98,17 +110,39 @@
       },
       methods: {
         getItems() {
-          const url = '/articles/pagination';
+          const url = '/qa/pagination';
           axios.get(url, {
               params: {
                 page: this.page,
                 categoryNo: this.categoryNo,
+                searchWord: this.searchWord,
               }
             })
             .then((response) => {
-              this.items = response.data.articles;
+              this.questions = response.data.questions;
               this.categories = response.data.categories;
             });
+        },
+        getCategoryClass(index) {
+          return `category-${index}`;
+        },
+        changeView(index, event) {
+          const $clickedBtn = $(event.target);
+          const clickedBtnStatus = $clickedBtn.hasClass('fa-plus');
+          const selectedItem = $clickedBtn.parent().next();
+
+          if (clickedBtnStatus === true) {
+            $clickedBtn.removeClass('fa-plus');
+            $clickedBtn.addClass('fa-minus');
+            selectedItem.show();
+
+            const url = `qa/${index}/increment`;
+            axios.post(url, 'post')
+          } else {
+            $clickedBtn.removeClass('fa-minus');
+            $clickedBtn.addClass('fa-plus');
+            selectedItem.hide();
+          }
         },
         movePage(page) {
           this.page = page;
@@ -142,18 +176,14 @@
           location.hash = `${this.page}%${this.categoryNo}`;
           this.getItems();
         },
-        getCategoryClass(index) {
-          return `category-${index}`;
-        },
-        getTextClass(index) {
-          if (parseInt(index) === 100) {
-            return 'color-white'
-          }
+        searchQuestions() {
+          this.getHashValue();
+          this.getItems();
         }
       },
       computed: {
         pageCount() {
-          return parseInt(this.items.last_page) || 0;
+          return parseInt(this.questions.last_page) || 0;
         }
       },
       mounted() {

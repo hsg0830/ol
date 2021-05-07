@@ -13,4 +13,9 @@ class SubCategory extends Model
   {
     return $this->hasMany(Article::class);
   }
+
+  public function questions()
+  {
+    return $this->hasMany(Question::class);
+  }
 }

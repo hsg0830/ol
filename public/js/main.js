@@ -84,11 +84,10 @@ updateButton();
 // });
 
 /*------------------
-QAページ・規範原文ページの内容の表示/非表示切り替え
+規範原文ページの内容の表示/非表示切り替え
 ------------------*/
 // 항 해설 표시 초기설정
 $('.term__description').hide();
-$('.qa-item__answer').hide();
 
 // 항 해설 여닫기
 $('.ex-btn').on('click', (e) => {
@@ -150,20 +149,3 @@ $(window).scroll(() => {
   scrollEffect('moving-underline', 150);
 });
 
-/*------------------
-一覧の切り替えタブ
-------------------*/
-// const showTab = (selector) => {
-//   const idValue = selector.slice(-1);
-//   $('.list-container__selector li').removeClass('active');
-//   $(`#${selector}`).addClass('active');
-//   $('.list-container__wrapper').hide();
-//   $(`#tabs-content-${idValue}`).show();
-// };
-
-// $('.list-container__selector li').on('click', (e) => {
-//   const selector = $(e.target).attr('id');
-//   showTab(selector);
-// });
-
-// showTab('tabs-menu-a');
