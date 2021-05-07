@@ -20,7 +20,7 @@
           </form>
       @endauth
 
-      <button class="global-btn" onclick="location.href='#'">문의하기</button>
+      <button class="global-btn" onclick="location.href='{{ route('contact.form') }}'">문의하기</button>
 
     </div>
     <div class="cover__logo">
@@ -52,7 +52,7 @@
       <li><a href="{{ route('norms', 'index') }}">규범원문</a></li>
       <li><a href="#">자료실</a></li>
       <li><a href="#">질문게시판</a></li>
-      <li><a href="#">문의하기</a></li>
+      <li><a href="{{ route('contact.form') }}">문의하기</a></li>
     </ul>
   </nav>
 </header>

@@ -140,10 +140,6 @@ select {
   text-align: left;
 }
 
-.text-center {
-  text-align: center;
-}
-
 .text-emphasis {
   font-weight: bold;
 }
@@ -177,7 +173,6 @@ select {
   width: 80%;
   margin: 0 auto 4rem;
   text-align: center;
-  line-height: 4.5rem;
 
   & a {
     color: $lightBrown;
@@ -207,16 +202,7 @@ select {
 .error-message {
   background-color: rgb(250, 213, 209);
   color: $red;
-  margin: 1rem auto;
-  padding: 1.5rem;
-  border-radius: 1rem;
-}
-
-.notification {
-  width: 80%;
-  background-color: rgb(222, 247, 207);
-  color: $green;
-  margin: 1rem auto 3rem;
+  margin-bottom: 1rem;
   padding: 1.5rem;
   border-radius: 1rem;
 }
@@ -236,10 +222,11 @@ select {
 .v-pagination li {
   border: 1px solid $brown;
   border-radius: 0.3rem;
-  padding: 0;
+  padding: 0.6rem 1.2rem;
   text-align: center;
   background-color: $lightBrown;
   color: $brown;
+  cursor: pointer;
 
   &:not(:last-child) {
     margin-right: 2rem;
@@ -258,10 +245,6 @@ select {
     background-color: rgba($brown, 0.6);
     color: #fff;
   }
-}
-
-.v-pagination li button {
-  padding: 0.6rem 1.2rem;
 }
 
 /*---------------------------
@@ -301,11 +284,6 @@ select {
   box-shadow: 0 0 0.1rem silver;
   text-align: center;
   font-family: $krPoor;
-
-  &.large {
-    width: 15rem;
-    height: 5rem;
-  }
 
   &:hover {
     opacity: 0.9;
@@ -540,7 +518,8 @@ html.open,
       a {
         display: block;
 
-        &:hover, &.active {
+        &:hover,
+        &.active {
           color: $orange;
           opacity: 1;
         }
@@ -1132,7 +1111,7 @@ html.open,
           background-color: $vermilion;
         }
 
-        &.category-400, &.category-500 {
+        &.category-400 {
           background-color: $purple;
         }
       }
@@ -1154,7 +1133,7 @@ html.open,
           background-color: $vermilion;
         }
 
-        &.category-400, &.category-500 {
+        &.category-400 {
           background-color: $purple;
         }
 
@@ -1182,63 +1161,12 @@ html.open,
           border-top: 1rem solid $vermilion;
         }
 
-        &.category-400::after, &.category-500::after {
+        &.category-400::after {
           border-top: 1rem solid $purple;
         }
       }
     }
   }
-}
-
-// 記事数
-.list-container__count {
-  text-align: right;
-  padding-right: 1rem;
-
-  & i {
-    color:$lightBrown;
-  }
-
-  & span {
-    font-size: 2rem;
-    font-weight: bold;
-    color: $brown;
-  }
-}
-
-.search-form {
-  margin-bottom: 2rem;
-
-  &__title {
-    font-weight: bold;
-    font-style: 2.5rem;
-    color: $brown;
-    text-align: center;
-  }
-
-  &__wrapper {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
-    & .form-control {
-      width: 70%;
-      margin-right: 1.5rem;
-
-      @media screen and (min-width: 768px) {
-        margin-right: 0;
-      }
-    }
-  }
-}
-
-// 個別記事ページの関連記事紹介
-.list-container__related {
-  font-size: 2.2rem;
-  font-weight: bold;
-  letter-spacing: 0.2rem;
-  color: $brown;
-  margin-bottom: 1rem;
 }
 
 // メイン領域のコンテンツ部分
@@ -1403,7 +1331,7 @@ html.open,
 }
 
 // 本文部
-.introduction-block, .content-block {
+.content-block {
   width: 95%;
   margin: 2.5rem auto 0;
 }
@@ -1543,11 +1471,9 @@ html.open,
 
     & .mark_and_category {
       margin-right: 1rem;
-
       @media screen and (min-width: 768px) {
         margin-right: 2.5rem;
       }
-
       width: 20%;
 
       @media screen and (min-width: 768px) {
@@ -1578,13 +1504,13 @@ html.open,
         &.category-300 {
           background-color: $vermilion;
         }
-        &.category-400, &.category-500 {
+        &.category-400 {
           background-color: $purple;
         }
       }
     }
 
-    & .question-sentence {
+    & .sentence {
       width: 85%;
       padding-top: 2rem;
       // font-family: $krSunflower;
@@ -1593,14 +1519,6 @@ html.open,
         padding-top: 1rem;
         // font-size: 2.5rem;
         font-size: 2.2rem;
-      }
-    }
-
-    & .question-date {
-      color: $gray;
-      font-size: 1.2rem;
-      @media screen and (min-width: 768px) {
-        font-size: 1.8rem;
       }
     }
 
@@ -1674,9 +1592,9 @@ html.open,
       text-align: center;
     }
 
-    & .answer-message {
-      margin-left: 1rem;
-    }
+    // & .answer-message {
+    //   width: 80%;
+    // }
   }
 }
 
