@@ -63,7 +63,14 @@
     </div>
 
     {{-- pagination --}}
-    <v-pagination :data="items" @move-page="movePage($event)"></v-pagination>
+    <v-pagination
+      v-model="page"
+      :page-count="pageCount"
+      :click-handler="movePage"
+      prev-text="&laquo;"
+      next-text="&raquo;"
+      container-class="v-pagination">
+    </v-pagination>
   </main>
 
   @include('commons.side-recently')
@@ -72,8 +79,6 @@
 @section('js-files')
   <script src="{{ asset('js/vue-components/CategoryButton.js') }}"></script>
   <script src="{{ asset('js/vue-components/PaginationComponent.js') }}"></script>
-  <script src="https://unpkg.com/vue@next"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 @endsection
 
 @section('js-script')
@@ -83,7 +88,7 @@
         return {
           page: 1,
           categoryNo: 0,
-          items: [],
+          items: {},
           categories: [],
         }
       },
@@ -120,7 +125,7 @@
           const [hashPage, hashCategoryNo] = location.hash.substring(1).split('%');
 
           if (hashPage > 0) {
-            this.page = hashPage;
+            this.page = parseInt(hashPage);
           } else {
             this.page = 1;
           }
@@ -144,6 +149,11 @@
           if (parseInt(index) === 100) {
             return 'color-white'
           }
+        }
+      },
+      computed: {
+        pageCount() {
+          return parseInt(this.items.last_page) || 0;
         }
       },
       mounted() {

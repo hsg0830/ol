@@ -146,14 +146,12 @@ body {
 }
 
 .v-pagination li {
-  list-style: none;
   border: 1px solid $brown;
   border-radius: 0.3rem;
-  padding: 0.6rem 1.2rem;
+  padding: 0;
   text-align: center;
   background-color: $lightBrown;
   color: $brown;
-  cursor: pointer;
 
   &:not(:last-child) {
     margin-right: 2rem;
@@ -172,4 +170,8 @@ body {
     background-color: rgba($brown, 0.6);
     color: #fff;
   }
+}
+
+.v-pagination li button {
+  padding: 0.6rem 1.2rem;
 }

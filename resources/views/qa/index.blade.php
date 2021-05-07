@@ -30,7 +30,7 @@
       <p>여기에 이 코너에 대한 설명글이 들어갑니다. 여기에 이 코너에 대한 설명글이 들어갑니다. 여기에 이 코너에 대한 설명글이 들어갑니다.</p>
     </div>
 
-    <div class="list-container">
+    <div id="list-container" class="list-container">
 
       {{-- カテゴリーセレクトボタン --}}
       <div class="list-container__selector">
@@ -41,7 +41,7 @@
       <div class="search-form">
         <p class="search-form__title">키워드로 검색</p>
         <div class="search-form__wrapper">
-          <input type="text" class="form-control" v-model="searchWord">
+          <input type="text" class="form-control" v-model="searchWord" @keypress.enter="searchQuestions">
           <button class="global-btn" @click="searchQuestions">검색</button>
         </div>
       </div>
@@ -72,7 +72,15 @@
     </div>
 
     {{-- pagination --}}
-    <v-pagination :data="questions" @move-page="movePage($event)"></v-pagination>
+    <v-pagination
+      v-model="page"
+      :page-count="pageCount"
+      :click-handler="movePage"
+      prev-text="&laquo;"
+      next-text="&raquo;"
+      container-class="v-pagination">
+    </v-pagination>
+
   </main>
 
   @include('commons.side-recently')
@@ -81,18 +89,17 @@
 @section('js-files')
   <script src="{{ asset('js/vue-components/CategoryButton.js') }}"></script>
   <script src="{{ asset('js/vue-components/PaginationComponent.js') }}"></script>
-  <script src="https://unpkg.com/vue@next"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 @endsection
 
 @section('js-script')
+
   <script>
     const app = Vue.createApp({
       data() {
         return {
           page: 1,
           categoryNo: 0,
-          questions: [],
+          questions: {},
           categories: [],
           searchWord: '',
         }
@@ -152,7 +159,7 @@
           const [hashPage, hashCategoryNo] = location.hash.substring(1).split('%');
 
           if (hashPage > 0) {
-            this.page = hashPage;
+            this.page = parseInt(hashPage);
           } else {
             this.page = 1;
           }
@@ -172,6 +179,11 @@
         searchQuestions() {
           this.getHashValue();
           this.getItems();
+        }
+      },
+      computed: {
+        pageCount() {
+          return parseInt(this.questions.last_page) || 0;
         }
       },
       mounted() {
