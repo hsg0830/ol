@@ -122,9 +122,70 @@ body {
 }
 
 /*---------------------------
-  学習室記事投稿画面
+  学習室記事・QA投稿画面
 ---------------------------*/
-.article-modal {
+.article-modal, .qa-modal {
   background-color: #eee5df;
+}
+
+.qa-modal__wrapper {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.qa-modal__title {
+  font-weight: bold;
+  color: #6a421f;
+  font-size: 1.5rem;
+  border-bottom: 2px solid #6a421f;
+  margin-bottom: 2rem;
+}
+
+.qa-modal__answer {
+  background-color: #fffcf4;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  padding: 2rem;
+}
+
+.v-pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 2rem;
+}
+
+.v-pagination li {
+  border: 1px solid #6a421f;
+  border-radius: 0.3rem;
+  padding: 0;
+  text-align: center;
+  background-color: #cba67e;
+  color: #6a421f;
+}
+
+.v-pagination li:not(:last-child) {
+  margin-right: 2rem;
+}
+
+.v-pagination li.active {
+  background-color: #6a421f;
+  color: #fff;
+}
+
+.v-pagination li.disabled {
+  cursor: not-allowed;
+}
+
+.v-pagination li:hover {
+  background-color: rgba(106, 66, 31, 0.6);
+  color: #fff;
+}
+
+.v-pagination li button {
+  padding: 0.6rem 1.2rem;
 }
 /*# sourceMappingURL=editor.css.map */

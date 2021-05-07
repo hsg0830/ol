@@ -10,14 +10,8 @@ class ArticleCategory extends Category
 {
   use HasFactory;
 
-  /**
-   * モデルに関連付けるテーブル
-   *
-   * @var string
-   */
   protected $table = 'categories';
 
-  // protected static function booted(array $attributes = [])
   protected static function booted()
   {
     static::addGlobalScope('article_category_ids', function (Builder $builder) {

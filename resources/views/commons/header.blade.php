@@ -35,7 +35,7 @@
     </div>
     <ul>
       <li><a href="{{ route('articles.index') }}" class="{{ Request::is('articles*') ? 'active' : '' }}">학습실</a></li>
-      <li><a href="#">일문일답</a></li>
+      <li><a href="{{ route('qa.index') }}" class="{{ Request::is('qa*') ? 'active' : '' }}">일문일답</a></li>
       <li><a href="{{ route('norms', 'index') }}" class="{{ Request::is('norms/*') ? 'active' : '' }}">규범원문</a></li>
       <li><a href="#">자료실</a></li>
       <li><a href="#">질문게시판</a></li>
@@ -48,7 +48,7 @@
       <li><a href="{{ route('register') }}">회원등록</a></li>
       <li><a href="{{ route('login') }}">로그인</a></li>
       <li><a href="{{ route('articles.index') }}">학습실</a></li>
-      <li><a href="#">일문일답</a></li>
+      <li><a href="{{ route('qa.index') }}">일문일답</a></li>
       <li><a href="{{ route('norms', 'index') }}">규범원문</a></li>
       <li><a href="#">자료실</a></li>
       <li><a href="#">질문게시판</a></li>

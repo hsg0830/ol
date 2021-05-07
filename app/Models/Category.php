@@ -11,14 +11,12 @@ class Category extends Model
 
   protected $appends = ['has_sub_category'];
 
-  // Relationship
   public function sub_categories()
   {
     return $this->hasMany(SubCategory::class, 'category_id', 'id')
       ->select('id', 'category_id', 'name');
   }
 
-  // Accessor
   public function getHasSubCategoryAttribute()
   {
     return $this->sub_categories->isNotEmpty();

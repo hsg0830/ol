@@ -232,7 +232,6 @@
           $('.js-modal').fadeOut();
         },
         onChangeCategory() {
-          console.log('change category')
           this.subCategory = '';
         },
         onSave() {
@@ -248,8 +247,6 @@
               url = `/editors/articles/${this.currentArticle.id}`;
               method = 'PUT';
             }
-
-            console.log(url);
 
             const params = {
               _method: method,

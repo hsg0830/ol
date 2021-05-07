@@ -292,11 +292,10 @@ select {
 .v-pagination li {
   border: 1px solid #6a421f;
   border-radius: 0.3rem;
-  padding: 0.6rem 1.2rem;
+  padding: 0;
   text-align: center;
   background-color: #cba67e;
   color: #6a421f;
-  cursor: pointer;
 }
 
 .v-pagination li:not(:last-child) {
@@ -317,6 +316,9 @@ select {
   color: #fff;
 }
 
+.v-pagination li button {
+  padding: 0.6rem 1.2rem;
+}
 /*---------------------------
   ログイン画面のフォームなど
 ---------------------------*/
@@ -1235,7 +1237,7 @@ html.open,
   background-color: #d44a28;
 }
 
-.list-container__selector ul li:hover.category-400 {
+.list-container__selector ul li:hover.category-400, .list-container__selector ul li:hover.category-500 {
   background-color: #9e1e53;
 }
 
@@ -1257,7 +1259,7 @@ html.open,
   background-color: #d44a28;
 }
 
-.list-container__selector ul li.active.category-400 {
+.list-container__selector ul li.active.category-400, .list-container__selector ul li.active.category-500 {
   background-color: #9e1e53;
 }
 
@@ -1286,7 +1288,7 @@ html.open,
   border-top: 1rem solid #d44a28;
 }
 
-.list-container__selector ul li.active.category-400::after {
+.list-container__selector ul li.active.category-400::after, .list-container__selector ul li.active.category-500::after {
   border-top: 1rem solid #9e1e53;
 }
 
@@ -1303,6 +1305,39 @@ html.open,
   font-size: 2rem;
   font-weight: bold;
   color: #6a421f;
+}
+
+.search-form {
+  margin-bottom: 2rem;
+}
+
+.search-form__title {
+  font-weight: bold;
+  font-style: 2.5rem;
+  color: #6a421f;
+  text-align: center;
+}
+
+.search-form__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.search-form__wrapper .form-control {
+  width: 70%;
+  margin-right: 1.5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .search-form__wrapper .form-control {
+    margin-right: 0;
+  }
 }
 
 .list-container__related {
@@ -1698,20 +1733,31 @@ html.open,
   background-color: #d44a28;
 }
 
-.qa-item__question .mark_and_category .category.category-400 {
+.qa-item__question .mark_and_category .category.category-400, .qa-item__question .mark_and_category .category.category-500 {
   background-color: #9e1e53;
 }
 
-.qa-item__question .sentence {
+.qa-item__question .question-sentence {
   width: 85%;
   padding-top: 2rem;
   font-size: 2rem;
 }
 
 @media screen and (min-width: 768px) {
-  .qa-item__question .sentence {
+  .qa-item__question .question-sentence {
     padding-top: 1rem;
     font-size: 2.2rem;
+  }
+}
+
+.qa-item__question .question-date {
+  color: #494949;
+  font-size: 1.2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .qa-item__question .question-date {
+    font-size: 1.8rem;
   }
 }
 
@@ -1794,6 +1840,10 @@ html.open,
   .qa-item__answer .mark {
     width: 10%;
   }
+}
+
+.qa-item__answer .answer-message {
+  margin-left: 1rem;
 }
 
 /*---------------------------
