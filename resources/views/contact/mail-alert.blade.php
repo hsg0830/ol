@@ -1,5 +1,5 @@
 {{ $email }}
 <br>
-{{ $body }}
+{!! nl2br($body) !!}
 <br>
-{{ $url }}
+<a href="{{ $url }}">{{ $url }}</a>

@@ -72,7 +72,7 @@
         </tr>
         <tr>
           <th>문의내용</th>
-          <td v-html="content"></td>
+          <td v-html="content" style="white-space: pre-wrap;"></td>
         </tr>
       </table>
 

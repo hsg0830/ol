@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <div class="row bg-light my-4 p-4" v-html="contact.description">
+    <div class="row bg-light my-4 p-4" v-html="contact.description" style="white-space:pre-wrap;">
     </div>
 
     {{-- 回答入力フォーム --}}
@@ -44,7 +44,7 @@
 
       <div class="modal__content qa-modal">
         <div class="qa-modal__wrapper">
-          <div class="qa-modal__answer" v-html="reply"></div>
+          <div class="qa-modal__answer" v-html="reply" style="white-space:pre-wrap;"></div>
         </div>
 
         <div class="buttons my-5 mx-auto d-flex justify-content-around">

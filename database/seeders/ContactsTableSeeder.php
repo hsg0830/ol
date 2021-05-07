@@ -18,7 +18,7 @@ class ContactsTableSeeder extends Seeder
       $contact = new Contact();
       $contact->name = '質問者' . $i;
       $contact->email = 'contact' . $i . '@example.com';
-      $contact->description = '問い合わせの内容。\n文章が続きます。';
+      $contact->description = "問い合わせの内容。\n文章が続きます。\n文章が続きます。\n文章が続きます。";
       $contact->save();
     }
   }
