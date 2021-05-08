@@ -48,6 +48,7 @@ class ArticlesController extends Controller
     }
 
     $relatedArticles =  Article::where('category_id', $article->category_id)
+      ->where('id', '<>', $article->id)
       ->where('status', 1)
       ->orderBy('released_at', 'desc')
       ->take(3)->get();

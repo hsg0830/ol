@@ -9,7 +9,7 @@
         <h2 class="category-block__name">학습실</h2>
         <div class="category-block__content">
           <!-- slider -->
-          <div class="swiper-container top-swiper">
+          {{-- <div class="swiper-container top-swiper">
             <div class="swiper-wrapper">
               <div class="swiper-slide category-100">
                 <img src="./img/articles_01.png" alt="" />
@@ -34,7 +34,7 @@
             <!-- If we need navigation buttons -->
             <div class="prev"><i class="fas fa-angle-left"></i></div>
             <div class="next"><i class="fas fa-angle-right"></i></div>
-          </div>
+          </div> --}}
 
           <!-- 자주 보는 기사 -->
           <div class="flex-block recent-articles">

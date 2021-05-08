@@ -10,11 +10,11 @@
     <div class="row mt-3 mb-3">
 
       <div class="col-2 form-floating">
-        <select class="form-select" id="status" v-model="selectedCategory" @change=getList>
+        <select class="form-select" id="category" v-model="selectedCategory" @change=getList>
           <option value="0" selected>전체</option>
           <option v-for="category in categories" :value="category.id" v-text="category.name"></option>
         </select>
-        <label for="status">カテゴリー</label>
+        <label for="category">カテゴリー</label>
       </div>
 
       <div class="col-2 form-floating">
@@ -32,7 +32,7 @@
           <option value="1">많은 차례</option>
           <option value="2">적은 차례</option>
         </select>
-        <label for="viewed-order">公開状態</label>
+        <label for="viewed-order">閲覧数</label>
       </div>
 
     </div>
@@ -133,11 +133,19 @@
             });
         },
         changeViewedOrder() {
+          this.page = 1;
           this.viewedOrder = 0;
           this.getList();
         },
         filteringStatus() {
-          this.status = 1;
+          this.page = 1;
+
+          if (this.viewedOrder == 0) {
+            this.status = 2;
+          } else {
+            this.status = 1;
+          }
+
           this.getList();
         },
         changeStatus(question) {

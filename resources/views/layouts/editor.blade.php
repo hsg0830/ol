@@ -26,7 +26,8 @@
   </div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.prod.js"></script>
+  {{-- <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.prod.js"></script> --}}
+  <script src="https://unpkg.com/vue@next"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 
   @yield('js-files')

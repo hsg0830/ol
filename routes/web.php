@@ -8,6 +8,7 @@ use App\Http\Controllers\MediaController;
 use App\Http\Controllers\MailSendController; //テスト臨時
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\QuestionsController;
+use App\Http\Controllers\AsksController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ContactsController;
 
@@ -25,11 +26,6 @@ use App\Http\Controllers\ContactsController;
 Route::get('/', function () {
   return view('home');
 });
-
-// email-verifyテスト
-Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
-  return view('test.verified');
-})->name('verified');
 
 // 会員登録コード認証用ルーティング
 Route::post('check-code', [RegisteredUserController::class, 'confirm_code']);
@@ -53,7 +49,19 @@ Route::get('/norms/{filename}', function ($filename) {
   return view('norms.' . $filename);
 })->name('norms');
 
-// マイページ
+// bbs
+Route::prefix('bbs')->group(function () {
+  Route::get('/', [AsksController::class, 'index'])->name('bbs.index');
+  Route::get('/pagination', [AsksController::class, 'paginate']);
+
+  // email-verify後にだけアクセスできるルーティング
+  // Route::middleware(['auth', 'verified'])->group(function () {
+    Route::post('/', [AsksController::class, 'store']);
+    Route::get('/{ask}', [AsksController::class, 'show'])->name('bbs.show');
+  // });
+});
+
+// マイページ <-ここも後で、email-verify後にだけアクセスできるルーティングに！
 Route::prefix('users')->group(function () {
   Route::get('/{user}', [UsersController::class, 'show'])->name('users.show');
 });
@@ -73,6 +81,7 @@ Route::prefix('editors')->group(function () {
     Route::post('login', [MultiAuthController::class, 'login'])->name('editors.login');
   });
 
+  // 管理者としてログインしている場合のみアクセス可能なルーティング
   Route::middleware('auth:editors')->group(function () {
     // 管理者ログアウト
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('editors.logout');
@@ -109,6 +118,15 @@ Route::prefix('editors')->group(function () {
       Route::get('/get-list', [QuestionsController::class, 'getQuestionsList']);
       Route::post('/{question}/change-status', [QuestionsController::class, 'changeStatus']);
       Route::delete('/{question}', [QuestionsController::class, 'destroy']);
+    });
+
+    // bbs管理
+    Route::prefix('bbs')->group(function () {
+      Route::get('/list', [AsksController::class, 'showAsksList'])->name('bbs.list');
+      Route::get('/get-list', [AsksController::class, 'getAsksList']);
+      Route::get('/{ask}/edit', [AsksController::class, 'edit'])->name('bbs.edit');
+      Route::put('/{ask}', [AsksController::class, 'update']);
+      Route::delete('/{ask}', [AsksController::class, 'destroy']);
     });
 
     // ユーザー管理

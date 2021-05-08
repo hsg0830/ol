@@ -319,6 +319,7 @@ select {
 .v-pagination li button {
   padding: 0.6rem 1.2rem;
 }
+
 /*---------------------------
   ログイン画面のフォームなど
 ---------------------------*/
@@ -1340,6 +1341,14 @@ html.open,
   }
 }
 
+.search-form__btn-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
 .list-container__related {
   font-size: 2.2rem;
   font-weight: bold;
@@ -1928,16 +1937,31 @@ html.open,
   width: 50%;
 }
 
-.bbs td .status-label {
+.bbs td .status-label, .bbs td .category-label {
   padding: 0.3rem 0.5rem;
   border-radius: 2rem;
+  display: inline-block;
+  width: 8rem;
+  text-align: center;
   background-color: #19775f;
   color: #ffffff;
   font-size: 1.4rem;
 }
 
-.bbs td .status-label.unanswered {
+.bbs td .status-label.unanswered, .bbs td .category-label.unanswered {
   background-color: #ab243b;
+}
+
+.bbs td .status-label.catergory-200, .bbs td .category-label.catergory-200 {
+  background-color: #2a3773;
+}
+
+.bbs td .status-label.catergory-300, .bbs td .category-label.catergory-300 {
+  background-color: #d44a28;
+}
+
+.bbs td .status-label.catergory-400, .bbs td .status-label.catergory-500, .bbs td .category-label.catergory-400, .bbs td .category-label.catergory-500 {
+  background-color: #9e1e53;
 }
 
 .bbs td a {
@@ -2022,7 +2046,7 @@ html.open,
   color: #d44a28;
 }
 
-.ask__info .category.category-400 {
+.ask__info .category.category-400, .ask__info .category.category-500 {
   color: #9e1e53;
 }
 
