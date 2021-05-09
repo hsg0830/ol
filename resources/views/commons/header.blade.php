@@ -38,7 +38,7 @@
       <li><a href="{{ route('qa.index') }}" class="{{ Request::is('qa*') ? 'active' : '' }}">일문일답</a></li>
       <li><a href="{{ route('norms', 'index') }}" class="{{ Request::is('norms/*') ? 'active' : '' }}">규범원문</a></li>
       <li><a href="#">자료실</a></li>
-      <li><a href="#">질문게시판</a></li>
+      <li><a href="{{ route('bbs.index') }}" class="{{ Request::is('bbs*') ? 'active' : '' }}">질문게시판</a></li>
     </ul>
     <button class="nav-login-btn global-btn" onclick="location.href='{{ route('login') }}'">로 그 인</button>
   </nav>
@@ -51,7 +51,7 @@
       <li><a href="{{ route('qa.index') }}">일문일답</a></li>
       <li><a href="{{ route('norms', 'index') }}">규범원문</a></li>
       <li><a href="#">자료실</a></li>
-      <li><a href="#">질문게시판</a></li>
+      <li><a href="{{ route('bbs.index') }}">질문게시판</a></li>
       <li><a href="{{ route('contact.form') }}">문의하기</a></li>
     </ul>
   </nav>

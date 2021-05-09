@@ -1230,6 +1230,11 @@ html.open,
       }
     }
   }
+
+  &__btn-block {
+    display: flex;
+    justify-content: space-around;
+  }
 }
 
 // 個別記事ページの関連記事紹介
@@ -1762,15 +1767,28 @@ html.open,
       width: 50%;
     }
 
-    & .status-label {
+    & .status-label, & .category-label {
       padding: 0.3rem 0.5rem;
       border-radius: 2rem;
+      display: inline-block;
+      width: 8rem;
+      text-align: center;
       background-color: $green;
       color: $white;
       font-size: 1.4rem;
 
       &.unanswered {
         background-color: $red;
+      }
+
+      &.catergory-200 {
+        background-color: $navy;
+      }
+      &.catergory-300 {
+        background-color: $vermilion;
+      }
+      &.catergory-400, &.catergory-500 {
+        background-color: $purple;
       }
     }
 
@@ -1861,7 +1879,7 @@ html.open,
         color: $vermilion;
       }
 
-      &.category-400 {
+      &.category-400, &.category-500 {
         color: $purple;
       }
     }
