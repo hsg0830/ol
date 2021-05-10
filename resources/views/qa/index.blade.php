@@ -42,7 +42,8 @@
         <p class="search-form__title">키워드로 검색</p>
         <div class="search-form__wrapper">
           <input type="text" class="form-control" v-model="searchWord" @keypress.enter="searchQuestions">
-          <button class="global-btn" @click="searchQuestions">검색</button>
+          <button class="global-btn" @click="searchQuestions" style="margin: 0 1rem;">검색</button>
+          <button class="global-btn" @click="clearSearchWord">지우기</button>
         </div>
       </div>
       <div class="list-container__count">
@@ -179,7 +180,12 @@
         searchQuestions() {
           this.getHashValue();
           this.getItems();
-        }
+        },
+        clearSearchWord() {
+          this.searchWord = '';
+          this.getHashValue();
+          this.getItems();
+        },
       },
       computed: {
         pageCount() {

@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class School extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    public function users() {
-      return $this->hasMany(User::class);
-    }
-
+  public function users()
+  {
+    return $this->hasMany(User::class);
+  }
 }

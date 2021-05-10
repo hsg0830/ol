@@ -50,8 +50,6 @@ class AuthenticatedSessionController extends Controller
    */
   public function destroy(Request $request)
   {
-    // editors への影響がないので guard('web') は削っておいた方がいいかもしれません
-    // 結局続くセッション破壊で問題なくログアウトはできるのですが・・・
     Auth::logout();
 
     $request->session()->invalidate();
@@ -61,9 +59,6 @@ class AuthenticatedSessionController extends Controller
     $uri = $request->path();
 
     if (Str::startsWith($uri, 'editors')) {
-      // return redirect('editors');
-      // 細かくて恐縮ですが、上記では２回リダイレクトが発生しますので以下がベターかもしれません。
-      // なお、ルート名を使ってリダイレクトしておくと、今後ルートのURLを変更しても自動的に変更されるのでおすすめです ^^b
       return redirect()->route('editors.login');
     }
 

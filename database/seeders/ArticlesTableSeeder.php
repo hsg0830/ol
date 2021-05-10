@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\ArticleCategory;
 use Illuminate\Database\Seeder;
+use App\Models\ArticleCategory;
 use App\Models\Article;
 
 class ArticlesTableSeeder extends Seeder

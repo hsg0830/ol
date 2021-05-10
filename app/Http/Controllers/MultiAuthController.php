@@ -9,22 +9,22 @@ class MultiAuthController extends Controller
 {
   public function showLoginForm()
   {
-      return view('editors.login');
+    return view('editors.login');
   }
 
   public function login(Request $request)
   {
-      $credentials = $request->only(['email', 'password']);
-      $guard = $request->guard;
-      $remember = $request->has('remember');
+    $credentials = $request->only(['email', 'password']);
+    $guard = $request->guard;
+    $remember = $request->has('remember');
 
-      if (Auth::guard($guard)->attempt($credentials, $remember)) {
-          return redirect('editors');
-      }
+    if (Auth::guard($guard)->attempt($credentials, $remember)) {
+      return redirect('editors');
+    }
 
-      return back()->withErrors([
-          'auth' => ['認証に失敗しました']
-      ]);
+    return back()->withErrors([
+      'auth' => ['認証に失敗しました']
+    ]);
   }
 
   // public function logout(Request $request) {
@@ -34,7 +34,8 @@ class MultiAuthController extends Controller
   //     return redirect('/editors/login');
   // }
 
-  public function index() {
+  public function index()
+  {
     return view('editors/top');
   }
 }
