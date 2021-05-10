@@ -75,15 +75,6 @@ $('.back-to-top').on('click', (e) => {
 updateButton();
 
 /*------------------
-ツールチップ
-------------------*/
-// $(document).ready(function () {
-//   $('.tooltip').tooltipster({
-//     theme: 'tooltipster-noir',
-//   });
-// });
-
-/*------------------
 規範原文ページの内容の表示/非表示切り替え
 ------------------*/
 // 항 해설 표시 초기설정
@@ -149,3 +140,11 @@ $(window).scroll(() => {
   scrollEffect('moving-underline', 150);
 });
 
+/*------------------
+ツールチップ
+------------------*/
+// $(document).ready(function () {
+//   $('.tooltip').tooltipster({
+//     theme: 'tooltipster-noir',
+//   });
+// });

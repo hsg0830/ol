@@ -8,5 +8,5 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Editor extends Authenticatable
 {
-    use HasFactory;
+  use HasFactory;
 }

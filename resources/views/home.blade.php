@@ -40,28 +40,20 @@
           <div class="flex-block recent-articles">
             <div class="recent-articles__info">
               <h3>자주 보는 기사</h3>
-              <a><i class="fas fa-angle-double-right"></i> 전체 기사 보기</a>
+              <a href="{{ route('articles.index') }}"><i class="fas fa-angle-double-right"></i> 전체 기사 보기</a>
             </div>
-            <div class="recent-articles__item">
-              <span class="recent-articles__category category-100">어휘</span>
-              <p class="recent-articles__title">맞춤법이란 무엇인가?</p>
-              <time class="recent-articles__date">2021-04-17</time>
-            </div>
-            <div class="recent-articles__item">
-              <span class="recent-articles__category category-200">문법</span>
-              <p class="recent-articles__title">맞춤법이란 무엇인가? 맞춤법이란 무엇인가?</p>
-              <time class="recent-articles__date">2021-04-17</time>
-            </div>
-            <div class="recent-articles__item">
-              <span class="recent-articles__category category-300">언어규범</span>
-              <p class="recent-articles__title">맞춤법이란 무엇인가?</p>
-              <time class="recent-articles__date">2021-04-17</time>
-            </div>
-            <div class="recent-articles__item">
-              <span class="recent-articles__category category-400">들어보기</span>
-              <p class="recent-articles__title">맞춤법이란 무엇인가?</p>
-              <time class="recent-articles__date">2021-04-17</time>
-            </div>
+
+            @foreach ($articles as $article)
+              <a href="{{ $article->url }}" class="recent-articles__item">
+                <div>
+                  <span
+                    class="recent-articles__category category-{{ $article->category_id }}">{{ $article->category->name }}</span>
+                  <p class="recent-articles__title">{{ $article->title }}</p>
+                  <time class="recent-articles__date">{{ $article->date }}</time>
+                </div>
+              </a>
+            @endforeach
+
           </div>
         </div>
       </div>
@@ -73,28 +65,18 @@
         <h2 class="category-block__name">일문일답</h2>
         <div class="category-block__content recent-qa recent-common">
           <p class="recent-qa__introduction">aaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaa</p>
-          <div class="recent-qa__item">
-            <span class="recent-qa__category category-200">문법</span>
-            <p class="recent-qa__title">bbbbbbbbbbbbb bbbbbbbbbbbbbbbbb</p>
-            <!-- <data class="recent-qa__date">2021-04-17</data> -->
-          </div>
-          <div class="recent-qa__item">
-            <span class="recent-qa__category category-100">어휘</span>
-            <p class="recent-qa__title">bbbbbbbbbbbbb bbbbbbbbbbbbbbbbb</p>
-            <!-- <data class="recent-qa__date">2021-04-17</data> -->
-          </div>
-          <div class="recent-qa__item">
-            <span class="recent-qa__category category-500">기타</span>
-            <p class="recent-qa__title">bbbbbbbbbbbbb bbbbbbbbbbbbbbbbb</p>
-            <!-- <data class="recent-qa__date">2021-04-17</data> -->
-          </div>
-          <div class="recent-qa__item">
-            <span class="recent-qa__category category-300">언어규범</span>
-            <p class="recent-qa__title">bbbbbbbbbbbbb bbbbbbbbbbbbbbbbb</p>
-            <!-- <data class="recent-qa__date">2021-04-17</data> -->
-          </div>
+
+          @foreach ($questions as $question)
+            <div class="recent-qa__item">
+              <span
+                class="recent-qa__category category-{{ $question->category_id }}">{{ $question->category->name }}</span>
+              <p class="recent-qa__title">{{ $question->title }}</p>
+              <!-- <data class="recent-qa__date">2021-04-17</data> -->
+            </div>
+          @endforeach
+
           <div class="more">
-            <a href="#"><i class="fas fa-angle-double-right"></i> 더보기</a>
+            <a href="{{ route('qa.index') }}"><i class="fas fa-angle-double-right"></i> 더보기</a>
           </div>
         </div>
       </section>
@@ -109,7 +91,7 @@
               <p>introduction introduction introduction introduction introduction</p>
             </div>
             <div class="link-block__link norm">
-              <button class="norm">button</button>
+              <button class="norm" onclick="location.href='{{ route('norms', 'index') }}'">보기</button>
             </div>
           </div>
         </section>
@@ -123,7 +105,7 @@
               <p>introduction introduction introduction introduction introduction</p>
             </div>
             <div class="link-block__link ref">
-              <button class="ref">button</button>
+              <button class="ref" onclick="location.href='{{ route('materials.index') }}'">보기</button>
             </div>
           </div>
         </section>
@@ -135,21 +117,18 @@
           <h2 class="category-block__name">질문게시판</h2>
           <div class="category-block__content recent-ask recent-common">
             <ul>
-              <li>
-                <p>aaaaaaaaaa aa aa aa aa aa aa</p>
-              </li>
-              <li>
-                <p>aaaaaaaaaa aa aa aa aa aa aa</p>
-              </li>
-              <li>
-                <p>aaaaaaaaaa aa aa aa aa aa aa</p>
-              </li>
-              <li>
-                <p>aaaaaaaaaa aa aa aa aa aa aa aaaaaaaaaa aa aa aa aa aa aa</p>
-              </li>
+
+              @foreach ($asks as $ask)
+              <a href="{{ $ask->url }}">
+                <li>
+                  <p>{{ $ask->title }}</p>
+                </li>
+              </a>
+
+              @endforeach
             </ul>
             <div class="more">
-              <a href="#"><i class="fas fa-angle-double-right"></i> 더보기</a>
+              <a href="{{ route('bbs.index') }}"><i class="fas fa-angle-double-right"></i> 더보기</a>
             </div>
           </div>
         </section>

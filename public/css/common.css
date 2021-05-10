@@ -2221,6 +2221,7 @@ html.open,
 }
 
 .recent-articles__item {
+  display: block;
   margin-bottom: 1rem;
   padding: 3.5rem 1rem 0.5rem;
   background-color: #fffcf4;

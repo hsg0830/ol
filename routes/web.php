@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\MultiAuthController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -23,9 +24,7 @@ use App\Http\Controllers\ContactsController;
 |
 */
 
-Route::get('/', function () {
-  return view('home');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 // 会員登録コード認証用ルーティング
 Route::post('check-code', [RegisteredUserController::class, 'confirm_code']);
@@ -59,6 +58,13 @@ Route::prefix('bbs')->group(function () {
     Route::post('/', [AsksController::class, 'store']);
     Route::get('/{ask}', [AsksController::class, 'show'])->name('bbs.show');
   // });
+});
+
+// 資料室   ←現在は臨時。6月〜7月に開発の予定。
+Route::prefix('materials')->group(function () {
+  Route::get('/', function () {
+    return view('materials.index');
+  })->name('materials.index');
 });
 
 // マイページ <-ここも後で、email-verify後にだけアクセスできるルーティングに！
