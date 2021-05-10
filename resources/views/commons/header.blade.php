@@ -24,14 +24,14 @@
 
     </div>
     <div class="cover__logo">
-      <a href="#"><img src="{{ asset('img/logo_pc_white_orange.png') }}" alt="얼 -우리 말 배움터-" /></a>
+      <a href="{{ url('/') }}"><img src="{{ asset('img/logo_pc_white_orange.png') }}" alt="얼 -우리 말 배움터-" /></a>
     </div>
     <img class="cover__clock" src="{{ asset('img/clock.png') }}" alt="" />
   </div>
   <!-- PC用のグローバルメニュー -->
   <nav class="global-nav">
     <div class="pc-fixed-logo">
-      <a href="#"><img src="{{ asset('img/logo_sp_white.png') }}" alt="얼 우리 말 배움터" /></a>
+      <a href="{{ url('/') }}"><img src="{{ asset('img/logo_sp_white.png') }}" alt="얼 우리 말 배움터" /></a>
     </div>
     <ul>
       <li><a href="{{ route('articles.index') }}" class="{{ Request::is('articles*') ? 'active' : '' }}">학습실</a></li>

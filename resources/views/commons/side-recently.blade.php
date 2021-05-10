@@ -20,5 +20,7 @@
       <a href="{{ route('articles.index') }}"> <i class="fas fa-angle-double-right"></i>더보기 </a>
     </div>
   </div>
+
+  @include('commons.side-banners')
 </aside>
 <!-- ↑↑↑サイドメニュー↑↑↑ -->
