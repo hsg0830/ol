@@ -6,12 +6,12 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\MultiAuthController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\MediaController;
-use App\Http\Controllers\MailSendController; //テスト臨時
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\QuestionsController;
 use App\Http\Controllers\AsksController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ContactsController;
+use App\Http\Controllers\NoticesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -133,6 +133,17 @@ Route::prefix('editors')->group(function () {
       Route::get('/{ask}/edit', [AsksController::class, 'edit'])->name('bbs.edit');
       Route::put('/{ask}', [AsksController::class, 'update']);
       Route::delete('/{ask}', [AsksController::class, 'destroy']);
+    });
+
+    // お知らせ管理
+    Route::prefix('notices')->group(function () {
+      Route::get('/', [NoticesController::class, 'showList'])->name('notices.list');
+      Route::get('/get-list', [NoticesController::class, 'getNoticesList']);
+      Route::get('create', [NoticesController::class, 'create'])->name('notices.create');
+      Route::post('/', [NoticesController::class, 'store']);
+      Route::get('/{notice}', [NoticesController::class, 'edit'])->name('notices.edit');
+      Route::put('/{notice}', [NoticesController::class, 'update']);
+      Route::delete('/{notice}', [NoticesController::class, 'destroy']);
     });
 
     // ユーザー管理

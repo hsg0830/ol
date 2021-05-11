@@ -14,7 +14,7 @@ class NoticesTableSeeder extends Seeder
    */
   public function run()
   {
-    for ($i = 1; $i <= 10; $i++) {
+    for ($i = 1; $i <= 30; $i++) {
       $notice = new Notice();
       $notice->editor_id = 1;
       $notice->role = rand(0, 1);
