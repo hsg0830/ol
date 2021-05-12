@@ -8,7 +8,6 @@
   @hasSection('title')
     <title>@yield('title')</title>
   @else
-    {{-- <title>{{ config('app.name', '얼 -우리 말 배움터-') }}</title> --}}
     <title>얼 -우리 말 배움터-</title>
   @endif
 

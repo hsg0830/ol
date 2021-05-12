@@ -5,11 +5,9 @@
     <ol class="list list__recently">
       @foreach ($topArticles as $topArticle)
       <li>
-        {{-- <a href="{{ route('articles.show', $topArticle->id) }}"> --}}
         <a href="{{ $topArticle->url }}">
           <p class="list__category category-{{ $topArticle->category->id }}">{{ $topArticle
           ->category->name }}</p>
-          {{-- <p class="list__date">{{ $topArticle->created_at->format('Y-m-d') }}</p> --}}
           <p class="list__date">{{ $topArticle->date }}</p>
           <p class="list__title">{{ $topArticle->title }}</p>
         </a>

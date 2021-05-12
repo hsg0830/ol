@@ -1,6 +1,6 @@
 @extends('layouts.editor')
 
-@section('title', '얼 -- お知らせ投稿・編集画面')
+@section('title', '얼 -우리 말 배움터- お知らせ投稿・編集画面')
 
 @section('content')
   <main id="main" class="container">

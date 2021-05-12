@@ -37,7 +37,7 @@ class AsksController extends Controller
       $query->where('title', 'like', $keyword);
     }
 
-    $asks = $query->where('status', 1)->with('category')->paginate(15);
+    $asks = $query->where('status', 1)->with('category')->paginate(10);
 
     $notCompatible = Ask::where('status', 0)->count();
     $authorized = Auth::check();

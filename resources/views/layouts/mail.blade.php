@@ -117,7 +117,7 @@
 <body>
   <header>
     <a href="{{ url('/') }}">
-      <img src="{{ asset('img/logo_sp_white.png') }}" alt="얼 - 우리 말 배움터">
+      <img src="{{ asset('img/logo/logo_sp_white.png') }}" alt="얼 - 우리 말 배움터">
     </a>
   </header>
 

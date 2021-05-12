@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', '얼 -우리 말 배움터- 학습실')
+
 @section('breadcrumb')
   <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
@@ -23,13 +25,13 @@
     <!-- タイトル部 -->
     <div class="title-block">
       @if ($article->category->id == 100)
-        <img src="{{ asset('img/bg_black-board_thum.png') }}" alt="" />
+        <img src="{{ asset('img/thum/bg_black-board_thum.png') }}" alt="" />
       @elseif($article->category->id == 200)
-        <img src="{{ asset('img/bg_white-board_thum.png') }}" alt="" />
+        <img src="{{ asset('img/thum/bg_white-board_thum.png') }}" alt="" />
       @elseif($article->category->id == 300)
-        <img src="{{ asset('img/bg_memo_thum.png') }}" alt="" />
+        <img src="{{ asset('img/thum/bg_memo_thum.png') }}" alt="" />
       @elseif($article->category->id == 400)
-        <img src="{{ asset('img/bg_film_thum.png') }}" alt="" />
+        <img src="{{ asset('img/thum/bg_film_thum.png') }}" alt="" />
       @endif
 
       <div class="title-block__category">{{ $article->category->name }}</div>
@@ -82,13 +84,13 @@
             <a href="{{ $item->url }}">
               <div class="list-item__header">
                 @if ($item->category_id == 100)
-                  <img src="{{ asset('img/bg_black-board_thum.png') }}" alt="" />
+                  <img src="{{ asset('img/thum/bg_black-board_thum.png') }}" alt="" />
                 @elseif ($item->category_id == 200)
-                  <img src="{{ asset('img/bg_white-board_thum.png') }}" alt="" />
+                  <img src="{{ asset('img/thum/bg_white-board_thum.png') }}" alt="" />
                 @elseif ($item->category_id == 300)
-                  <img src="{{ asset('img/bg_memo_thum.png') }}" alt="" />
+                  <img src="{{ asset('img/thum/bg_memo_thum.png') }}" alt="" />
                 @elseif ($item->category_id == 400)
-                  <img src="{{ asset('img/bg_film_thum.png') }}" alt="" />
+                  <img src="{{ asset('img/thum/bg_film_thum.png') }}" alt="" />
                 @endif
                 <p class="title {{ $item->category_id == 100 ? 'color-white' : '' }}">
                   {{ $item->title }}</p>
@@ -110,7 +112,3 @@
   @include('commons.side-recently')
 @endsection
 
-@section('js-files')
-  <!-- ツールチップ -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.0.5/js/jquery.tooltipster.js"></script>
-@endsection

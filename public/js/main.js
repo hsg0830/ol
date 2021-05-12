@@ -140,11 +140,3 @@ $(window).scroll(() => {
   scrollEffect('moving-underline', 150);
 });
 
-/*------------------
-ツールチップ
-------------------*/
-// $(document).ready(function () {
-//   $('.tooltip').tooltipster({
-//     theme: 'tooltipster-noir',
-//   });
-// });

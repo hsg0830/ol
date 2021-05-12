@@ -14,6 +14,89 @@
 }
 
 /*---------------------------
+  変数
+---------------------------*/
+/*---------------------------
+  ツールチップ
+---------------------------*/
+:root {
+  --microtip-transition-duration: 0.5s;
+  --microtip-transition-delay: 0.2s;
+  --microtip-transition-easing: ease-out;
+  --microtip-font-size: 1.2rem;
+  --microtip-text-transform: uppercase;
+}
+
+.tooltip {
+  position: relative;
+  cursor: pointer;
+  /* ツールチップの中身 */
+  /* ツールチップの矢印 */
+}
+
+.tooltip:before {
+  position: absolute;
+  /* 縦軸： 下に移動 */
+  top: 100%;
+  margin-top: 6px;
+  /* 横軸： 中央に移動 */
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  z-index: 1070;
+  min-width: 200px;
+  padding: 7px;
+  font-size: 1.4rem;
+  color: #6a421f;
+  text-align: center;
+  background-color: #fffcf4;
+  border-radius: 4px;
+  /* data-text属性の属性値を、ツールチップとして表示する */
+  content: attr(data-text);
+  /* デフォルトでツールチップは非表示 */
+  opacity: 0;
+  visibility: hidden;
+  -webkit-box-shadow: 0 3px 6px rgba(255, 255, 255, 0.3);
+          box-shadow: 0 3px 6px rgba(255, 255, 255, 0.3);
+  -webkit-transition: opacity 0.3s ease-out;
+  transition: opacity 0.3s ease-out;
+}
+
+@media screen and (min-width: 768px) {
+  .tooltip:before {
+    width: 500px;
+  }
+}
+
+.tooltip:after {
+  position: absolute;
+  /* 縦軸 */
+  top: 100%;
+  margin-top: -7px;
+  /* 横軸 */
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  z-index: 1070;
+  /* 矢印の三角形部分 */
+  border-color: transparent transparent #fffcf4 transparent;
+  border-style: solid;
+  border-width: 7px;
+  content: '';
+  /* デフォルトで非表示 */
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.3s ease-out;
+  transition: opacity 0.3s ease-out;
+}
+
+.tooltip:hover:before, .tooltip:hover:after {
+  /* マウスオーバーでツールチップを表示 */
+  opacity: 1;
+  visibility: visible;
+}
+
+/*---------------------------
   規範原文ページのメイン領域
 ---------------------------*/
 .page-title {

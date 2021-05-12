@@ -1,5 +1,7 @@
 @extends('layouts.editor')
 
+@section('title', '얼 -우리 말 배움터- 質問掲示板編集画面')
+
 @section('css')
   <link rel="stylesheet" href="{{ asset('css/destyle.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/common.css') }}">

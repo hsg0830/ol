@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', '얼 -우리 말 배움터- 로그인')
+
 @section('breadcrumb')
   <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
@@ -10,9 +12,7 @@
     </li>
 
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      <!-- <a itemprop="item" href="カテゴリー2のURL"> -->
       <span itemprop="name">로그인</span>
-      <!-- </a> -->
       <meta itemprop="position" content="2" />
     </li>
   </ol>

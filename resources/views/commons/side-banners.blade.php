@@ -11,12 +11,12 @@
     </a>
   </div>
   <div class="side-banners__item">
-    <a href="https://denki.remixpoint.co.jp/lp/teiatsu/" target="_blank">
+    <a href="https://www.eight-wedding.com/" target="_blank">
       <img src="{{ asset('/img/banners/8-wedding.jpg') }}" alt="">
     </a>
   </div>
   <div class="side-banners__item">
-    <a href="https://www.eight-wedding.com/" target="_blank">
+    <a href="https://denki.remixpoint.co.jp/lp/teiatsu/" target="_blank">
       <img src="{{ asset('/img/banners/remix.jpg') }}" alt="">
     </a>
   </div>

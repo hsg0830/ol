@@ -1,5 +1,7 @@
 @extends('layouts.editor')
 
+@section('title', '얼 -우리 말 배움터- 会員管理画面')
+
 @section('content')
   <main id="main" class="container">
     <h1 class="page-title">회원관리</h1>

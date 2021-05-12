@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', '얼 -우리 말 배움터- 일문일답')
+
 @section('breadcrumb')
   <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
@@ -10,9 +12,7 @@
     </li>
 
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      {{-- <a itemprop="item" href="{{ route('articles.index') }}"> --}}
       <span itemprop="name">일문일답</span>
-      {{-- </a> --}}
       <meta itemprop="position" content="2" />
     </li>
   </ol>
@@ -20,14 +20,15 @@
 
 @section('content')
   <main id="main">
-    <!-- <h1 class="category-title">언어규범과 관련한 Q&A</h1> -->
     <div class="category-page-title">
-      <img src="{{ asset('img/norms_top.png') }}" alt="" />
+      <img src="{{ asset('img/title/category_title_02.png') }}" alt="" />
       <h1>일문일답</h1>
     </div>
 
     <div class="category-page-introduction">
-      <p>여기에 이 코너에 대한 설명글이 들어갑니다. 여기에 이 코너에 대한 설명글이 들어갑니다. 여기에 이 코너에 대한 설명글이 들어갑니다.</p>
+      <p>여기서는 우리 말의 어휘와 문법, 언어규범 같은데 대하여 자주 있는 물음과 그에 대한 대답을 정리하였습니다.</p>
+      <p>※ 여기에 없는 내용에 대하여 물어보실것이 있으면 <a href="{{ route('bbs.index') }}" class="caption">질문게시판</a>을 통하여 제기하여주십시오.</p>
+
     </div>
 
     <div id="list-container" class="list-container">
@@ -39,7 +40,7 @@
       </div>
 
       <div class="search-form">
-        <p class="search-form__title">키워드로 검색</p>
+        <p class="search-form__title">키워드로 물음안 검색</p>
         <div class="search-form__wrapper">
           <input type="text" class="form-control" v-model="searchWord" @keypress.enter="searchQuestions">
           <button class="global-btn" @click="searchQuestions" style="margin: 0 1rem;">검색</button>
@@ -73,12 +74,7 @@
     </div>
 
     {{-- pagination --}}
-    <v-pagination
-      v-model="page"
-      :page-count="pageCount"
-      :click-handler="movePage"
-      prev-text="&laquo;"
-      next-text="&raquo;"
+    <v-pagination v-model="page" :page-count="pageCount" :click-handler="movePage" prev-text="&laquo;" next-text="&raquo;"
       container-class="v-pagination">
     </v-pagination>
 

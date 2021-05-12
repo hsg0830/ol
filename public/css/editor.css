@@ -13,6 +13,166 @@
   --microtip-text-transform: uppercase;
 }
 
+/*---------------------------
+  共通部品
+---------------------------*/
+.btn {
+  padding: 0.3rem 1rem;
+  border: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.global-btn {
+  width: 10rem;
+  height: 3.5rem;
+  background-color: #6a421f;
+  color: #ffffff;
+  border-radius: 0.3rem;
+  -webkit-box-shadow: 0 0 0.1rem silver;
+          box-shadow: 0 0 0.1rem silver;
+  text-align: center;
+  font-family: "Poor Story", cursive;
+}
+
+.global-btn.large {
+  width: 15rem;
+  height: 5rem;
+}
+
+.global-btn:hover {
+  opacity: 0.9;
+  background-color: #ffffff;
+  color: #6a421f;
+}
+
+.caption {
+  color: #6a421f;
+  border-bottom: 2px dotted #cba67e;
+}
+
+.message {
+  width: 80%;
+  margin: 0 auto 4rem;
+  text-align: center;
+  line-height: 4.5rem;
+}
+
+.message a {
+  color: #cba67e;
+}
+
+.message.block {
+  width: 100%;
+  padding: 4rem;
+  margin-top: 3rem;
+  background-color: #d6c7ba;
+  border-radius: 1rem;
+  line-height: 4rem;
+}
+
+@media screen and (min-width: 768px) {
+  .message.block {
+    width: 70%;
+    margin-top: 12rem;
+    margin-bottom: 22rem;
+    line-height: 6rem;
+  }
+}
+
+.message.block a {
+  color: #6a421f;
+}
+
+.error-message {
+  background-color: #fad5d1;
+  color: #ab243b;
+  margin: 1rem auto;
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
+
+.notification {
+  width: 80%;
+  background-color: #def7cf;
+  color: #19775f;
+  margin: 1rem auto 3rem;
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
+
+.form-tip {
+  padding: 0 1.5rem;
+  color: #6a421f;
+}
+
+.v-pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-top: 2rem;
+}
+
+.v-pagination li {
+  border: 1px solid #6a421f;
+  border-radius: 0.3rem;
+  padding: 0;
+  text-align: center;
+  background-color: #cba67e;
+  color: #6a421f;
+}
+
+.v-pagination li:not(:last-child) {
+  margin-right: 2rem;
+}
+
+.v-pagination li.active {
+  background-color: #6a421f;
+  color: #fff;
+}
+
+.v-pagination li.disabled {
+  cursor: not-allowed;
+}
+
+.v-pagination li:hover {
+  background-color: rgba(106, 66, 31, 0.6);
+  color: #fff;
+}
+
+.v-pagination li button {
+  padding: 0.6rem 1.2rem;
+}
+
+/*---------------------------
+  ログイン画面のフォームなど
+---------------------------*/
+.login-form,
+.register-form {
+  width: 80%;
+  margin: 0 auto;
+  padding: 2rem 0 4rem;
+}
+
+.login-form .birth_date,
+.register-form .birth_date {
+  display: inline-block;
+  width: 23%;
+}
+
+.login-form.pw-comfirm,
+.register-form.pw-comfirm {
+  margin-bottom: 18rem;
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;

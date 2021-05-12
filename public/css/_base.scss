@@ -1,0 +1,148 @@
+@charset "UTF-8";
+
+/*---------------------------
+  基本設定
+---------------------------*/
+html {
+  font-size: 10px;
+}
+
+body {
+  background-color: $base;
+  color: $black;
+  font-size: 1.6rem;
+  font-family: $krNoto;
+  line-height: 1.8;
+
+  @media screen and (min-width: 768px) {
+    font-size: 1.9rem;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
+video {
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+*:focus {
+  outline: none;
+}
+
+//フォーム要素のスタイル
+input:not([type='radio']),
+select,
+textarea {
+  display: block;
+  width: 100%;
+  background-color: #fff;
+  outline: $lightBrown auto;
+  margin: 1rem 0;
+  padding: 1rem;
+
+  &:focus {
+    outline: $brown auto;
+    background-color: rgba($lightBrown, 0.5);
+  }
+}
+
+select {
+  appearance: menulist-button;
+}
+
+.form-group {
+  margin: 2rem auto;
+
+  @media screen and (min-width: 768px) {
+    width: 60%;
+  }
+
+  & label {
+    font-family: $krNamun;
+    font-weight: bold;
+  }
+
+  & .form-label {
+    display: block;
+    font-family: $krNamun;
+    font-weight: bold;
+  }
+
+  &.radio {
+    & input {
+      margin-left: 2rem;
+    }
+
+    & label {
+      margin: 2rem 0 3rem 1rem;
+    }
+  }
+
+  & .btn {
+    display: block;
+    margin: 4rem auto 2rem;
+    padding: 0.5rem 0;
+    height: auto;
+    font-family: $krNamun;
+  }
+}
+
+// 文字の位置・スタイル
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-emphasis {
+  font-weight: bold;
+}
+
+.text-underline {
+  border-bottom: 1px solid;
+
+  &.transparent {
+    color: transparent;
+    border-bottom: 1px solid #000;
+  }
+}
+
+.text-wavy {
+  text-decoration:underline wavy #000;
+
+  &.transparent {
+    color: transparent;
+  }
+}
+
+.text-vertical {
+  writing-mode: vertical-rl;
+  vertical-align: top;
+}
+
+.text-under-dot {
+  text-emphasis: dot;
+  text-emphasis-position: under;
+}
+

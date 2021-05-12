@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', '얼 -우리 말 배움터- 질문게시판')
+
 @section('breadcrumb')
   <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
@@ -21,12 +23,8 @@
 @section('content')
   <main id="main">
     <div class="category-page-title">
-      <img src="{{ asset('img/norms_top.png') }}" alt="" />
+      <img src="{{ asset('img/title/category_title_01.png') }}" alt="" />
       <h1>질문게시판</h1>
-    </div>
-
-    <div class="category-page-introduction">
-      <p>여기에 이 코너에 대한 설명글이 들어갑니다. 여기에 이 코너에 대한 설명글이 들어갑니다. 여기에 이 코너에 대한 설명글이 들어갑니다.</p>
     </div>
 
     <div class="ask">
@@ -54,13 +52,13 @@
             <a href="{{ $item->url }}">
               <div class="list-item__header">
                 @if ($item->category_id == 100)
-                  <img src="{{ asset('img/bg_black-board_thum.png') }}" alt="" />
+                  <img src="{{ asset('img/tbum/bg_black-board_thum.png') }}" alt="" />
                 @elseif ($item->category_id == 200)
-                  <img src="{{ asset('img/bg_white-board_thum.png') }}" alt="" />
+                  <img src="{{ asset('img/thum/bg_white-board_thum.png') }}" alt="" />
                 @elseif ($item->category_id == 300)
-                  <img src="{{ asset('img/bg_memo_thum.png') }}" alt="" />
+                  <img src="{{ asset('img/thum/bg_memo_thum.png') }}" alt="" />
                 @elseif ($item->category_id == 500)
-                  <img src="{{ asset('img/bg_film_thum.png') }}" alt="" />
+                  <img src="{{ asset('img/thum/bg_film_thum.png') }}" alt="" />
                 @endif
                 <p class="title {{ $item->category_id == 100 ? 'color-white' : '' }}">
                   {{ $item->title }}</p>
