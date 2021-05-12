@@ -1,0 +1,81 @@
+@charset "UTF-8";
+
+@import 'variables';
+
+.tooltip {
+  position: relative;
+  cursor: pointer;
+
+  /* ツールチップの中身 */
+  &:before {
+    position: absolute;
+
+    /* 縦軸： 下に移動 */
+    top: 100%;
+    margin-top: 6px;
+
+    /* 横軸： 中央に移動 */
+    left: 50%;
+    transform: translateX(-50%);
+
+    z-index: 1070;
+
+    min-width: 200px;
+    @media screen and (min-width: 768px) {
+      width: 500px;
+    }
+    padding: 7px;
+
+    font-size: 1.4rem;
+    color: $brown;
+    text-align: center;
+
+    background-color: $yellow;
+    border-radius: 4px;
+
+    /* data-text属性の属性値を、ツールチップとして表示する */
+    content: attr(data-text);
+
+    /* デフォルトでツールチップは非表示 */
+    opacity: 0;
+    visibility: hidden;
+
+    box-shadow: 0 3px 6px rgba(255, 255, 255, 0.3);
+    transition: opacity 0.3s ease-out;
+  }
+
+  /* ツールチップの矢印 */
+  &:after {
+    position: absolute;
+
+    /* 縦軸 */
+    top: 100%;
+    margin-top: -7px;
+
+    /* 横軸 */
+    left: 50%;
+    transform: translateX(-50%);
+
+    z-index: 1070;
+
+    /* 矢印の三角形部分 */
+    border-color: transparent transparent $yellow transparent;
+    border-style: solid;
+    border-width: 7px;
+
+    content: '';
+
+    /* デフォルトで非表示 */
+    opacity: 0;
+    visibility: hidden;
+
+    transition: opacity 0.3s ease-out;
+  }
+
+  &:hover:before, &:hover:after {
+    /* マウスオーバーでツールチップを表示 */
+    opacity: 1;
+    visibility: visible;
+  }
+}
+

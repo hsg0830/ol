@@ -2,13 +2,11 @@
   <x-auth-card>
     <x-slot name="logo">
       <a href="/">
-        {{-- <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> --}}
-        <img src="{{ asset('img/logo_pc_02.png') }}" alt="logo" class="w-20 h-20">
+        <img src="{{ asset('img/logo/logo_pc_02.png') }}" alt="logo" class="w-20 h-20">
       </a>
     </x-slot>
 
     <div class="mb-4 text-sm text-gray-600">
-      {{-- {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }} --}}
       {{ __('암호가 기억나지 않으십니까? 등록하신 메일주소를 입력하시면 해당 메일주소앞으로 암호재설정용 링크를 보내드리겠습니다.') }}
     </div>
 

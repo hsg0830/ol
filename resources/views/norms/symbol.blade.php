@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', '얼 -우리 말 배움터- 문장부호법')
+
 @section('css')
   <link rel="stylesheet" href="{{ asset('css/norm.css') }}">
 @endsection
@@ -21,9 +23,7 @@
     </li>
 
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      {{-- <a itemprop="item" href=""> --}}
       <span itemprop="name">문장부호법</span>
-      {{-- </a> --}}
       <meta itemprop="position" content="3" />
     </li>
   </ol>
@@ -1085,13 +1085,13 @@
           <div class="example">
             <table>
               <tr>
-                <td class="text-left">우리의 관심은 어디서, 언제 그리고 어떻게 이 문제가 해결되였는가에 있었다.</td>
+                <td class="text-left"><span class="text-under-dot">우리의</span> 관심은 <span class="text-under-dot">어디서</span>, <span class="text-under-dot">언제</span> 그리고 <span class="text-under-dot">어떻게</span> 이 문제가 해결되였는가에 있었다.</td>
               </tr>
             </table>
           </div>
           <p class="description">
             <span class="complement">붙임</span>
-            중점을 두어 강조하는 부분을 드러내기 위하여서는 밑줄( )이나 물결표( )같은것도 쓸수 있다.
+            중점을 두어 강조하는 부분을 드러내기 위하여서는 밑줄( <span class="text-underline transparent">aaaaaaaa</span> )이나 물결표( <span class="text-wavy transparent">aaaaaaaa</span>) 같은것도 쓸수 있다.
           </p>
         </div>
       </div>
@@ -1446,7 +1446,10 @@
             <div class="example">
               <table>
                 <tr>
-                  <td class="text-left">어서 가자． 사과，배 등</td>
+                  <td>
+                    <span class="text-vertical">어서 가자．</span>
+                    <span class="text-vertical">사과，배 등</span>
+                  </td>
                 </tr>
               </table>
             </div>
@@ -1458,12 +1461,14 @@
             <div class="example">
               <table>
                 <tr>
-                  <td class="text-left">《뭐？ 백두산！》<br />
-                    《야，백두산이 보인다！》<br />
-                    평양―신의주<br />
-                    《어제 온다고 하던데…》<br />
-                    맑스―레닌주의<br />
-                    ３～４번 먹는다．</td>
+                  <td>
+                    <span class="text-vertical">《뭐？ 백두산！》</span>
+                    <span class="text-vertical">《야，백두산이 보인다！》</span>
+                    <span class="text-vertical">평양―신의주</span>
+                    <span class="text-vertical">《어제 온다고 하던데…》</span>
+                    <span class="text-vertical">맑스―레닌주의</span>
+                    <span class="text-vertical">３～４번 먹는다．</span>
+                  </td>
                 </tr>
               </table>
             </div>
@@ -1475,10 +1480,12 @@
             <div class="example">
               <table>
                 <tr>
-                  <td class="text-left">인공지구위성《광명성２》호<br />
-                    《다시한번 평양속도를 창조》<br />
-                    《오늘호 〈로동신문〉소개》<br />
-                    내가 난 해（２００１년）에</td>
+                  <td>
+                    <span class="text-vertical">인공지구위성《광명성２》호</span>
+                    <span class="text-vertical">《다시한번 평양속도를 창조》</span>
+                    <span class="text-vertical">《오늘호 〈로동신문〉소개》</span>
+                    <span class="text-vertical">내가 난 해（２００１년）에</span>
+                  </td>
                 </tr>
               </table>
             </div>
@@ -1490,7 +1497,9 @@
             <div class="example">
               <table>
                 <tr>
-                  <td class="text-left">주원료: 사탕，우유</td>
+                  <td>
+                    <span class="text-vertical">주원료: 사탕，우유</span>
+                  </td>
                 </tr>
               </table>
             </div>

@@ -2,9 +2,11 @@
 
 @section('content')
   <main id="one-column">
-    <div>
-      このお知らせの部分は未完成
-      <div>{{ $topNotice->title }}</div>
+
+    {{-- トップのお知らせ --}}
+    <div class="top-notice-box">
+      <div class="top-notice-box__title">{{ $topNotice->title }}</div>
+      <p class="top-notice-box__description">{!! nl2br($topNotice->description) !!}</p>
     </div>
 
     <!-- 학습실 -->
@@ -17,7 +19,7 @@
           <div class="flex-block recent-articles">
             <div class="recent-articles__info">
               <h3>최근기사</h3>
-              <a href="{{ route('articles.index') }}"><i class="fas fa-angle-double-right"></i> 전체 기사 보기</a>
+              <a href="{{ route('articles.index') }}"><i class="fas fa-angle-double-right"></i> 더보기</a>
             </div>
 
             @foreach ($recentArticles as $article)
@@ -25,7 +27,7 @@
                 <div>
                   <span
                     class="recent-articles__category category-{{ $article->category_id }}">{{ $article->category->name }}</span>
-                  <p class="recent-articles__title">{{ $article->title }}</p>
+                  <p class="recent-articles__title">{{ $article->short_title }}</p>
                   <time class="recent-articles__date">{{ $article->date }}</time>
                 </div>
               </a>
@@ -33,11 +35,11 @@
 
           </div>
 
-          <!-- 자주 보는 기사 -->
+          <!-- 인기기사 -->
           <div class="flex-block recent-articles" style="margin-top: 3rem;">
             <div class="recent-articles__info">
-              <h3>자주 보는 기사</h3>
-              <a href="{{ route('articles.index') }}"><i class="fas fa-angle-double-right"></i> 전체 기사 보기</a>
+              <h3>인기기사</h3>
+              <a href="{{ route('articles.index') }}"><i class="fas fa-angle-double-right"></i> 더보기</a>
             </div>
 
             @foreach ($popularAticles as $article)
@@ -45,7 +47,7 @@
                 <div>
                   <span
                     class="recent-articles__category category-{{ $article->category_id }}">{{ $article->category->name }}</span>
-                  <p class="recent-articles__title">{{ $article->title }}</p>
+                  <p class="recent-articles__title">{{ $article->short_title }}</p>
                   <time class="recent-articles__date">{{ $article->date }}</time>
                 </div>
               </a>
@@ -62,14 +64,11 @@
       <section class="category-block">
         <h2 class="category-block__name">일문일답</h2>
         <div class="category-block__content recent-qa recent-common">
-          <p class="recent-qa__introduction">aaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaa</p>
-
           @foreach ($questions as $question)
             <div class="recent-qa__item" id="qa-{{ $question->id }}" @click="showQa($event)">
               <span
                 class="recent-qa__category category-{{ $question->category_id }}">{{ $question->category->name }}</span>
               <p class="recent-qa__title">{{ $question->title }}</p>
-              <!-- <data class="recent-qa__date">2021-04-17</data> -->
 
               <div class="recent-qa__answer" id="qa-answer-{{ $question->id }}">
                 {!! nl2br($question->answer) !!}
@@ -91,7 +90,7 @@
           <div class="category-block__content">
             <div class="link-block__intro norm">
               <img src="./img/articles_01.png" alt="" />
-              <p>introduction introduction introduction introduction introduction</p>
+              <p>각종 규범웜문을 볼수 있습니다.</p>
             </div>
             <div class="link-block__link norm">
               <button class="norm" onclick="location.href='{{ route('norms', 'index') }}'">보기</button>
@@ -105,8 +104,7 @@
           <div class="category-block__content">
             <div class="link-block__intro ref">
               <img src="./img/articles_01.png" alt="" />
-              <p>introduction introduction introduction introduction introduction</p>
-            </div>
+              <p>사전, 코퍼스 및 각종 자료를 리용하실수 있습니다.</p>
             <div class="link-block__link ref">
               <button class="ref" onclick="location.href='{{ route('materials.index') }}'">보기</button>
             </div>
@@ -166,12 +164,12 @@
         </a>
       </div>
       <div class="top-banners__item">
-        <a href="https://denki.remixpoint.co.jp/lp/teiatsu/" target="_blank">
+        <a href="https://www.eight-wedding.com/" target="_blank">
           <img src="{{ asset('/img/banners/8-wedding.jpg') }}" alt="">
         </a>
       </div>
       <div class="top-banners__item">
-        <a href="https://www.eight-wedding.com/" target="_blank">
+        <a href="https://denki.remixpoint.co.jp/lp/teiatsu/" target="_blank">
           <img src="{{ asset('/img/banners/remix.jpg') }}" alt="">
         </a>
       </div>

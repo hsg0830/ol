@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', '얼 -우리 말 배움터- 맞춤법')
+
 @section('css')
   <link rel="stylesheet" href="{{ asset('css/norm.css') }}">
 @endsection
@@ -21,9 +23,7 @@
     </li>
 
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      {{-- <a itemprop="item" href=""> --}}
       <span itemprop="name">맞춤법</span>
-      {{-- </a> --}}
       <meta itemprop="position" content="3" />
     </li>
   </ol>

@@ -1,9 +1,11 @@
 @extends('layouts.editor')
 
+@section('title', '얼 -우리 말 배움터- 관리자 로그인')
+
 @section('content')
   <!-- ↓↓↓メインコンテンツ↓↓↓ -->
   <main id="one-column" class="container">
-    <h1 class="page-title">편집자 로그인</h1>
+    <h1 class="page-title">관리자 로그인</h1>
 
     <form class="p-5" method="POST" action="{{ route('editors.login') }}">
       @csrf

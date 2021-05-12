@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', '얼 -우리 말 배움터- 질문게시판')
+
 @section('breadcrumb')
   <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
@@ -10,9 +12,7 @@
     </li>
 
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      {{-- <a itemprop="item" href="{{ route('articles.index') }}"> --}}
       <span itemprop="name">질문게시판</span>
-      {{-- </a> --}}
       <meta itemprop="position" content="2" />
     </li>
   </ol>
@@ -21,12 +21,14 @@
 @section('content')
   <main id="main">
     <div class="category-page-title">
-      <img src="{{ asset('img/norms_top.png') }}" alt="" />
+      <img src="{{ asset('img/title/category_title_01.png') }}" alt="" />
       <h1>질문게시판</h1>
     </div>
 
     <div class="category-page-introduction">
-      <p>여기에 이 코너에 대한 설명글이 들어갑니다. 여기에 이 코너에 대한 설명글이 들어갑니다. 여기에 이 코너에 대한 설명글이 들어갑니다.</p>
+      <p>여기서는 우리 말과 관련하여 회원분들이 보내주신 질문과 그에 대한 대답을 게재하였습니다.</p>
+      <p>우리 말과 관련하여 질문하실 내용이 있으면 아래쪽에 있는 <a href="#ask-form" class="caption">입력란</a>을 리용하여 질문하십사오.</p>
+      <p>※ 자주 있는 질문에 대하여서는 <a href="{{ route('qa.index') }}" class="caption">일문일답</a>형식으로도 보여주었으므로 참고하여주십시오.</p>
     </div>
 
 
@@ -40,7 +42,7 @@
       </div>
 
       <div class="search-form">
-        <p class="search-form__title">키워드로 검색</p>
+        <p class="search-form__title">키워드로 질문안 검색</p>
         <div class="search-form__wrapper">
           <input type="text" class="form-control" v-model="searchWord" @keypress.enter="searchAsks">
           <div class="search-form__btn-block">
@@ -64,18 +66,13 @@
     {{-- リスト --}}
     <table class="bbs">
       <tr class="bbs__thead">
-        <!-- <th class="bbs__no"></th> -->
         <th class="bbs__question">질문</th>
         <th class="bbs__category">분류</th>
-        {{-- <th class="bbs__status">회답</th> --}}
         <th class="bbs__date">투고날자</th>
       </tr>
       <tr v-for="ask in asks.data">
-        <!-- <td>1</td> -->
         <td><a :href="ask.url" v-text="ask.title"></a></td>
-        <!-- <td data-label="질문">닭알을 어떻게 발음해야 맞습니까?</td> -->
         <td data-label="분류"><span v-text="ask.category.name" class="category-label" :class="getCategoryClass(ask)"></td>
-        {{-- <td data-label="회답"><span class="status-label">완료</span></td> --}}
         <td data-label="투고날자" v-text="ask.date"></td>
       </tr>
     </table>

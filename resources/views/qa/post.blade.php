@@ -1,6 +1,6 @@
 @extends('layouts.editor')
 
-@section('title', '얼 -- QA投稿・編集画面')
+@section('title', '얼 -우리 말 배움터- QA投稿・編集管理画面')
 
 @section('content')
   <main id="main" class="container">
@@ -107,7 +107,6 @@
       mounted() {
         if (this.currentQuestion !== null) {
           this.currentMode = 'edit';
-          // this.articleUrl = this.currentArticle.url;
           this.status = this.currentQuestion.status;
           this.selectedCategory = this.currentQuestion.category_id;
           this.selectedSubCategory = this.currentQuestion.sub_category_id;

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', '얼 -우리 말 배움터- 규범원문')
+
 @section('breadcrumb')
   <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
@@ -10,9 +12,7 @@
     </li>
 
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      <!-- <a itemprop="item" href="カテゴリー2のURL"> -->
       <span itemprop="name">규범원문</span>
-      <!-- </a> -->
       <meta itemprop="position" content="2" />
     </li>
   </ol>
@@ -22,7 +22,7 @@
   <!-- ↓↓↓メインコンテンツ↓↓↓ -->
   <main id="main">
     <div class="category-page-title">
-      <img src="{{ asset('img/norms_top.png') }}" alt="" />
+      <img src="{{ asset('img/title/category_title_01.png') }}" alt="" />
       <h1>규범원문</h1>
     </div>
 
@@ -63,7 +63,7 @@
     {{-- 맞춤법 --}}
     <div class="category-page-block">
       <div class="block-title">
-        <img src="{{ asset('img/norms_01.png') }}" alt="" />
+        <img src="{{ asset('img/block/bg_block_01.png') }}" alt="" />
         <h2>맞춤법</h2>
       </div>
       <div class="block-description">
@@ -82,7 +82,7 @@
     {{-- 문화어발음법 --}}
     <div class="category-page-block">
       <div class="block-title">
-        <img src="{{ asset('img/norms_02.png') }}" alt="" />
+        <img src="{{ asset('img/block/bg_block_02.png') }}" alt="" />
         <h2>문화어발음법</h2>
       </div>
       <div class="block-description">
@@ -98,7 +98,7 @@
     {{-- 띄여쓰기규정 --}}
     <div class="category-page-block">
       <div class="block-title">
-        <img src="{{ asset('img/norms_01.png') }}" alt="" />
+        <img src="{{ asset('img/block/bg_block_03.png') }}" alt="" />
         <h2>띄여쓰기규정</h2>
       </div>
       <div class="block-description">
@@ -117,7 +117,7 @@
     {{-- 띄여쓰기규정해설 --}}
     <div class="category-page-block">
       <div class="block-title">
-        <img src="{{ asset('img/norms_02.png') }}" alt="" />
+        <img src="{{ asset('img/block/bg_block_04.png') }}" alt="" />
         <h2>띄여쓰기규정해설</h2>
       </div>
       <div class="block-description">
@@ -137,7 +137,7 @@
     {{-- 문장부호법 --}}
     <div class="category-page-block">
       <div class="block-title">
-        <img src="{{ asset('img/norms_01.png') }}" alt="" />
+        <img src="{{ asset('img/block/bg_block_01.png') }}" alt="" />
         <h2>문장부호법</h2>
       </div>
       <div class="block-description">
@@ -153,7 +153,7 @@
     {{-- 외국말적기법 --}}
     <div class="category-page-block">
       <div class="block-title">
-        <img src="{{ asset('img/norms_02.png') }}" alt="" />
+        <img src="{{ asset('img/block/bg_block_02.png') }}" alt="" />
         <h2>외국말적기법</h2>
       </div>
       <div class="block-description">
@@ -175,7 +175,7 @@
     {{-- 라틴문자표기법 --}}
     <div class="category-page-block">
       <div class="block-title">
-        <img src="{{ asset('img/norms_01.png') }}" alt="" />
+        <img src="{{ asset('img/block/bg_block_03.png') }}" alt="" />
         <h2>라틴문자표기법</h2>
       </div>
       <div class="block-description">

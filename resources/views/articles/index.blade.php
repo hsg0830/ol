@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', '얼 -우리 말 배움터- 학습실')
+
 @section('breadcrumb')
   <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
@@ -10,9 +12,7 @@
     </li>
 
     <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      {{-- <a itemprop="item" href="{{ route('articles.index') }}"> --}}
       <span itemprop="name">학습실</span>
-      {{-- </a> --}}
       <meta itemprop="position" content="2" />
     </li>
   </ol>
@@ -21,12 +21,13 @@
 @section('content')
   <main id="main">
     <div class="category-page-title">
-      <img src="{{ asset('img/articles_top.png') }}" alt="" />
+      <img src="{{ asset('img/title/category_title_01.png') }}" alt="" />
       <h1>학습실</h1>
     </div>
 
     <div class="category-page-introduction">
-      <p>여기에 이 코너에 대한 설명글이 들어갑니다. 여기에 이 코너에 대한 설명글이 들어갑니다. 여기에 이 코너에 대한 설명글이 들어갑니다.</p>
+      <p>여기서는 우리 말의 어휘와 문법, 언어규범에 대하여 학습할수 있는 기사들과 동화상을 보실수 있습니다. </p>
+      <p>기사는 정기적으로 올릴 예정이며 새 기사를 올렸을 때에는 첫페지 갱신정보란을 통하여 통보해드립니다.</p>
     </div>
 
     <div id="list-container" class="list-container">
@@ -44,10 +45,10 @@
         <div class="list-item" v-for="item in items.data">
           <a :href="item.url">
             <div class="list-item__header">
-              <img src="{{ asset('img/bg_black-board_thum.png') }}" alt="" v-if="item.category.id === 100" />
-              <img src="{{ asset('img/bg_white-board_thum.png') }}" alt="" v-else-if="item.category.id === 200" />
-              <img src="{{ asset('img/bg_memo_thum.png') }}" alt="" v-else-if="item.category.id === 300" />
-              <img src="{{ asset('img/bg_film_thum.png') }}" alt="" v-else-if="item.category.id === 400" />
+              <img src="{{ asset('img/thum/bg_black-board_thum.png') }}" alt="" v-if="item.category.id === 100" />
+              <img src="{{ asset('img/thum/bg_white-board_thum.png') }}" alt="" v-else-if="item.category.id === 200" />
+              <img src="{{ asset('img/thum/bg_memo_thum.png') }}" alt="" v-else-if="item.category.id === 300" />
+              <img src="{{ asset('img/thum/bg_film_thum.png') }}" alt="" v-else-if="item.category.id === 400" />
               <p class="title" :class="getTextClass(item.category.id)" v-text="item.title"></p>
             </div>
             <div class="list-item__content">
@@ -63,12 +64,7 @@
     </div>
 
     {{-- pagination --}}
-    <v-pagination
-      v-model="page"
-      :page-count="pageCount"
-      :click-handler="movePage"
-      prev-text="&laquo;"
-      next-text="&raquo;"
+    <v-pagination v-model="page" :page-count="pageCount" :click-handler="movePage" prev-text="&laquo;" next-text="&raquo;"
       container-class="v-pagination">
     </v-pagination>
   </main>

@@ -31,7 +31,7 @@ class QuestionsController extends Controller
       $query->where('title', 'like', $keyword);
     }
 
-    $questions = $query->where('status', 1)->with('category')->paginate(15);
+    $questions = $query->where('status', 1)->with('category')->paginate(10);
 
     $categories = QuestionCategory::select('id', 'name')->get();
 

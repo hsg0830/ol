@@ -10,7 +10,7 @@ class Article extends Model
 {
   use HasFactory;
 
-  protected $appends = ['url', 'edit_url', 'date', 'head_line'];
+  protected $appends = ['url', 'edit_url', 'date', 'head_line', 'short_title'];
 
   protected $casts = [
     'released_at' => 'date'
@@ -53,5 +53,10 @@ class Article extends Model
   public function getHeadlineAttribute()
   {
     return mb_strimwidth($this->introduction, 0, 50, '…');
+  }
+
+  public function getShortTitleAttribute()
+  {
+    return mb_strimwidth($this->title, 0, 25, '…');
   }
 }

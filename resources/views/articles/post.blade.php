@@ -1,6 +1,6 @@
 @extends('layouts.editor')
 
-@section('title', '얼 -- 学習室記事画面')
+@section('title', '얼 -- 学習室記事投稿・編集画面')
 
 @section('css')
   <link rel="stylesheet" href="{{ asset('css/destyle.css') }}" />
@@ -46,7 +46,7 @@
         <textarea readonly id="form-04" cols="20" rows="3"><span class="moving-underline">アンダーライン</span></textarea>
 
         <textarea readonly id="form-05" cols="20"
-          rows="3"><p><sup class="caption tooltip" title="脚注の内容">[1]←脚注番号</sup></p></textarea>
+          rows="3"><p><sup class="caption tooltip" data-text="脚注の内容">[1]←脚注番号</sup></p></textarea>
 
         <textarea readonly id="form-06" cols="20"
           rows="3"><div class="article-media"><img src="ソースURL" alt="No Image"></div></textarea>
@@ -138,10 +138,13 @@
 
       <div class="modal__content article-modal">
 
-        <main id="main">
+          <main style="max-width: 800px; margin: 0 auto;">
           <!-- タイトル部 -->
           <div class="title-block">
-            <img src="{{ asset('img/bg_black-board_thum.png') }}" alt="" />
+            <img src="{{ asset('img/thum/bg_black-board_thum.png') }}" alt="" v-if="articleCategory == 100" />
+            <img src="{{ asset('img/thum/bg_white-board_thum.png') }}" alt="" v-else-if="articleCategory == 200" />
+            <img src="{{ asset('img/thum/bg_memo_thum.png') }}" alt="" v-else-if="articleCategory == 300" />
+            <img src="{{ asset('img/thum/bg_film_thum.png') }}" alt="" v-else-if="articleCategory == 400" />
             <div class="title-block__category" v-text="articleCategory"></div>
             <h1 class="title-block__title" v-text="articleTitle"></h1>
             <div class="title-block__date">갱신날자: <time>XXXX-XX-XX</time></div>
@@ -164,7 +167,7 @@
           <!-- 本文部 -->
         </main>
 
-        <div class="buttons my-5 mx-auto d-flex justify-content-around">
+        <div class="buttons my-5 mx-auto d-flex justify-content-around" style="max-width: 800px;">
           <button class="btn btn-danger" @click="modalClose">閉じる</button>
           <button class="btn btn-primary" @click="onSave">投稿を保存する</button>
         </div>

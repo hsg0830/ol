@@ -78,10 +78,6 @@
   </main>
 @endsection
 
-{{-- @section('js-files')
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
-@endsection --}}
-
 @section('js-script')
   <script>
     const app = Vue.createApp({
