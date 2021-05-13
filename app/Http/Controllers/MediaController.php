@@ -32,8 +32,8 @@ class MediaController extends Controller
       'medium' => ($request->type === 'image')
         ? ['required', 'image', 'max:5000'] // max 5MB
         : ['required', 'mimetypes:video/mp4', 'max:20000000'], // max 20MB
-      'poster' => ($request->type === 'video')
-        ? ['required', 'image', 'max:5000'] : '', // max 5MB
+      // 'poster' => ($request->type === 'video')
+      //   ? ['required', 'image', 'max:5000'] : '',
     ]);
 
     $result = false;
@@ -49,13 +49,13 @@ class MediaController extends Controller
       $medium->memo = $request->memo;
       $medium->filename = $filename;
 
-      if ($request->type === 'video') {
-        $posterPath = $request->poster->store('public/media');
-        $posterFilename = basename($posterPath);
-        $medium->poster = $posterFilename;
-      } else {
-        $medium->poster = $filename;
-      }
+      // if ($request->type === 'video') {
+      //   $posterPath = $request->poster->store('public/media');
+      //   $posterFilename = basename($posterPath);
+      //   $medium->poster = $posterFilename;
+      // } else {
+      //   $medium->poster = $filename;
+      // }
 
       $result = $medium->save();
     }

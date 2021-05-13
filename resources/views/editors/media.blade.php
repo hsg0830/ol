@@ -46,15 +46,14 @@
           <input class="form-control" type="file" accept="video/mp4" id="video" ref="video" @change="onFileChange">
         </div>
 
-        <p class="label">サムネイル用の画像ファイルを選択してください</p>
+        {{-- <p class="label">サムネイル用の画像ファイルを選択してください</p>
         <div class="mb-5 input-group">
-          {{-- <label for="poster" class="input-group-text">サムネイル用の画像ファイルを選択してください</label> --}}
           <input class="form-control" type="file" accept="image/*" id="poster" ref="poster" @change="onPosterChange">
         </div>
 
         <div class="mb-5">
           <img v-show="previewImage" :src="previewImage" alt="" />
-        </div>
+        </div> --}}
 
         <p class="label">ファイルの説明を入力してください</p>
         <div class="mb-5">
@@ -169,11 +168,11 @@
           }
           this.uploadedFile = file;
         },
-        onPosterChange(e) {
-          const file = e.target.files[0];
-          this.posterImg = file;
-          this.createImage(file);
-        },
+        // onPosterChange(e) {
+        //   const file = e.target.files[0];
+        //   this.posterImg = file;
+        //   this.createImage(file);
+        // },
         createImage(file) {
           const reader = new FileReader();
           reader.onload = e => {
@@ -189,7 +188,7 @@
             let formData = new FormData();
             formData.append('type', this.types[parseInt(this.uploadType)]);
             formData.append('memo', this.memo);
-            formData.append('poster', this.posterImg);
+            // formData.append('poster', this.posterImg);
             formData.append('medium', this.uploadedFile);
 
             const url = '/editors/media/upload';
@@ -200,11 +199,11 @@
                   this.getList();
                   this.uploadType = 1;
                   this.memo = '';
-                  this.posterImg = '';
+                  // this.posterImg = '';
                   this.previewImage = '';
                   alert('アップロード成功！');
                   this.$refs['image'].value = '';
-                  this.$refs['poster'].value = '';
+                  // this.$refs['poster'].value = '';
                 }
               })
               .catch(error => {
