@@ -50,7 +50,8 @@ class UsersController extends Controller
   {
     $result = false;
 
-    if (Auth::id() === $user->id && $user->school->id != $request->school_id) {
+    // if (Auth::id() === $user->id && $user->school->id != $request->school_id) {
+    if (Auth::id() === $user->id) {
       $user->school_id = $request->school_id;
       $result = $user->save();
     }

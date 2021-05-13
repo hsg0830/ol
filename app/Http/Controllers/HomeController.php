@@ -47,7 +47,7 @@ class HomeController extends Controller
 
     return view('home', [
       'recentArticles' => $recentArticles,
-      'popularAticles' => $popularArticles,
+      'popularArticles' => $popularArticles,
       'questions' => $questions,
       'asks' => $asks,
       'topNotice' => $topNotice,

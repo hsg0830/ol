@@ -131,8 +131,7 @@
           selectedCategory: 0,
           asks: {},
           ask: '',
-          // authorized: {!! Auth::check() ?? 'null' !!},
-          authorized: false,
+          authorized: {!! Auth::check() ? 'true' : 'false' !!},
           errors: {},
           searchWord: '',
         }
@@ -163,7 +162,6 @@
           .then(response => {
             this.asks = response.data.asks;
             this.notCompatible = response.data.notCompatible;
-            this.authorized = response.data.authorized;
           });
         },
         movePage(page) {
