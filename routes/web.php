@@ -70,6 +70,7 @@ Route::prefix('materials')->group(function () {
 // マイページ <-ここも後で、email-verify後にだけアクセスできるルーティングに！
 Route::prefix('users')->group(function () {
   Route::get('/{user}', [UsersController::class, 'show'])->name('users.show');
+  Route::post('/{user}/change-school', [UsersController::class, 'changeSchool']);
 });
 
 // 問い合わせ

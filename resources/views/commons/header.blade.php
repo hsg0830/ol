@@ -14,10 +14,11 @@
       @endguest
 
       @auth('web')
-          <form method="POST" action="{{ route('logout') }}">
-              @csrf
-              <button class="global-btn">로그아우트</button>
-          </form>
+        <button class="global-btn" onclick="location.href='{{ route('users.show', Auth::id()) }}'">회원정보</button>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button class="global-btn">로그아우트</button>
+        </form>
       @endauth
 
       <button class="global-btn" onclick="location.href='{{ route('contact.form') }}'">문의하기</button>
@@ -28,6 +29,7 @@
     </div>
     <img class="cover__clock" src="{{ asset('img/clock.png') }}" alt="" />
   </div>
+
   <!-- PC用のグローバルメニュー -->
   <nav class="global-nav">
     <div class="pc-fixed-logo">
@@ -42,11 +44,23 @@
     </ul>
     <button class="nav-login-btn global-btn" onclick="location.href='{{ route('login') }}'">로 그 인</button>
   </nav>
+
   <!-- SPハンバーガー用のナビゲーション -->
   <nav class="sp-nav">
     <ul>
-      <li><a href="{{ route('register') }}">회원등록</a></li>
-      <li><a href="{{ route('login') }}">로그인</a></li>
+      @guest('web')
+        <li><a href="{{ route('register') }}">회원등록</a></li>
+        <li><a href="{{ route('login') }}">로그인</a></li>
+      @endguest
+      @auth('web')
+        <li><a href="{{ route('users.show', Auth::id()) }}">회원정보</a></li>
+        <li>
+          <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button>로그아우트</button>
+        </form>
+        </li>
+      @endauth
       <li><a href="{{ route('articles.index') }}">학습실</a></li>
       <li><a href="{{ route('qa.index') }}">일문일답</a></li>
       <li><a href="{{ route('norms', 'index') }}">규범원문</a></li>

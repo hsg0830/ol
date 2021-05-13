@@ -57,15 +57,18 @@
   @include('commons.footer')
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.prod.js"></script>
-  {{-- <script src="https://unpkg.com/vue@next"></script> --}}
+
+  @env('local')
+    <script src="https://unpkg.com/vue@next"></script>
+  @endenv
+  @env('production')
+    <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.prod.js"></script>
+  @endenv
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 
-  <!-- 共通 -->
   @yield('js-files')
-
-  <script src="{{ asset('js/main.js') }}"></script>
-
+    <script src="{{ asset('js/main.js') }}"></script>
   @yield('js-script')
 </body>
 

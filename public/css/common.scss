@@ -461,6 +461,25 @@ html.open,
 }
 
 /*---------------------------
+  サイドメニューのユーザーカード
+---------------------------*/
+.side-user {
+  width: 95%;
+  margin: 0 auto 3rem;
+  padding: 1rem;
+  background-color: $beige;
+  background-color: $beige;
+  box-shadow: 0 0 0 0.5rem $beige;
+  border: dashed 0.2rem $yellow;
+  border-radius: 0.9rem;
+  text-align: center;
+
+  & p {
+    margin-bottom: 1rem;
+  }
+}
+
+/*---------------------------
   サイドメニューの各種リスト
 ---------------------------*/
 // 共通
@@ -700,7 +719,7 @@ html.open,
     background-color: $red;
     padding: 0.4rem;
     text-align: center;
-    color: #FFF;
+    color: #fff;
     font-weight: bold;
     letter-spacing: 0.05rem;
   }
@@ -758,8 +777,6 @@ html.open,
     background-color: $yellow;
     box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.22);
     position: relative;
-
-
 
     @media screen and (min-width: 768px) {
       width: 22%;

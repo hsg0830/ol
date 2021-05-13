@@ -42,7 +42,7 @@
               <a href="{{ route('articles.index') }}"><i class="fas fa-angle-double-right"></i> 더보기</a>
             </div>
 
-            @foreach ($popularAticles as $article)
+            @foreach ($popularArticles as $article)
               <a href="{{ $article->url }}" class="recent-articles__item">
                 <div>
                   <span
@@ -175,10 +175,6 @@
       </div>
     </section>
   </main>
-@endsection
-
-@section('js-files')
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 @endsection
 
 @section('js-script')

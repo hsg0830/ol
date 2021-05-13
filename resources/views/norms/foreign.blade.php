@@ -42,6 +42,6 @@
       <a href="{{ url('/') }}" class="text-underline">첫페지에로</a>
     </div>
   </main>
-  
-  @include('commons.side-recently')
+
+  @include('commons.side)
 @endsection

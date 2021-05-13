@@ -23,6 +23,16 @@
   <main id="one-column">
     <h1 class="category-title">로그인</h1>
 
+    @if (count($errors) > 0)
+      <div class="error-message">
+        <ul>
+          @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+      </div>
+    @endif
+
     <form class="login-form" method="POST" action="{{ route('login') }}">
       @csrf
 
@@ -47,10 +57,10 @@
       <a href="{{ route('register') }}" class="text-underline">회원등록페지에로</a>
     </div>
 
-      <div class="message">
-        <p>암호가 기억나지 않으십니까?</p>
-        <a href="{{ route('password.request') }}" class="text-underline">암호재설정페지에로</a>
-      </div>
+    <div class="message">
+      <p>암호가 기억나지 않으십니까?</p>
+      <a href="{{ route('password.request') }}" class="text-underline">암호재설정페지에로</a>
+    </div>
   </main>
   <!-- ↑↑↑メインコンテンツ↑↑↑ -->
 @endsection

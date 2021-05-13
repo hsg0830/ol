@@ -40,12 +40,10 @@ class AsksController extends Controller
     $asks = $query->where('status', 1)->with('category')->paginate(10);
 
     $notCompatible = Ask::where('status', 0)->count();
-    $authorized = Auth::check();
 
     return [
       'asks' => $asks,
       'notCompatible' => $notCompatible,
-      'authorized' => $authorized,
     ];
   }
 

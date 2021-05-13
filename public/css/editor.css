@@ -3,17 +3,6 @@
   変数
 ---------------------------*/
 /*---------------------------
-  ツールチップ
----------------------------*/
-:root {
-  --microtip-transition-duration: 0.5s;
-  --microtip-transition-delay: 0.2s;
-  --microtip-transition-easing: ease-out;
-  --microtip-font-size: 1.2rem;
-  --microtip-text-transform: uppercase;
-}
-
-/*---------------------------
   共通部品
 ---------------------------*/
 .btn {
