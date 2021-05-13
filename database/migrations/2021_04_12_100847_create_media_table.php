@@ -18,7 +18,7 @@ class CreateMediaTable extends Migration
             $table->unsignedBigInteger('editor_id')->comment('編集者ID');
             $table->string('type', 10)->comment('メディアの種類');
             $table->string('filename')->comment('ファイル名');
-            $table->string('poster')->comment('サムネイルのファイル名');
+            // $table->string('poster')->comment('サムネイルのファイル名');
             $table->string('memo')->nullable()->comment('メモ');
             $table->timestamps();
 
