@@ -89,7 +89,7 @@
           <h2 class="category-block__name">규범원문</h2>
           <div class="category-block__content">
             <div class="link-block__intro norm">
-              <img src="./img/articles_01.png" alt="" />
+              <img src="{{ asset('img/block/top_01.png') }}" alt="" />
               <p>각종 규범웜문을 볼수 있습니다.</p>
             </div>
             <div class="link-block__link norm">
@@ -103,7 +103,7 @@
           <h2 class="category-block__name">자료실</h2>
           <div class="category-block__content">
             <div class="link-block__intro ref">
-              <img src="./img/articles_01.png" alt="" />
+              <img src="{{ asset('img/block/top_02.png') }}" alt="" />
               <p>사전, 코퍼스 및 각종 자료를 리용하실수 있습니다.</p>
             <div class="link-block__link ref">
               <button class="ref" onclick="location.href='{{ route('materials.index') }}'">보기</button>

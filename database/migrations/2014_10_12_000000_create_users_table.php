@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
       $table->id();
       $table->string('name', 10)->comment('氏名');
       $table->string('email')->unique();
+      $table->unsignedInteger('role')->default(0)->comment('権限');
       $table->unsignedInteger('sex')->default(0)->comment('性別');
       $table->unsignedInteger('birth_year')->comment('生年');
       $table->unsignedInteger('birth_month')->comment('生月');

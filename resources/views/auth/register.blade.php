@@ -22,7 +22,7 @@
   <!-- ↓↓↓メインコンテンツ↓↓↓ -->
   <main id="one-column">
 
-    <div v-if="!registered">
+    <div v-if="isInitial">
       <form class="login-form pw-comfirm" v-if="!checkStatus">
         <div style="text-align: center; color: red; font-weight: bold;">
           【作業用メモ】チェックコード：korea1234
@@ -118,7 +118,7 @@
         <div class="form-group">
           <label for="password">암호</label>
           <input type="password" id="password" oncopy="return false" onpaste="return false" oncontextmenu="return false"
-            v-model="password" />
+            v-model="password" @input="confirmPassword" />
           <p class="form-tip"><i class="fas fa-exclamation-circle"></i>&nbsp;암호는 8글자이상이여야 합니다.</p>
           <v-errors :error="errors.password"></v-errors>
         </div>
@@ -126,7 +126,8 @@
         <div class="form-group">
           <label for="password_confirmation">암호 (확인용)</label>
           <input type="password" id="password_confirmation" oncopy="return false" onpaste="return false"
-            oncontextmenu="return false" v-model="passwordConfirmation" />
+            oncontextmenu="return false" v-model="passwordConfirmation" @input="confirmPassword" />
+          <p class="error-message" v-if="passwordConfirmationStatus === false">암호가 일치하지 않습니다.</p>
           <p class="form-tip"><i class="fas fa-exclamation-circle"></i>&nbsp;정확히 입력되였는지 확인하기 위하여 다시 입력하십시오.</p>
         </div>
 
@@ -141,8 +142,18 @@
       </div>
     </div>
 
-    <div v-if="registered">
+    <div v-if="isRegistering">
       <div class="message block">
+        <h1 class="category-title">송신중</h1>
+
+        <p>정보를 보내고있습니다.</p>
+        <p>다른 조작을 하지 말고 잠시만 기다려주십시오.</p>
+      </div>
+    </div>
+
+    <div v-if="isRegistered">
+      <div class="message block">
+        <h1 class="category-title">송신완료</h1>
         <p>회원등록이 성과적으로 끝났습니다.</p>
         <p>2초후에 자동적으로 이동됩니다.</p>
       </div>
@@ -162,7 +173,8 @@
         return {
           checkCode: '',
           checkStatus: false,
-          registered: false,
+          // registered: false,
+          status: 'initial',
           name: '',
           birthYear: '',
           birthMonth: '',
@@ -174,11 +186,23 @@
           emailConfirmationStatus: '',
           password: '',
           passwordConfirmation: '',
+          passwordConfirmationStatus: '',
           errors: {},
         }
       },
       components: {
         'v-errors': errorComponent,
+      },
+      computed: {
+        isInitial() {
+          return this.status === 'initial'
+        },
+        isRegistering() {
+          return this.status === 'registering';
+        },
+        isRegistered() {
+          return this.status === 'registered';
+        },
       },
       methods: {
         confirmCheckCode() {
@@ -212,8 +236,15 @@
           }
           return this.emailConfirmationStatus = true;
         },
+        confirmPassword() {
+          if (this.password !== this.passwordConfirmation) {
+            return this.passwordConfirmationStatus = false;
+          }
+          return this.passwordConfirmationStatus = true;
+        },
         onSave() {
           if (confirm('회원정보를 등록하시렵니까?')) {
+            this.status = 'registering';
             const url = '/register';
             const method = 'POST';
 
@@ -238,7 +269,7 @@
                   setTimeout(() => {
                     window.location.href = response.data.url;
                   }, 2000);
-                  return this.registered = true;
+                  return this.status = 'registered';
                 }
               })
               .catch((error) => {
