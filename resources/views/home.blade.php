@@ -177,10 +177,6 @@
   </main>
 @endsection
 
-@section('js-files')
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-@endsection
-
 @section('js-script')
   <script>
     const app = Vue.createApp({

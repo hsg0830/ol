@@ -6,7 +6,6 @@
 // 色の指定
 $orange: #ed8400;
 $red: #ab243b;
-// $red: #b9102d;
 $green: #19775f; //어휘
 $navy: #2a3773; //문법
 $vermilion: #d44a28; //언어규범
@@ -15,12 +14,8 @@ $darkBrown: #3b2213;
 $brown: #895d3b;
 $brown: #6a421f;
 $lightBrown: #cba67e;
-// $beige: #d9cbbf;
-$beige: #d6c7ba; //ヤンギトンム提案色
-// $beige: #dec9b7; //うひトンム提案色
-// $base: #ecebe8;
-$base: #eee5df; //ヤンギトンム提案色
-// $base: #efe3d9; //うひトンム提案色
+$beige: #d6c7ba;
+$base: #eee5df;
 $black: #231815;
 $gray: #494949;
 $white: #ffffff;
@@ -43,14 +38,3 @@ $maxInnerWidth: 1150px;
 // 余白の指定
 $sideSpace: 6vw;
 
-/*---------------------------
-  ツールチップ
----------------------------*/
-:root {
-  --microtip-transition-duration: 0.5s;
-  --microtip-transition-delay: 0.2s;
-  --microtip-transition-easing: ease-out;
-  --microtip-font-size: 1.2rem;
-  // --microtip-font-weight: bold;
-  --microtip-text-transform: uppercase;
-}

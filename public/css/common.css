@@ -3,17 +3,6 @@
   変数
 ---------------------------*/
 /*---------------------------
-  ツールチップ
----------------------------*/
-:root {
-  --microtip-transition-duration: 0.5s;
-  --microtip-transition-delay: 0.2s;
-  --microtip-transition-easing: ease-out;
-  --microtip-font-size: 1.2rem;
-  --microtip-text-transform: uppercase;
-}
-
-/*---------------------------
   アニメーションのkeyframe
 ---------------------------*/
 @-webkit-keyframes telescopic {
@@ -400,17 +389,6 @@ select {
 /*---------------------------
   変数
 ---------------------------*/
-/*---------------------------
-  ツールチップ
----------------------------*/
-:root {
-  --microtip-transition-duration: 0.5s;
-  --microtip-transition-delay: 0.2s;
-  --microtip-transition-easing: ease-out;
-  --microtip-font-size: 1.2rem;
-  --microtip-text-transform: uppercase;
-}
-
 .tooltip {
   position: relative;
   cursor: pointer;
@@ -972,6 +950,26 @@ html.open,
 }
 
 /*---------------------------
+  サイドメニューのユーザーカード
+---------------------------*/
+.side-user {
+  width: 95%;
+  margin: 0 auto 3rem;
+  padding: 1rem;
+  background-color: #d6c7ba;
+  background-color: #d6c7ba;
+  -webkit-box-shadow: 0 0 0 0.5rem #d6c7ba;
+          box-shadow: 0 0 0 0.5rem #d6c7ba;
+  border: dashed 0.2rem #fffcf4;
+  border-radius: 0.9rem;
+  text-align: center;
+}
+
+.side-user p {
+  margin-bottom: 1rem;
+}
+
+/*---------------------------
   サイドメニューの各種リスト
 ---------------------------*/
 .list {
@@ -1210,7 +1208,7 @@ html.open,
   background-color: #ab243b;
   padding: 0.4rem;
   text-align: center;
-  color: #FFF;
+  color: #fff;
   font-weight: bold;
   letter-spacing: 0.05rem;
 }

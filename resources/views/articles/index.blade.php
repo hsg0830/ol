@@ -69,7 +69,7 @@
     </v-pagination>
   </main>
 
-  @include('commons.side-recently')
+  @include('commons.side')
 @endsection
 
 @section('js-files')

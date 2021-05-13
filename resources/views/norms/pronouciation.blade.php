@@ -1145,5 +1145,5 @@
   </main>
   <!-- ↑↑↑メインコンテンツ↑↑↑ -->
 
-  @include('commons.side-recently')
+  @include('commons.side')
 @endsection
