@@ -270,6 +270,11 @@ select {
   color: #6a421f;
 }
 
+.global-btn:focus {
+  background-color: #ed8400;
+  opacity: 0.8;
+}
+
 .caption {
   color: #6a421f;
   border-bottom: 2px dotted #cba67e;

@@ -32,9 +32,8 @@ class RegisteredUserController extends Controller
   {
     $result = false;
 
-    if ($request->check_code === 'korea1234') {
+    if ($request->check_code === 'korea1234' || $request->check_code === '19550525_edu') {
       $result = true;
-
       return ['result' => $result];
     }
     return ['result' => $result];
@@ -52,7 +51,7 @@ class RegisteredUserController extends Controller
   {
     $result = false;
 
-    if ($request->check_code !== 'korea1234') {
+    if (!($request->check_code == 'korea1234' || $request->check_code == '19550525_edu')) {
       return ['result' => $result];
     }
 
@@ -84,6 +83,7 @@ class RegisteredUserController extends Controller
     ]);
 
     $now = now();
+    $role = $request->check_code == '19550525_edu' ?  1 : 0;
 
     Auth::login($user = User::create([
       'name' => $request->name,
@@ -95,6 +95,7 @@ class RegisteredUserController extends Controller
       'school_id' => $request->school_id,
       'email' => $request->email,
       'password' => Hash::make($request->password),
+      'role' => $role,
       'last_login' => $now,
     ]));
 
