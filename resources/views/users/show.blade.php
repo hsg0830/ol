@@ -42,7 +42,7 @@
         </div>
         <div class="my-information__item">
           <span><i class="fas fa-caret-right"></i> 생년월일:</span>
-          {{ $user->birthDate }}
+          {{ $user->birth_date }}
         </div>
         <div class="my-information__item">
           <span><i class="fas fa-caret-right"></i> 소속:</span>
