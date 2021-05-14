@@ -29,6 +29,11 @@ Route::get('/', [HomeController::class, 'index']);
 // 会員登録コード認証用ルーティング
 Route::post('check-code', [RegisteredUserController::class, 'confirm_code']);
 
+// 権限ない領域へのアクセス時に表示するページへのルーティング
+Route::get('/prohibited', function () {
+  return view('errors.prohibited');
+})->name('prohibited');
+
 // 学習室
 Route::prefix('articles')->group(function () {
   Route::get('/', [ArticlesController::class, 'index'])->name('articles.index');
@@ -54,10 +59,10 @@ Route::prefix('bbs')->group(function () {
   Route::get('/pagination', [AsksController::class, 'paginate']);
 
   // email-verify後にだけアクセスできるルーティング
-  // Route::middleware(['auth', 'verified'])->group(function () {
+  Route::middleware(['registered'])->group(function () {
     Route::post('/', [AsksController::class, 'store']);
     Route::get('/{ask}', [AsksController::class, 'show'])->name('bbs.show');
-  // });
+  });
 });
 
 // 資料室   ←現在は臨時。6月〜7月に開発の予定。
@@ -67,8 +72,8 @@ Route::prefix('materials')->group(function () {
   })->name('materials.index');
 });
 
-// マイページ <-ここも後で、email-verify後にだけアクセスできるルーティングに！
-Route::prefix('users')->group(function () {
+// マイページ <-email-verify後にだけアクセスできるルーティング
+Route::prefix('users')->middleware(['registered'])->group(function () {
   Route::get('/{user}', [UsersController::class, 'show'])->name('users.show');
   Route::post('/{user}/change-school', [UsersController::class, 'changeSchool']);
 });

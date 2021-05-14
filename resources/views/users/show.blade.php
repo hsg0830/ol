@@ -151,6 +151,9 @@
                   alert('소속을 변경하였습니다.');
                   this.user = response.data.user;
                   this.modalClose();
+                } else {
+                  alert('변경할 내용이 없습니다.');
+                  this.modalClose();
                 }
               })
               .catch((error) => {

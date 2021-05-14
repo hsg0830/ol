@@ -15,16 +15,19 @@ class DatabaseSeeder extends Seeder
   {
     // \App\Models\User::factory(10)->create();
     $this->call(SchoolsTableSeeder::class);
-    $this->call(UsersTableSeeder::class);
-    $this->call(EditorsTableSeeder::class);
-    $this->call(MediaTableSeeder::class);
     $this->call(CategoriesTableSeeder::class);
     $this->call(SubCategoriesTableSeeder::class);
-    $this->call(ArticlesTableSeeder::class);
-    $this->call(SubContentsTableSeeder::class);
-    $this->call(QuestionsTableSeeder::class);
-    $this->call(AsksTableSeeder::class);
-    $this->call(ContactsTableSeeder::class);
-    $this->call(NoticesTableSeeder::class);
+
+    if (env('APP_ENV') === 'local') {
+      $this->call(UsersTableSeeder::class);
+      $this->call(EditorsTableSeeder::class);
+      $this->call(MediaTableSeeder::class);
+      $this->call(ArticlesTableSeeder::class);
+      $this->call(SubContentsTableSeeder::class);
+      $this->call(QuestionsTableSeeder::class);
+      $this->call(AsksTableSeeder::class);
+      $this->call(ContactsTableSeeder::class);
+      $this->call(NoticesTableSeeder::class);
+    }
   }
 }
