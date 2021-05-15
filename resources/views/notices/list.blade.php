@@ -16,7 +16,7 @@
           <th scope="col">부류</th>
           <th scope="col" class="col-5">제목</th>
           <th scope="col">공개상태</th>
-          <th scope="col">공개일</th>
+          <th scope="col">작성일</th>
           <th scope="col">처리</th>
         </tr>
       </thead>
