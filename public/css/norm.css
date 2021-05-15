@@ -14,22 +14,19 @@
 
 .tooltip:before {
   position: absolute;
-  /* 縦軸： 下に移動 */
   top: 100%;
-  margin-top: 6px;
-  /* 横軸： 中央に移動 */
+  margin-top: 1rem;
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   z-index: 1070;
   min-width: 200px;
+  line-height: 20px;
   padding: 7px;
   font-size: 1.4rem;
   color: #6a421f;
-  text-align: center;
   background-color: #fffcf4;
   border-radius: 4px;
-  /* data-text属性の属性値を、ツールチップとして表示する */
   content: attr(data-text);
   /* デフォルトでツールチップは非表示 */
   opacity: 0;
@@ -48,18 +45,15 @@
 
 .tooltip:after {
   position: absolute;
-  /* 縦軸 */
   top: 100%;
   margin-top: -7px;
-  /* 横軸 */
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   z-index: 1070;
-  /* 矢印の三角形部分 */
   border-color: transparent transparent #fffcf4 transparent;
   border-style: solid;
-  border-width: 7px;
+  border-width: 1.1rem;
   content: '';
   /* デフォルトで非表示 */
   opacity: 0;
@@ -69,7 +63,6 @@
 }
 
 .tooltip:hover:before, .tooltip:hover:after {
-  /* マウスオーバーでツールチップを表示 */
   opacity: 1;
   visibility: visible;
 }
