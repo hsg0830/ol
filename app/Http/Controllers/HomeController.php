@@ -36,11 +36,13 @@ class HomeController extends Controller
       ->take(4)->get();
 
     $topNotice = Notice::where('role', 1)
+      ->where('status', 1)
       ->select('title', 'description', 'created_at')
       ->orderBy('created_at', 'desc')
       ->first();
 
     $notices = Notice::where('role', 0)
+      ->where('status', 1)
       ->select('title', 'created_at')
       ->orderBy('created_at', 'desc')
       ->take(3)->get();

@@ -17,6 +17,7 @@ class CreateNoticesTable extends Migration
       $table->id();
       $table->unsignedBigInteger('editor_id')->comment('editorID');
       $table->unsignedInteger('role')->default(0)->comment('位置付け');
+      $table->boolean('status')->default(false)->comment('公開状況');
       $table->string('title')->comment('概要');
       $table->text('description')->nullable()->comment('詳細');
       $table->timestamps();
