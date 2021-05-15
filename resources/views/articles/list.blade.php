@@ -147,9 +147,8 @@
         changeStatus(article) {
           if (confirm('公開状況を変更します。よろしいですか？')) {
             const url = `/editors/articles/${article.id}/change-status`;
-            const method = 'POST';
             const params = {
-              _method: method,
+              _method: 'PUT',
             };
 
             axios

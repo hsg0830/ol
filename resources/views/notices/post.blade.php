@@ -26,6 +26,17 @@
       </div>
     </div>
 
+    {{-- 公開状況選択フォーム --}}
+    <div class="row my-3">
+      <div class="col-3 form-floating">
+        <select class="form-select" id="status" v-model="status">
+          <option value="0" selected>非公開</option>
+          <option value="1">公開</option>
+        </select>
+        <label for="status">公開状況</label>
+      </div>
+    </div>
+
     {{-- 概要入力フォーム --}}
     <div class="row mb-3">
       <label for="title" class="form-label">お知らせの概要</label>
@@ -70,6 +81,7 @@
           currentMode: 'create',
           currentNotice: {!! $notice ?? 'null' !!},
           role: 0,
+          status: 0,
           noticeTitle: '',
           noticeDescription: '',
           errors: {},
@@ -107,6 +119,7 @@
             const params = {
               _method: method,
               role: this.role,
+              status: this.status,
               title: this.noticeTitle,
               description: this.noticeDescription,
             };

@@ -116,7 +116,7 @@ Route::prefix('editors')->group(function () {
       Route::put('/{article}', [ArticlesController::class, 'update']);
       Route::get('/list', [ArticlesController::class, 'showArticlesList'])->name('articles.list');
       Route::get('/get-list', [ArticlesController::class, 'getArticlesList']);
-      Route::post('/{article}/change-status', [ArticlesController::class, 'changeStatus']);
+      Route::put('/{article}/change-status', [ArticlesController::class, 'changeStatus']);
       Route::delete('/{article}', [ArticlesController::class, 'destroy']);
     });
 
@@ -149,6 +149,7 @@ Route::prefix('editors')->group(function () {
       Route::post('/', [NoticesController::class, 'store']);
       Route::get('/{notice}', [NoticesController::class, 'edit'])->name('notices.edit');
       Route::put('/{notice}', [NoticesController::class, 'update']);
+      Route::put('/{notice}/change-status', [NoticesController::class, 'changeStatus']);
       Route::delete('/{notice}', [NoticesController::class, 'destroy']);
     });
 

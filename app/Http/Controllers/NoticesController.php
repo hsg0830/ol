@@ -46,6 +46,15 @@ class NoticesController extends Controller
     return $this->saveNotice($request, $notice);
   }
 
+  public function changeStatus(Notice $notice) {
+    $notice->status = !($notice->status);
+    $result = $notice->save();
+
+    return [
+      'result' => $result,
+    ];
+  }
+
   public function destroy(Notice $notice)
   {
     return [
@@ -68,6 +77,7 @@ class NoticesController extends Controller
     }
 
     $notice->role = $request->role;
+    $notice->status = $request->status;
     $notice->title = $request->title;
 
     if ($notice->role == 1) {

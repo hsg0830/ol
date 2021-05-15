@@ -15,7 +15,8 @@
           <th scope="col">ID</th>
           <th scope="col">부류</th>
           <th scope="col" class="col-5">제목</th>
-          <th scope="col">공개일</th>
+          <th scope="col">공개상태</th>
+          <th scope="col">작성일</th>
           <th scope="col">처리</th>
         </tr>
       </thead>
@@ -24,6 +25,10 @@
           <th scope="row" v-text="notice.id"></th>
           <th v-text="notice.role"></th>
           <td class="text-start" v-text="notice.title"></td>
+          <td>
+            <button class="btn btn-success" v-if="notice.status == 1" @click="changeStatus(notice)">공개</button>
+            <button class="btn btn-warning" v-else @click="changeStatus(notice)">미공개</button>
+          </td>
           <td v-text="notice.date"></td>
           <td>
             <a :href="notice.edit_url" class="btn btn-primary me-3" target="_blank">편집</a>
@@ -83,6 +88,38 @@
           Vue.nextTick(() => {
             scrollTo(0, 0);
           });
+        },
+        changeStatus(notice) {
+          if (confirm('公開状況を変更します。よろしいですか？')) {
+            const url = `/editors/notices/${notice.id}/change-status`;
+            const params = {
+              _method: 'PUT',
+            };
+
+            axios
+              .post(url, params)
+              .then((response) => {
+                if (response.data.result === true) {
+                  alert('公開状況を変更しました。');
+                  this.getList();
+                }
+              })
+              .catch((error) => {
+                if (error.response.status === 422) {
+                  const responseErrors = error.response.data.errors;
+                  let errors = {};
+
+                  for (const key in responseErrors) {
+                    errors[key] = responseErrors[key][0];
+                  }
+                  this.errors = errors;
+                  scrollTo(0, 0);
+
+                } else {
+                  console.log(error);
+                }
+              });
+          }
         },
         onDelete(notice) {
           if (confirm('削除します。よろしいですか？')) {

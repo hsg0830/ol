@@ -4,10 +4,12 @@
   <main id="one-column">
 
     {{-- トップのお知らせ --}}
-    <div class="top-notice-box">
-      <div class="top-notice-box__title">{{ $topNotice->title }}</div>
-      <p class="top-notice-box__description">{!! nl2br($topNotice->description) !!}</p>
-    </div>
+    @if ($topNotice)
+      <div class="top-notice-box">
+        <div class="top-notice-box__title">{{ $topNotice->title }}</div>
+        <p class="top-notice-box__description">{!! nl2br($topNotice->description) !!}</p>
+      </div>
+    @endif
 
     <!-- 학습실 -->
     <section class="ly-block">
@@ -105,10 +107,10 @@
             <div class="link-block__intro ref">
               <img src="{{ asset('img/block/top_02.png') }}" alt="" />
               <p>사전, 코퍼스 및 각종 자료를 리용하실수 있습니다.</p>
-            <div class="link-block__link ref">
-              <button class="ref" onclick="location.href='{{ route('materials.index') }}'">보기</button>
+              <div class="link-block__link ref">
+                <button class="ref" onclick="location.href='{{ route('materials.index') }}'">보기</button>
+              </div>
             </div>
-          </div>
         </section>
       </section>
 
@@ -138,14 +140,16 @@
         <section class="category-block">
           <div class="info-block recent-common">
             <h2>갱신정보</h2>
-            <ul>
-              @foreach ($notices as $notice)
-                <li>
-                  <span class="info-block__date">{!! $notice->created_at->format('Y-m-d') !!}</span>
-                  <span>{{ $notice->title }}</span>
-                </li>
-              @endforeach
-            </ul>
+            @if (count($notices) > 0)
+              <ul>
+                @foreach ($notices as $notice)
+                  <li>
+                    <span class="info-block__date">{!! $notice->created_at->format('Y-m-d') !!}</span>
+                    <span>{{ $notice->title }}</span>
+                  </li>
+                @endforeach
+              </ul>
+            @endif
           </div>
         </section>
       </section>
