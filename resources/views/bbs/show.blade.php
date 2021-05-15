@@ -52,7 +52,7 @@
             <a href="{{ $item->url }}">
               <div class="list-item__header">
                 @if ($item->category_id == 100)
-                  <img src="{{ asset('img/tbum/bg_black-board_thum.png') }}" alt="" />
+                  <img src="{{ asset('img/thum/bg_black-board_thum.png') }}" alt="" />
                 @elseif ($item->category_id == 200)
                   <img src="{{ asset('img/thum/bg_white-board_thum.png') }}" alt="" />
                 @elseif ($item->category_id == 300)

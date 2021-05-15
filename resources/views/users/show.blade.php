@@ -42,7 +42,7 @@
         </div>
         <div class="my-information__item">
           <span><i class="fas fa-caret-right"></i> 생년월일:</span>
-          {{ $user->birthDate }}
+          {{ $user->birth_date }}
         </div>
         <div class="my-information__item">
           <span><i class="fas fa-caret-right"></i> 소속:</span>
@@ -150,6 +150,9 @@
                 if (response.data.result === true) {
                   alert('소속을 변경하였습니다.');
                   this.user = response.data.user;
+                  this.modalClose();
+                } else {
+                  alert('변경할 내용이 없습니다.');
                   this.modalClose();
                 }
               })
