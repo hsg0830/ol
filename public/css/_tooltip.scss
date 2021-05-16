@@ -15,10 +15,9 @@
     transform: translateX(-50%);
     z-index: 1070;
     min-width: 200px;
-    line-height: 20px;
-    // min-height: 100px;
+    line-height: 2rem;
     @media screen and (min-width: 768px) {
-      width: 500px;
+      min-width: 400px;
     }
     // white-space: pre-wrap;
     padding: 7px;
@@ -66,6 +65,12 @@
 
   &:hover:before,
   &:hover:after {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &:active:before,
+  &:active:after {
     opacity: 1;
     visibility: visible;
   }

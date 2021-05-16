@@ -23,7 +23,7 @@
 @section('content')
   <main id="main">
     <!-- タイトル部 -->
-    <div class="title-block">
+    <div class="title-block" ontouchstart="">
       @if ($article->category->id == 100)
         <img src="{{ asset('img/thum/bg_black-board_thum.png') }}" alt="" />
       @elseif($article->category->id == 200)
