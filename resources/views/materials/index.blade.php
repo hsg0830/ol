@@ -21,7 +21,7 @@
 @section('content')
   <main id="main">
     <div class="category-page-title">
-      <img src="{{ asset('img/title/category_title_02.png') }}" alt="" />
+      <img src="{{ asset('img/title/category_title_04.png') }}" alt="" />
       <h1>자료실</h1>
     </div>
 

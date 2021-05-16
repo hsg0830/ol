@@ -22,7 +22,7 @@
   <!-- ↓↓↓メインコンテンツ↓↓↓ -->
   <main id="main">
     <div class="category-page-title">
-      <img src="{{ asset('img/title/category_title_01.png') }}" alt="" />
+      <img src="{{ asset('img/title/category_title_03.png') }}" alt="" />
       <h1>규범원문</h1>
     </div>
 
