@@ -21,7 +21,7 @@
           transform: translateX(-50%);
   z-index: 1070;
   min-width: 200px;
-  line-height: 20px;
+  line-height: 2rem;
   padding: 7px;
   font-size: 1.4rem;
   color: #6a421f;
@@ -39,7 +39,7 @@
 
 @media screen and (min-width: 768px) {
   .tooltip:before {
-    width: 500px;
+    min-width: 400px;
   }
 }
 
@@ -63,6 +63,11 @@
 }
 
 .tooltip:hover:before, .tooltip:hover:after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.tooltip:active:before, .tooltip:active:after {
   opacity: 1;
   visibility: visible;
 }
