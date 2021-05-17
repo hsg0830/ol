@@ -24,9 +24,6 @@
 
     <div v-if="isInitial">
       <form class="login-form pw-comfirm" v-if="!checkStatus">
-        <div style="text-align: center; color: red; font-weight: bold;">
-          【作業用メモ】チェックコード：korea1234
-        </div>
 
         <div class="form-group">
           <label for="check-code">암호</label>
