@@ -658,6 +658,31 @@ html.open,
 }
 
 /*---------------------------
+  サイドメニューのLineリンク
+---------------------------*/
+.line-link {
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+  color: $brown;
+
+  & p {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/*---------------------------
+  サイドメニューのバナー
+---------------------------*/
+.side-banners {
+  text-align: center;
+
+  &__item {
+    margin-top: 2rem;
+  }
+}
+
+/*---------------------------
   トップページ
 ---------------------------*/
 .ly-block {
@@ -1024,6 +1049,14 @@ html.open,
   }
 }
 
+.top-line-link {
+  text-align: center;
+
+  & p {
+    margin-bottom: 1rem;
+    color: $brown;
+  }
+}
 /*---------------------------
   各カテゴリーのトップページのメイン領域共通部
 ---------------------------*/
@@ -2182,18 +2215,5 @@ html.open,
 
   &__btn {
     display: flex;
-  }
-}
-
-/*---------------------------
-  サイドメニューのバナー
----------------------------*/
-.side-banners {
-  text-align: center;
-
-  &__item {
-    &:not(:first-child) {
-      margin-top: 2rem;
-    }
   }
 }

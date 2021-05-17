@@ -1,5 +1,5 @@
 {{-- バナー広告 --}}
-<section class="ly-block side-banners">
+<section class="side-banners">
   <div class="side-banners__item">
     <a href="https://form.run/@manhattanroll-1607396609" target="_blank">
       <img src="{{ asset('/img/banners/manhattan.png') }}" alt="">

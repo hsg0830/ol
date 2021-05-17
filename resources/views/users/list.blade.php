@@ -61,6 +61,7 @@
           <th scope="col">이름</th>
           <th scope="col">메일주소</th>
           <th scope="col">소속기관</th>
+          <th scope="col">권한</th>
           <th scope="col">성별</th>
           <th scope="col">생년월일</th>
           <th scope="col">로그인회수</th>
@@ -77,6 +78,7 @@
             <a :href="getEmailLink(user)" v-text="user.email"></a>
           </td>
           <td v-text="user.school.name"></td>
+          <td v-text="user.role"></td>
           <td v-text="sexes[user.sex]"></td>
           <td v-text="user.birth_date"></td>
           <td v-text="user.login_count"></td>
