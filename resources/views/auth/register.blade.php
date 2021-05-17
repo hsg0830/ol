@@ -28,7 +28,7 @@
         <div class="form-group">
           <label for="check-code">암호</label>
           <input type="password" id="check-code" v-model="checkCode">
-          <p class="form-tip"><i class="fas fa-exclamation-circle"></i>&nbsp;학교에서 전달된 확인용암호를 입력하십시오.</p>
+          <p class="form-tip"><i class="fas fa-exclamation-circle"></i>&nbsp;학교에서 전달된 확인용암호를 입력하십시오. 입력하신 다음에는 enter건을 누르지 말고 보내기단추를 누르십시오.</p>
         </div>
         <div class="form-group">
           <button type="button" class="btn global-btn" @click="confirmCheckCode()">보내기</button>
@@ -86,9 +86,9 @@
         </div>
 
         <div class="form-group">
-          <label for="school">학교</label>
+          <label for="school">소속기관</label>
           <select type="select" id="school" v-model="schoolId">
-            <option>학교이름을 선택하십시오.</option>
+            <option>소속기관이름을 선택하십시오.</option>
             @foreach ($schools as $school)
               <option value="{{ $school->id }}">{{ $school->name }}</option>
             @endforeach
@@ -177,7 +177,7 @@
           birthMonth: '',
           birthDay: '',
           sex: '',
-          schoolId: '학교이름을 선택하십시오.',
+          schoolId: '소속기관이름을 선택하십시오.',
           email: '',
           emailConfirmation: '',
           emailConfirmationStatus: '',

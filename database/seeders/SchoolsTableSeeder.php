@@ -80,6 +80,7 @@ class SchoolsTableSeeder extends Seeder
       '고꾸라유치원',
       '교직동중앙',
       '학우서방',
+      '교육국',
     ];
 
     foreach ($schools as $name) {
