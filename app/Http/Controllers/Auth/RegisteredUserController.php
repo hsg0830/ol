@@ -14,6 +14,11 @@ use Illuminate\Support\Str;
 
 class RegisteredUserController extends Controller
 {
+  private $checkCodes = [
+    'general' => '19550525_edu',
+    'special' => '19461005_korea',
+  ];
+
   /**
    * Display the registration view.
    *
@@ -32,7 +37,7 @@ class RegisteredUserController extends Controller
   {
     $result = false;
 
-    if ($request->check_code === 'korea1234' || $request->check_code === '19550525_edu') {
+    if (in_array($request->check_code, $this->checkCodes)) {
       $result = true;
       return ['result' => $result];
     }
@@ -51,7 +56,7 @@ class RegisteredUserController extends Controller
   {
     $result = false;
 
-    if (!($request->check_code == 'korea1234' || $request->check_code == '19550525_edu')) {
+    if (!(in_array($request->check_code, $this->checkCodes))) {
       return ['result' => $result];
     }
 
@@ -83,7 +88,7 @@ class RegisteredUserController extends Controller
     ]);
 
     $now = now();
-    $role = $request->check_code == '19550525_edu' ?  1 : 0;
+    $role = $request->check_code == $this->checkCodes['special'] ?  1 : 0;
 
     Auth::login($user = User::create([
       'name' => $request->name,
