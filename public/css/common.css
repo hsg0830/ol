@@ -1140,6 +1140,31 @@ html.open,
 }
 
 /*---------------------------
+  サイドメニューのLineリンク
+---------------------------*/
+.line-link {
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+  color: #6a421f;
+}
+
+.line-link p {
+  margin-bottom: 0.5rem;
+}
+
+/*---------------------------
+  サイドメニューのバナー
+---------------------------*/
+.side-banners {
+  text-align: center;
+}
+
+.side-banners__item {
+  margin-top: 2rem;
+}
+
+/*---------------------------
   トップページ
 ---------------------------*/
 .ly-block {
@@ -1519,6 +1544,15 @@ html.open,
 
 .top-banners__item img {
   width: 90%;
+}
+
+.top-line-link {
+  text-align: center;
+}
+
+.top-line-link p {
+  margin-bottom: 1rem;
+  color: #6a421f;
 }
 
 /*---------------------------
@@ -2773,16 +2807,5 @@ html.open,
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-}
-
-/*---------------------------
-  サイドメニューのバナー
----------------------------*/
-.side-banners {
-  text-align: center;
-}
-
-.side-banners__item:not(:first-child) {
-  margin-top: 2rem;
 }
 /*# sourceMappingURL=common.css.map */

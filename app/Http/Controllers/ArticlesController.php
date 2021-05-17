@@ -27,7 +27,7 @@ class ArticlesController extends Controller
       $query->where('category_id', $category_id);
     }
 
-    $articles = $query->where('status', 1)->with('category')->paginate(12);
+    $articles = $query->where('status', 1)->with('category')->orderBy('released_at', 'desc')->paginate(12);
     $categories = ArticleCategory::select('id', 'name')->get();
 
     return [
