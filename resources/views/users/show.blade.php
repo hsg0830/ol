@@ -89,9 +89,9 @@
         </div>
 
         <div class="form-group">
-          <label for="school">학교</label>
+          <label for="school">소속기관</label>
           <select type="select" id="school" required v-model="selectedSchool">
-            <option value="0" selected>학교이름을 선택하십시오.</option>
+            <option value="0" selected>소속기관이름을 선택하십시오.</option>
             @foreach ($schools as $school)
               <option value="{{ $school->id }}">{{ $school->name }}</option>
             @endforeach
@@ -132,7 +132,7 @@
         },
         onSave() {
           if (this.selectedSchool == 0) {
-            this.error = '학교를 선택하십시오.';
+            this.error = '소속기관을 선택하십시오.';
             return
           }
 
