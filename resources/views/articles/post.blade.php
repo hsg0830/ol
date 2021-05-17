@@ -46,7 +46,7 @@
         <textarea readonly id="form-04" cols="20" rows="3"><span class="moving-underline">アンダーライン</span></textarea>
 
         <textarea readonly id="form-05" cols="20"
-          rows="3"><sup class="caption tooltip" data-text="脚注の内容">[1]←脚注番号</sup></textarea>
+          rows="3"><sup class="caption tooltip" data-text="脚注の内容" @click="toggleTooltip">[1]←脚注番号</sup></textarea>
 
         <textarea readonly id="form-06" cols="20"
           rows="3"><div class="article-media"><img src="ソースURL" alt="No Image"></div></textarea>
