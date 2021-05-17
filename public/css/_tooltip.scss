@@ -69,8 +69,8 @@
     visibility: visible;
   }
 
-  &:active:before,
-  &:active:after {
+  &.isActive:before,
+  &.isActive:after {
     opacity: 1;
     visibility: visible;
   }

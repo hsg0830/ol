@@ -112,3 +112,19 @@
   @include('commons.side')
 @endsection
 
+@section('js-script')
+  <script>
+    const app = Vue.createApp({
+      methods: {
+        toggleTooltip($event) {
+          $($event.target).on('touchstart', function() {
+            $(this).toggleClass('isActive');
+          })
+        },
+      },
+    });
+
+    app.mount('#main');
+
+  </script>
+@endsection

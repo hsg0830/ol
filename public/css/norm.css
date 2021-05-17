@@ -67,7 +67,7 @@
   visibility: visible;
 }
 
-.tooltip:active:before, .tooltip:active:after {
+.tooltip.isActive:before, .tooltip.isActive:after {
   opacity: 1;
   visibility: visible;
 }
