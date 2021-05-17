@@ -23,7 +23,7 @@
 @section('content')
   <main id="main">
     <!-- タイトル部 -->
-    <div class="title-block" ontouchstart="">
+    <div class="title-block">
       @if ($article->category->id == 100)
         <img src="{{ asset('img/thum/bg_black-board_thum.png') }}" alt="" />
       @elseif($article->category->id == 200)
@@ -52,7 +52,7 @@
     <!-- タイトル部 -->
 
     {{-- イントロダクション --}}
-    <div class="introduction-block">
+    <div class="introduction-block" @click="hideToolip">
       {!! $article->introduction !!}
     </div>
     {{-- イントロダクション --}}
@@ -65,7 +65,7 @@
             <div class="section-title-block">
               <h3 class="section-title-block__title">{{ $subContent->title }}</h3>
             </div>
-            <div class="section-content-block">
+            <div class="section-content-block" @click="hideToolip">
               {!! $subContent->description !!}
             </div>
           </section>
@@ -115,10 +115,30 @@
 @section('js-script')
   <script>
     const app = Vue.createApp({
+      data() {
+        return {
+          currentTooltop: '',
+          currenUserAgent: '',
+        }
+      },
       methods: {
         toggleTooltip($event) {
-          $($event.target).toggleClass('isActive');
+          this.currenUserAgent = navigator.userAgent;
+
+          if (this.currenUserAgent.indexOf("iPhone") >= 0 ||
+          this.currenUserAgent.indexOf("iPad") >= 0 ||
+          this.currenUserAgent.indexOf("Android") >= 0
+          ) {
+            this.currentTooltop = $event.target;
+            $(this.currentTooltop).addClass('isActive');
+          }
         },
+        hideToolip() {
+          if (this.currentTooltop) {
+            $(this.currentTooltop).removeClass('isActive');
+            this.currentTooltop = '';
+          }
+        }
       },
     });
 
