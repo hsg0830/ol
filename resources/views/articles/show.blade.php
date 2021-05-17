@@ -117,9 +117,7 @@
     const app = Vue.createApp({
       methods: {
         toggleTooltip($event) {
-          $($event.target).on('touchstart', function() {
-            $(this).toggleClass('isActive');
-          })
+          $($event.target).toggleClass('isActive');
         },
       },
     });
