@@ -1544,7 +1544,7 @@ html.open,
 // 本文のセクションのタイトル
 .section-title-block {
   margin-bottom: 3rem;
-  // background-color: $pink;
+  padding: 1rem;
   background-color: $white;
   border-left: 8px solid $red;
   border-radius: 0 1rem 1rem 0;
@@ -1555,7 +1555,7 @@ html.open,
   display: flex;
 
   @media screen and (min-width: 768px) {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 
   // &__number {
@@ -1573,62 +1573,71 @@ html.open,
 }
 
 // 本文の内容部分
-.section-content-block {
+.section-content-block, .introduction-block {
   margin-bottom: 4rem;
 
   @media screen and (min-width: 768px) {
     margin-bottom: 5.5rem;
   }
 
-  & p {
-    margin-bottom: 1.5rem;
+  & > p {
+    margin-bottom: 1rem;
     color: $gray;
     font-family: $krNoto;
-    line-height: 1.9;
+    // line-height: 1.9;
 
     @media screen and (min-width: 768px) {
-      margin-bottom: 2.5rem;
+      margin-bottom: 1.5rem;
       margin-left: 1.5rem;
     }
 
-    & .emphasis {
+  }
+
+  & .emphasis {
+    font-weight: bold;
+    color: $red;
+  }
+
+  & .moving-underline {
+    background-image: linear-gradient(left, transparent 50%, #fcc786 50%);
+    background-repeat: repeat-x;
+    background-size: 200% 0.7em;
+    background-position: 0 0.5em;
+    transition: all 3s ease;
+
+    &.isActive {
+      background-position: -100% 0.5em;
       font-weight: bold;
-      color: $red;
-    }
-
-    & .moving-underline {
-      background-image: linear-gradient(left, transparent 50%, #fcc786 50%);
-      background-repeat: repeat-x;
-      background-size: 200% 0.7em;
-      background-position: 0 0.5em;
-      transition: all 3s ease;
-
-      &.isActive {
-        background-position: -100% 0.5em;
-        font-weight: bold;
-      }
     }
   }
 
-  .quote {
+  & .example, & .quote {
     width: 95%;
-    margin: 3.5rem auto;
+    margin: 3rem auto;
 
     @media screen and (min-width: 768px) {
-      margin: 5rem auto;
+      margin: 4rem auto;
     }
 
-    padding: 1rem 1rem 1rem 5rem;
     box-sizing: border-box;
     background-color: $yellow;
     color: $brown;
     border-left: 0.7rem solid $lightBrown;
     box-shadow: 0 0.2rem 0.4rem rgba($black, 0.14);
-    position: relative;
 
-    & p {
+    & > p {
       color: $brown;
+      line-height: 2.5;
     }
+  }
+
+  & .example {
+    padding: 1rem;
+  }
+
+  & .quote {
+    padding: 1rem 1rem 1rem 5rem;
+    position: relative;
 
     &:before {
       display: inline-block;

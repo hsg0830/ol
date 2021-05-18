@@ -2088,6 +2088,7 @@ html.open,
 
 .section-title-block {
   margin-bottom: 3rem;
+  padding: 1rem;
   background-color: #ffffff;
   border-left: 8px solid #ab243b;
   border-radius: 0 1rem 1rem 0;
@@ -2103,7 +2104,7 @@ html.open,
 
 @media screen and (min-width: 768px) {
   .section-title-block {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 }
 
@@ -2111,36 +2112,35 @@ html.open,
   padding-left: 1rem;
 }
 
-.section-content-block {
+.section-content-block, .introduction-block {
   margin-bottom: 4rem;
 }
 
 @media screen and (min-width: 768px) {
-  .section-content-block {
+  .section-content-block, .introduction-block {
     margin-bottom: 5.5rem;
   }
 }
 
-.section-content-block p {
-  margin-bottom: 1.5rem;
+.section-content-block > p, .introduction-block > p {
+  margin-bottom: 1rem;
   color: #494949;
   font-family: "Noto Sans KR", sans-serif;
-  line-height: 1.9;
 }
 
 @media screen and (min-width: 768px) {
-  .section-content-block p {
-    margin-bottom: 2.5rem;
+  .section-content-block > p, .introduction-block > p {
+    margin-bottom: 1.5rem;
     margin-left: 1.5rem;
   }
 }
 
-.section-content-block p .emphasis {
+.section-content-block .emphasis, .introduction-block .emphasis {
   font-weight: bold;
   color: #ab243b;
 }
 
-.section-content-block p .moving-underline {
+.section-content-block .moving-underline, .introduction-block .moving-underline {
   background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, transparent), color-stop(50%, #fcc786));
   background-image: linear-gradient(left, transparent 50%, #fcc786 50%);
   background-repeat: repeat-x;
@@ -2150,15 +2150,14 @@ html.open,
   transition: all 3s ease;
 }
 
-.section-content-block p .moving-underline.isActive {
+.section-content-block .moving-underline.isActive, .introduction-block .moving-underline.isActive {
   background-position: -100% 0.5em;
   font-weight: bold;
 }
 
-.section-content-block .quote {
+.section-content-block .example, .section-content-block .quote, .introduction-block .example, .introduction-block .quote {
   width: 95%;
-  margin: 3.5rem auto;
-  padding: 1rem 1rem 1rem 5rem;
+  margin: 3rem auto;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   background-color: #fffcf4;
@@ -2166,20 +2165,29 @@ html.open,
   border-left: 0.7rem solid #cba67e;
   -webkit-box-shadow: 0 0.2rem 0.4rem rgba(35, 24, 21, 0.14);
           box-shadow: 0 0.2rem 0.4rem rgba(35, 24, 21, 0.14);
-  position: relative;
 }
 
 @media screen and (min-width: 768px) {
-  .section-content-block .quote {
-    margin: 5rem auto;
+  .section-content-block .example, .section-content-block .quote, .introduction-block .example, .introduction-block .quote {
+    margin: 4rem auto;
   }
 }
 
-.section-content-block .quote p {
+.section-content-block .example > p, .section-content-block .quote > p, .introduction-block .example > p, .introduction-block .quote > p {
   color: #6a421f;
+  line-height: 2.5;
 }
 
-.section-content-block .quote:before {
+.section-content-block .example, .introduction-block .example {
+  padding: 1rem;
+}
+
+.section-content-block .quote, .introduction-block .quote {
+  padding: 1rem 1rem 1rem 5rem;
+  position: relative;
+}
+
+.section-content-block .quote:before, .introduction-block .quote:before {
   display: inline-block;
   position: absolute;
   top: 1.5rem;
