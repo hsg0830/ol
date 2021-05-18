@@ -154,9 +154,11 @@ Route::prefix('editors')->group(function () {
     });
 
     // ユーザー管理
-    Route::get('/users', [UsersController::class, 'index'])->name('users.management');
-    Route::get('/users-list', [UsersController::class, 'list']);
-    Route::delete('users/{user}', [UsersController::class, 'destroy']);
+    Route::middleware('admin')->group(function () {
+      Route::get('/users', [UsersController::class, 'index'])->name('users.management');
+      Route::get('/users-list', [UsersController::class, 'list']);
+      Route::delete('users/{user}', [UsersController::class, 'destroy']);
+    });
 
     // 問い合わせ管理
     Route::prefix('contacts')->group(function () {
