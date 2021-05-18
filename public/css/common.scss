@@ -1484,7 +1484,7 @@ html.open,
     transform: translateX(-50%);
     width: 80%;
     text-align: center;
-    font-size: 3rem;
+    font-size: 2.2rem;
     font-family: $krPoor;
     font-weight: bold;
     letter-spacing: 0.2rem;
@@ -1497,22 +1497,23 @@ html.open,
     }
 
     @media screen and (min-width: 560px) {
-      font-size: 3.5rem;
+      font-size: 3rem;
     }
     @media screen and (min-width: 980px) {
-      font-size: 4.5rem;
+      font-size: 4rem;
     }
     @media screen and (min-width: 1250px) {
-      font-size: 5rem;
+      top: 25%;
+      font-size: 4.5rem;
     }
   }
 
   &__date {
     position: absolute;
-    bottom: 15%;
+    bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 1.4rem;
+    font-size: 1.3rem;
 
     &.color-white {
       color: $white;
