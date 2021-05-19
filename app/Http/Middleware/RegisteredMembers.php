@@ -20,19 +20,25 @@ class RegisteredMembers
    */
   public function handle(Request $request, Closure $next, $redirectToRoute = null)
   {
+    // 「条件をくぐり抜けた人だけOK」なパターンにすると将来的にユーザー形式や guard が増えても例外が発生しにくいかもしれません。（ホワイトリスト方式？？）
+    if(Auth::guard('editors')->check()) {
 
-    if (Auth::guard('editors')->check()) {
-      return $next($request);
+        return $next($request);
+
+    } else if(Auth::guard('web')->check()) {
+
+        $user = $request->user();
+
+        if($user instanceof MustVerifyEmail && $user->hasVerifiedEmail()) {
+
+            return $next($request);
+
+        }
+
+        return Redirect::guest(URL::route($redirectToRoute ?: 'verification.notice'));
+
     }
 
-    if (!Auth::check()) {
-      return redirect()->route('prohibited');
-    }
-
-    if ($request->user() instanceof MustVerifyEmail && !$request->user()->hasVerifiedEmail()) {
-      return Redirect::guest(URL::route($redirectToRoute ?: 'verification.notice'));
-    }
-
-    return $next($request);
+    return redirect()->route('prohibited');
   }
 }
