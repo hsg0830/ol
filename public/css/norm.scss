@@ -196,11 +196,11 @@
 
   &.indent {
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
 
     & .indent__mark {
       width: 5%;
-      margin-right: 0.5rem;
+      margin-right: 0.3rem;
       color: $lightBrown;
       font-weight: bold;
     }

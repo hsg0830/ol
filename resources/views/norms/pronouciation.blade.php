@@ -265,7 +265,7 @@
             <div class="example">
               <table>
                 <tr>
-                  <td class="text-left">넋살[넉쌀], 늙다[늑따], 부엌세간[부억세간], 낚시[낙시]</td>
+                  <td class="text-left">넋살[넉쌀], 늙다[늑따], 부엌세간[부억쎄간], 낚시[낙씨]</td>
                 </tr>
                 <tr>
                   <td class="text-left">몫[목], 닭[닥], 동녘[동녁], 밖[박]</td>
@@ -294,7 +294,7 @@
             <div class="example">
               <table>
                 <tr>
-                  <td class="text-left">잇다[읻따], 잦다[잗따], 닻줄[닫쭐], 밭갈이[받깔이], 있다[읻따]</td>
+                  <td class="text-left">잇다[읻따], 잦다[잗따], 닻줄[닫쭐], 밭갈이[받까리], 있다[읻따]</td>
                 </tr>
                 <tr>
                   <td class="text-left">옷[옫], 젖[젇], 꽂[꼳], 뭍[묻]</td>
@@ -377,7 +377,7 @@
                   <td class="text-left">히읗[히읃]</td>
                 </tr>
                 <tr>
-                  <td class="text-left">좋소[졷쏘 → 조쏘], 좋니[졷니 → 존니]</td>
+                  <td class="text-left">좋소[졷소 → 조쏘], 좋니[졷니 → 존니]</td>
                 </tr>
                 <tr>
                   <td class="text-left">놓네[녿네 → 논네]</td>
@@ -518,8 +518,8 @@
           <div class="example">
             <table>
               <tr>
-                <td class="text-left">팥 아홉키로[팥 아홉키로], 짚 열단[집 열딴],<br>
-                  옷 열한벌[옫 여란벌], 첫 의정[첟 의정 / 처 듸정]</td>
+                <td class="text-left">팥 아홉키로[팓 아홉키로], 짚 열단[집 열딴],<br>
+                  옷 열한벌[옫 여란벌], 첫 의정[첟 의정 / 처 듸정 / 처 디정]</td>
               </tr>
             </table>
           </div>
@@ -588,7 +588,7 @@
       <div class="term">
         <div class="term__head-wrapper">
           <h3 class="title term__title">
-            <span>제14항.&nbsp;</span>다음과 같은 경우에 《ㄹ》받침뒤에 순한소리는 된소리로 발음한다.
+            <span>제14항.&nbsp;</span>다음과 같은 경우에 《ㄹ》받침뒤의 순한소리는 된소리로 발음한다.
           </h3>
           <i class="ex-btn fas fa-plus"></i>
         </div>
@@ -624,7 +624,7 @@
             <div class="example">
               <table>
                 <tr>
-                  <td class="text-left">들것[들껃], 갈데[갈떼], 갈 사람[갈싸람]</td>
+                  <td class="text-left">들것[들껃], 갈데[갈떼], 갈 사람[갈 싸람]</td>
                 </tr>
                 <tr>
                   <td class="text-left">들가[들까], 올지[올찌], 볼듯[볼뜯]</td>
@@ -850,7 +850,7 @@
             <div class="example">
               <table>
                 <tr>
-                  <td class="text-left">밟는다[밤는다], 법령[볌령], 없는것[엄는걷], 앞마을[암마을]</td>
+                  <td class="text-left">밟는다[밤는다], 법령[범녕/볌령], 없는것[엄는걷], 앞마을[암마을]</td>
                 </tr>
               </table>
             </div>
@@ -869,7 +869,7 @@
           <div class="example">
             <table>
               <tr>
-                <td class="text-left">들놀이[들로리], 물농사[물롱사], 별나라[별라라], 살눈섭[살룬섭]</td>
+                <td class="text-left">들놀이[들로리], 물농사[물롱사], 별나라[별라라], 살눈섭[살룬썹]</td>
               </tr>
               <tr>
                 <td class="text-left">근로자[글로자], 본래[볼래], 천리마[철리마], 난로[날로], 진리[질리], 원리[월리], 권리[궐리]</td>

@@ -243,7 +243,7 @@
                   <tr>
                     <td class="text-left">
                       선군혁명로선, 군사중시사상, 조선민족제일주의, 사회주의건설, 총대중시사상, 반제자주력량, 사상기술문화혁명,
-                      사회주의경제강국건설, 물고기잡이전투, 오늘모임, 오전회의, 로동계급출신간부, 사양공처녀, 공장로동자, 국어교원. 학교건물크기,
+                      사회주의경제강국건설, 물고기잡이전투, 오늘모임, 오전회의, 로동계급출신간부, 사양공처녀, 공장로동자, 국어교원, 학교건물크기,
                       가스탕크용적, 강냉이밭면적, 굴뚝높이, 동판무게, 경기장넓이
                     </td>
                   </tr>
@@ -770,7 +770,7 @@
               <div class="example">
                 <table>
                   <tr>
-                    <td class="text-left">가살부리다, 재간부리다, 심술부리다, 낯설다, 산설다, 방정떨다, 엄상떨다, 일삼다, 사위삼다, 소리치다, 활개치다, 굽이치다, 시집가다, 장가가다, 눈팔다, 낯익다, 몸풀다, 논풀다, 논삶다, 눈멀다, 더위먹다, 마음먹다, 추위타다, 더위타다, 여름타다, 감사납다, 체면보다, 말씀드리다, 소리지르다, 주제넘다, 수놓다, 불놓다, 불지르다</td>
+                    <td class="text-left">가살부리다, 재간부리다, 심술피우다, 낯설다, 산설다, 방정떨다, 엄살떨다, 일삼다, 사위삼다, 소리치다, 활개치다, 굽이치다, 시집가다, 장가가다, 눈팔다, 낯익다, 몸풀다, 논풀다, 논삶다, 눈멀다, 더위먹다, 마음먹다, 추위타다, 더위타다, 여름타다, 감사납다, 체면보다, 말씀드리다, 소리지르다, 주제넘다, 수놓다, 불놓다, 불지르다</td>
                   </tr>
                 </table>
               </div>
@@ -782,7 +782,7 @@
                 </table>
               </div>
               <p class="description indent">
-                <span class="indent__mark">－</span>
+                <span class="indent__mark" style="margin-right: 0;">－</span>
                 《앞, 뒤, 곱, 겹》이 동사나 형용사와 결합되여 하나의 행동이나 상태를 나타낼 때에는 붙여쓴다.
               </p>
               <div class="example">
@@ -858,7 +858,7 @@
               <div class="auxiliary">
                 <p class="description">
                   <span class="complement">참고2</span>
-                  토없는 명사가 고유어로 된 동사나 형용사와 어울리여 쓰이여도 토를 줄였다는것이 뚜렷하거나 앞뒤단어와의 의미―론리적련관속에서 볼 때 띄여야 할 경우에는 띄여쓴다.(주로 운문에서 많이 쓰이고있다.)
+                  토없는 명사가 고유어로 된 동사나 형용사와 어울리여 쓰이여도 토를 줄였다는것이 뚜렷하거나 앞뒤단위와의 의미―론리적련관속에서 볼 때 띄여야 할 경우에는 띄여쓴다.(주로 운문에서 많이 쓰이고있다.)
                 </p>
                 <div class="example">
                   <table class="mb-0">
@@ -866,7 +866,7 @@
                       <td class="text-left">은혜로운 <span class="underline">해발 안고</span> (《을》생략)<br />
                         무슨 <span class="underline">일 할가</span> (《을》생략)<br />
                         사랑의 <span class="underline">정 품고</span> (《을》생략)<br />
-                        명적의 기세 드높다<br />
+                        멸적의 기세 드높다<br />
                         내가 <span class="underline">한마디 하겠다</span> (《를》생략)<br />
                         무슨 좋은 <span class="underline">일 할셈인가</span> (《을》생략)<br />
                         <span class="underline">오곡백과 설레이는</span> 협동벌 (《가》생략)<br />
@@ -1174,7 +1174,7 @@
           <div class="example">
             <table>
               <tr>
-                <td class="text-left">김일성훈장, 조선민주주의인민공화국창건기념훈장, 로력훈장, 김정일선집, 주체사상탑, 만수대의사당</td>
+                <td class="text-left"><span style="font-weight: bold">김일성</span>훈장, 조선민주주의인민공화국창건기념훈장, 로력훈장, <span style="font-weight: bold">김정일</span>선집, 주체사상탑, 만수대의사당</td>
               </tr>
             </table>
           </div>
@@ -1321,8 +1321,8 @@
           <div class="example">
             <table>
               <tr>
-                <td class="text-left">김정일명칭 제1차 뽈스까청년단<br />
-                  로씨야 챠이꼽스끼명칭 모스크바국립음악대학 합창단</td>
+                <td class="text-left"><span style="font-weight: bold">김정일</span>명칭 제1차 뽈스까청년단<br />
+                  로씨야 챠이꼽스끼명칭 모스크바국립음악대학합창단</td>
               </tr>
             </table>
           </div>
@@ -1382,7 +1382,7 @@
             <div class="example">
               <table class="mb-0">
                 <tr>
-                  <td class="text-left">김일성사회주의청년동맹 중앙위원회 1비서<br />
+                  <td class="text-left"><span style="font-weight: bold">김일성</span>사회주의청년동맹 중앙위원회 1비서<br />
                     청년동맹중앙위원회 1비서<br />
                     도청년동맹위원회 비서</td>
                 </tr>
@@ -1543,8 +1543,8 @@
             <div class="example">
               <table>
                 <tr>
-                  <td class="text-left">《김정일선집》 1권 20페지<br />
-                    동경 62°5’<br />
+                  <td class="text-left">《<span style="font-weight: bold">김정일</span>선집》 1권 20페지<br />
+                    동경 62° 5’<br />
                     령하 10℃<br />
                     미누수 10℃</td>
                 </tr>
@@ -1561,7 +1561,7 @@
             <div class="example">
               <table class="mb-0">
                 <tr>
-                  <td class="text-left">김일성경기장 주석단<br />
+                  <td class="text-left"><span style="font-weight: bold">김일성</span>경기장 주석단<br />
                     학생소년궁전 앞공원<br />
                     조선콤퓨터쎈터 2호청사 3층복도</td>
                 </tr>
@@ -1837,7 +1837,7 @@
             <div class="example">
               <table>
                 <tr>
-                  <td class="text-left">닭알 3알, 살림집 두동, 학습장 5권, 학생 50명, 화분 20개, 토끼 3마리, 쌀 4네, 5시, 50초</td>
+                  <td class="text-left">닭알 3알, 살림집 두동, 학습장 5권, 학생 50명, 화분 20개, 토끼 3마리, 쌀 네말, 5시, 50초</td>
                 </tr>
               </table>
             </div>
@@ -2081,7 +2081,7 @@
           </div>
           <p class="description indent">
             <span class="indent__mark">－</span>
-            지난날 불완전명사적으로 처리하던 외마디한자말단어 《급, 계, 과, 별, 상, 식, 전1, 전2, 하, 형, 호》는 완전명사로, 《상, 성, 적, 제, 용》은 뒤붙이로 처리한다. 그러므로 이 단어들과 결합된 단위뒤에 오는 명사는 앞단위에 붙여쓴다.
+            지난날 불완전명사적으로 처리하던 외마디한자말단어 《급, 계, 과, 별, 분, 상, 식, 전1, 전2, 하, 형, 호》는 완전명사로, 《상, 성, 적, 제, 용》은 뒤붙이로 처리한다. 그러므로 이 단어들과 결합된 단위뒤에 오는 명사는 앞단위에 붙여쓴다.
           </p>
           <div class="example">
             <table>
@@ -2226,7 +2226,7 @@
           <!-- ③ -->
           <div class="term__detail">
             <h4 class="title term__detail__title">
-              <span>③&nbsp;</span>《《겸》이 동사 《ㄴ, ㄹ》형뒤에서 행동을 같이 한다는 뜻을 나타낼 때에는 붙여쓴다.
+              <span>③&nbsp;</span>《겸》이 동사 《ㄴ, ㄹ》형뒤에서 행동을 같이 한다는 뜻을 나타낼 때에는 붙여쓴다.
             </h4>
             <div class="example">
               <table>
@@ -2276,9 +2276,9 @@
           <div class="example">
             <table>
               <tr>
-                <td class="text-left">위대한 수령 김일성동지 교시 학습<br />
+                <td class="text-left">위대한 수령 <span style="font-weight: bold">김일성</span>동지 교시 학습<br />
                   경애하는 장군님 위대성 선전<br />
-                  위대한 수령 김일성동지 혁명활동<br />
+                  위대한 수령 <span style="font-weight: bold">김일성</span>동지 혁명활동<br />
                   위대한 장군님 현지지도로정<br />
                   위대한 수령님 품속에서 자란 꽃봉오리<br />
                   위대한 수령님 탄생 90돐</td>

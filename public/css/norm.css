@@ -269,14 +269,11 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
 }
 
 .description.indent .indent__mark {
   width: 5%;
-  margin-right: 0.5rem;
+  margin-right: 0.3rem;
   color: #cba67e;
   font-weight: bold;
 }

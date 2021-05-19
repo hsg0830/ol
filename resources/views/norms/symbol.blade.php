@@ -694,7 +694,7 @@
       <div class="term">
         <div class="term__head-wrapper">
           <h3 class="title term__title">
-            <span>1)&nbsp;</span>단락이나 그 보다 큰 단위가 줄었을 때에는 석점짜리 세개 《… … …》를 친다.
+            <span>1)&nbsp;</span>단락이나 그보다 큰 단위가 줄었을 때에는 석점짜리 세개 《… … …》를 친다.
           </h3>
         </div>
       </div>
@@ -742,7 +742,7 @@
       <div class="term">
         <div class="term__head-wrapper">
           <h3 class="title term__title">
-            <span>2)&nbsp;</span>말마디나 표현을 드러내서 나타날 때 친다.
+            <span>2)&nbsp;</span>말마디나 표현을 드러내서 나타낼 때 친다.
           </h3>
           <i class="ex-btn fas fa-plus"></i>
         </div>
@@ -757,7 +757,7 @@
                   <td class="text-left">도서《인민들속에서》 제15권</td>
                 </tr>
                 <tr>
-                  <td class="text-left">《장편소설《석개울의 새봄》</td>
+                  <td class="text-left">장편소설《석개울의 새봄》</td>
                 </tr>
                 <tr>
                   <td class="text-left">대집단체조와 예술공연《아리랑》</td>
@@ -773,7 +773,7 @@
           </div>
           <div class="term__detail">
             <h4 class="title term__detail__title">
-              <span>②&nbsp;</span>제품, 품종, 상품 등의 고유명사를 나타내는 경우
+              <span>②&nbsp;</span>제품, 품종, 상품 등의 고유명을 나타내는 경우
             </h4>
             <div class="example">
               <table>
@@ -802,7 +802,7 @@
                   <td class="text-left">《ㅌ.ㄷ》</td>
                 </tr>
                 <tr>
-                  <td class="text-left">로씨야《평화의 오늘》위원회</td>
+                  <td class="text-left">로씨야《평화와 오늘》위원회</td>
                 </tr>
                 <tr>
                   <td class="text-left">중국《환경교육보급계획》대표단</td>
@@ -854,7 +854,7 @@
           <div class="example">
             <table>
               <tr>
-                <td class="text-left">《영철동무는〈하자고 결심만 하면 못할 일이 없습니다.〉라고 하면서 계획된대로 내밀자고 토론했소.》</td>
+                <td class="text-left">《영철동무는 〈하자고 결심만 하면 못할 일이 없습니다.〉라고 하면서 계획된대로 내밀자고 토론했소.》</td>
               </tr>
               <tr>
                 <td class="text-left">《우리 분조에는 〈천리마〉호가 3대나 배정되였습니다.》</td>
@@ -922,7 +922,7 @@
           <div class="example">
             <table>
               <tr>
-                <td class="text-left">《인적드문 심산유곡에 구차한 생을 도모하고있는 이 늙은 백성이 오매불망 그리워하던 장군님의 존안을 이렇게 문득 뵈옵게 되니 황송하기가 그지 없습니다.》
+                <td class="text-left">《인적드문 심산유곡에서 구차한 생을 도모하고있는 이 늙은 백성이 오매불망 그리워하던 장군님의 존안을 이렇게 문득 뵈옵게 되니 황송하기가 그지없습니다.》
                   (총서《불멸의 력사》중 장편소설《고난의 행군》에서)</td>
               </tr>
             </table>
@@ -1046,7 +1046,7 @@
       <div class="term">
         <div class="term__head-wrapper">
           <h3 class="title term__title">
-            <span>4)&nbsp;</span>인용표안에 있는 문장의 끝에서 전체 문장도 끝나는 경우는 끝맺는 부호를 다음과 같이 친다.
+            <span>4)&nbsp;</span>인용표안에 있는 문장의 끝에서 전체 문장도 끝나는 경우에는 끝맺는 부호를 다음과 같이 친다.
           </h3>
           <i class="ex-btn fas fa-plus"></i>
         </div>
@@ -1441,7 +1441,7 @@
         <div class="term__description">
           <div class="term__detail">
             <h4 class="title term__detail__title">
-              <span>①&nbsp;</span>점(.)과 반점(,)은 가로 쓸때와 같이 치되 오른편에 치우쳐 찍는다.
+              <span>①&nbsp;</span>점(.)과 반점(,)은 가로쓸 때와 같이 치되 오른편에 치우쳐 찍는다.
             </h4>
             <div class="example">
               <table>
