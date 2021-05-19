@@ -64,6 +64,7 @@
           <th scope="col">권한</th>
           <th scope="col">성별</th>
           <th scope="col">생년월일</th>
+          <th scope="col">메일인증</th>
           <th scope="col">로그인회수</th>
           <th scope="col">최종로그인</th>
           <th scope="col">등록시일</th>
@@ -81,6 +82,10 @@
           <td v-text="user.role"></td>
           <td v-text="sexes[user.sex]"></td>
           <td v-text="user.birth_date"></td>
+          <td>
+            <span v-if="user.email_verified_at">●</span>
+            <span v-else>×</span>
+          </td>
           <td v-text="user.login_count"></td>
           <td v-text="user.last_login"></td>
           <td v-text="user.registered_date"></td>
