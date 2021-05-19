@@ -323,7 +323,7 @@
               </tr>
               <tr>
                 <td></td>
-                <td class="text-left">잇다&nbsp;(잇으니, ?????잇어, 잇지)</td>
+                <td class="text-left">잇다&nbsp;(이으니, 이어, 잇지)</td>
               </tr>
               <tr>
                 <td>ㅇ</td>
@@ -996,13 +996,6 @@
                   <td class="text-left">
                     기르고, 기르지</br>
                     길러, 길렀다
-                  </td>
-                </tr>
-                <tr>
-                  <td>푸르다</td>
-                  <td class="text-left">
-                    푸르고, 푸르지</br>
-                    푸르러, 푸르렀다
                   </td>
                 </tr>
                 <tr>
