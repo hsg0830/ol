@@ -12,15 +12,17 @@ class RegisteredAlertMail extends Mailable
   use Queueable, SerializesModels;
 
   private $user;
+  private $usersMount;
 
   /**
    * Create a new message instance.
    *
    * @return void
    */
-  public function __construct($user)
+  public function __construct($user, $usersMount)
   {
     $this->user = $user;
+    $this->usersMount = $usersMount;
   }
 
   /**
@@ -35,6 +37,7 @@ class RegisteredAlertMail extends Mailable
       ->view('users.mail-registered')
       ->with([
         'user' => $this->user,
+        'usersMount' => $this->usersMount,
       ]);
   }
 }
