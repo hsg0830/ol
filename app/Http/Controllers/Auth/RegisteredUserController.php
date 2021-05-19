@@ -109,7 +109,9 @@ class RegisteredUserController extends Controller
     event(new Registered($user));
 
     $admin = config('admin.email');
-    Mail::to($admin)->send(new RegisteredAlertMail($user));
+    $usersMount = User::count();
+
+    Mail::to($admin)->send(new RegisteredAlertMail($user, $usersMount));
 
     $result = true;
     $url = url('/verify-email');

@@ -9,3 +9,4 @@
   </tr>
 </table>
 
+<p style="margin-top: 1rem;">※현재 총회원수: {{ $usersMount }}</p>
