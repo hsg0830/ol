@@ -59,6 +59,8 @@
 <body>
   @include('commons.header')
 
+  @include('commons.editors_status')
+
   <!-- ↓↓↓パンくずリスト↓↓↓ -->
   @yield('breadcrumb')
   <!-- ↑↑↑パンくずリスト↑↑↑ -->

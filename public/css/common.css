@@ -2817,4 +2817,14 @@ html.open,
   display: -ms-flexbox;
   display: flex;
 }
+
+/*---------------------------
+  管理者ログイン状況表示
+---------------------------*/
+.editors_status {
+  background-color: lemonchiffon;
+  color: #6a421f;
+  text-align: center;
+  padding: 1rem;
+}
 /*# sourceMappingURL=common.css.map */

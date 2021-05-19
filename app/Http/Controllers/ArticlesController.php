@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Article;
 use App\Models\SubContent;
 use App\Models\ArticleCategory;
@@ -27,7 +28,11 @@ class ArticlesController extends Controller
       $query->where('category_id', $category_id);
     }
 
-    $articles = $query->where('status', 1)->with('category')->orderBy('released_at', 'desc')->paginate(12);
+    $articles = $query->where('status', 1)
+      ->with('category')
+      ->orderBy('released_at', 'desc')
+      ->paginate(12);
+
     $categories = ArticleCategory::select('id', 'name')->get();
 
     return [
@@ -38,6 +43,24 @@ class ArticlesController extends Controller
 
   public function show(Article $article)
   {
+
+    if ($article->category_id == 400) {
+
+      if (!Auth::guard('editors')->check()) {
+
+        if (!Auth::check()) {
+          return redirect()->route('prohibited');
+        }
+
+        if (
+          Auth::user() instanceof MustVerifyEmail
+          && Auth::user()->email_verified_at == NULL
+          ) {
+            return redirect()->route('verification.notice');
+        }
+      }
+    }
+
     if (!Auth::guard('editors')->check()) {
       if ($article->status == 0) {
         return redirect()->route('articles.index');
