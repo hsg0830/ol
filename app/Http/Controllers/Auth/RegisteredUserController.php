@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegisteredAlertMail;
 
 class RegisteredUserController extends Controller
 {
@@ -105,6 +107,9 @@ class RegisteredUserController extends Controller
     ]));
 
     event(new Registered($user));
+
+    $admin = config('admin.email');
+    Mail::to($admin)->send(new RegisteredAlertMail($user));
 
     $result = true;
     $url = url('/verify-email');
