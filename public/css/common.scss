@@ -2227,3 +2227,13 @@ html.open,
     display: flex;
   }
 }
+
+/*---------------------------
+  管理者ログイン状況表示
+---------------------------*/
+.editors_status {
+  background-color: lemonchiffon;
+  color: $brown;
+  text-align: center;
+  padding: 1rem;
+}
