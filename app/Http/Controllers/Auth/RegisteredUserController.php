@@ -35,12 +35,15 @@ class RegisteredUserController extends Controller
 
   public function confirm_code(Request $request)
   {
-    $result = false;
+//    $result = false;
+//
+//    if (in_array($request->check_code, $this->checkCodes)) {
+//      $result = true;
+//      return ['result' => $result];
+//    }
 
-    if (in_array($request->check_code, $this->checkCodes)) {
-      $result = true;
-      return ['result' => $result];
-    }
+    // 共通化するバージョンです（もしくは独自バリデーションを作ってもいいかもしれません）
+    $result = $this->isValidPasscode($request->check_code);
     return ['result' => $result];
   }
 
@@ -48,7 +51,7 @@ class RegisteredUserController extends Controller
    * Handle an incoming registration request.
    *
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Http\RedirectResponse
+   * @return array
    *
    * @throws \Illuminate\Validation\ValidationException
    */
@@ -56,7 +59,7 @@ class RegisteredUserController extends Controller
   {
     $result = false;
 
-    if (!(in_array($request->check_code, $this->checkCodes))) {
+    if (!$this->isValidPasscode($request->check_code)) {
       return ['result' => $result];
     }
 
@@ -114,5 +117,11 @@ class RegisteredUserController extends Controller
       'result' => $result,
       'url' => $url,
     ];
+  }
+
+  private function isValidPasscode($check_code) {
+
+      return in_array($check_code, $this->checkCodes);
+
   }
 }
