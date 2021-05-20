@@ -27,7 +27,7 @@
 
     <div class="category-page-introduction">
       <p>여기서는 우리 말의 어휘와 문법, 언어규범에 대하여 학습할수 있는 기사들과 동화상을 보실수 있습니다. </p>
-      <p>기사는 정기적으로 올릴 예정이며 새 기사를 올렸을 때에는 첫페지 갱신정보란을 통하여 통보해드립니다.</p>
+      <p>기사는 정기적으로 올릴 예정이며 새 기사를 올렸을 때에는 첫페지 갱신정보란과 LINE을 통하여 통보해드립니다.</p>
     </div>
 
     <div id="list-container" class="list-container">
