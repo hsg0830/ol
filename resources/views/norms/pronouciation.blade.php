@@ -850,7 +850,7 @@
             <div class="example">
               <table>
                 <tr>
-                  <td class="text-left">밟는다[밤는다], 법령[범녕/볌령], 없는것[엄는걷], 앞마을[암마을]</td>
+                  <td class="text-left">밟는다[밤는다], 법령[범녕/범령], 없는것[엄는걷], 앞마을[암마을]</td>
                 </tr>
               </table>
             </div>
