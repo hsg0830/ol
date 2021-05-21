@@ -31,8 +31,8 @@
   /* デフォルトでツールチップは非表示 */
   opacity: 0;
   visibility: hidden;
-  -webkit-box-shadow: 0 3px 6px rgba(255, 255, 255, 0.3);
-          box-shadow: 0 3px 6px rgba(255, 255, 255, 0.3);
+  -webkit-box-shadow: 0.5px 0.5px 10px rgba(106, 66, 31, 0.5);
+          box-shadow: 0.5px 0.5px 10px rgba(106, 66, 31, 0.5);
   -webkit-transition: opacity 0.3s ease-out;
   transition: opacity 0.3s ease-out;
 }

@@ -35,7 +35,8 @@
     opacity: 0;
     visibility: hidden;
 
-    box-shadow: 0 3px 6px rgba(255, 255, 255, 0.3);
+    // box-shadow: 0 3px 6px rgba(255, 255, 255, 0.3);
+    box-shadow: 0.5px 0.5px 10px rgba($brown, 0.5);
     transition: opacity 0.3s ease-out;
   }
 
