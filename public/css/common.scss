@@ -1789,6 +1789,10 @@ html.open,
     border-radius: 1rem;
     position: relative;
 
+    &.at-show {
+      padding: 2rem 1.5rem;
+    }
+    
     &:before {
       font-family: 'Font Awesome 5 Free';
       content: '\f111';
