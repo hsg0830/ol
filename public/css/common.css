@@ -1140,6 +1140,21 @@ html.open,
 }
 
 /*---------------------------
+  サイドメニューのユーザー用ブロック
+---------------------------*/
+@media screen and (min-width: 1222px) {
+  .side-user .global-btn:not(:first-child) {
+    margin-left: 2rem;
+  }
+}
+
+@media screen and (max-width: 1137px) {
+  .side-user .global-btn:not(:first-child) {
+    margin-top: 1rem;
+  }
+}
+
+/*---------------------------
   サイドメニューのLineリンク
 ---------------------------*/
 .line-link {

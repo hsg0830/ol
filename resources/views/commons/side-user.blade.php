@@ -1,6 +1,6 @@
 <div class="side-user">
   @guest
-    <button class="global-btn" style="margin-right: 2rem;" onclick="location.href='{{ route('register') }}'">회원등록</button>
+    <button class="global-btn" onclick="location.href='{{ route('register') }}'">회원등록</button>
     <button class="global-btn" onclick="location.href='{{ route('login') }}'">로 그 인</button>
   @endguest
   @auth
