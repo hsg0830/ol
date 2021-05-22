@@ -45,6 +45,7 @@ Route::prefix('articles')->group(function () {
 Route::prefix('qa')->group(function () {
   Route::get('/', [QuestionsController::class, 'index'])->name('qa.index');
   Route::get('/pagination', [QuestionsController::class, 'paginate']);
+  Route::get('{question}', [QuestionsController::class, 'show'])->name('qa.show');
   Route::post('/{question}/increment', [QuestionsController::class, 'addViewedCount']);
 });
 

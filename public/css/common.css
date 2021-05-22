@@ -2357,6 +2357,10 @@ html.open,
   }
 }
 
+.qa-item__answer.at-show {
+  padding: 2rem 1.5rem;
+}
+
 .qa-item__answer:before {
   font-family: 'Font Awesome 5 Free';
   content: '\f111';

@@ -49,6 +49,12 @@ class QuestionsController extends Controller
     }
   }
 
+  public function show(Question $question) {
+    return view('qa.show', [
+      'question' => $question,
+    ]);
+  }
+
   public function create()
   {
     $categories = $this->categories();

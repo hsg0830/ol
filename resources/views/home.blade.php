@@ -67,16 +67,13 @@
         <h2 class="category-block__name">일문일답</h2>
         <div class="category-block__content recent-qa recent-common">
           @foreach ($questions as $question)
-            <div class="recent-qa__item" id="qa-{{ $question->id }}" @click="showQa($event)">
-              <span
-                class="recent-qa__category category-{{ $question->category_id }}">{{ $question->category->name }}</span>
-              <p class="recent-qa__title">{{ $question->title }}</p>
-
-              <div class="recent-qa__answer" id="qa-answer-{{ $question->id }}">
-                {!! nl2br($question->answer) !!}
-                <button class="btn global-btn" id="qa-btn-{{ $question->id }}" @click="hideQa($event)">닫기</button>
+            <a href="{{ route('qa.show', $question->id) }}">
+              <div class="recent-qa__item" id="qa-{{ $question->id }}">
+                <span
+                  class="recent-qa__category category-{{ $question->category_id }}">{{ $question->category->name }}</span>
+                <p class="recent-qa__title">{{ $question->title }}</p>
               </div>
-            </div>
+            </a>
           @endforeach
 
           <div class="more">
@@ -188,32 +185,4 @@
       </a>
     </div>
   </main>
-@endsection
-
-@section('js-script')
-  <script>
-    const app = Vue.createApp({
-      data() {
-        return {
-          currentIdValue: '',
-        }
-      },
-      methods: {
-        showQa(evt) {
-          $('.recent-qa__answer').hide();
-          const targetId = $(evt.target).parent().attr('id').split('-');
-          const idValue = targetId[targetId.length - 1];
-          this.currentIdValue = idValue;
-          $(`#qa-answer-${idValue}`).fadeIn();
-        },
-        hideQa(evt) {
-          evt.stopPropagation();
-          $(`#qa-answer-${this.currentIdValue}`).hide();
-        },
-      },
-    });
-
-    app.mount('#one-column');
-
-  </script>
 @endsection
