@@ -108,7 +108,7 @@ class RegisteredUserController extends Controller
 
     event(new Registered($user));
 
-    $admin = config('admin.email');
+    $admin = config('app.admins');
     $usersMount = User::count();
 
     Mail::to($admin)->send(new RegisteredAlertMail($user, $usersMount));
