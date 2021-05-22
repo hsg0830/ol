@@ -64,7 +64,7 @@ class AsksController extends Controller
     $ask->user_id = Auth::id();
     $result = $ask->save();
 
-    $admin = config('admin.email');
+    $admin = config('app.admins');
     $name = $ask->user->name;
     $draft = $ask->draft;
     $url = $ask->edit_url;

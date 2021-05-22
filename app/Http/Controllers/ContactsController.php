@@ -43,7 +43,7 @@ class ContactsController extends Controller
 
     $request->session()->regenerateToken();
 
-    $admin = config('admin.email');
+    $admin = config('app.admins');
     $url = $contact->reply_url;
     Mail::to($admin)->send(new ContactAlertMail($name, $email, $body, $url));
 
