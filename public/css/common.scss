@@ -658,6 +658,21 @@ html.open,
 }
 
 /*---------------------------
+  サイドメニューのユーザー用ブロック
+---------------------------*/
+.side-user {
+  & .global-btn:not(:first-child) {
+    @media screen and (min-width: 1222px) {
+      margin-left: 2rem;
+    }
+
+    @media screen and (max-width: 1137px) {
+      margin-top: 1rem;
+    }
+  }
+}
+
+/*---------------------------
   サイドメニューのLineリンク
 ---------------------------*/
 .line-link {
