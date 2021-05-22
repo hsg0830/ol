@@ -92,7 +92,7 @@
           <div class="category-block__content">
             <div class="link-block__intro norm">
               <img src="{{ asset('img/block/top_01.png') }}" alt="" />
-              <p>각종 규범웜문을 볼수 있습니다.</p>
+              <p>각종 규범원문을 볼수 있습니다.</p>
             </div>
             <div class="link-block__link norm">
               <button class="norm" onclick="location.href='{{ route('norms', 'index') }}'">보기</button>
