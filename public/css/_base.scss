@@ -45,7 +45,7 @@ a {
 }
 
 //フォーム要素のスタイル
-input:not([type='radio']),
+input:not([type='radio']):not([type='checkbox']),
 select,
 textarea {
   display: block;
