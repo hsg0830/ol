@@ -231,5 +231,5 @@ return [
 
   ],
 
-  'admins' => array_map('trim', explode(',', env('MAIL_ADMINS')))
+  'admins' => array_map('trim', explode(',', env('MAIL_ADMINS'))),
 ];

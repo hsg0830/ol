@@ -16,11 +16,6 @@ use App\Mail\RegisteredAlertMail;
 
 class RegisteredUserController extends Controller
 {
-  private $checkCodes = [
-    'general' => '19550525_edu',
-    'special' => '19461005_korea',
-  ];
-
   /**
    * Display the registration view.
    *
@@ -37,12 +32,7 @@ class RegisteredUserController extends Controller
 
   public function confirm_code(Request $request)
   {
-    $result = false;
-
-    if (in_array($request->check_code, $this->checkCodes)) {
-      $result = true;
-      return ['result' => $result];
-    }
+    $result = $this->isValidPassCode($request->check_code);
     return ['result' => $result];
   }
 
@@ -50,7 +40,7 @@ class RegisteredUserController extends Controller
    * Handle an incoming registration request.
    *
    * @param  \Illuminate\Http\Request  $request
-   * @return \Illuminate\Http\RedirectResponse
+   * @return array
    *
    * @throws \Illuminate\Validation\ValidationException
    */
@@ -58,10 +48,12 @@ class RegisteredUserController extends Controller
   {
     $result = false;
 
-    if (!(in_array($request->check_code, $this->checkCodes))) {
+    // チェックコードの再確認
+    if (!$this->isValidPassCode($request->check_code)) {
       return ['result' => $result];
     }
 
+    // データの整形とバリデーション
     $birth_date = $request->birth_year . '-' .
       Str::padLeft($request->birth_month, 2, '0') . '-' .
       Str::padLeft($request->birth_day, 2, '0');
@@ -89,9 +81,11 @@ class RegisteredUserController extends Controller
       'password.min' => '암호는 8글자이상이 되게 설정하십시오.',
     ]);
 
+    // 時刻と権限の決定
     $now = now();
-    $role = $request->check_code == $this->checkCodes['special'] ?  1 : 0;
+    $role = $request->check_code == env('CHECK_CODE_SPECIAL') ?  1 : 0;
 
+    // 登録及びログイン
     Auth::login($user = User::create([
       'name' => $request->name,
       'birth_year' => $request->birth_year,
@@ -108,6 +102,7 @@ class RegisteredUserController extends Controller
 
     event(new Registered($user));
 
+    // 管理者へのメール送信
     $admin = config('app.admins');
     $usersMount = User::count();
 
@@ -116,10 +111,18 @@ class RegisteredUserController extends Controller
     $result = true;
     $url = url('/verify-email');
 
-    // return redirect(RouteServiceProvider::HOME);
     return [
       'result' => $result,
       'url' => $url,
     ];
+  }
+
+  // 認証コードチェック用
+  private function isValidPassCode($code) {
+    $checkCode = [
+      'general' => env('CHECK_CODE_GENERAL'),
+      'special' => env('CHECK_CODE_SPECIAL'),
+    ];
+    return in_array($code, $checkCode);
   }
 }
