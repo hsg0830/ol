@@ -266,7 +266,7 @@
                   setTimeout(() => {
                     window.location.href = response.data.url;
                   }, 2000);
-                  return this.status = 'registered';
+                  this.status = 'registered';
                 }
               })
               .catch((error) => {
@@ -283,6 +283,8 @@
                 } else {
                   console.log(error);
                 }
+
+                this.status = 'initial';
               });
           }
         },
