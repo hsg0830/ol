@@ -47,6 +47,11 @@
       </div>
 
       <div class="form-group">
+        <input id="remember_me" type="checkbox" name="remember">
+        <label for="remember_me"> 로그인상태를 기억시켜두시겠습니까?</label>
+      </div>
+
+      <div class="form-group">
         <button type="submit" class="btn global-btn">보내기</button>
       </div>
 
