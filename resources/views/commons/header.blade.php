@@ -52,7 +52,7 @@
     @auth('web')
     <form method="POST" action="{{ route('logout') }}">
       @csrf
-      <button class="global-btn">로그아우트</button>
+      <button class="nav-login-btn global-btn" style="width: 10rem;">로그아우트</button>
     </form>
     @endauth
   </nav>
