@@ -25,10 +25,13 @@
     <div v-if="isInitial">
       <form class="login-form pw-comfirm" v-if="!checkStatus">
 
+        <v-errors :error="errors.check_code"></v-errors>
+
         <div class="form-group">
           <label for="check-code">암호</label>
           <input type="password" id="check-code" v-model="checkCode">
-          <p class="form-tip"><i class="fas fa-exclamation-circle"></i>&nbsp;학교에서 전달된 확인용암호를 입력하십시오. 입력하신 다음에는 enter건을 누르지 말고 보내기단추를 누르십시오.</p>
+          <p class="form-tip"><i class="fas fa-exclamation-circle"></i>&nbsp;학교에서 전달된 확인용암호를 입력하십시오. 입력하신 다음에는 enter건을 누르지
+            말고 보내기단추를 누르십시오.</p>
         </div>
         <div class="form-group">
           <button type="button" class="btn global-btn" @click="confirmCheckCode()">보내기</button>
@@ -219,12 +222,25 @@
             .then((response) => {
               if (response.data.result === true) {
                 return this.checkStatus = true;
-              } else {
-                return alert('암호가 맞지 않습니다. 암호를 다시 확인하십시오.');
               }
+              // else {
+              //   return alert('암호가 맞지 않습니다. 암호를 다시 확인하십시오.');
+              // }
             })
             .catch((error) => {
-              console.log(error);
+              if (error.response.status === 422) {
+                const responseErrors = error.response.data.errors;
+                console.log(responseErrors);
+                let errors = {};
+
+                for (const key in responseErrors) {
+                  errors[key] = responseErrors[key][0];
+                }
+                console.log(errors);
+                this.errors = errors;
+              } else {
+                console.log(error);
+              }
             });
         },
         confirmEmail() {
