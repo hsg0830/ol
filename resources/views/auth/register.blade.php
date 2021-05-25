@@ -19,23 +19,32 @@
 @endsection
 
 @section('content')
-  <!-- ↓↓↓メインコンテンツ↓↓↓ -->
   <main id="one-column">
 
+    {{-- 初期画面 --}}
     <div v-if="isInitial">
+
+      {{-- 認証コード入力画面 --}}
       <form class="login-form pw-comfirm" v-if="!checkStatus">
+
+        <v-errors :error="errors.check_code"></v-errors>
 
         <div class="form-group">
           <label for="check-code">암호</label>
           <input type="password" id="check-code" v-model="checkCode">
-          <p class="form-tip"><i class="fas fa-exclamation-circle"></i>&nbsp;학교에서 전달된 확인용암호를 입력하십시오. 입력하신 다음에는 enter건을 누르지 말고 보내기단추를 누르십시오.</p>
+          <p class="form-tip"><i class="fas fa-exclamation-circle"></i>&nbsp;학교에서 전달된 확인용암호를 입력하십시오. 입력하신 다음에는 enter건을 누르지
+            말고 보내기단추를 누르십시오.</p>
         </div>
+
         <div class="form-group">
           <button type="button" class="btn global-btn" @click="confirmCheckCode()">보내기</button>
         </div>
+
       </form>
 
+      {{-- 認証後の登録情報入力画面 --}}
       <div class="register-form" v-if="checkStatus">
+
         <div class="form-group">
           <label for="name">이름</label>
           <input type="text" id="name" v-model="name" />
@@ -68,6 +77,7 @@
               <option value="{{ $i }}">{{ $i }}</option>
             @endfor
           </select>일
+
           <v-errors :error="errors.birth_year"></v-errors>
           <v-errors :error="errors.birth_month"></v-errors>
           <v-errors :error="errors.birth_day"></v-errors>
@@ -93,8 +103,8 @@
               <option value="{{ $school->id }}">{{ $school->name }}</option>
             @endforeach
           </select>
-          <v-errors :error="errors.school_id"></v-errors>
 
+          <v-errors :error="errors.school_id"></v-errors>
         </div>
 
         <div class="form-group">
@@ -139,6 +149,7 @@
       </div>
     </div>
 
+    {{-- 登録内容送信中画面 --}}
     <div v-if="isRegistering">
       <div class="message block">
         <h1 class="category-title">송신중</h1>
@@ -148,6 +159,7 @@
       </div>
     </div>
 
+    {{-- 登録完了画面 --}}
     <div v-if="isRegistered">
       <div class="message block">
         <h1 class="category-title">송신완료</h1>
@@ -155,8 +167,8 @@
         <p>2초후에 자동적으로 이동됩니다.</p>
       </div>
     </div>
+
   </main>
-  <!-- ↑↑↑メインコンテンツ↑↑↑ -->
 @endsection
 
 @section('js-files')
@@ -170,7 +182,6 @@
         return {
           checkCode: '',
           checkStatus: false,
-          // registered: false,
           status: 'initial',
           name: '',
           birthYear: '',
@@ -219,12 +230,22 @@
             .then((response) => {
               if (response.data.result === true) {
                 return this.checkStatus = true;
-              } else {
-                return alert('암호가 맞지 않습니다. 암호를 다시 확인하십시오.');
               }
             })
             .catch((error) => {
-              console.log(error);
+              if (error.response.status === 422) {
+                const responseErrors = error.response.data.errors;
+                console.log(responseErrors);
+                let errors = {};
+
+                for (const key in responseErrors) {
+                  errors[key] = responseErrors[key][0];
+                }
+                console.log(errors);
+                this.errors = errors;
+              } else {
+                console.log(error);
+              }
             });
         },
         confirmEmail() {
