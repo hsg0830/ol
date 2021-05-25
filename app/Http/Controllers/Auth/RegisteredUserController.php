@@ -5,19 +5,18 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\School;
-// use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 // use Illuminate\Http\Request;
-use App\Http\Requests\CodeCheckRequest;
-use App\Http\Requests\UserRegisterRequest;
+use App\Http\Requests\CodeCheckRequest; //認証コードチェックバリデーション
+use App\Http\Requests\UserRegisterRequest; //登録内容に対するバリデーション
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-// use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RegisteredAlertMail;
 
 class RegisteredUserController extends Controller
 {
+  // 会員登録画面の表示
   public function create()
   {
     $schools = School::get();
@@ -27,11 +26,13 @@ class RegisteredUserController extends Controller
     ]);
   }
 
+  // 登録用認証コードのチェック
   public function confirm_code(CodeCheckRequest $request)
   {
     return ['result' => true];
   }
 
+  // 会員登録処理
   public function store(UserRegisterRequest $request)
   {
     $result = false;
@@ -60,7 +61,6 @@ class RegisteredUserController extends Controller
     // 管理者へのメール送信
     $admin = config('app.admins');
     $usersMount = User::count();
-
     Mail::to($admin)->send(new RegisteredAlertMail($user, $usersMount));
 
     $result = true;

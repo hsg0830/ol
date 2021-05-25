@@ -42,6 +42,6 @@ class PassCode implements Rule
    */
   public function message()
   {
-    return '암호가 맞지 않습니다.';
+    return '암호가 맞지 않습니다. 암호를 다시 확인하십시오.';
   }
 }
