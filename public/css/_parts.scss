@@ -1,0 +1,161 @@
+@charset "UTF-8";
+
+/*---------------------------
+  共通部品
+---------------------------*/
+// ボタン
+.btn {
+  padding: 0.3rem 1rem;
+  border: none;
+  transition: all 0.3s;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.9;
+  }
+}
+
+// .coverと.global-navに使用しているログイン、問い合わせボタン
+.global-btn {
+  width: 10rem;
+  height: 3.5rem;
+  background-color: $brown;
+  color: $white;
+  border-radius: 0.3rem;
+  box-shadow: 0 0 0.1rem silver;
+  text-align: center;
+  font-family: $krPoor;
+
+  &.large {
+    width: 15rem;
+    height: 5rem;
+  }
+
+  &:hover {
+    opacity: 0.9;
+    background-color: $white;
+    color: $brown;
+  }
+
+  &:focus {
+    background-color: $orange;
+    opacity: 0.8;
+  }
+}
+
+// 注釈
+.caption {
+  color: $brown;
+  border-bottom: 2px dotted $lightBrown;
+}
+
+// メッセージとメッセージブロック
+.message {
+  width: 80%;
+  margin: 0 auto 4rem;
+  text-align: center;
+  line-height: 4.5rem;
+
+  & a {
+    color: $lightBrown;
+  }
+
+  &.block {
+    width: 100%;
+    padding: 4rem;
+    margin-top: 3rem;
+    background-color: $beige;
+    border-radius: 1rem;
+    line-height: 4rem;
+
+    @media screen and (min-width: 768px) {
+      width: 70%;
+      margin-top: 12rem;
+      margin-bottom: 22rem;
+      line-height: 6rem;
+    }
+
+    & a {
+      color: $brown;
+    }
+  }
+}
+
+.error-message {
+  background-color: rgb(250, 213, 209);
+  color: $red;
+  margin: 1rem auto;
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
+
+.notification {
+  width: 80%;
+  background-color: rgb(222, 247, 207);
+  color: $green;
+  margin: 1rem auto 3rem;
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
+
+.form-tip {
+  padding: 0 1.5rem;
+  color: $brown;
+}
+
+// pagination
+.v-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.v-pagination li {
+  border: 1px solid $brown;
+  border-radius: 0.3rem;
+  padding: 0;
+  text-align: center;
+  background-color: $lightBrown;
+  color: $brown;
+
+  &:not(:last-child) {
+    margin-right: 2rem;
+  }
+
+  &.active {
+    background-color: $brown;
+    color: #fff;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+  }
+
+  &:hover {
+    background-color: rgba($brown, 0.6);
+    color: #fff;
+  }
+}
+
+.v-pagination li button {
+  padding: 0.6rem 1.2rem;
+}
+
+/*---------------------------
+  ログイン画面のフォームなど
+---------------------------*/
+.login-form,
+.register-form {
+  width: 80%;
+  margin: 0 auto;
+  padding: 2rem 0 4rem;
+
+  & .birth_date {
+    display: inline-block;
+    width: 23%;
+  }
+
+  &.pw-comfirm {
+    margin-bottom: 18rem;
+  }
+}

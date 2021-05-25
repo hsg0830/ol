@@ -1,0 +1,315 @@
+@charset "UTF-8";
+/*---------------------------
+  変数
+---------------------------*/
+/*---------------------------
+  変数
+---------------------------*/
+.tooltip {
+  position: relative;
+  cursor: pointer;
+  /* ツールチップの中身 */
+  /* ツールチップの矢印 */
+}
+
+.tooltip:before {
+  position: absolute;
+  top: 100%;
+  margin-top: 1rem;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  z-index: 1070;
+  min-width: 200px;
+  line-height: 2rem;
+  padding: 7px;
+  font-size: 1.4rem;
+  color: #6a421f;
+  background-color: #fffcf4;
+  border-radius: 4px;
+  content: attr(data-text);
+  /* デフォルトでツールチップは非表示 */
+  opacity: 0;
+  visibility: hidden;
+  -webkit-box-shadow: 0.5px 0.5px 10px rgba(106, 66, 31, 0.5);
+          box-shadow: 0.5px 0.5px 10px rgba(106, 66, 31, 0.5);
+  -webkit-transition: opacity 0.3s ease-out;
+  transition: opacity 0.3s ease-out;
+}
+
+@media screen and (min-width: 768px) {
+  .tooltip:before {
+    min-width: 400px;
+  }
+}
+
+.tooltip:after {
+  position: absolute;
+  top: 100%;
+  margin-top: -7px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  z-index: 1070;
+  border-color: transparent transparent #fffcf4 transparent;
+  border-style: solid;
+  border-width: 1.1rem;
+  content: '';
+  /* デフォルトで非表示 */
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.3s ease-out;
+  transition: opacity 0.3s ease-out;
+}
+
+.tooltip:hover:before, .tooltip:hover:after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.tooltip.isActive:before, .tooltip.isActive:after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/*---------------------------
+  規範原文ページのメイン領域
+---------------------------*/
+.page-title {
+  width: 100%;
+  margin: 2rem auto 1.1rem;
+  padding: 0.5rem 0;
+  background-color: #ab243b;
+  -webkit-box-shadow: 0 0 0 0.4rem #ab243b;
+          box-shadow: 0 0 0 0.4rem #ab243b;
+  border: dashed 0.2rem #ffffff;
+  color: #ffffff;
+  font-family: "Sunflower", sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  letter-spacing: 0.5rem;
+  text-align: center;
+  position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  .page-title {
+    margin-top: 3rem;
+    font-size: 3.5rem;
+  }
+}
+
+.page-title:after {
+  position: absolute;
+  content: '';
+  left: -0.8rem;
+  top: -0.7rem;
+  border-width: 0 0 3rem 3rem;
+  border-style: solid;
+  border-color: #eee5df #eee5df #6a421f;
+  -webkit-box-shadow: 0.2rem 0.2rem 0.2rem rgba(192, 192, 192, 0.5);
+          box-shadow: 0.2rem 0.2rem 0.2rem rgba(192, 192, 192, 0.5);
+}
+
+.all-ex-btn {
+  display: block;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  background-color: #ffffff;
+  color: #ab243b;
+  border-radius: 0.3rem;
+  -webkit-box-shadow: 0.2rem 0.2rem 0.5rem 0 rgba(0, 0, 0, 0.5);
+          box-shadow: 0.2rem 0.2rem 0.5rem 0 rgba(0, 0, 0, 0.5);
+}
+
+.all-ex-btn:hover, .all-ex-btn:active {
+  background-color: #ab243b;
+  color: #ffffff;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.title {
+  margin-bottom: 2rem;
+  padding: 1rem 1.5rem;
+  font-size: 2rem;
+  font-weight: 500;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.chapter {
+  margin-bottom: 1.5rem;
+}
+
+.chapter__title {
+  margin-bottom: 3rem;
+  background-color: #d6c7ba;
+  color: #494949;
+  border-bottom: solid 0.5rem #6a421f;
+}
+
+.chapter__title span {
+  color: #6a421f;
+  font-weight: 600;
+}
+
+.term {
+  margin-bottom: 4rem;
+}
+
+@media screen and (min-width: 768px) {
+  .term {
+    margin-bottom: 5rem;
+  }
+}
+
+.term__head-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.term__title {
+  width: 95%;
+  color: #494949;
+  background: transparent;
+  border-left: solid 0.5rem #6a421f;
+}
+
+.term__title span {
+  color: #6a421f;
+  font-weight: 600;
+}
+
+.term .ex-btn {
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  background-color: rgba(106, 66, 31, 0.8);
+  color: #ffffff;
+  text-align: center;
+  line-height: 3rem;
+}
+
+.term .ex-btn:hover {
+  cursor: pointer;
+  background-color: rgba(203, 166, 126, 0.8);
+}
+
+.term__detail__title {
+  margin-bottom: 1rem;
+  padding-left: 0;
+}
+
+.term__detail__title span {
+  color: #6a421f;
+}
+
+.term__detail__case__title {
+  padding: 0;
+}
+
+.term__detail__case__title span {
+  color: #cba67e;
+}
+
+.introduction {
+  margin-bottom: 3rem;
+}
+
+@media screen and (min-width: 768px) {
+  .introduction {
+    margin-bottom: 5rem;
+  }
+}
+
+.introduction span {
+  font-family: "Song Myung", serif;
+  font-size: 1.8rem;
+}
+
+@media screen and (min-width: 768px) {
+  .introduction span {
+    font-size: 2.1rem;
+  }
+}
+
+.term__description {
+  color: #494949;
+}
+
+@media screen and (min-width: 768px) {
+  .term__description {
+    margin-left: 2rem;
+  }
+}
+
+.term__description .complement {
+  display: block;
+  margin-bottom: 0.5rem;
+  width: 5rem;
+  background-color: #cba67e;
+  border: 1px solid #6a421f;
+  border-radius: 0.3rem;
+  color: #ffffff;
+  text-align: center;
+}
+
+.description {
+  margin-bottom: 2rem;
+}
+
+.description.indent {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.description.indent .indent__mark {
+  width: 5%;
+  margin-right: 0.3rem;
+  color: #cba67e;
+  font-weight: bold;
+}
+
+.example table {
+  width: 100%;
+  margin-bottom: 3rem;
+  background-color: #fffcf4;
+  border-radius: 1rem;
+}
+
+.example table tr th,
+.example table tr td {
+  text-align: center;
+  padding: 1.2rem 1.2rem;
+  border: 1px solid #eee5df;
+}
+
+.example table tr th.text-left,
+.example table tr td.text-left {
+  text-align-last: left;
+}
+
+.example table tr th .underline,
+.example table tr td .underline {
+  border-bottom: 2px solid #6a421f;
+}
+
+.auxiliary {
+  margin-bottom: 3rem;
+  padding: 1rem;
+  background-color: #d6c7ba;
+  border: 2px dotted #6a421f;
+}
+
+.auxiliary .mb-0 {
+  margin-bottom: 0;
+}
+/*# sourceMappingURL=norm.css.map */
