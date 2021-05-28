@@ -124,6 +124,7 @@ class QuestionsController extends Controller
   public function changeStatus(Question $question)
   {
     $question->status = !($question->status);
+    $question->released_at = (intval($question->status) === 1) ? now() : null;
     $result = $question->save();
 
     return [
@@ -157,6 +158,7 @@ class QuestionsController extends Controller
     $question->title = $request->title;
     $question->answer = $request->answer;
     $question->status = $request->status;
+    $question->released_at = (intval($question->status) === 1) ? now() : null;
     $result = $question->save();
 
     return [
