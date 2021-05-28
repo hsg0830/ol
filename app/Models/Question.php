@@ -16,9 +16,9 @@ class Question extends Model
     'released_at' => 'date'
   ];
 
-  protected $dispatchesEvents = [
-    'saving' => QuestionSaving::class
-  ];
+  // protected $dispatchesEvents = [
+  //   'saving' => QuestionSaving::class
+  // ];
 
   public function category()
   {
