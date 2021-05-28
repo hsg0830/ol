@@ -1589,7 +1589,8 @@ html.open,
 }
 
 // 本文の内容部分
-.section-content-block, .introduction-block {
+.section-content-block,
+.introduction-block {
   margin-bottom: 4rem;
 
   @media screen and (min-width: 768px) {
@@ -1597,7 +1598,11 @@ html.open,
   }
 }
 
-.section-content-block, .introduction-block, .qa-item {
+.section-content-block,
+.introduction-block,
+.qa-item,
+.ask-detail,
+.reply {
   & > p {
     margin-bottom: 1rem;
     color: $gray;
@@ -1608,7 +1613,6 @@ html.open,
       margin-bottom: 1.5rem;
       margin-left: 1.5rem;
     }
-
   }
 
   & .emphasis {
@@ -1629,7 +1633,8 @@ html.open,
     }
   }
 
-  & .example, & .quote {
+  & .example,
+  & .quote {
     width: 95%;
     margin: 3rem auto;
 
