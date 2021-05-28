@@ -16,9 +16,9 @@ class Article extends Model
     'released_at' => 'date'
   ];
 
-  protected $dispatchesEvents = [
-    'saving' => ArticleSaving::class
-  ];
+  // protected $dispatchesEvents = [
+  //   'saving' => ArticleSaving::class
+  // ];
 
   public function category()
   {

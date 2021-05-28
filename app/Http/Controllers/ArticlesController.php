@@ -129,6 +129,7 @@ class ArticlesController extends Controller
   public function changeStatus(Article $article)
   {
     $article->status = !($article->status);
+    $article->released_at = (intval($article->status) === 1) ? now() : null;
     $result = $article->save();
 
     return [
@@ -166,6 +167,7 @@ class ArticlesController extends Controller
       $article->sub_category_id = $request->sub_category_id;
       $article->introduction = $request->introduction;
       $article->status = $request->status;
+      $article->released_at = (intval($article->status) === 1) ? now() : null;
       $article->save();
 
       if (count($request->subContents) > 0) {
