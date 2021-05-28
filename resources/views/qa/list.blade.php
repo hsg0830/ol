@@ -64,7 +64,9 @@
         <tr class="text-center" v-for="question in questions">
           <th scope="row" v-text="question.id"></th>
           <th scope="row" v-text="question.category.name"></th>
-          <td v-text="question.title" class="text-start"></td>
+          <td class="text-start">
+            <a :href="question.url" target="_blank" v-text="question.title"></a>
+          </td>
           <td>
             <a v-if="question.status === 1" class="btn btn-success" @click="changeStatus(question)">공개</a>
             <a v-else class="btn btn-warning" @click="changeStatus(question)">미공개</a>
@@ -80,19 +82,14 @@
     </table>
 
     {{-- pagination --}}
-    <v-pagination
-      v-model="page"
-      :page-count="pageCount"
-      :click-handler="movePage"
-      prev-text="&laquo;"
-      next-text="&raquo;"
+    <v-pagination v-model="page" :page-count="pageCount" :click-handler="movePage" prev-text="&laquo;" next-text="&raquo;"
       container-class="v-pagination">
     </v-pagination>
   </main>
 @endsection
 
 @section('css')
-{{--  pagination用： 本来は editors.blade.php へセットすべきなのですが、ログイン画面などに影響するようでしたので、こちらへセットしています。--}}
+  {{-- pagination用： 本来は editors.blade.php へセットすべきなのですが、ログイン画面などに影響するようでしたので、こちらへセットしています。 --}}
   <link rel="stylesheet" href="{{ asset('css/destyle.css') }}" />
 @endsection
 

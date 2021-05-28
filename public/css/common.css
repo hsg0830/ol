@@ -2138,25 +2138,25 @@ html.open,
   }
 }
 
-.section-content-block > p, .introduction-block > p {
+.section-content-block > p, .introduction-block > p, .qa-item > p {
   margin-bottom: 1rem;
   color: #494949;
   font-family: "Noto Sans KR", sans-serif;
 }
 
 @media screen and (min-width: 768px) {
-  .section-content-block > p, .introduction-block > p {
+  .section-content-block > p, .introduction-block > p, .qa-item > p {
     margin-bottom: 1.5rem;
     margin-left: 1.5rem;
   }
 }
 
-.section-content-block .emphasis, .introduction-block .emphasis {
+.section-content-block .emphasis, .introduction-block .emphasis, .qa-item .emphasis {
   font-weight: bold;
   color: #ab243b;
 }
 
-.section-content-block .moving-underline, .introduction-block .moving-underline {
+.section-content-block .moving-underline, .introduction-block .moving-underline, .qa-item .moving-underline {
   background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, transparent), color-stop(50%, #fcc786));
   background-image: linear-gradient(left, transparent 50%, #fcc786 50%);
   background-repeat: repeat-x;
@@ -2166,12 +2166,12 @@ html.open,
   transition: all 3s ease;
 }
 
-.section-content-block .moving-underline.isActive, .introduction-block .moving-underline.isActive {
+.section-content-block .moving-underline.isActive, .introduction-block .moving-underline.isActive, .qa-item .moving-underline.isActive {
   background-position: -100% 0.5em;
   font-weight: bold;
 }
 
-.section-content-block .example, .section-content-block .quote, .introduction-block .example, .introduction-block .quote {
+.section-content-block .example, .section-content-block .quote, .introduction-block .example, .introduction-block .quote, .qa-item .example, .qa-item .quote {
   width: 95%;
   margin: 3rem auto;
   -webkit-box-sizing: border-box;
@@ -2184,26 +2184,26 @@ html.open,
 }
 
 @media screen and (min-width: 768px) {
-  .section-content-block .example, .section-content-block .quote, .introduction-block .example, .introduction-block .quote {
+  .section-content-block .example, .section-content-block .quote, .introduction-block .example, .introduction-block .quote, .qa-item .example, .qa-item .quote {
     margin: 4rem auto;
   }
 }
 
-.section-content-block .example > p, .section-content-block .quote > p, .introduction-block .example > p, .introduction-block .quote > p {
+.section-content-block .example > p, .section-content-block .quote > p, .introduction-block .example > p, .introduction-block .quote > p, .qa-item .example > p, .qa-item .quote > p {
   color: #6a421f;
   line-height: 2.5;
 }
 
-.section-content-block .example, .introduction-block .example {
+.section-content-block .example, .introduction-block .example, .qa-item .example {
   padding: 1rem;
 }
 
-.section-content-block .quote, .introduction-block .quote {
+.section-content-block .quote, .introduction-block .quote, .qa-item .quote {
   padding: 1rem 1rem 1rem 5rem;
   position: relative;
 }
 
-.section-content-block .quote:before, .introduction-block .quote:before {
+.section-content-block .quote:before, .introduction-block .quote:before, .qa-item .quote:before {
   display: inline-block;
   position: absolute;
   top: 1.5rem;
@@ -2284,7 +2284,7 @@ html.open,
   color: #ffffff;
   text-align: center;
   border-radius: 0.5rem;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .qa-item__question .mark_and_category .category.category-100 {
@@ -2304,7 +2304,7 @@ html.open,
 }
 
 .qa-item__question .question-sentence {
-  width: 85%;
+  width: 75%;
   padding-top: 2rem;
   font-size: 2rem;
 }

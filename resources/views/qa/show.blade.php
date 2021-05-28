@@ -38,7 +38,7 @@
       </div>
       <div class="qa-item__answer at-show">
         <span class="mark">A</span>
-        <p class="answer-message">{!! nl2br($question->answer) !!}</p>
+        <div class="answer-message">{!! nl2br($question->answer) !!}</div>
       </div>
     </div>
 

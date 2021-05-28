@@ -10,7 +10,7 @@ class Question extends Model
 {
   use HasFactory;
 
-  protected $appends = ['date', 'edit_url'];
+  protected $appends = ['date', 'url', 'edit_url'];
 
   protected $casts = [
     'released_at' => 'date'
@@ -33,6 +33,11 @@ class Question extends Model
   public function getDateAttribute()
   {
     return !is_null($this->released_at) ? $this->released_at->format('Y/m/d') : '';
+  }
+
+  public function getUrlAttribute()
+  {
+    return route('qa.show', $this->id);
   }
 
   public function getEditUrlAttribute()

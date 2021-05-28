@@ -1595,7 +1595,9 @@ html.open,
   @media screen and (min-width: 768px) {
     margin-bottom: 5.5rem;
   }
+}
 
+.section-content-block, .introduction-block, .qa-item {
   & > p {
     margin-bottom: 1rem;
     color: $gray;
@@ -1725,7 +1727,7 @@ html.open,
         color: $white;
         text-align: center;
         border-radius: 0.5rem;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
 
         &.category-100 {
           background-color: $green;
@@ -1744,7 +1746,7 @@ html.open,
     }
 
     & .question-sentence {
-      width: 85%;
+      width: 75%;
       padding-top: 2rem;
       // font-family: $krSunflower;
       font-size: 2rem;
@@ -1792,7 +1794,7 @@ html.open,
     &.at-show {
       padding: 2rem 1.5rem;
     }
-    
+
     &:before {
       font-family: 'Font Awesome 5 Free';
       content: '\f111';
