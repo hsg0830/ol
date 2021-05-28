@@ -164,6 +164,8 @@ class AsksController extends Controller
       $query->orderBy('viewed_count', 'desc');
     } elseif ($viewed_count == 2) {
       $query->orderBy('viewed_count', 'asc');
+    } else {
+      $query->orderBy('created_at', 'desc');
     }
 
     $asks = $query->with('category', 'user')->paginate(15);
