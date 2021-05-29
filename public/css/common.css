@@ -1154,6 +1154,13 @@ html.open,
   }
 }
 
+@media screen and (max-width: 767px) {
+  .side-user .global-btn:not(:first-child) {
+    margin-top: 0;
+    margin-left: 2rem;
+  }
+}
+
 /*---------------------------
   サイドメニューのLineリンク
 ---------------------------*/
