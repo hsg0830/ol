@@ -67,6 +67,9 @@
 }
 
 /*---------------------------
+  変数
+---------------------------*/
+/*---------------------------
   基本設定
 ---------------------------*/
 html {
@@ -196,6 +199,11 @@ select {
 .text-underline.transparent {
   color: transparent;
   border-bottom: 1px solid #000;
+}
+
+.text-underline-link {
+  color: #cba67e;
+  border-bottom: 1px dashed #cba67e;
 }
 
 .text-wavy {
