@@ -43,5 +43,5 @@
     </div>
   </main>
 
-  @include('commons.side)
+  @include('commons.side')
 @endsection
