@@ -73,7 +73,7 @@
             <span v-if="ask.status ===1" v-text="ask.category.name"></span>
           </th>
           <td class="text-start">
-            <span v-if="ask.status === 1" v-text="ask.title"></span>
+            <span v-if="ask.status === 1"><a :href="ask.url" v-text="ask.title"></a></span>
             <span v-else v-text="ask.headline"></span>
           </td>
           <td v-text="ask.date"></td>

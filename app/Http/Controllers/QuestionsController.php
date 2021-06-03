@@ -114,6 +114,8 @@ class QuestionsController extends Controller
       $query->orderBy('viewed_count', 'desc');
     } elseif ($viewed_count == 2) {
       $query->orderBy('viewed_count', 'asc');
+    } else {
+      $query->orderBy('created_at', 'desc');
     }
 
     $questions = $query->with('category')->paginate(15);

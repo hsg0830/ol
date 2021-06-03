@@ -67,7 +67,7 @@
           </div>
           <div class="qa-item__answer" style="display: none;">
             <span class="mark">A</span>
-            <p class="answer-message" v-html="question.answer"></p>
+            <div class="answer-message" v-html="question.answer"></div>
           </div>
         </div>
         {{-- QAの一アイテム ここまで --}}
