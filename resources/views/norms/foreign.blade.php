@@ -37,7 +37,7 @@
     <div class="message block" style="margin-top: 3rem;">
       <h2 class="category-title">준비중</h2>
       <p>미안합니다.</p>
-      <p>현재 준바중이며 조만간에 공개할 예정입니다.</p>
+      <p>현재 준비중이며 조만간에 공개할 예정입니다.</p>
       <p>제작이 끝나는 차제로 홈페지를 통하여 알려드리겠으므로 잠시만 기다려주십시오.</p>
       <a href="{{ url('/') }}" class="text-underline">첫페지에로</a>
     </div>
