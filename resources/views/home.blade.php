@@ -142,7 +142,7 @@
                 @foreach ($notices as $notice)
                   <li>
                     <span class="info-block__date">{!! $notice->created_at->format('Y-m-d') !!}</span>
-                    <span>{{ $notice->title }}</span>
+                    <span>{!! $notice->title !!}</span>
                   </li>
                 @endforeach
               </ul>
