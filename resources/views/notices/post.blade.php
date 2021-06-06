@@ -59,7 +59,7 @@
 
       <div class="modal__content qa-modal">
         <div class="qa-modal__wrapper">
-          <div class="qa-modal__answer" v-text="noticeTitle"></div>
+          <div class="qa-modal__answer" v-html="noticeTitle"></div>
           <div class="qa-modal__answer" style="margin-top: 3rem;" v-if="role == 1" v-html="noticeDescription"></div>
         </div>
 
