@@ -54,7 +54,8 @@
     </div>
 
     <div class="list-container__count">
-      <p><i class="fas fa-file-signature"></i> 해당되는 질문수: <span v-text="asks.total"></span>건<p>
+      <p><i class="fas fa-file-signature"></i> 해당되는 질문수: <span v-text="asks.total"></span>건
+      <p>
       <p><i class="fas fa-flag"></i> 현재 접수하여 회답하지 못한 질문수: <span v-text="notCompatible"></span>건</p>
     </div>
 
@@ -78,12 +79,7 @@
     </table>
 
     {{-- pagination --}}
-    <v-pagination
-      v-model="page"
-      :page-count="pageCount"
-      :click-handler="movePage"
-      prev-text="&laquo;"
-      next-text="&raquo;"
+    <v-pagination v-model="page" :page-count="pageCount" :click-handler="movePage" prev-text="&laquo;" next-text="&raquo;"
       container-class="v-pagination">
     </v-pagination>
 
@@ -101,14 +97,22 @@
         <p>질문을 접수하면 가능한 한 빨리 답변드리겠으며 싸이트에 반영되는 차제로 등록하신 메일주소앞으로 통보해드리겠습니다.</p>
       </div>
 
-      <div class="form-group">
-        <label for="content">질문내용</label>
-        <textarea name="content" id="content" cols="30" rows="10" required v-model="ask"></textarea>
-      </div>
+      <template v-if="!isSending">
+        <div class="form-group">
+          <label for="content">질문내용</label>
+          <textarea name="content" id="content" cols="30" rows="10" required v-model="ask"></textarea>
+        </div>
 
-      <div class="form-group">
-        <button type="submit" class="btn global-btn" @click="onSave">보내기</button>
-      </div>
+        <div class="form-group">
+          <button type="submit" class="btn global-btn" @click="onSave">보내기</button>
+        </div>
+      </template>
+      <template v-else>
+        <div class="message block" style="margin: 3rem auto 1rem;">
+          <p>질문내용을 송신중이므로 잠시만 기다리십시오.</p>
+          <span class="loading-icon fas fa-sync" aria-hidden="true"></span>
+        </div>
+      </template>
     </div>
   </main>
 
@@ -134,6 +138,7 @@
           authorized: {!! Auth::check() ? 'true' : 'false' !!},
           errors: {},
           searchWord: '',
+          sendingStatus: '',
         }
       },
       components: {
@@ -142,7 +147,10 @@
       computed: {
         pageCount() {
           return parseInt(this.asks.last_page) || 0;
-        }
+        },
+        isSending() {
+          return this.sendingStatus === 'sending';
+        },
       },
       mounted() {
         this.getHashValue();
@@ -153,16 +161,16 @@
           const url = '/bbs/pagination';
 
           axios.get(url, {
-            params: {
-              page: this.page,
-              selectedCategory: this.selectedCategory,
-              searchWord: this.searchWord,
-            }
-          })
-          .then(response => {
-            this.asks = response.data.asks;
-            this.notCompatible = response.data.notCompatible;
-          });
+              params: {
+                page: this.page,
+                selectedCategory: this.selectedCategory,
+                searchWord: this.searchWord,
+              }
+            })
+            .then(response => {
+              this.asks = response.data.asks;
+              this.notCompatible = response.data.notCompatible;
+            });
         },
         movePage(page) {
           this.page = page;
@@ -212,7 +220,14 @@
             return
           }
 
+          if (this.ask == '') {
+            alert("짊문내용을 입력하십시오.");
+            return
+          }
+
           if (confirm('질문내용을 보내시겠습니까?')) {
+            this.sendingStatus = 'sending';
+
             const url = '/bbs';
             const method = 'POST';
             const params = {
@@ -225,6 +240,7 @@
               .then(response => {
                 if (response.data.result === true) {
                   this.ask = '';
+                  this.sendingStatus = '';
                   scrollTo(0, 0);
                   alert('질문을 접수하였습니다.');
                 }

@@ -14,7 +14,7 @@
     <!-- 학습실 -->
     <section class="ly-block">
       <div class="category-block">
-        <h2 class="category-block__name">학습실</h2>
+        <a href="{{ route('articles.index') }}"><h2 class="category-block__name">학습실</h2></a>
         <div class="category-block__content">
 
           <!-- 최근기사 -->
@@ -64,7 +64,7 @@
     <div class="flex-block ly-block">
       <!-- 일문일답 -->
       <section class="category-block">
-        <h2 class="category-block__name">일문일답</h2>
+        <a href="{{ route('qa.index') }}"><h2 class="category-block__name">일문일답</h2></a>
         <div class="category-block__content recent-qa recent-common">
           @foreach ($questions as $question)
             <a href="{{ route('qa.show', $question->id) }}">
@@ -85,7 +85,7 @@
       <section>
         <!-- 규범원문 -->
         <section class="category-block link-block">
-          <h2 class="category-block__name">규범원문</h2>
+          <a href="{{ route('norms', 'index') }}"><h2 class="category-block__name">규범원문</h2></a>
           <div class="category-block__content">
             <div class="link-block__intro norm">
               <img src="{{ asset('img/block/top_01.png') }}" alt="" />
@@ -99,7 +99,7 @@
 
         <!-- 자료실 -->
         <section class="category-block link-block">
-          <h2 class="category-block__name">자료실</h2>
+          <a href="{{ route('materials.index') }}"><h2 class="category-block__name">자료실</h2></a>
           <div class="category-block__content">
             <div class="link-block__intro ref">
               <img src="{{ asset('img/block/top_02.png') }}" alt="" />
@@ -114,7 +114,7 @@
       <section>
         <!-- 질문게시판 -->
         <section class="category-block">
-          <h2 class="category-block__name">질문게시판</h2>
+          <a href="{{ route('bbs.index') }}"><h2 class="category-block__name">질문게시판</h2></a>
           <div class="category-block__content recent-ask recent-common">
             <ul>
 

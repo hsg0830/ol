@@ -7,6 +7,7 @@ use App\Http\Requests\AskRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AskAlertMail;
+use App\Mail\AsksRecievedAlertMail;
 use App\Mail\AskReplyNotificationMail;
 use App\Models\Ask;
 use App\Models\QuestionCategory;
@@ -65,10 +66,13 @@ class AsksController extends Controller
     $result = $ask->save();
 
     $admin = config('app.admins');
+    $userMail = $ask->user->email;
     $name = $ask->user->name;
+    $date = $ask->created_at->format('Y-m-d H:i:s');
     $draft = $ask->draft;
     $url = $ask->edit_url;
 
+    Mail::to($userMail)->send(new AsksRecievedAlertMail($name, $date, $draft));
     Mail::to($admin)->send(new AskAlertMail($name, $draft, $url));
 
     return [
@@ -78,7 +82,7 @@ class AsksController extends Controller
 
   public function show(Ask $ask)
   {
-    if ($ask->status == 0) {
+    if ($ask->status != 1) {
       return redirect()->route('bbs.index');
     }
 
@@ -109,12 +113,26 @@ class AsksController extends Controller
     ]);
   }
 
+  public function changeStatus(Request $request, Ask $ask)
+  {
+    $result = false;
+
+    $ask->status = $request->status;
+    $ask->editor_id = Auth::id();
+    $result = $ask->save();
+
+    return [
+      'result' => $result,
+    ];
+  }
+
   public function update(AskRequest $request, Ask $ask)
   {
     $result = false;
 
-    $ask->status = 1;
+    $ask->status = $request->status;
     $ask->editor_id = Auth::id();
+
     $ask->category_id = $request->category_id;
     $ask->sub_category_id = $request->sub_category_id;
     $ask->title = $request->title;
@@ -123,10 +141,12 @@ class AsksController extends Controller
     $ask->replied_at = now();
     $result = $ask->save();
 
-    $email = $ask->user->email;
-    $name = $ask->user->name;
+    if ($request->status == 1) {
+      $email = $ask->user->email;
+      $name = $ask->user->name;
 
-    Mail::to($email)->send(new AskReplyNotificationMail($name, $ask->url));
+      Mail::to($email)->send(new AskReplyNotificationMail($name, $ask->url));
+    }
 
     return [
       'result' => $result,
@@ -156,7 +176,7 @@ class AsksController extends Controller
       $query->where('category_id', $category_id);
     }
 
-    if ($status < 2) {
+    if ($status < 4) {
       $query->where('status', $status);
     }
 

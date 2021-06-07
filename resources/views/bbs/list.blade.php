@@ -11,9 +11,11 @@
 
       <div class="col-2 form-floating">
         <select class="form-select" id="status" v-model="status" @change="changeOrderAndCategory">
-          <option value="2" selected>전체</option>
-          <option value="1">회답완료</option>
+          <option value="4" selected>전체</option>
           <option value="0">미회답</option>
+          <option value="1">회답완료</option>
+          <option value="2">회답작성중</option>
+          <option value="3">기각</option>
         </select>
         <label for="status">回答状況</label>
       </div>
@@ -64,14 +66,18 @@
       <tbody>
         <tr class="text-center" v-for="ask in asks">
           <th scope="row" v-text="ask.id"></th>
-          <th v-text="ask.user.name"></th>
           <td>
-            <a v-if="ask.status === 1" class="btn btn-success">회답완료</a>
-            <a v-else class="btn btn-warning">미회답</a>
+            <a :href="getEmailLink(ask.user)" v-text="ask.user.name"></a>
           </td>
-          <th>
-            <span v-if="ask.status ===1" v-text="ask.category.name"></span>
-          </th>
+          <td>
+            <a v-if="ask.status === 0" class="btn btn-warning">미회답</a>
+            <a v-else-if="ask.status === 1" class="btn btn-success">회답완료</a>
+            <a v-else-if="ask.status === 2" class="btn btn-primary">집필중</a>
+            <a v-else-if="ask.status === 3" class="btn btn-secondary">기각</a>
+          </td>
+          <td>
+            <span v-if="ask.status === 1" v-text="ask.category.name"></span>
+          </td>
           <td class="text-start">
             <span v-if="ask.status === 1"><a :href="ask.url" v-text="ask.title"></a></span>
             <span v-else v-text="ask.headline"></span>
@@ -113,7 +119,7 @@
           asks: [],
           page: 1,
           selectedCategory: 0,
-          status: 2,
+          status: 4,
           viewedOrder: 0,
         };
       },
@@ -156,12 +162,15 @@
           this.page = 1;
 
           if (this.viewedOrder == 0) {
-            this.status = 2;
+            this.status = 4;
           } else {
             this.status = 1;
           }
 
           this.getList();
+        },
+        getEmailLink(user) {
+          return `mailto:${user.email}`;
         },
         movePage(page) {
           this.page = page;
