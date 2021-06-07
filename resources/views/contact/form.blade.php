@@ -88,6 +88,7 @@
         <h2 class="category-title">송신중</h2>
         <p>문의내용을 보내고있습니다.</p>
         <p>잠시만 기다려주십시오.</p>
+        <span class="loading-icon fas fa-sync" aria-hidden="true"></span>
       </div>
     </div>
 
