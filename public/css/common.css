@@ -395,6 +395,30 @@ select {
 }
 
 /*---------------------------
+  送信中などの回転するアイコン
+---------------------------*/
+.loading-icon {
+  font-size: 3rem;
+  color: #6a421f;
+  -webkit-animation: spin 2s linear infinite;
+          animation: spin 2s linear infinite;
+}
+
+/* 回転するアニメーション */
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+/*---------------------------
   変数
 ---------------------------*/
 .tooltip {
@@ -2828,10 +2852,10 @@ html.open,
 .user-modal {
   display: none;
   height: 100vh;
+  width: 100vw;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
 }
 
 .user-modal__bg {
@@ -2839,11 +2863,13 @@ html.open,
   height: 100vh;
   position: absolute;
   width: 100%;
+  z-index: 9998;
 }
 
 .user-modal__content {
-  background: #fff;
+  background: #fffcf4;
   position: absolute;
+  z-index: 9999;
   left: 50%;
   top: 50%;
   -webkit-transform: translate(-50%, -50%);

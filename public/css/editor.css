@@ -167,6 +167,30 @@
   margin-bottom: 18rem;
 }
 
+/*---------------------------
+  送信中などの回転するアイコン
+---------------------------*/
+.loading-icon {
+  font-size: 3rem;
+  color: #6a421f;
+  -webkit-animation: spin 2s linear infinite;
+          animation: spin 2s linear infinite;
+}
+
+/* 回転するアニメーション */
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;

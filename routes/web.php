@@ -139,6 +139,7 @@ Route::prefix('editors')->group(function () {
       Route::get('/get-list', [AsksController::class, 'getAsksList']);
       Route::get('/{ask}/edit', [AsksController::class, 'edit'])->name('bbs.edit');
       Route::put('/{ask}', [AsksController::class, 'update']);
+      Route::put('/{ask}/change-status', [AsksController::class, 'changeStatus']);
       Route::delete('/{ask}', [AsksController::class, 'destroy']);
     });
 
