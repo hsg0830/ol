@@ -156,6 +156,7 @@
 
         <p>정보를 보내고있습니다.</p>
         <p>다른 조작을 하지 말고 잠시만 기다려주십시오.</p>
+        <span class="loading-icon fas fa-sync" aria-hidden="true"></span>
       </div>
     </div>
 
@@ -165,6 +166,7 @@
         <h1 class="category-title">송신완료</h1>
         <p>회원등록이 성과적으로 끝났습니다.</p>
         <p>2초후에 자동적으로 이동됩니다.</p>
+        <span class="loading-icon fas fa-sync" aria-hidden="true"></span>
       </div>
     </div>
 
