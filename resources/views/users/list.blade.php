@@ -47,8 +47,8 @@
 
       <div class="col-2" v-if="orderByDate === true">
         <select class="form-select" v-model="registeredOrder">
-          <option value="0" selected>등록순</option>
-          <option value="1">등록거꿀순</option>
+          <option value="1" selected>등록거꿀순</option>
+          <option value="0">등록순</option>
         </select>
       </div>
 
@@ -65,8 +65,8 @@
           <th scope="col">성별</th>
           <th scope="col">생년월일</th>
           <th scope="col">메일인증</th>
-          <th scope="col">로그인회수</th>
-          <th scope="col">최종로그인</th>
+          {{-- <th scope="col">로그인회수</th> --}}
+          {{-- <th scope="col">최종로그인</th> --}}
           <th scope="col">등록시일</th>
           <th scope="col">처리</th>
         </tr>
@@ -86,8 +86,8 @@
             <span v-if="user.email_verified_at">●</span>
             <span v-else>×</span>
           </td>
-          <td v-text="user.login_count"></td>
-          <td v-text="user.last_login"></td>
+          {{-- <td v-text="user.login_count"></td> --}}
+          {{-- <td v-text="user.last_login"></td> --}}
           <td v-text="user.registered_date"></td>
           <td>
             <button class="btn btn-danger" @click="onDelete(user)">삭제</button>
@@ -117,7 +117,7 @@
           selectedSex: 0,
           nameOrder: 0,
           orderByDate: false,
-          registeredOrder: 0,
+          registeredOrder: 1,
         };
       },
       methods: {
@@ -171,7 +171,7 @@
 
           // 登録順で並べ替え
           if (this.orderByDate === true) {
-            const registeredDirection = (parseInt(this.registeredOrder) === 0) ? 'asc' : 'desc';
+            const registeredDirection = (parseInt(this.registeredOrder) === 1) ? 'desc' : 'asc';
             users = _.orderBy(users, 'created_at', registeredDirection);
           }
 
