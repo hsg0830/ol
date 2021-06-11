@@ -51,7 +51,6 @@
     </div>
 
     <template v-if="isInitial">
-
       <div class="buttons my-5 mx-auto d-flex justify-content-around">
         <button class="btn btn-primary" @click="changeStatus">ステータスを変更する</button>
       </div>
@@ -105,6 +104,14 @@
 
         <div class="buttons my-5 mx-auto d-flex justify-content-around">
           <button class="btn btn-danger" @click="modalClose">閉じる</button>
+
+          <div class="form-check" v-show="status == 1">
+            <input class="form-check-input" type="checkbox" id="send-mail" v-model="sendMail">
+            <label class="form-check-label" for="send-mail">
+              메일보내기
+            </label>
+          </div>
+
           <button class="btn btn-primary" @click="onSave">回答を保存する</button>
         </div>
 
@@ -127,6 +134,7 @@
           title: '',
           description: '',
           reply: '',
+          sendMail: false,
           errors: {},
         }
       },
@@ -221,6 +229,7 @@
               title: this.title,
               description: this.description,
               reply: this.reply,
+              send_mail: this.sendMail,
             };
 
             axios
