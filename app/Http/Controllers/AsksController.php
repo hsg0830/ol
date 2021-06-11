@@ -141,7 +141,7 @@ class AsksController extends Controller
     $ask->replied_at = now();
     $result = $ask->save();
 
-    if ($request->status == 1) {
+    if ($request->status == 1 && $request->send_mail == true) {
       $email = $ask->user->email;
       $name = $ask->user->name;
 
