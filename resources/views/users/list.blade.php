@@ -39,6 +39,13 @@
 
 
       <div class="form-check col-2 ms-4">
+        <input class="form-check-input" type="checkbox" id="school-order" v-model="orderBySchool">
+        <label class="form-check-label" for="school-order">
+          소속기관순적용
+        </label>
+      </div>
+
+      <div class="form-check col-2 ms-4">
         <input class="form-check-input" type="checkbox" id="date-order" v-model="orderByDate">
         <label class="form-check-label" for="date-order">
           등록일순적용
@@ -116,6 +123,7 @@
           selectedSchool: 0,
           selectedSex: 0,
           nameOrder: 0,
+          orderBySchool: false,
           orderByDate: false,
           registeredOrder: 1,
         };
@@ -168,6 +176,11 @@
           // 名前順で並べ替え
           const nameDirection = (parseInt(this.nameOrder) === 0) ? 'asc' : 'desc';
           users = _.orderBy(users, 'name', nameDirection);
+
+          // 登録順で並べ替え
+          if (this.orderBySchool === true) {
+            users = _.orderBy(users, 'school_id', 'asc');
+          }
 
           // 登録順で並べ替え
           if (this.orderByDate === true) {
