@@ -20,6 +20,7 @@
 
         @if (Auth::user()->role > 0)
           <li><a href="{{ route('users.management') }}">● 会員管理画面</a></li>
+          <li><a href="{{ route('users.mount') }}">● 機関別会員統計</a></li>
         @endif
       </ul>
     </div>
