@@ -66,4 +66,12 @@ class UsersController extends Controller
       'user' => $user,
     ];
   }
+
+  public function sumUsersBySchool() {
+    $schools = School::select('id', 'name')->get();
+
+    return view('users.schools', [
+      'schools' => $schools,
+    ]);
+  }
 }

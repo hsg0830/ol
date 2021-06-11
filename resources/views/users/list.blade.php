@@ -6,6 +6,10 @@
   <main id="main" class="container">
     <h1 class="page-title">회원관리</h1>
 
+    <div>
+      <a href="{{ route('users.mount') }}">● 機関別会員統計へ</a>
+    </div>
+
     <div class="row bg-light p-3 border border-3">
       <div class="col-3">
         총회원수: @{{ users . length }}
@@ -177,7 +181,7 @@
           const nameDirection = (parseInt(this.nameOrder) === 0) ? 'asc' : 'desc';
           users = _.orderBy(users, 'name', nameDirection);
 
-          // 登録順で並べ替え
+          // 所属機関順で並べ替え
           if (this.orderBySchool === true) {
             users = _.orderBy(users, 'school_id', 'asc');
           }

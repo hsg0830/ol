@@ -160,6 +160,7 @@ Route::prefix('editors')->group(function () {
       Route::get('/users', [UsersController::class, 'index'])->name('users.management');
       Route::get('/users-list', [UsersController::class, 'list']);
       Route::delete('users/{user}', [UsersController::class, 'destroy']);
+      Route::get('users-mount', [UsersController::class, 'sumUsersBySchool'])->name('users.mount');
     });
 
     // 問い合わせ管理
