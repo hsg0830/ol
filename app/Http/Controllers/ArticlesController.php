@@ -167,7 +167,11 @@ class ArticlesController extends Controller
       $article->sub_category_id = $request->sub_category_id;
       $article->introduction = $request->introduction;
       $article->status = $request->status;
-      $article->released_at = (intval($article->status) === 1) ? now() : null;
+      if (intval($article->status) === 1 && is_null($article->released_at)) {
+        $article->released_at = now();
+      } else if (intval($article->status !== 1)) {
+        $article->released_at = null;
+      }
       $article->save();
 
       if (count($request->subContents) > 0) {

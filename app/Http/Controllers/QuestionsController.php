@@ -31,7 +31,10 @@ class QuestionsController extends Controller
       $query->where('title', 'like', $keyword);
     }
 
-    $questions = $query->where('status', 1)->with('category')->orderBy('released_at', 'desc')->paginate(10);
+    $questions = $query->where('status', 1)
+                        ->with('category')
+                        ->orderBy('released_at', 'desc')
+                        ->paginate(10);
 
     $categories = QuestionCategory::select('id', 'name')->get();
 
@@ -50,6 +53,10 @@ class QuestionsController extends Controller
   }
 
   public function show(Question $question) {
+    if ($question->status != 1 && !Auth::guard('editors')->check()) {
+      return redirect()->route('qa.index');
+    }
+
     return view('qa.show', [
       'question' => $question,
     ]);
@@ -160,7 +167,11 @@ class QuestionsController extends Controller
     $question->title = $request->title;
     $question->answer = $request->answer;
     $question->status = $request->status;
-    $question->released_at = (intval($question->status) === 1) ? now() : null;
+    if (intval($question->status) === 1 && is_null($question->released_at)) {
+      $question->released_at = now();
+    } else if (intval($question->status) !== 1) {
+      $question->released_at = null;
+    }
     $result = $question->save();
 
     return [

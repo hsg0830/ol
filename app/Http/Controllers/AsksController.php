@@ -82,7 +82,7 @@ class AsksController extends Controller
 
   public function show(Ask $ask)
   {
-    if ($ask->status != 1) {
+    if ($ask->status != 1 && !Auth::guard('editors')->check()) {
       return redirect()->route('bbs.index');
     }
 
@@ -138,7 +138,9 @@ class AsksController extends Controller
     $ask->title = $request->title;
     $ask->description = $request->description;
     $ask->reply = $request->reply;
-    $ask->replied_at = now();
+    if ($request->status == 1 && is_null($ask->replied_at)) {
+      $ask->replied_at = now();
+    }
     $result = $ask->save();
 
     if ($request->status == 1 && $request->send_mail == true) {
