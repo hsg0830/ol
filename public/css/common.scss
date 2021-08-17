@@ -1464,8 +1464,11 @@ html.open,
   }
 }
 
-.search-form {
-  margin-bottom: 2rem;
+// 検索フォーム
+.search-box {
+  padding: 1.5rem 2.5rem;
+  border: 1px dotted $brown;
+  border-radius: 0.6rem;
 
   &__title {
     font-weight: bold;
@@ -1473,11 +1476,55 @@ html.open,
     color: $brown;
     text-align: center;
   }
+}
 
-  &__wrapper {
+.filtering-form {
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0;
+
+  @media screen and (min-width: 768px) {
     display: flex;
-    justify-content: space-around;
     align-items: center;
+
+    & .form-group {
+      width: auto;
+      margin: 0 auto;
+
+      & input,
+      & select {
+        display: inline-block;
+        width: auto;
+      }
+
+      // &.radio {
+      //   border: 1px dashed $brown;
+      //   border-radius: 1rem;
+      //   padding: 0.5rem 2.2rem;
+
+      //   & input {
+      //     margin: 0;
+      //   }
+
+      //   & label {
+      //     margin: 0;
+      //   }
+      // }
+
+      & .btn {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.search-form {
+  &__wrapper {
+    @media screen and (min-width: 768px) {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
 
     & .form-control {
       width: 70%;
@@ -1492,6 +1539,10 @@ html.open,
   &__btn-block {
     display: flex;
     justify-content: space-around;
+
+    & .global-btn {
+      margin: 0 1rem;
+    }
   }
 }
 
@@ -1567,10 +1618,19 @@ html.open,
         line-height: 1.5;
       }
 
-      & .info {
+      &__info {
         display: flex;
         justify-content: flex-end;
         font-size: 1.4rem;
+
+        & .count {
+          margin-right: 0.8rem;
+
+          & span {
+            color: $red;
+            font-weight: bold;
+          }
+        }
 
         & .date {
           color: $gray;
@@ -1969,154 +2029,129 @@ html.open,
 /*---------------------------
   質問掲示板トップページのメイン領域部分
 ---------------------------*/
-.filtering-form {
-  width: 100%;
-  margin-bottom: 0;
-  padding: 0;
-
-  & .form-group {
-    margin: 0 auto;
-
-    & .btn {
-      margin: 1rem auto;
-    }
-  }
-
-  @media screen and (min-width: 768px) {
-    display: flex;
-    // justify-content: flex-start;
-    align-items: center;
-
-    & .form-group {
-      width: auto;
-      margin: 0 auto;
-
-      & input,
-      & select {
-        display: inline-block;
-        width: auto;
-      }
-
-      &.radio {
-        border: 1px dashed $brown;
-        border-radius: 1rem;
-        padding: 0.5rem 2.2rem;
-
-        & input {
-          margin: 0;
-        }
-
-        & label {
-          margin: 0;
-        }
-      }
-
-      & .btn {
-        margin: 0;
-      }
-    }
-  }
+.ask-sort {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .ask-link {
   text-align: right;
-  color: $brown;
+  color: $red;
+  font-weight: bold;
 }
 
-.bbs {
-  width: 100%;
-  margin: 1rem 0;
-  text-align: center;
+.ask-form {
+  margin-top: 3rem;
 
-  & th {
-    text-align: center;
-    background-color: $brown;
-    color: $white;
-    padding: 1.5rem;
-    letter-spacing: 0.3rem;
-  }
-
-  & td {
-    padding: 1rem;
-    border-bottom: 1px solid #000;
-    background-color: $yellow;
-
-    &:first-child {
-      text-align-last: left;
-      // background-color: $yellow;
-      color: $brown;
-      width: 50%;
-    }
-
-    & .status-label,
-    & .category-label {
-      padding: 0.3rem 0.5rem;
-      border-radius: 2rem;
-      display: inline-block;
-      width: 8rem;
+  &__message {
+    &__attention {
       text-align: center;
-      background-color: $green;
-      color: $white;
-      font-size: 1.4rem;
-
-      &.unanswered {
-        background-color: $red;
-      }
-
-      &.catergory-200 {
-        background-color: $navy;
-      }
-      &.catergory-300 {
-        background-color: $vermilion;
-      }
-      &.catergory-400,
-      &.catergory-500 {
-        background-color: $purple;
-      }
-    }
-
-    & a {
-      display: block;
+      color: $red;
     }
   }
 
-  @media screen and (max-width: 767px) {
-    &__thead {
-      display: none;
-    }
-
-    & tr {
-      width: 100%;
-    }
-
-    & td {
-      background-color: $yellow;
-      padding: 1rem 0.5rem;
-      padding-left: 2rem;
-      display: block;
-      text-align: left;
-      width: 100%;
-
-      &:before {
-        // &:not(:first-child):before {
-        content: attr(data-label);
-        float: left;
-        font-weight: bold;
-        margin-right: 4rem;
-        width: 22%;
-      }
-
-      &:first-child {
-        width: 100%;
-        padding-left: 1.5rem;
-        background-color: $lightBrown;
-        color: #fff;
-        font-weight: bold;
-        text-align: center;
-      }
+  &__input {
+    @media screen and (min-width: 768px) {
+      width: 80%;
     }
   }
 }
+
+// .bbs {
+//   width: 100%;
+//   margin: 1rem 0;
+//   text-align: center;
+
+//   & th {
+//     text-align: center;
+//     background-color: $brown;
+//     color: $white;
+//     padding: 1.5rem;
+//     letter-spacing: 0.3rem;
+//   }
+
+//   & td {
+//     padding: 1rem;
+//     border-bottom: 1px solid #000;
+//     background-color: $yellow;
+
+//     &:first-child {
+//       text-align-last: left;
+//       // background-color: $yellow;
+//       color: $brown;
+//       width: 50%;
+//     }
+
+//     & .status-label,
+//     & .category-label {
+//       padding: 0.3rem 0.5rem;
+//       border-radius: 2rem;
+//       display: inline-block;
+//       width: 8rem;
+//       text-align: center;
+//       background-color: $green;
+//       color: $white;
+//       font-size: 1.4rem;
+
+//       &.unanswered {
+//         background-color: $red;
+//       }
+
+//       &.catergory-200 {
+//         background-color: $navy;
+//       }
+//       &.catergory-300 {
+//         background-color: $vermilion;
+//       }
+//       &.catergory-400,
+//       &.catergory-500 {
+//         background-color: $purple;
+//       }
+//     }
+
+//     & a {
+//       display: block;
+//     }
+//   }
+
+//   @media screen and (max-width: 767px) {
+//     &__thead {
+//       display: none;
+//     }
+
+//     & tr {
+//       width: 100%;
+//     }
+
+//     & td {
+//       background-color: $yellow;
+//       padding: 1rem 0.5rem;
+//       padding-left: 2rem;
+//       display: block;
+//       text-align: left;
+//       width: 100%;
+
+//       &:before {
+//         // &:not(:first-child):before {
+//         content: attr(data-label);
+//         float: left;
+//         font-weight: bold;
+//         margin-right: 4rem;
+//         width: 22%;
+//       }
+
+//       &:first-child {
+//         width: 100%;
+//         padding-left: 1.5rem;
+//         background-color: $lightBrown;
+//         color: #fff;
+//         font-weight: bold;
+//         text-align: center;
+//       }
+//     }
+//   }
+// }
 
 /*---------------------------
   質問掲示板詳細ページのメイン領域部分

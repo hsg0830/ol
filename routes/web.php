@@ -7,7 +7,7 @@ use App\Http\Controllers\MultiAuthController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ArticlesController;
-use App\Http\Controllers\QuestionsController;
+// use App\Http\Controllers\QuestionsController;
 use App\Http\Controllers\AsksController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ContactsController;
@@ -34,6 +34,11 @@ Route::get('/prohibited', function () {
   return view('errors.prohibited');
 })->name('prohibited');
 
+// 規範原文
+Route::get('/norms/{filename}', function ($filename) {
+  return view('norms.' . $filename);
+})->name('norms');
+
 // 学習室
 Route::prefix('articles')->group(function () {
   Route::get('/', [ArticlesController::class, 'index'])->name('articles.index');
@@ -42,27 +47,22 @@ Route::prefix('articles')->group(function () {
 });
 
 // QA
-Route::prefix('qa')->group(function () {
-  Route::get('/', [QuestionsController::class, 'index'])->name('qa.index');
-  Route::get('/pagination', [QuestionsController::class, 'paginate']);
-  Route::get('{question}', [QuestionsController::class, 'show'])->name('qa.show');
-  Route::post('/{question}/increment', [QuestionsController::class, 'addViewedCount']);
-});
-
-// 規範原文
-Route::get('/norms/{filename}', function ($filename) {
-  return view('norms.' . $filename);
-})->name('norms');
+// Route::prefix('qa')->group(function () {
+//   Route::get('/', [QuestionsController::class, 'index'])->name('qa.index');
+//   Route::get('/pagination', [QuestionsController::class, 'paginate']);
+//   Route::get('{question}', [QuestionsController::class, 'show'])->name('qa.show');
+//   Route::post('/{question}/increment', [QuestionsController::class, 'addViewedCount']);
+// });
 
 // bbs
 Route::prefix('bbs')->group(function () {
   Route::get('/', [AsksController::class, 'index'])->name('bbs.index');
   Route::get('/pagination', [AsksController::class, 'paginate']);
+  Route::get('/{ask}', [AsksController::class, 'show'])->name('bbs.show'); // 認証なしでOKに変更
 
   // email-verify後にだけアクセスできるルーティング
   Route::middleware(['registered'])->group(function () {
     Route::post('/', [AsksController::class, 'store']);
-    Route::get('/{ask}', [AsksController::class, 'show'])->name('bbs.show');
   });
 });
 
@@ -122,16 +122,16 @@ Route::prefix('editors')->group(function () {
     });
 
     // QA管理
-    Route::prefix('qa')->group(function () {
-      Route::get('/create', [QuestionsController::class, 'create'])->name('qa.create');
-      Route::post('/', [QuestionsController::class, 'store']);
-      Route::get('{question}/edit', [QuestionsController::class, 'edit'])->name('qa.edit');
-      Route::put('/{question}', [QuestionsController::class, 'update']);
-      Route::get('/list', [QuestionsController::class, 'showQuestionsList'])->name('qa.list');
-      Route::get('/get-list', [QuestionsController::class, 'getQuestionsList']);
-      Route::post('/{question}/change-status', [QuestionsController::class, 'changeStatus']);
-      Route::delete('/{question}', [QuestionsController::class, 'destroy']);
-    });
+    // Route::prefix('qa')->group(function () {
+    //   Route::get('/create', [QuestionsController::class, 'create'])->name('qa.create');
+    //   Route::post('/', [QuestionsController::class, 'store']);
+    //   Route::get('{question}/edit', [QuestionsController::class, 'edit'])->name('qa.edit');
+    //   Route::put('/{question}', [QuestionsController::class, 'update']);
+    //   Route::get('/list', [QuestionsController::class, 'showQuestionsList'])->name('qa.list');
+    //   Route::get('/get-list', [QuestionsController::class, 'getQuestionsList']);
+    //   Route::post('/{question}/change-status', [QuestionsController::class, 'changeStatus']);
+    //   Route::delete('/{question}', [QuestionsController::class, 'destroy']);
+    // });
 
     // bbs管理
     Route::prefix('bbs')->group(function () {

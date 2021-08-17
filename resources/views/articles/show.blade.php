@@ -96,8 +96,8 @@
                   {{ $item->title }}</p>
               </div>
               <div class="list-item__content">
-                <p class="lead">{!! $item->head_line !!}</p>
-                <div class="info">
+                {{-- <p class="lead">{!! $item->head_line !!}</p> --}}
+                <div class="list-item__content__info">
                   <p class="date">{{ $item->date }}</p>
                   <p class="category category-{{ $item->category_id }}">{{ $item->category->name }}</p>
                 </div>
