@@ -14,32 +14,35 @@ class HomeController extends Controller
   {
     $recentArticles = Article::with('category')
       ->where('status', 1)
-      ->select('id', 'title', 'category_id', 'released_at')
+      ->select('id', 'title', 'category_id', 'released_at', 'viewed_count')
       ->orderBy('released_at', 'desc')
-      ->take(4)->get();
+      ->take(4)
+      ->get();
 
     $popularArticles = Article::with('category')
       ->where('status', 1)
       ->select('id', 'title', 'category_id', 'released_at', 'viewed_count')
       ->orderBy('viewed_count', 'desc')
-      ->take(4)->get();
+      ->take(4)
+      ->get();
 
-    $questions = Question::with('category')
-      ->where('status', 1)
-      ->select('id', 'title', 'answer', 'category_id', 'viewed_count')
+    $recentAsks = Ask::where('status', 1)
+      ->select('id', 'title', 'category_id', 'replied_at', 'viewed_count')
+      ->orderBy('replied_at', 'desc')
+      ->take(5)
+      ->get();
+
+    $popularAsks = Ask::where('status', 1)
+      ->select('id', 'title', 'category_id', 'replied_at', 'viewed_count')
       ->orderBy('viewed_count', 'desc')
-      ->take(4)->get();
+      ->take(5)
+      ->get();
 
-    $asks = Ask::where('status', 1)
-      ->select('id', 'title', 'viewed_count')
-      ->orderBy('viewed_count', 'desc')
-      ->take(4)->get();
-
-    $topNotice = Notice::where('role', 1)
-      ->where('status', 1)
-      ->select('title', 'description', 'created_at')
-      ->orderBy('created_at', 'desc')
-      ->first();
+    // $topNotice = Notice::where('role', 1)
+    //   ->where('status', 1)
+    //   ->select('title', 'description', 'created_at')
+    //   ->orderBy('created_at', 'desc')
+    //   ->first();
 
     $notices = Notice::where('role', 0)
       ->where('status', 1)
@@ -50,9 +53,9 @@ class HomeController extends Controller
     return view('home', [
       'recentArticles' => $recentArticles,
       'popularArticles' => $popularArticles,
-      'questions' => $questions,
-      'asks' => $asks,
-      'topNotice' => $topNotice,
+      'recentAsks' => $recentAsks,
+      'popularAsks' => $popularAsks,
+      // 'topNotice' => $topNotice,
       'notices' => $notices,
     ]);
   }

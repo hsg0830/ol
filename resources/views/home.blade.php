@@ -129,62 +129,46 @@
 
     <!-- 학습실 & 질문게시판 -->
     <section class="ly-block flex-block">
+
       <!-- 학습실 -->
       <div class="category-block">
         <h2 class="category-block__name">학습실</h2>
         <div class="category-block__content recent">
-          <p class="recent__introduction">aaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaa</p>
+          {{-- <p class="recent__introduction">aaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaa</p> --}}
           <div class="recent__tabs">
             <div class="tab" :class="{active: articleTab === 'tab-1'}" @click="articleTab = 'tab-1'">최신순</div>
             <div class="tab" :class="{active: articleTab === 'tab-2'}" @click="articleTab = 'tab-2'">인기순</div>
           </div>
           <div class="recent__item-block">
+
+            {{-- 학습실 최신순 --}}
             <div v-show="articleTab == 'tab-1'">
-              <div class="recent__item recent__item-01">
-                <span class="recent__item-01__category category-200">문법</span>
-                <p class="recent__item-01__title">bbbbbbbbbbbbb bbbbbbbbbbbbbbbbb</p>
-                <!-- <data class="recent__date">2021-04-17</data> -->
-              </div>
-              <div class="recent__item recent__item-01">
-                <span class="recent__item-01__category category-200">문법</span>
-                <p class="recent__item-01__title">bbbbbbbbbbbbb bbbbbbbbbbbbbbbbb</p>
-                <!-- <data class="recent__date">2021-04-17</data> -->
-              </div>
-              <div class="recent__item recent__item-01">
-                <span class="recent__item-01__category category-200">문법</span>
-                <p class="recent__item-01__title">bbbbbbbbbbbbb bbbbbbbbbbbbbbbbb</p>
-                <!-- <data class="recent__date">2021-04-17</data> -->
-              </div>
-              <div class="recent__item recent__item-01">
-                <span class="recent__item-01__category category-200">문법</span>
-                <p class="recent__item-01__title">bbbbbbbbbbbbb bbbbbbbbbbbbbbbbb</p>
-                <!-- <data class="recent__date">2021-04-17</data> -->
-              </div>
+              @foreach ($recentArticles as $article)
+                <a href="{{ $article->url }}">
+                  <div class="recent__item recent__item-01">
+                    <span class="recent__item-01__category category-{{ $article->category_id }}">{{ $article->category->name }}</span>
+                    <p class="recent__item-01__title">{{ $article->title }}</p>
+                    {{-- <data class="recent__date">2021-04-17</data> --}}
+                  </div>
+                </a>
+              @endforeach
             </div>
+
+            {{-- 학습실 인기순 --}}
             <div v-show="articleTab == 'tab-2'">
-              <div class="recent__item recent__item-01">
-                <span class="recent__item-01__category category-400">문법</span>
-                <p class="recent__item-01__title">bbbbbbbbbbbbb bbbbbbbbbbbbbbbbb</p>
-                <!-- <data class="recent__date">2021-04-17</data> -->
-              </div>
-              <div class="recent__item recent__item-01">
-                <span class="recent__item-01__category category-400">문법</span>
-                <p class="recent__item-01__title">bbbbbbbbbbbbb bbbbbbbbbbbbbbbbb</p>
-                <!-- <data class="recent__date">2021-04-17</data> -->
-              </div>
-              <div class="recent__item recent__item-01">
-                <span class="recent__item-01__category category-400">문법</span>
-                <p class="recent__item-01__title">bbbbbbbbbbbbb bbbbbbbbbbbbbbbbb</p>
-                <!-- <data class="recent__date">2021-04-17</data> -->
-              </div>
-              <div class="recent__item recent__item-01">
-                <span class="recent__item-01__category category-400">문법</span>
-                <p class="recent__item-01__title">bbbbbbbbbbbbb bbbbbbbbbbbbbbbbb</p>
-                <!-- <data class="recent__date">2021-04-17</data> -->
-              </div>
+              @foreach ($recentArticles as $article)
+                <a href="{{ $article->url }}">
+                  <div class="recent__item recent__item-01">
+                    <span class="recent__item-01__category category-{{ $article->category_id }}">{{ $article->category->name }}</span>
+                    <p class="recent__item-01__title">{{ $article->title }}</p>
+                    {{-- <data class="recent__date">2021-04-17</data> --}}
+                  </div>
+                </a>
+              @endforeach
             </div>
+
             <div class="more">
-              <a href="#"><i class="fas fa-angle-double-right"></i> 더보기</a>
+              <a href="{{ route('articles.index') }}"><i class="fas fa-angle-double-right"></i> 더보기</a>
             </div>
           </div>
         </div>
@@ -194,58 +178,41 @@
       <div class="category-block">
         <h2 class="category-block__name">질문게시판</h2>
         <div class="category-block__content recent">
-          <p class="recent__introduction">aaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaa</p>
+          {{-- <p class="recent__introduction">aaaaaaaaaa aaaaaaaaaaaaaa aaaaaaaaaaaaaa</p> --}}
           <div class="recent__tabs">
             <div class="tab" :class="{active: bbsTab === 'tab-1'}" @click="bbsTab = 'tab-1'">최신순</div>
             <div class="tab" :class="{active: bbsTab === 'tab-2'}" @click="bbsTab = 'tab-2'">인기순</div>
           </div>
+
           <div class="recent__item-block">
+
+            {{-- 질문게시판 최신순 --}}
             <div v-show="bbsTab == 'tab-1'">
-              <div class="recent__item recent__item-02 category-100">
-                <!-- <span class="recent__category category-200">문법</span> -->
-                <p class="recent__item-02__title">bbbbbbbbbbbbb bbbbbbbbbbbbbbbbb</p>
-                <!-- <data class="recent__date">2021-04-17</data> -->
-              </div>
-              <div class="recent__item recent__item-02 category-100">
-                <!-- <span class="recent__category category-200">문법</span> -->
-                <p class="recent__item-02__title">bbbbbbbbbbbbb bbbbbbbbbbbbbbbbb</p>
-                <!-- <data class="recent__date">2021-04-17</data> -->
-              </div>
-              <div class="recent__item recent__item-02 category-100">
-                <!-- <span class="recent__category category-200">문법</span> -->
-                <p class="recent__item-02__title">bbbbbbbbbbbbb bbbbbbbbbbbbbbbbb</p>
-                <!-- <data class="recent__date">2021-04-17</data> -->
-              </div>
-              <div class="recent__item recent__item-02 category-100">
-                <!-- <span class="recent__category category-200">문법</span> -->
-                <p class="recent__item-02__title">bbbbbbbbbbbbb bbbbbbbbbbbbbbbbb</p>
-                <!-- <data class="recent__date">2021-04-17</data> -->
-              </div>
+              @foreach ($recentAsks as $ask)
+                <a href="{{ $ask->url }}">
+                  <div class="recent__item recent__item-02 category-{{ $ask->category_id }}">
+                    <!-- <span class="recent__category category-200">문법</span> -->
+                    <p class="recent__item-02__title">{{ $ask->title }}</p>
+                    <!-- <data class="recent__date">2021-04-17</data> -->
+                  </div>
+                </a>
+              @endforeach
             </div>
+
+            {{-- 질문게시판 인기순 --}}
             <div v-show="bbsTab == 'tab-2'">
-              <div class="recent__item recent__item-02 category-300">
-                <!-- <span class="recent__category category-200">문법</span> -->
-                <p class="recent__item-02__title">bbbbbbbbbbbbb bbbbbbbbbbbbbbbbb</p>
-                <!-- <data class="recent__date">2021-04-17</data> -->
-              </div>
-              <div class="recent__item recent__item-02 category-300">
-                <!-- <span class="recent__category category-200">문법</span> -->
-                <p class="recent__item-02__title">bbbbbbbbbbbbb bbbbbbbbbbbbbbbbb</p>
-                <!-- <data class="recent__date">2021-04-17</data> -->
-              </div>
-              <div class="recent__item recent__item-02 category-300">
-                <!-- <span class="recent__category category-200">문법</span> -->
-                <p class="recent__item-02__title">bbbbbbbbbbbbb bbbbbbbbbbbbbbbbb</p>
-                <!-- <data class="recent__date">2021-04-17</data> -->
-              </div>
-              <div class="recent__item recent__item-02 category-300">
-                <!-- <span class="recent__category category-200">문법</span> -->
-                <p class="recent__item-02__title">bbbbbbbbbbbbb bbbbbbbbbbbbbbbbb</p>
-                <!-- <data class="recent__date">2021-04-17</data> -->
-              </div>
+              @foreach ($popularAsks as $ask)
+                <a href="{{ $ask->url }}">
+                  <div class="recent__item recent__item-02 category-{{ $ask->category_id }}">
+                    <!-- <span class="recent__category category-200">문법</span> -->
+                    <p class="recent__item-02__title">{{ $ask->title }}</p>
+                    <!-- <data class="recent__date">2021-04-17</data> -->
+                  </div>
+                </a>
+              @endforeach
             </div>
             <div class="more">
-              <a href="#"><i class="fas fa-angle-double-right"></i> 더보기</a>
+              <a href="{{ route('bbs.index') }}"><i class="fas fa-angle-double-right"></i> 더보기</a>
             </div>
           </div>
         </div>
@@ -256,31 +223,32 @@
     <section class="ly-block flex-block">
       <!-- 규범원문 -->
       <div class="category-block link-block">
-        <h2 class="category-block__name">규범원문</h2>
+        <a href="{{ route('norms', 'index') }}"><h2 class="category-block__name">규범원문</h2></a>
         <div class="category-block__content">
           <div class="link-block__intro norm">
-            <img src="img/block/top_01.png" alt="" />
+            <img src="{{ asset('img/block/top_01.png') }}" alt="" />
             <p>각종 규범원문을 볼수 있습니다.</p>
           </div>
           <div class="link-block__link norm">
-            <button class="norm">button</button>
+            <button class="norm" onclick="location.href='{{ route('norms', 'index') }}'">보기</button>
           </div>
         </div>
       </div>
 
       <!-- 자료실 -->
       <div class="category-block link-block">
-        <h2 class="category-block__name">자료실</h2>
+        <a href="{{ route('materials.index') }}"><h2 class="category-block__name">자료실</h2></a>
         <div class="category-block__content">
           <div class="link-block__intro ref">
-            <img src="img/block/top_02.png" alt="" />
+            <img src="{{ asset('img/block/top_02.png') }}" alt="" />
             <p>사전, 코퍼스 및 각종 자료를 리용하실수 있습니다.</p>
-          </div>
-          <div class="link-block__link ref">
-            <button class="re">button</button>
+            <div class="link-block__link ref">
+              <button class="ref" onclick="location.href='{{ route('materials.index') }}'">보기</button>
+            </div>
           </div>
         </div>
       </div>
+
     </section>
   </main>
   <!-- ↑↑↑メインコンテンツ↑↑↑ -->
