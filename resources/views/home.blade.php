@@ -55,7 +55,7 @@
   <main id="main">
     <!-- 갱신정보 -->
     <section class="ly-block info">
-      <!-- <h2 class="info__heading">갱신정보</h2> -->
+      <h2 class="info__heading">갱신정보</h2>
       <div class="info__list">
         <ul>
           <li>
@@ -156,7 +156,7 @@
 
             {{-- 학습실 인기순 --}}
             <div v-show="articleTab == 'tab-2'">
-              @foreach ($recentArticles as $article)
+              @foreach ($popularArticles as $article)
                 <a href="{{ $article->url }}">
                   <div class="recent__item recent__item-01">
                     <span class="recent__item-01__category category-{{ $article->category_id }}">{{ $article->category->name }}</span>

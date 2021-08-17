@@ -869,19 +869,40 @@ html.open,
   }
 
   &__select {
-    display: flex;
-    justify-content: space-between;
+    @media screen and (max-width: 768px) {
+      display: flex;
+      justify-content: space-between;
 
-    & select {
-      width: 40%;
-      margin-right: 1rem;
+      & select {
+        width: 40%;
+        margin-right: 1rem;
+      }
     }
+
+    @media screen and (min-width: 1400px) {
+      display: flex;
+      justify-content: space-between;
+
+      & select {
+        width: 40%;
+        margin-right: 1rem;
+      }
+    }
+
   }
 
   &__radio {
     margin-bottom: 1rem;
-    display: flex;
-    justify-content: space-around;
+
+    @media screen and (max-width: 768px) {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    @media screen and (min-width: 1400px) {
+      display: flex;
+      justify-content: space-around;
+    }
 
     & label {
       margin: 0 0.5rem;
@@ -897,7 +918,6 @@ html.open,
 .info {
   // margin-top: 5rem;
   margin-bottom: 4rem;
-  border: 2px solid $lightBrown;
 
   &__heading {
     width: 50%;
@@ -913,11 +933,13 @@ html.open,
 
     @media screen and (min-width: 768px) {
       font-size: 2.8rem;
+      display: none;
     }
   }
 
   &__list {
-    height: 12vh;
+    border: 2px solid $lightBrown;
+    height: 15vh;
     overflow-y: scroll;
     background-color: #fff;
 
