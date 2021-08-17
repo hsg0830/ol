@@ -64,7 +64,7 @@
                   {{ $item->title }}</p>
               </div>
               <div class="list-item__content">
-                <div class="info">
+                <div class="list-item__content__info">
                   <p class="date">{{ $item->date }}</p>
                   <p class="category category-{{ $item->category_id }}">{{ $item->category->name }}</p>
                 </div>

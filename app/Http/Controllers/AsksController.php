@@ -25,7 +25,7 @@ class AsksController extends Controller
 
   public function paginate(Request $request)
   {
-    $category_id = intval($request->selectedCategory);
+    $category_id = intval($request->categoryNo);
 
     $query = Ask::query();
 
@@ -38,7 +38,16 @@ class AsksController extends Controller
       $query->where('title', 'like', $keyword);
     }
 
-    $asks = $query->where('status', 1)->with('category')->orderBy('replied_at', 'desc')->paginate(10);
+    $query->where('status', 1)
+        ->with('category');
+
+    if ($request->sort == 0) {
+      $query->orderBy('replied_at', 'desc');
+    } else {
+      $query->orderBy('viewed_count', 'desc');
+    }
+
+    $asks = $query->paginate(9);
 
     $notCompatible = Ask::where('status', 0)->count();
 
@@ -94,7 +103,7 @@ class AsksController extends Controller
     $relatedAsks = Ask::where('category_id', $ask->category_id)
       ->where('id', '<>', $ask->id)
       ->where('status', 1)
-      ->orderBy('replied_at')
+      ->orderBy('replied_at', 'desc')
       ->take(3)->get();
 
     return view('bbs.show', [

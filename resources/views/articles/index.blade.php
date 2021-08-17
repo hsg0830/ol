@@ -37,10 +37,12 @@
         </category-select-button>
       </div>
 
+      {{-- 件数 --}}
       <div class="list-container__count">
         <i class="fas fa-file-signature"></i> 해당되는 기사수: <span v-text="items.total"></span>건
       </div>
 
+      {{-- 一覧 --}}
       <div class="list-container__wrapper">
         <div class="list-item" v-for="item in items.data">
           <a :href="item.url">
@@ -53,7 +55,7 @@
             </div>
             <div class="list-item__content">
               <p class="lead" v-html="item.head_line"></p>
-              <div class="info">
+              <div class="list-item__content__info">
                 <p class="date" v-text="item.date"></p>
                 <p class="category" :class="getCategoryClass(item.category.id)" v-text="item.category.name"></p>
               </div>
