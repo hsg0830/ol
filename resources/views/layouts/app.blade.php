@@ -66,7 +66,7 @@
   <!-- ↑↑↑パンくずリスト↑↑↑ -->
 
   <!-- ↓↓↓.wrapper：メイン＋サイド↓↓↓ -->
-  <div class="wrapper">
+  <div class="wrapper {{ Request::is('/') ? 'wrapper__top' : '' }}">
     @yield('content')
   </div>
   <!-- ↑↑↑.wrapper：メイン＋サイド↑↑↑ -->
