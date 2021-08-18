@@ -43,7 +43,7 @@
     </div>
 
     <div class="ask-link">
-      <a href="{{ route('bbs.index') }}#ask-form"><i class="fas fa-caret-down"></i> 질문하기</a>
+      질문하실것이 있으시면 이쪽으로 → <a href="{{ route('bbs.index') }}#ask-form"><i class="fas fa-chevron-circle-right"></i> 질문하기</a>
     </div>
 
     {{-- 関連記事 --}}
