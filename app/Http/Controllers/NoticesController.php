@@ -24,7 +24,11 @@ class NoticesController extends Controller
 
   public function create()
   {
-    return view('notices.post');
+    $categories = config('notices.category');
+
+    return view('notices.post', [
+      'categories' => $categories,
+    ]);
   }
 
   public function edit(Notice $notice)
@@ -68,6 +72,7 @@ class NoticesController extends Controller
       'role' => ['required', 'between:0,1'],
       'title' => 'required',
       'description' => ($request->role == 1) ? 'required' : '',
+      'category' => 'required',
     ]);
 
     $result = false;
@@ -78,7 +83,9 @@ class NoticesController extends Controller
 
     $notice->role = $request->role;
     $notice->status = $request->status;
+    $notice->category = $request->category;
     $notice->title = $request->title;
+    $notice->url = $request->url;
 
     if ($notice->role == 1) {
       $notice->description = $request->description;

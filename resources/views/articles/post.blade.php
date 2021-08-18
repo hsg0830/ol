@@ -72,12 +72,21 @@
           </select>
         </div>
 
-        <div>
+        <div class="me-5">
           <p class="label">公開状態</p>
           {{-- <label for="category">カテゴリー：</label> --}}
           <select id="status" class="form-select" v-model="status">
             <option value="0">非公開</option>
             <option value="1">公開</option>
+          </select>
+        </div>
+
+        <div>
+          <p class="label">お知らせ</p>
+          {{-- <label for="category">カテゴリー：</label> --}}
+          <select id="notice" class="form-select" v-model="notice">
+            <option value="0">しない</option>
+            <option value="1">する</option>
           </select>
         </div>
       </div>
@@ -193,6 +202,7 @@
           articleCategory: '',
           subCategory: '',
           status: 0,
+          notice: 0,
           articleTitle: '',
           articleIntroduction: '',
           subContents: [],
@@ -258,13 +268,14 @@
             const params = {
               _method: method,
               status: this.status,
+              notice: this.notice,
               title: this.articleTitle,
               category_id: this.articleCategory,
               sub_category_id: this.subCategory,
               introduction: this.articleIntroduction,
               subContents: this.subContents,
             };
-
+            
             axios
               .post(url, params)
               .then((response) => {

@@ -11,6 +11,7 @@ use App\Mail\AsksRecievedAlertMail;
 use App\Mail\AskReplyNotificationMail;
 use App\Models\Ask;
 use App\Models\QuestionCategory;
+use App\Models\Notice;
 
 class AsksController extends Controller
 {
@@ -39,7 +40,7 @@ class AsksController extends Controller
     }
 
     $query->where('status', 1)
-        ->with('category');
+      ->with('category');
 
     if ($request->sort == 0) {
       $query->orderBy('replied_at', 'desc');
@@ -147,10 +148,22 @@ class AsksController extends Controller
     $ask->title = $request->title;
     $ask->description = $request->description;
     $ask->reply = $request->reply;
+    
     if ($request->status == 1 && is_null($ask->replied_at)) {
       $ask->replied_at = now();
     }
+
     $result = $ask->save();
+
+    if ($request->notice == 1) {
+      $notice = new Notice();
+      $notice->editor_id = $ask->editor_id;
+      $notice->status = 1;
+      $notice->category = 2;
+      $notice->title = $ask->title;
+      $notice->url = '/bbs/' . $ask->id;
+      $notice->save();
+    }
 
     if ($request->status == 1 && $request->send_mail == true) {
       $email = $ask->user->email;

@@ -48,6 +48,15 @@
           <option v-for="category in currentSubCategories" v-text="category.name" :value="category.id"></option>
         </select>
       </div>
+
+      <div>
+        <p class="label">お知らせ</p>
+        {{-- <label for="category">カテゴリー：</label> --}}
+        <select id="category" class="form-select" v-model="notice">
+          <option value="0">しない</option>
+          <option value="1">する</option>
+        </select>
+      </div>
     </div>
 
     <template v-if="isInitial">
@@ -130,7 +139,8 @@
           askCategory: '',
           askSubCategory: '',
           treatment: '',
-          status: '',
+          status: 0,
+          notice: 0,
           title: '',
           description: '',
           reply: '',
@@ -226,6 +236,7 @@
               category_id: this.askCategory,
               sub_category_id: this.askSubCategory,
               status: this.status,
+              notice: this.notice,
               title: this.title,
               description: this.description,
               reply: this.reply,

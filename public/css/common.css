@@ -1524,6 +1524,10 @@ html.open,
   background-color: #2a3773;
 }
 
+.info__category > span.category-04 {
+  background-color: #9e1e53;
+}
+
 .more {
   padding: 1rem 0;
   text-align: right;
