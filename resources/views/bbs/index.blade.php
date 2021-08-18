@@ -44,7 +44,7 @@
 
         <div class="filtering-form">
           <div class="form-group">
-            <select type="select" id="category" v-model="categoryNo">
+            <select type="select" id="category" v-model="categoryNo" @change="getItems">
               <option value="0" selected>전체</option>
               <option v-for="category in categories" v-text="category.name" :value="category.id"></option>
             </select>

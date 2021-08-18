@@ -57,11 +57,24 @@
     </div>
     {{-- イントロダクション --}}
 
+    {{-- 目次 --}}
+    <div class="table-of-contents">
+      <h2 class="table-of-contents__heading"><i class="fas fa-list-ul"></i> 차례</h2>
+      <ul class="table-of-contents__list">
+        @foreach ($article->subContents as $subContent)
+          <li>
+            <a href="#{{ $subContent->id }}"><i class="fas fa-chevron-circle-right"></i> {{ $subContent->title }}</a>
+          </li>
+        @endforeach
+      </ul>
+    </div>
+    {{-- 目次 --}}
+
     <!-- 本文部 -->
     @if (count($article->subContents) > 0)
       <div class="content-block">
         @foreach ($article->subContents as $subContent)
-          <section class="content-section">
+          <section class="content-section anchor" id="{{ $subContent->id }}">
             <div class="section-title-block">
               <h3 class="section-title-block__title">{{ $subContent->title }}</h3>
             </div>
@@ -98,8 +111,9 @@
               <div class="list-item__content">
                 {{-- <p class="lead">{!! $item->head_line !!}</p> --}}
                 <div class="list-item__content__info">
+                  <p class="count">열람수: <span>{{ $item->viewed_count }}</span>번</p>
                   <p class="date">{{ $item->date }}</p>
-                  <p class="category category-{{ $item->category_id }}">{{ $item->category->name }}</p>
+                  {{-- <p class="category category-{{ $item->category_id }}">{{ $item->category->name }}</p> --}}
                 </div>
               </div>
             </a>
