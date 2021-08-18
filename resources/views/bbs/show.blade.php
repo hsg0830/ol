@@ -31,7 +31,7 @@
       <h2 class="ask__title"><span>{{ $ask->title }}</span></h2>
       <div class="ask__info">
         <span class="category category-{{ $ask->category->id }}">{{ $ask->category->name }}</span>
-        <span class="date">투고일: {{ $ask->created_at->format('Y-m-d') }}</span>
+        <span class="date">접수일: {{ $ask->created_at->format('Y-m-d') }}</span>
       </div>
     </div>
 
@@ -40,6 +40,10 @@
     <div class="reply">
       <div class="reply__date">회답일: {{ $ask->replied_at->format('Y-m-d') }}</div>
       <div class="reply__content">{!! $ask->reply !!}</div>
+    </div>
+
+    <div class="ask-link">
+      <a href="{{ route('bbs.index') }}#ask-form"><i class="fas fa-caret-down"></i> 질문하기</a>
     </div>
 
     {{-- 関連記事 --}}
@@ -65,7 +69,8 @@
               </div>
               <div class="list-item__content">
                 <div class="list-item__content__info">
-                  <p class="date">{{ $item->date }}</p>
+                  <p class="count">열람수: <span>{{ $item->viewed_count }}</span>번</p>
+                  <p class="date">{{ $item->replied_date }}</p>
                   <p class="category category-{{ $item->category_id }}">{{ $item->category->name }}</p>
                 </div>
               </div>

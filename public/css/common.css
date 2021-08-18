@@ -2015,6 +2015,7 @@ html.open,
 }
 
 .search-box {
+  margin-bottom: 2rem;
   padding: 1.5rem 2.5rem;
   border: 1px dotted #6a421f;
   border-radius: 0.6rem;
@@ -2495,212 +2496,24 @@ html.open,
 }
 
 /*---------------------------
-  QAページのメイン領域
----------------------------*/
-.qa-item {
-  width: 100%;
-  border-top: 1px solid #d6c7ba;
-  padding: 1rem 0;
-}
-
-.qa-item__question {
-  margin-bottom: 2rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.qa-item__question span,
-.qa-item__question i {
-  display: block;
-}
-
-.qa-item__question .mark_and_category {
-  margin-right: 1rem;
-  width: 20%;
-}
-
-@media screen and (min-width: 768px) {
-  .qa-item__question .mark_and_category {
-    margin-right: 2.5rem;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .qa-item__question .mark_and_category {
-    width: 10%;
-  }
-}
-
-.qa-item__question .mark_and_category .mark {
-  color: #ab243b;
-  font-size: 3rem;
-  font-weight: bold;
-  text-align: center;
-}
-
-.qa-item__question .mark_and_category .category {
-  background-color: #ab243b;
-  color: #ffffff;
-  text-align: center;
-  border-radius: 0.5rem;
-  font-size: 1.2rem;
-}
-
-.qa-item__question .mark_and_category .category.category-100 {
-  background-color: #19775f;
-}
-
-.qa-item__question .mark_and_category .category.category-200 {
-  background-color: #2a3773;
-}
-
-.qa-item__question .mark_and_category .category.category-300 {
-  background-color: #d44a28;
-}
-
-.qa-item__question .mark_and_category .category.category-400, .qa-item__question .mark_and_category .category.category-500 {
-  background-color: #9e1e53;
-}
-
-.qa-item__question .question-sentence {
-  width: 75%;
-  padding-top: 2rem;
-  font-size: 2rem;
-}
-
-@media screen and (min-width: 768px) {
-  .qa-item__question .question-sentence {
-    padding-top: 1rem;
-    font-size: 2.2rem;
-  }
-}
-
-.qa-item__question .question-date {
-  color: #494949;
-  font-size: 1.2rem;
-}
-
-@media screen and (min-width: 768px) {
-  .qa-item__question .question-date {
-    font-size: 1.8rem;
-  }
-}
-
-.qa-item__question i {
-  margin-left: 1rem;
-  width: 3rem;
-  height: 3rem;
-  line-height: 3rem;
-  text-align: center;
-  background-color: #cba67e;
-  color: #ffffff;
-}
-
-.qa-item__answer {
-  margin-left: 5rem;
-  padding: 1rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  background-color: #fffcf4;
-  border-radius: 1rem;
-  position: relative;
-}
-
-@media screen and (min-width: 768px) {
-  .qa-item__answer {
-    margin-left: 8rem;
-  }
-}
-
-.qa-item__answer.at-show {
-  padding: 2rem 1.5rem;
-}
-
-.qa-item__answer:before {
-  font-family: 'Font Awesome 5 Free';
-  content: '\f111';
-  font-weight: 900;
-  color: #fffcf4;
-  position: absolute;
-  font-size: 1rem;
-  top: -1rem;
-  left: -3rem;
-}
-
-@media screen and (min-width: 768px) {
-  .qa-item__answer:before {
-    font-size: 1.5rem;
-    left: -5rem;
-  }
-}
-
-.qa-item__answer:after {
-  font-family: 'Font Awesome 5 Free';
-  content: '\f111';
-  font-weight: 900;
-  color: #fffcf4;
-  position: absolute;
-  font-size: 1.5rem;
-  top: 0.5rem;
-  left: -2rem;
-}
-
-@media screen and (min-width: 768px) {
-  .qa-item__answer:after {
-    font-size: 2.5rem;
-    left: -3rem;
-  }
-}
-
-.qa-item__answer .mark {
-  display: block;
-  width: 40%;
-  color: #ed8400;
-  font-size: 3rem;
-  font-weight: bold;
-  text-align: center;
-}
-
-@media screen and (min-width: 768px) {
-  .qa-item__answer .mark {
-    width: 10%;
-  }
-}
-
-.qa-item__answer .answer-message {
-  margin-left: 1rem;
-}
-
-/*---------------------------
   質問掲示板トップページのメイン領域部分
 ---------------------------*/
 .ask-sort {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  width: 40%;
+  margin-bottom: 2rem;
 }
 
 .ask-link {
+  margin-top: 2rem;
   text-align: right;
-  color: #ab243b;
-  font-weight: bold;
+}
+
+.ask-link a {
+  display: inline-block;
+  padding: 0.2rem 1rem;
+  background-color: #6a421f;
+  color: #ffffff;
+  border-radius: 0.4rem;
 }
 
 .ask-form {
@@ -2708,8 +2521,10 @@ html.open,
 }
 
 .ask-form__message__attention {
+  background-color: #fff;
   text-align: center;
   color: #ab243b;
+  margin-bottom: 1rem;
 }
 
 @media screen and (min-width: 768px) {
@@ -2998,5 +2813,193 @@ html.open,
   color: #6a421f;
   text-align: center;
   padding: 1rem;
+}
+
+/*---------------------------
+  QAページのメイン領域
+---------------------------*/
+.qa-item {
+  width: 100%;
+  border-top: 1px solid #d6c7ba;
+  padding: 1rem 0;
+}
+
+.qa-item__question {
+  margin-bottom: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.qa-item__question span,
+.qa-item__question i {
+  display: block;
+}
+
+.qa-item__question .mark_and_category {
+  margin-right: 1rem;
+  width: 20%;
+}
+
+@media screen and (min-width: 768px) {
+  .qa-item__question .mark_and_category {
+    margin-right: 2.5rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .qa-item__question .mark_and_category {
+    width: 10%;
+  }
+}
+
+.qa-item__question .mark_and_category .mark {
+  color: #ab243b;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.qa-item__question .mark_and_category .category {
+  background-color: #ab243b;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.qa-item__question .mark_and_category .category.category-100 {
+  background-color: #19775f;
+}
+
+.qa-item__question .mark_and_category .category.category-200 {
+  background-color: #2a3773;
+}
+
+.qa-item__question .mark_and_category .category.category-300 {
+  background-color: #d44a28;
+}
+
+.qa-item__question .mark_and_category .category.category-400, .qa-item__question .mark_and_category .category.category-500 {
+  background-color: #9e1e53;
+}
+
+.qa-item__question .question-sentence {
+  width: 75%;
+  padding-top: 2rem;
+  font-size: 2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .qa-item__question .question-sentence {
+    padding-top: 1rem;
+    font-size: 2.2rem;
+  }
+}
+
+.qa-item__question .question-date {
+  color: #494949;
+  font-size: 1.2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .qa-item__question .question-date {
+    font-size: 1.8rem;
+  }
+}
+
+.qa-item__question i {
+  margin-left: 1rem;
+  width: 3rem;
+  height: 3rem;
+  line-height: 3rem;
+  text-align: center;
+  background-color: #cba67e;
+  color: #ffffff;
+}
+
+.qa-item__answer {
+  margin-left: 5rem;
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #fffcf4;
+  border-radius: 1rem;
+  position: relative;
+}
+
+@media screen and (min-width: 768px) {
+  .qa-item__answer {
+    margin-left: 8rem;
+  }
+}
+
+.qa-item__answer.at-show {
+  padding: 2rem 1.5rem;
+}
+
+.qa-item__answer:before {
+  font-family: 'Font Awesome 5 Free';
+  content: '\f111';
+  font-weight: 900;
+  color: #fffcf4;
+  position: absolute;
+  font-size: 1rem;
+  top: -1rem;
+  left: -3rem;
+}
+
+@media screen and (min-width: 768px) {
+  .qa-item__answer:before {
+    font-size: 1.5rem;
+    left: -5rem;
+  }
+}
+
+.qa-item__answer:after {
+  font-family: 'Font Awesome 5 Free';
+  content: '\f111';
+  font-weight: 900;
+  color: #fffcf4;
+  position: absolute;
+  font-size: 1.5rem;
+  top: 0.5rem;
+  left: -2rem;
+}
+
+@media screen and (min-width: 768px) {
+  .qa-item__answer:after {
+    font-size: 2.5rem;
+    left: -3rem;
+  }
+}
+
+.qa-item__answer .mark {
+  display: block;
+  width: 40%;
+  color: #ed8400;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .qa-item__answer .mark {
+    width: 10%;
+  }
+}
+
+.qa-item__answer .answer-message {
+  margin-left: 1rem;
 }
 /*# sourceMappingURL=common.css.map */

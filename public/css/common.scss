@@ -1488,6 +1488,7 @@ html.open,
 
 // 検索フォーム
 .search-box {
+  margin-bottom: 2rem;
   padding: 1.5rem 2.5rem;
   border: 1px dotted $brown;
   border-radius: 0.6rem;
@@ -1885,182 +1886,26 @@ html.open,
   }
 }
 
-/*---------------------------
-  QAページのメイン領域
----------------------------*/
-.qa-item {
-  width: 100%;
-  border-top: 1px solid $beige;
-  padding: 1rem 0;
-
-  &__question {
-    margin-bottom: 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    & span,
-    & i {
-      display: block;
-    }
-
-    & .mark_and_category {
-      margin-right: 1rem;
-
-      @media screen and (min-width: 768px) {
-        margin-right: 2.5rem;
-      }
-
-      width: 20%;
-
-      @media screen and (min-width: 768px) {
-        width: 10%;
-      }
-
-      & .mark {
-        color: $red;
-        font-size: 3rem;
-        font-weight: bold;
-        text-align: center;
-      }
-
-      & .category {
-        // background-color: $lightBrown;
-        background-color: $red;
-        color: $white;
-        text-align: center;
-        border-radius: 0.5rem;
-        font-size: 1.2rem;
-
-        &.category-100 {
-          background-color: $green;
-        }
-        &.category-200 {
-          background-color: $navy;
-        }
-        &.category-300 {
-          background-color: $vermilion;
-        }
-        &.category-400,
-        &.category-500 {
-          background-color: $purple;
-        }
-      }
-    }
-
-    & .question-sentence {
-      width: 75%;
-      padding-top: 2rem;
-      // font-family: $krSunflower;
-      font-size: 2rem;
-      @media screen and (min-width: 768px) {
-        padding-top: 1rem;
-        // font-size: 2.5rem;
-        font-size: 2.2rem;
-      }
-    }
-
-    & .question-date {
-      color: $gray;
-      font-size: 1.2rem;
-      @media screen and (min-width: 768px) {
-        font-size: 1.8rem;
-      }
-    }
-
-    & i {
-      margin-left: 1rem;
-      width: 3rem;
-      height: 3rem;
-      line-height: 3rem;
-      text-align: center;
-      // background-color: $brown;
-      background-color: $lightBrown;
-      color: $white;
-    }
-  }
-
-  &__answer {
-    margin-left: 5rem;
-    padding: 1rem;
-    @media screen and (min-width: 768px) {
-      margin-left: 8rem;
-      // font-size: 2.2rem;
-    }
-
-    display: flex;
-    justify-content: space-between;
-    background-color: $yellow;
-    border-radius: 1rem;
-    position: relative;
-
-    &.at-show {
-      padding: 2rem 1.5rem;
-    }
-
-    &:before {
-      font-family: 'Font Awesome 5 Free';
-      content: '\f111';
-      font-weight: 900;
-      color: $yellow;
-      position: absolute;
-      font-size: 1rem;
-      top: -1rem;
-      left: -3rem;
-      @media screen and (min-width: 768px) {
-        font-size: 1.5rem;
-        // top: 0;
-        left: -5rem;
-      }
-    }
-
-    &:after {
-      font-family: 'Font Awesome 5 Free';
-      content: '\f111';
-      font-weight: 900;
-      color: $yellow;
-      position: absolute;
-      font-size: 1.5rem;
-      top: 0.5rem;
-      left: -2rem;
-      @media screen and (min-width: 768px) {
-        font-size: 2.5rem;
-        // top: 0.5rem;
-        left: -3rem;
-      }
-    }
-
-    & .mark {
-      display: block;
-      width: 40%;
-      @media screen and (min-width: 768px) {
-        width: 10%;
-      }
-      color: $orange;
-      font-size: 3rem;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    & .answer-message {
-      margin-left: 1rem;
-    }
-  }
-}
 
 /*---------------------------
   質問掲示板トップページのメイン領域部分
 ---------------------------*/
 .ask-sort {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  width: 40%;
+  margin-bottom: 2rem;
 }
 
 .ask-link {
+  margin-top: 2rem;
   text-align: right;
-  color: $red;
-  font-weight: bold;
+
+  & a {
+    display: inline-block;
+    padding: 0.2rem 1rem;
+    background-color: $brown;
+    color: $white;
+    border-radius: 0.4rem;
+  }
 }
 
 .ask-form {
@@ -2068,8 +1913,10 @@ html.open,
 
   &__message {
     &__attention {
+      background-color: #fff;
       text-align: center;
       color: $red;
+      margin-bottom: 1rem;
     }
   }
 
@@ -2436,4 +2283,167 @@ html.open,
   color: $brown;
   text-align: center;
   padding: 1rem;
+}
+
+/*---------------------------
+  QAページのメイン領域
+---------------------------*/
+.qa-item {
+  width: 100%;
+  border-top: 1px solid $beige;
+  padding: 1rem 0;
+
+  &__question {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & span,
+    & i {
+      display: block;
+    }
+
+    & .mark_and_category {
+      margin-right: 1rem;
+
+      @media screen and (min-width: 768px) {
+        margin-right: 2.5rem;
+      }
+
+      width: 20%;
+
+      @media screen and (min-width: 768px) {
+        width: 10%;
+      }
+
+      & .mark {
+        color: $red;
+        font-size: 3rem;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      & .category {
+        // background-color: $lightBrown;
+        background-color: $red;
+        color: $white;
+        text-align: center;
+        border-radius: 0.5rem;
+        font-size: 1.2rem;
+
+        &.category-100 {
+          background-color: $green;
+        }
+        &.category-200 {
+          background-color: $navy;
+        }
+        &.category-300 {
+          background-color: $vermilion;
+        }
+        &.category-400,
+        &.category-500 {
+          background-color: $purple;
+        }
+      }
+    }
+
+    & .question-sentence {
+      width: 75%;
+      padding-top: 2rem;
+      // font-family: $krSunflower;
+      font-size: 2rem;
+      @media screen and (min-width: 768px) {
+        padding-top: 1rem;
+        // font-size: 2.5rem;
+        font-size: 2.2rem;
+      }
+    }
+
+    & .question-date {
+      color: $gray;
+      font-size: 1.2rem;
+      @media screen and (min-width: 768px) {
+        font-size: 1.8rem;
+      }
+    }
+
+    & i {
+      margin-left: 1rem;
+      width: 3rem;
+      height: 3rem;
+      line-height: 3rem;
+      text-align: center;
+      // background-color: $brown;
+      background-color: $lightBrown;
+      color: $white;
+    }
+  }
+
+  &__answer {
+    margin-left: 5rem;
+    padding: 1rem;
+    @media screen and (min-width: 768px) {
+      margin-left: 8rem;
+      // font-size: 2.2rem;
+    }
+
+    display: flex;
+    justify-content: space-between;
+    background-color: $yellow;
+    border-radius: 1rem;
+    position: relative;
+
+    &.at-show {
+      padding: 2rem 1.5rem;
+    }
+
+    &:before {
+      font-family: 'Font Awesome 5 Free';
+      content: '\f111';
+      font-weight: 900;
+      color: $yellow;
+      position: absolute;
+      font-size: 1rem;
+      top: -1rem;
+      left: -3rem;
+      @media screen and (min-width: 768px) {
+        font-size: 1.5rem;
+        // top: 0;
+        left: -5rem;
+      }
+    }
+
+    &:after {
+      font-family: 'Font Awesome 5 Free';
+      content: '\f111';
+      font-weight: 900;
+      color: $yellow;
+      position: absolute;
+      font-size: 1.5rem;
+      top: 0.5rem;
+      left: -2rem;
+      @media screen and (min-width: 768px) {
+        font-size: 2.5rem;
+        // top: 0.5rem;
+        left: -3rem;
+      }
+    }
+
+    & .mark {
+      display: block;
+      width: 40%;
+      @media screen and (min-width: 768px) {
+        width: 10%;
+      }
+      color: $orange;
+      font-size: 3rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    & .answer-message {
+      margin-left: 1rem;
+    }
+  }
 }

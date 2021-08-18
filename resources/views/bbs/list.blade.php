@@ -57,10 +57,11 @@
           <th scope="col">질문자</th>
           <th scope="col">공개상태</th>
           <th scope="col">부류</th>
-          <th scope="col" class="col-5">제목</th>
+          <th scope="col" class="col-4">제목</th>
+          <th scope="col">접수일</th>
           <th scope="col">공개일</th>
           <th scope="col">열람수</th>
-          <th scope="col">처리</th>
+          <th scope="col" class="col-2">처리</th>
         </tr>
       </thead>
       <tbody>
@@ -82,7 +83,8 @@
             <span v-if="ask.status === 1"><a :href="ask.url" v-text="ask.title"></a></span>
             <span v-else v-text="ask.headline"></span>
           </td>
-          <td v-text="ask.date"></td>
+          <td v-text="ask.created_at"></td>
+          <td v-text="ask.replied_date"></td>
           <td v-text="ask.viewed_count"></td>
           <td>
             <a :href="ask.edit_url" class="btn btn-primary me-3" target="_blank">편집</a>
