@@ -46,9 +46,10 @@ class HomeController extends Controller
 
     $notices = Notice::where('role', 0)
       ->where('status', 1)
-      ->select('title', 'created_at')
       ->orderBy('created_at', 'desc')
-      ->take(3)->get();
+      ->take(8)->get();
+
+    $noticeCtegories = config('notices.category');
 
     return view('home', [
       'recentArticles' => $recentArticles,
@@ -57,6 +58,7 @@ class HomeController extends Controller
       'popularAsks' => $popularAsks,
       // 'topNotice' => $topNotice,
       'notices' => $notices,
+      'noticeCtegories' => $noticeCtegories,
     ]);
   }
 }

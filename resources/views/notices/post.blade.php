@@ -15,8 +15,9 @@
       </ul>
     </div>
 
-    {{-- role選択フォーム --}}
-    <div class="row my-3">
+    <div class="row">
+
+      {{-- role選択フォーム --}}
       <div class="col-3 form-floating">
         <select class="form-select" id="role" v-model="role">
           <option value="0" selected>普通</option>
@@ -24,10 +25,8 @@
         </select>
         <label for="role">扱い</label>
       </div>
-    </div>
 
-    {{-- 公開状況選択フォーム --}}
-    <div class="row my-3">
+      {{-- 公開状況選択フォーム --}}
       <div class="col-3 form-floating">
         <select class="form-select" id="status" v-model="status">
           <option value="0" selected>非公開</option>
@@ -35,6 +34,22 @@
         </select>
         <label for="status">公開状況</label>
       </div>
+
+      {{-- カテゴリー --}}
+      <div class="col-3 form-floating">
+        <select class="form-select" id="category" v-model="category">
+          @foreach ($categories as $key => $category)
+            <option value="{{ $key }}">{{ $category }}</option>
+          @endforeach
+        </select>
+        <label for="category">カテゴリー</label>
+      </div>
+    </div>
+
+    {{-- url 入力フォーム --}}
+    <div class="row mb-3">
+      <label for="url" class="form-label">URL</label>
+      <textarea class="form-control" id="url" v-model="noticeURL"></textarea>
     </div>
 
     {{-- 概要入力フォーム --}}
@@ -82,7 +97,9 @@
           currentNotice: {!! $notice ?? 'null' !!},
           role: 0,
           status: 0,
+          category: 1,
           noticeTitle: '',
+          noticeURL: '',
           noticeDescription: '',
           errors: {},
         }
@@ -91,7 +108,9 @@
         if (this.currentNotice !== null) {
           this.currentMode = 'edit';
           this.role = this.currentNotice.role;
+          this.category = this.currentNotice.category;
           this.noticeTitle = this.currentNotice.title;
+          this.noticeURL = this.currentNotice.url;
           this.noticeDescription = this.currentNotice.description;
         }
       },
@@ -120,7 +139,9 @@
               _method: method,
               role: this.role,
               status: this.status,
+              category: this.category,
               title: this.noticeTitle,
+              url: this.noticeURL,
               description: this.noticeDescription,
             };
 

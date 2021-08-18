@@ -63,71 +63,22 @@
       <h2 class="info__heading">갱신정보</h2>
       <div class="info__list">
         <ul>
-          <li>
-            <a href="#">
-              <span class="info__date">
-                <span>2021-08-12</span>
-              </span>
-              <span class="info__category">
-                <span class="category-01">학습실</span>
-              </span>
-              <span class="info__title">
-                <span>조직생활은 누리는것인가?</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="info__date">
-                <span>2021-08-12</span>
-              </span>
-              <span class="info__category">
-                <span class="category-02">게시판</span>
-              </span>
-              <span class="info__title">
-                <span>조직생활은 누리는것인가? 조직생활은 누리는것인가?</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="info__date">
-                <span>2021-08-12</span>
-              </span>
-              <span class="info__category">
-                <span class="category-02">게시판</span>
-              </span>
-              <span class="info__title">
-                <span>조직생활은 누리는것인가?</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="info__date">
-                <span>2021-08-12</span>
-              </span>
-              <span class="info__category">
-                <span class="category-03">새기능</span>
-              </span>
-              <span class="info__title">
-                <span>조직생활은 누리는것인가?</span>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <span class="info__date">
-                <span>2021-08-12</span>
-              </span>
-              <span class="info__category">
-                <span class="category-01">학습실</span>
-              </span>
-              <span class="info__title">
-                <span>조직생활은 누리는것인가?</span>
-              </span>
-            </a>
-          </li>
+          @foreach ($notices as $notice)
+            <li>
+              {{-- {{ dd($notice->url) }} --}}
+              <a href="{{ url('/') . $notice->url }}">
+                <span class="info__date">
+                  <span>{{ $notice->created_at->format('Y-m-d') }}</span>
+                </span>
+                <span class="info__category">
+                  <span class="category-0{{ $notice->category }}">{{ $noticeCtegories[$notice->category] }}</span>
+                </span>
+                <span class="info__title">
+                  <span>{{ $notice->title }}</span>
+                </span>
+              </a>
+            </li>
+          @endforeach
         </ul>
       </div>
     </section>

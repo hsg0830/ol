@@ -10,6 +10,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Article;
 use App\Models\SubContent;
 use App\Models\ArticleCategory;
+use App\Models\Notice;
 
 class ArticlesController extends Controller
 {
@@ -178,11 +179,13 @@ class ArticlesController extends Controller
       $article->sub_category_id = $request->sub_category_id;
       $article->introduction = $request->introduction;
       $article->status = $request->status;
+
       if (intval($article->status) === 1 && is_null($article->released_at)) {
         $article->released_at = now();
       } else if (intval($article->status !== 1)) {
         $article->released_at = null;
       }
+
       $article->save();
 
       if (count($request->subContents) > 0) {
@@ -204,8 +207,17 @@ class ArticlesController extends Controller
       DB::commit();
       $result = true;
     } catch (\Exception $e) {
-
       DB::rollBack();
+    }
+
+    if ($request->notice == 1) {
+      $notice = new Notice();
+      $notice->editor_id = $article->editor_id;
+      $notice->status = 1;
+      $notice->category = 1;
+      $notice->title = $article->title;
+      $notice->url = '/articles/' . $article->id;
+      $notice->save();
     }
 
     return [
