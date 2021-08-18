@@ -1729,6 +1729,18 @@ html.open,
   color: #6a421f;
 }
 
+@media screen and (max-width: 767px) {
+  .top-line-link.line-link-pc {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .top-line-link.line-link-sp {
+    display: none;
+  }
+}
+
 /*---------------------------
   各カテゴリーのトップページのメイン領域共通部
 ---------------------------*/
