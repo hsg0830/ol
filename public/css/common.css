@@ -111,6 +111,12 @@ a:hover {
   opacity: 0.8;
 }
 
+.anchor {
+  display: block;
+  padding-top: 70px;
+  margin-top: -70px;
+}
+
 *:focus {
   outline: none;
 }
@@ -2318,6 +2324,26 @@ html.open,
 .content-block {
   width: 95%;
   margin: 2.5rem auto 0;
+}
+
+.table-of-contents {
+  width: 60%;
+  margin: 0 auto 4rem;
+}
+
+.table-of-contents__heading {
+  padding: 1rem 0;
+  background-color: #cba67e;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 1rem;
+}
+
+.table-of-contents__list {
+  padding: 2rem 1rem 2rem 3rem;
+  background-color: #fffcf4;
+  color: #6a421f;
 }
 
 .section-title-block {

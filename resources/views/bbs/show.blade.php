@@ -71,7 +71,7 @@
                 <div class="list-item__content__info">
                   <p class="count">열람수: <span>{{ $item->viewed_count }}</span>번</p>
                   <p class="date">{{ $item->replied_date }}</p>
-                  <p class="category category-{{ $item->category_id }}">{{ $item->category->name }}</p>
+                  {{-- <p class="category category-{{ $item->category_id }}">{{ $item->category->name }}</p> --}}
                 </div>
               </div>
             </a>

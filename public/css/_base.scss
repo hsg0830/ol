@@ -42,6 +42,12 @@ a {
   }
 }
 
+.anchor {
+  display: block;
+  padding-top: 70px;
+  margin-top: -70px;
+}
+
 *:focus {
   outline: none;
 }

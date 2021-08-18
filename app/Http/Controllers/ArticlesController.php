@@ -28,10 +28,21 @@ class ArticlesController extends Controller
       $query->where('category_id', $category_id);
     }
 
-    $articles = $query->where('status', 1)
-      ->with('category')
-      ->orderBy('released_at', 'desc')
-      ->paginate(12);
+    if ($request->searchWord) {
+      $keyword = '%' . $request->searchWord . '%';
+      $query->where('title', 'like', $keyword);
+    }
+
+    $query->where('status', 1)
+      ->with('category');
+
+    if ($request->sort == 0) {
+      $query->orderBy('created_at', 'desc');
+    } else {
+      $query->orderBy('viewed_count', 'desc');
+    }
+
+    $articles = $query->paginate(12);
 
     $categories = ArticleCategory::select('id', 'name')->get();
 
@@ -55,8 +66,8 @@ class ArticlesController extends Controller
         if (
           Auth::user() instanceof MustVerifyEmail
           && Auth::user()->email_verified_at == NULL
-          ) {
-            return redirect()->route('verification.notice');
+        ) {
+          return redirect()->route('verification.notice');
         }
       }
     }
