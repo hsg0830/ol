@@ -3,8 +3,6 @@
 @section('content')
   <!-- ↓↓↓メインコンテンツ↓↓↓ -->
   <aside id="sidemenu">
-    <!-- 이번주기사 & 검색창 -->
-    <!-- <section class="ly-block"> -->
     <!-- 이번주기사 -->
     <div class="pick-up">
       <h2 class="pick-up__heading">이번주 학습과제</h2>
@@ -49,7 +47,14 @@
         </div>
       </form>
     </div>
-    <!-- </section> -->
+
+    {{-- Lineリンク PC --}}
+    <div class="ly-block top-line-link line-link-pc">
+      <p>라인등록을 하시면 갱신정보를 수시로 받아보실수 있습니다.</p>
+      <a href="https://lin.ee/s4RHXJS">
+        <img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0">
+      </a>
+    </div>
   </aside>
 
   <main id="main">
@@ -250,6 +255,15 @@
       </div>
 
     </section>
+
+    {{-- Lineリンク SP --}}
+    <div class="ly-block top-line-link line-link-sp">
+      <p>라인등록을 하시면 갱신정보를 수시로 받아보실수 있습니다.</p>
+      <a href="https://lin.ee/s4RHXJS">
+        <img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0">
+      </a>
+    </div>
+
   </main>
   <!-- ↑↑↑メインコンテンツ↑↑↑ -->
 @endsection
