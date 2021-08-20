@@ -107,9 +107,16 @@ class AsksController extends Controller
       ->orderBy('replied_at', 'desc')
       ->take(3)->get();
 
+      $isFollowing = false;
+
+      if (Auth::guard('web')->check()) {
+        $isFollowing = Auth::user()->is_ask_following($ask->id);
+      }
+
     return view('bbs.show', [
       'ask' => $ask,
       'relatedAsks' => $relatedAsks,
+      'isFollowing' => $isFollowing,
     ]);
   }
 
@@ -148,7 +155,7 @@ class AsksController extends Controller
     $ask->title = $request->title;
     $ask->description = $request->description;
     $ask->reply = $request->reply;
-    
+
     if ($request->status == 1 && is_null($ask->replied_at)) {
       $ask->replied_at = now();
     }

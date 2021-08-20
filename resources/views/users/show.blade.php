@@ -22,10 +22,11 @@
   <main id="one-column">
     <h1 class="category-title">회원정보관리</h1>
 
+    {{-- 会員情報 --}}
     <div class="my-information">
-      <div class="my-information__header">
+      <h2 class="my-information__header">
         <span><i class="far fa-address-card"></i> 등록된 정보</span>
-      </div>
+      </h2>
 
       <div class="my-information__wrapper">
         <div class="my-information__item">
@@ -56,29 +57,29 @@
       </div>
     </div>
 
-    {{-- 보관해둔 기사 --}}
-    {{-- <div class="my-favorites">
-      <div class="my-favorites__header"><i class="far fa-bookmark"></i> 보관해둔 기사</div>
+    {{-- お気に入り --}}
+    <div class="my-favorites">
+      <h2 class="my-favorites__header"><i class="far fa-bookmark"></i>보관해둔 기사</h2>
 
-      <table class="bbs">
-        <tr class="bbs__thead">
-          <th class="bbs__question">질문</th>
-          <th class="bbs__category">분류</th>
-          <th class="bbs__date">투고날자</th>
-        </tr>
-        <tr>
-          <td><a href="./bbs-show.html">닭알을 어떻게 발음해야 맞습니까?</a></td>
-          <td data-label="분류">언어규범</td>
-          <td data-label="투고날자">2021-04-06</td>
-        </tr>
-        <tr>
-          <td><a href="./bbs-show.html">음악을 흘리다라는 말은 틀렸습니까?</a></td>
-          <td data-label="분류">어휘</td>
-          <td data-label="투고날자">2021-04-01</td>
-        </tr>
-      </table>
-    </div> --}}
+      <h3 class="my-favorites__category">학습실</h3>
+      <ul class="my-favorites__list">
+        @foreach ($favoriteArticles as $article)
+          <li class="my-favorites__list__item">
+            <a href="{{ $article->url }}"><i class="fas fa-circle"></i>{{ $article->title }}</a>
+          </li>
+        @endforeach
+      </ul>
 
+      <h3 class="my-favorites__category">질문게시판</h3>
+      <ul class="my-favorites__list">
+        @foreach ($favoriteAsks as $ask)
+          <li class="my-favorites__list__item">
+            <a href="{{ $ask->url }}"><i class="fas fa-circle"></i>{{ $ask->title }}</a>
+          </li>
+        @endforeach
+      </ul>
+
+    {{-- モーダル --}}
     <div class="user-modal js-modal">
       <div class="user-modal__bg js-modal" @click="modalClose"></div>
 

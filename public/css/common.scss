@@ -1364,7 +1364,7 @@ html.open,
 }
 
 /*---------------------------
-  解説一覧ページ・QAページのメイン領域共通部
+  解説・QA・BBS一覧ページのメイン領域共通部
 ---------------------------*/
 // ページタイトル
 .category-title {
@@ -1584,7 +1584,46 @@ html.open,
   }
 }
 
-// 個別記事ページの関連記事紹介
+/*---------------------------
+  解説・BBS詳細ページの共通部
+---------------------------*/
+// お気に入りボタン
+.favorite-btn {
+  // margin-left: auto;
+  text-align: right;
+  width: 95%;
+  margin: 2.5rem auto 0;
+
+  &__wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &__exp {
+    // width: 80%;
+    margin-right: 1rem;
+    color: $brown;
+  }
+
+  &__btn {
+    width: 5rem;
+    height: 5rem;
+    text-align: center;
+    font-size: 2.8rem;
+    background-color: $red;
+    color: $white;
+    border-radius: 5px;
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.4);
+
+    &.active {
+      background-color: $white;
+      color: $red;
+    }
+  }
+}
+
+// 関連記事紹介
 .list-container__related {
   font-size: 2.2rem;
   font-weight: bold;
@@ -2234,6 +2273,43 @@ html.open,
     font-size: 3rem;
     font-weight: bold;
     color: $brown;
+    margin-bottom: 2rem;
+
+    & i {
+      margin-right: 2rem;
+    }
+  }
+
+  &__category {
+    margin-bottom: 1.5rem;
+    border-bottom: 5px solid $brown;
+    color: $brown;
+    font-size: 2.5rem;
+    padding-left: 1rem;
+  }
+
+  &__list {
+    // border: 1px solid $brown;
+    margin-bottom: 3rem;
+
+    &__item {
+      padding: 0.4rem 1rem;
+
+      // &:nth-child(even) {
+      //   background-color: $yellow;
+      // }
+
+      & a {
+        display: block;
+        width: 100%;
+      }
+
+      & i {
+        margin-right: 2rem;
+        color: $brown;
+        font-size: 1rem;
+      }
+    }
   }
 }
 

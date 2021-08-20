@@ -88,9 +88,16 @@ class ArticlesController extends Controller
       ->orderBy('released_at', 'desc')
       ->take(3)->get();
 
+    $isFollowing = false;
+
+    if (Auth::guard('web')->check()) {
+      $isFollowing = Auth::user()->is_article_following($article->id);
+    }
+
     return view('articles.show', [
       'article' => $article,
       'relatedArticles' => $relatedArticles,
+      'isFollowing' => $isFollowing,
     ]);
   }
 
