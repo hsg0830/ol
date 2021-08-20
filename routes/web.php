@@ -13,6 +13,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\NoticesController;
 use App\Http\Controllers\FavoritesController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,12 @@ Route::get('/prohibited', function () {
 Route::get('/norms/{filename}', function ($filename) {
   return view('norms.' . $filename);
 })->name('norms');
+
+// 検索結果
+Route::get('/search', [SearchController::class, 'index'])->name('search');
+Route::get('/all-search', function() {
+  return view('search.all-search');
+});
 
 // 学習室
 Route::prefix('articles')->group(function () {

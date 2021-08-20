@@ -1391,6 +1391,36 @@ html.open,
   margin-right: 1rem;
 }
 
+.top-search__tabs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.top-search__tabs div {
+  width: 45%;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #fffcf4;
+  color: #6a421f;
+}
+
+.top-search__tabs div.active {
+  background-color: #6a421f;
+  color: #fffcf4;
+}
+
+.top-search__tabs div:hover {
+  opacity: 0.8;
+}
+
+.top-search__all {
+  padding: 2rem 1rem;
+}
+
 @media screen and (max-width: 768px) {
   .top-search__select {
     display: -webkit-box;
@@ -1493,6 +1523,11 @@ html.open,
 
 .info__list ul li:nth-child(even) {
   background-color: rgba(214, 199, 186, 0.2);
+}
+
+.info__list ul li a {
+  display: block;
+  width: 100%;
 }
 
 .info__date {

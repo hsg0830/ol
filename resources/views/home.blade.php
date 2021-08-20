@@ -4,49 +4,10 @@
   <!-- ↓↓↓メインコンテンツ↓↓↓ -->
   <aside id="sidemenu">
     <!-- 이번주기사 -->
-    <div class="pick-up">
-      <h2 class="pick-up__heading">이번주 학습과제</h2>
-      <a href="#">
-        <div class="pick-up__content">
-          <span class="pick-up__content__category category-100">어휘</span>
-          <p class="pick-up__content__title">조직생활은 누리는것인가? 조직생활은 누리는것인가?</p>
-        </div>
-      </a>
-      <div class="more">
-        <a href="#"><i class="fas fa-angle-double-right"></i> 이달 과제 확인하기</a>
-      </div>
-    </div>
+    @include('commons.side-pick-up')
 
     <!-- 검색창 -->
-    <div class="top-search">
-      <div class="top-search__heading">기사, 질문 검색</div>
-      <form action="#" class="top-search__form">
-        <div class="top-search__select">
-          <select name="" id="">
-            <option value="">제목</option>
-            <option value="">전체</option>
-          </select>
-          <input type="search" name="" id="" />
-        </div>
-        <div class="top-search__radio">
-          <div>
-            <input type="radio" name="" id="radio-a" value="" />
-            <label for="radio-a">전체</label>
-          </div>
-          <div>
-            <input type="radio" name="" id="radio-b" value="" />
-            <label for="radio-b">학습실</label>
-          </div>
-          <div>
-            <input type="radio" name="" id="radio-c" value="" />
-            <label for="radio-c">질문게시판</label>
-          </div>
-        </div>
-        <div class="top-search__submit">
-          <input type="submit" value="검색" class="btn global-btn" />
-        </div>
-      </form>
-    </div>
+    @include('commons.side-search')
 
     {{-- Lineリンク PC --}}
     <div class="ly-block top-line-link line-link-pc">
