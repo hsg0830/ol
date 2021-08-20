@@ -37,9 +37,14 @@ class UsersController extends Controller
     if (Auth::id() === $user->id || Auth::guard('editors')->check()) {
       $schools = School::select('id', 'name')->get();
 
+      $favoriteArticles = Auth::user()->favorite_articles()->get();
+      $favoriteAsks = Auth::user()->favorite_asks()->get();
+
       return view('users.show', [
         'user' => $user,
         'schools' => $schools,
+        'favoriteArticles' => $favoriteArticles,
+        'favoriteAsks' => $favoriteAsks,
       ]);
     }
 

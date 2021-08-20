@@ -12,6 +12,7 @@ use App\Http\Controllers\AsksController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\NoticesController;
+use App\Http\Controllers\FavoritesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,21 +45,23 @@ Route::prefix('articles')->group(function () {
   Route::get('/', [ArticlesController::class, 'index'])->name('articles.index');
   Route::get('/pagination', [ArticlesController::class, 'paginate']);
   Route::get('/{article}', [ArticlesController::class, 'show'])->name('articles.show');
-});
 
-// QA
-// Route::prefix('qa')->group(function () {
-//   Route::get('/', [QuestionsController::class, 'index'])->name('qa.index');
-//   Route::get('/pagination', [QuestionsController::class, 'paginate']);
-//   Route::get('{question}', [QuestionsController::class, 'show'])->name('qa.show');
-//   Route::post('/{question}/increment', [QuestionsController::class, 'addViewedCount']);
-// });
+  Route::middleware('auth:web')->group(function () {
+    Route::post('{article}/follow', [FavoritesController::class, 'article_store'])->name('articles.follow');
+    Route::delete('{article}/unfollow', [FavoritesController::class, 'article_destroy'])->name('articles.unfollow');
+  });
+});
 
 // bbs
 Route::prefix('bbs')->group(function () {
   Route::get('/', [AsksController::class, 'index'])->name('bbs.index');
   Route::get('/pagination', [AsksController::class, 'paginate']);
   Route::get('/{ask}', [AsksController::class, 'show'])->name('bbs.show'); // 認証なしでOKに変更
+
+  Route::middleware('auth:web')->group(function () {
+    Route::post('{ask}/follow', [FavoritesController::class, 'ask_store'])->name('bbs.follow');
+    Route::delete('{ask}/unfollow', [FavoritesController::class, 'ask_destroy'])->name('bbs.unfollow');
+  });
 
   // email-verify後にだけアクセスできるルーティング
   Route::middleware(['registered'])->group(function () {
@@ -84,6 +87,14 @@ Route::prefix('contact')->group(function () {
   Route::get('/', [ContactsController::class, 'showForm'])->name('contact.form');
   Route::post('/', [ContactsController::class, 'send']);
 });
+
+// QA
+// Route::prefix('qa')->group(function () {
+//   Route::get('/', [QuestionsController::class, 'index'])->name('qa.index');
+//   Route::get('/pagination', [QuestionsController::class, 'paginate']);
+//   Route::get('{question}', [QuestionsController::class, 'show'])->name('qa.show');
+//   Route::post('/{question}/increment', [QuestionsController::class, 'addViewedCount']);
+// });
 
 // 管理者関連
 Route::prefix('editors')->group(function () {

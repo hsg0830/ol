@@ -47,9 +47,12 @@
       @else
         <div class="title-block__date color-white"><time>{{ $article->date }}</time></div>
       @endif
-
     </div>
     <!-- タイトル部 -->
+
+    {{-- お気に入りボタン --}}
+    @include('commons.favorite-btn')
+    {{-- お気に入りボタン --}}
 
     {{-- イントロダクション --}}
     <div class="introduction-block" @click="hideToolip">
@@ -63,7 +66,8 @@
       <ul class="table-of-contents__list">
         @foreach ($article->subContents as $subContent)
           <li>
-            <a href="#{{ $subContent->id }}"><i class="fas fa-chevron-circle-right"></i> {{ $subContent->title }}</a>
+            <a href="#{{ $subContent->id }}"><i class="fas fa-chevron-circle-right"></i>
+              {{ $subContent->title }}</a>
           </li>
         @endforeach
       </ul>
@@ -133,6 +137,8 @@
         return {
           currentTooltop: '',
           currenUserAgent: '',
+          article: {!! $article !!},
+          isFollowing: {{ $isFollowing ? 'true' : 'false' }},
         }
       },
       methods: {
@@ -140,8 +146,8 @@
           this.currenUserAgent = navigator.userAgent;
 
           if (this.currenUserAgent.indexOf("iPhone") >= 0 ||
-          this.currenUserAgent.indexOf("iPad") >= 0 ||
-          this.currenUserAgent.indexOf("Android") >= 0
+            this.currenUserAgent.indexOf("iPad") >= 0 ||
+            this.currenUserAgent.indexOf("Android") >= 0
           ) {
             this.currentTooltop = $event.target;
             $(this.currentTooltop).addClass('isActive');
@@ -152,11 +158,38 @@
             $(this.currentTooltop).removeClass('isActive');
             this.currentTooltop = '';
           }
-        }
+        },
+        follow() {
+          const url = `/articles/${this.article.id}/follow`;
+
+          axios
+            .post(url)
+            .then((response) => {
+              if (response.data.result === true) {
+                this.isFollowing = response.data.isFollowing;
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        },
+        unfollow() {
+          const url = `/articles/${this.article.id}/unfollow`;
+
+          axios
+            .delete(url)
+            .then((response) => {
+              if (response.data.result === true) {
+                this.isFollowing = response.data.isFollowing;
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        },
       },
     });
 
     app.mount('#main');
-
   </script>
 @endsection

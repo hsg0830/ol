@@ -1899,7 +1899,7 @@ html.open,
 }
 
 /*---------------------------
-  解説一覧ページ・QAページのメイン領域共通部
+  解説・QA・BBS一覧ページのメイン領域共通部
 ---------------------------*/
 .category-title {
   margin: 1rem 0 2rem;
@@ -2113,6 +2113,49 @@ html.open,
 
 .search-form__btn-block .global-btn {
   margin: 0 1rem;
+}
+
+/*---------------------------
+  解説・BBS詳細ページの共通部
+---------------------------*/
+.favorite-btn {
+  text-align: right;
+  width: 95%;
+  margin: 2.5rem auto 0;
+}
+
+.favorite-btn__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.favorite-btn__exp {
+  margin-right: 1rem;
+  color: #6a421f;
+}
+
+.favorite-btn__btn {
+  width: 5rem;
+  height: 5rem;
+  text-align: center;
+  font-size: 2.8rem;
+  background-color: #ab243b;
+  color: #ffffff;
+  border-radius: 5px;
+  -webkit-box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.4);
+          box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.4);
+}
+
+.favorite-btn__btn.active {
+  background-color: #ffffff;
+  color: #ab243b;
 }
 
 .list-container__related {
@@ -2755,6 +2798,38 @@ html.open,
   font-size: 3rem;
   font-weight: bold;
   color: #6a421f;
+  margin-bottom: 2rem;
+}
+
+.my-favorites__header i {
+  margin-right: 2rem;
+}
+
+.my-favorites__category {
+  margin-bottom: 1.5rem;
+  border-bottom: 5px solid #6a421f;
+  color: #6a421f;
+  font-size: 2.5rem;
+  padding-left: 1rem;
+}
+
+.my-favorites__list {
+  margin-bottom: 3rem;
+}
+
+.my-favorites__list__item {
+  padding: 0.4rem 1rem;
+}
+
+.my-favorites__list__item a {
+  display: block;
+  width: 100%;
+}
+
+.my-favorites__list__item i {
+  margin-right: 2rem;
+  color: #6a421f;
+  font-size: 1rem;
 }
 
 .user-modal {

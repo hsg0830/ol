@@ -35,6 +35,10 @@
       </div>
     </div>
 
+    {{-- お気に入りボタン --}}
+    @include('commons.favorite-btn')
+    {{-- お気に入りボタン --}}
+
     <div class="ask-detail">{!! $ask->description !!}</div>
 
     <div class="reply">
@@ -43,7 +47,8 @@
     </div>
 
     <div class="ask-link">
-      질문하실것이 있으시면 이쪽으로 → <a href="{{ route('bbs.index') }}#ask-form"><i class="fas fa-chevron-circle-right"></i> 질문하기</a>
+      질문하실것이 있으시면 이쪽으로 → <a href="{{ route('bbs.index') }}#ask-form"><i class="fas fa-chevron-circle-right"></i>
+        질문하기</a>
     </div>
 
     {{-- 関連記事 --}}
@@ -83,4 +88,49 @@
 
   @include('commons.side')
 
+@endsection
+
+@section('js-script')
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          ask: {!! $ask !!},
+          isFollowing: {{ $isFollowing ? 'true' : 'false' }},
+        }
+      },
+      methods: {
+        follow() {
+          const url = `/bbs/${this.ask.id}/follow`;
+
+          axios
+            .post(url)
+            .then((response) => {
+              if (response.data.result === true) {
+                this.isFollowing = response.data.isFollowing;
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        },
+        unfollow() {
+          const url = `/bbs/${this.ask.id}/unfollow`;
+
+          axios
+            .delete(url)
+            .then((response) => {
+              if (response.data.result === true) {
+                this.isFollowing = response.data.isFollowing;
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        },
+      },
+    });
+
+    app.mount('#main');
+  </script>
 @endsection
