@@ -868,6 +868,32 @@ html.open,
     }
   }
 
+  &__tabs {
+    display: flex;
+    justify-content: space-between;
+
+    & div {
+      width: 45%;
+      border-radius: 5px;
+      text-align: center;
+      background-color: $yellow;
+      color: $brown;
+
+      &.active {
+        background-color: $brown;
+        color: $yellow;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &__all {
+    padding: 2rem 1rem;
+  }
+
   &__select {
     @media screen and (max-width: 768px) {
       display: flex;
@@ -951,9 +977,10 @@ html.open,
           background-color: rgba($beige, 0.2);
         }
 
-        // & a {
-        //   display: block;
-        // }
+        & a {
+          display: block;
+          width: 100%;
+        }
       }
     }
   }
