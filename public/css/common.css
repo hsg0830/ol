@@ -1953,6 +1953,7 @@ html.open,
 
 .list-container {
   width: 100%;
+  margin-top: 2rem;
 }
 
 .list-container__selector ul {
@@ -2850,6 +2851,10 @@ html.open,
 
 .my-favorites__list {
   margin-bottom: 3rem;
+}
+
+.my-favorites__list p {
+  padding: 1rem;
 }
 
 .my-favorites__list__item {

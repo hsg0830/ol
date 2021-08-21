@@ -91,6 +91,10 @@
     @endif
     <!-- 本文部 -->
 
+    {{-- お気に入りボタン --}}
+    @include('commons.favorite-btn')
+    {{-- お気に入りボタン --}}
+
     {{-- 関連記事 --}}
     <div id="list-container" class="list-container">
       <div class="list-container__related"><i class="fas fa-book-reader"></i> 관련기사</div>
