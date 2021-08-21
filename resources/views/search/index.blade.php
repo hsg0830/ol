@@ -31,6 +31,10 @@
           </li>
         @endforeach
       </ul>
+    @else
+      <div class="my-favorites__list">
+        <p>해당되는 기사가 없습니다.</p>
+      </div>
     @endif
 
     <h2 class="my-favorites__category">질문게시판</h2>
@@ -42,6 +46,10 @@
           </li>
         @endforeach
       </ul>
+      @else
+      <div class="my-favorites__list">
+        <p>해당되는 질문이 없습니다.</p>
+      </div>
     @endif
   </main>
 
