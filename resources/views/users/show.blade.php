@@ -62,23 +62,34 @@
       <h2 class="my-favorites__header"><i class="far fa-bookmark"></i>보관해둔 기사</h2>
 
       <h3 class="my-favorites__category">학습실</h3>
-      <ul class="my-favorites__list">
-        @foreach ($favoriteArticles as $article)
-          <li class="my-favorites__list__item">
-            <a href="{{ $article->url }}"><i class="fas fa-circle"></i>{{ $article->title }}</a>
-          </li>
-        @endforeach
-      </ul>
+      @if (count($favoriteArticles) > 0)
+        <ul class="my-favorites__list">
+          @foreach ($favoriteArticles as $article)
+            <li class="my-favorites__list__item">
+              <a href="{{ $article->url }}"><i class="fas fa-circle"></i>{{ $article->title }}</a>
+            </li>
+          @endforeach
+        </ul>
+      @else
+        <div class="my-favorites__list">
+          <p>보관하신 기사가 없습니다.</p>
+        </div>
+      @endif
 
       <h3 class="my-favorites__category">질문게시판</h3>
-      <ul class="my-favorites__list">
-        @foreach ($favoriteAsks as $ask)
-          <li class="my-favorites__list__item">
-            <a href="{{ $ask->url }}"><i class="fas fa-circle"></i>{{ $ask->title }}</a>
-          </li>
-        @endforeach
-      </ul>
-
+      @if (count($favoriteAsks) > 0)
+        <ul class="my-favorites__list">
+          @foreach ($favoriteAsks as $ask)
+            <li class="my-favorites__list__item">
+              <a href="{{ $ask->url }}"><i class="fas fa-circle"></i>{{ $ask->title }}</a>
+            </li>
+          @endforeach
+        </ul>
+      @else
+        <div class="my-favorites__list">
+          <p>보관하신 질문이 없습니다.</p>
+        </div>
+      @endif
     {{-- モーダル --}}
     <div class="user-modal js-modal">
       <div class="user-modal__bg js-modal" @click="modalClose"></div>

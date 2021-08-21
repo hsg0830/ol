@@ -46,6 +46,10 @@
       <div class="reply__content">{!! $ask->reply !!}</div>
     </div>
 
+    {{-- お気に入りボタン --}}
+    @include('commons.favorite-btn')
+    {{-- お気に入りボタン --}}
+
     <div class="ask-link">
       질문하실것이 있으시면 이쪽으로 → <a href="{{ route('bbs.index') }}#ask-form"><i class="fas fa-chevron-circle-right"></i>
         질문하기</a>
