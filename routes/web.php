@@ -14,6 +14,7 @@ use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\NoticesController;
 use App\Http\Controllers\FavoritesController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\TasksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +44,7 @@ Route::get('/norms/{filename}', function ($filename) {
 
 // 検索結果
 Route::get('/search', [SearchController::class, 'index'])->name('search');
-Route::get('/all-search', function() {
+Route::get('/all-search', function () {
   return view('search.all-search');
 });
 
@@ -102,6 +103,17 @@ Route::prefix('contact')->group(function () {
 //   Route::get('{question}', [QuestionsController::class, 'show'])->name('qa.show');
 //   Route::post('/{question}/increment', [QuestionsController::class, 'addViewedCount']);
 // });
+
+// 学習課題
+Route::prefix('tasks')->middleware(['registered'])->group(function () {
+  Route::get('/', [TasksController::class, 'index'])->name('tasks.index');
+  Route::get('/get-list', [TasksController::class, 'getList']);
+
+  Route::middleware('auth:web')->group(function () {
+    Route::post('{task}/cleared', [TasksController::class, 'toCleared'])->name('tasks.cleared');
+    Route::delete('{task}/un-cleared', [TasksController::class, 'toUnCleared'])->name('tasks.uncleared');
+  });
+});
 
 // 管理者関連
 Route::prefix('editors')->group(function () {
@@ -188,6 +200,15 @@ Route::prefix('editors')->group(function () {
       Route::get('{contact}', [ContactsController::class, 'showReplyForm'])->name('contacts.reply');
       Route::put('{contact}', [ContactsController::class, 'reply']);
       Route::delete('{contact}', [ContactsController::class, 'destroy']);
+    });
+
+    // 学習課題投稿・編集
+    Route::prefix('tasks')->group(function () {
+      Route::get('/create', [TasksController::class, 'create'])->name('tasks.create');
+      Route::get('/edit', [TasksController::class, 'edit'])->name('tasks.edit');
+      Route::post('/', [TasksController::class, 'store']);
+      Route::put('/', [TasksController::class, 'update']);
+      Route::get('progress', [TasksController::class, 'showProgress'])->name('tasks.progress');
     });
   });
 });

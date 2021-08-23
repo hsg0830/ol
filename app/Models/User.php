@@ -49,12 +49,12 @@ class User extends Authenticatable implements MustVerifyEmail
     'email_verified_at' => 'datetime',
   ];
 
-  protected $appends = ['registered_date'];
+  // protected $appends = ['registered_date'];
 
-  public function getRegisteredDateAttribute()
-  {
-    return $this->created_at->format('Y-m-d');
-  }
+  // public function getRegisteredDateAttribute()
+  // {
+  //   return $this->created_at->format('Y-m-d');
+  // }
 
   public function school()
   {
@@ -132,5 +132,36 @@ class User extends Authenticatable implements MustVerifyEmail
   public function is_ask_following($askId)
   {
     return $this->favorite_asks()->where('ask_id', $askId)->exists();
+  }
+
+  public function cleared_tasks()
+  {
+    return $this->belongsToMany(Task::class)->withTimestamps();
+  }
+
+  public function toCleared($taskId) {
+    $exists = $this->is_cleared_task($taskId);
+
+    if ($exists) {
+      return false;
+    } else {
+      $this->cleared_tasks()->attach($taskId);
+      return true;
+    }
+  }
+
+  public function toUnCleared($taskId) {
+    $exists = $this->is_cleared_task($taskId);
+
+    if ($exists) {
+      $this->cleared_tasks()->detach($taskId);
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public function is_cleared_task($taskId) {
+    return $this->cleared_tasks()->where('task_id', $taskId)->exists();
   }
 }

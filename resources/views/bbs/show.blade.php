@@ -50,6 +50,10 @@
     @include('commons.favorite-btn')
     {{-- お気に入りボタン --}}
 
+    {{-- 課題状況 --}}
+    @include('commons.task-status')
+    {{-- 課題状況 --}}
+
     <div class="ask-link">
       질문하실것이 있으시면 이쪽으로 → <a href="{{ route('bbs.index') }}#ask-form"><i class="fas fa-chevron-circle-right"></i>
         질문하기</a>
@@ -101,14 +105,28 @@
         return {
           ask: {!! $ask !!},
           isFollowing: {{ $isFollowing ? 'true' : 'false' }},
+          task: {!! $task ?? 'null' !!},
+          isCleared: {{ $isCleared ? 'true' : 'false' }},
         }
       },
       methods: {
-        follow() {
-          const url = `/bbs/${this.ask.id}/follow`;
+        changeFavoriteStatus() {
+          let url = `/bbs/${this.ask.id}/`;
+          let method = 'POST';
+
+          if (this.isFollowing == false) {
+            url += 'follow';
+          } else {
+            url += 'unfollow';
+            method = 'DELETE';
+          }
+
+          const params = {
+              _method: method,
+          };
 
           axios
-            .post(url)
+            .post(url, params)
             .then((response) => {
               if (response.data.result === true) {
                 this.isFollowing = response.data.isFollowing;
@@ -118,14 +136,25 @@
               console.log(error);
             });
         },
-        unfollow() {
-          const url = `/bbs/${this.ask.id}/unfollow`;
+        changeTaskStatus() {
+          let url = `/tasks/${this.task.id}/`;
+          let method = 'POST';
 
-          axios
-            .delete(url)
+          if (this.isCleared == false) {
+            url += 'cleared';
+          } else {
+            url += 'un-cleared';
+            method = 'DELETE';
+          }
+
+          const params = {
+              _method: method,
+          };
+
+          axios.post(url, params)
             .then((response) => {
               if (response.data.result === true) {
-                this.isFollowing = response.data.isFollowing;
+                this.isCleared = response.data.isCleared;
               }
             })
             .catch((error) => {

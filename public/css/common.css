@@ -1347,11 +1347,12 @@ html.open,
   background-color: #d44a28;
 }
 
-.pick-up__content__category.category-400 {
+.pick-up__content__category.category-400, .pick-up__content__category.category-500 {
   background-color: #9e1e53;
 }
 
 .pick-up__content__title {
+  padding-top: 3rem;
   padding-left: 4.5rem;
   padding-right: 1.5rem;
 }
@@ -2652,6 +2653,208 @@ html.open,
   .ask-form__input {
     width: 80%;
   }
+}
+
+/*---------------------------
+  学習課題・旧質問掲示板トップページのメイン領域部分
+---------------------------*/
+.bbs,
+.task-list {
+  width: 100%;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.bbs th,
+.task-list th {
+  text-align: center;
+  background-color: #6a421f;
+  color: #ffffff;
+  padding: 1.5rem;
+  letter-spacing: 0.3rem;
+}
+
+.bbs td,
+.task-list td {
+  padding: 1rem;
+  border-bottom: 1px solid #000;
+  background-color: #fffcf4;
+}
+
+.bbs td:first-child,
+.task-list td:first-child {
+  text-align-last: left;
+  color: #6a421f;
+  width: 50%;
+}
+
+.bbs td .status-label,
+.bbs td .category-label,
+.task-list td .status-label,
+.task-list td .category-label {
+  padding: 0.3rem 0.5rem;
+  border-radius: 2rem;
+  display: inline-block;
+  width: 8rem;
+  text-align: center;
+  background-color: #19775f;
+  color: #ffffff;
+  font-size: 1.4rem;
+}
+
+.bbs td .status-label.unanswered,
+.bbs td .category-label.unanswered,
+.task-list td .status-label.unanswered,
+.task-list td .category-label.unanswered {
+  background-color: #ab243b;
+}
+
+.bbs td .status-label.catergory-200,
+.bbs td .category-label.catergory-200,
+.task-list td .status-label.catergory-200,
+.task-list td .category-label.catergory-200 {
+  background-color: #2a3773;
+}
+
+.bbs td .status-label.catergory-300,
+.bbs td .category-label.catergory-300,
+.task-list td .status-label.catergory-300,
+.task-list td .category-label.catergory-300 {
+  background-color: #d44a28;
+}
+
+.bbs td .status-label.catergory-400, .bbs td .status-label.catergory-500,
+.bbs td .category-label.catergory-400,
+.bbs td .category-label.catergory-500,
+.task-list td .status-label.catergory-400,
+.task-list td .status-label.catergory-500,
+.task-list td .category-label.catergory-400,
+.task-list td .category-label.catergory-500 {
+  background-color: #9e1e53;
+}
+
+.bbs td a,
+.task-list td a {
+  display: block;
+}
+
+@media screen and (max-width: 767px) {
+  .bbs__thead,
+  .task-list__thead {
+    display: none;
+  }
+  .bbs tr,
+  .task-list tr {
+    width: 100%;
+  }
+  .bbs td,
+  .task-list td {
+    background-color: #fffcf4;
+    padding: 1rem 0.5rem;
+    padding-left: 2rem;
+    display: block;
+    text-align: left;
+    width: 100%;
+  }
+  .bbs td:before,
+  .task-list td:before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    margin-right: 4rem;
+    width: 22%;
+  }
+  .bbs td:first-child,
+  .task-list td:first-child {
+    width: 100%;
+    padding-left: 1.5rem;
+    background-color: #cba67e;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+.task-date {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin-bottom: 3rem;
+}
+
+.task-date__select {
+  width: 40%;
+}
+
+.task-progress {
+  background-color: #fffcf4;
+}
+
+.task-progress__heading {
+  margin-top: 2.5rem;
+  background-color: #cba67e;
+  color: #6a421f;
+  padding: 1rem 0;
+  text-align: center;
+  position: relative;
+}
+
+.task-progress__heading span {
+  font-size: 2.4rem;
+  font-weight: bold;
+}
+
+.task-progress__heading button {
+  position: absolute;
+  right: 3%;
+}
+
+.task-progress__title {
+  margin: 1.5rem 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px dashed #ab243b;
+  text-align: center;
+}
+
+.task-progress__members {
+  margin: 2rem;
+}
+
+.task-progress__members__name {
+  margin-right: 3rem;
+}
+
+.task-status {
+  background-color: #d6c7ba;
+  margin: 2rem 0;
+  padding: 3rem 2rem;
+  border-radius: 1rem;
+}
+
+.task-status__desc {
+  margin-bottom: 1rem;
+}
+
+.task-status__desc span {
+  color: #ab243b;
+  font-weight: bold;
+}
+
+.task-status__status__badge {
+  display: inline-block;
+  padding: 0.6rem;
+  background-color: #19775f;
+  color: #ffffff;
+  border-radius: 1rem;
+}
+
+.task-status__status__badge.un-cleared {
+  background-color: #ab243b;
 }
 
 /*---------------------------

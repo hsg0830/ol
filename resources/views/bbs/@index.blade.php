@@ -30,8 +30,7 @@
       <p>우리 말과 관련하여 질문하실 내용이 있으면 아래쪽에 있는 <a href="#ask-form" class="caption">입력란</a>을 리용하여 질문하십사오.</p>
       <p>※ 자주 있는 질문에 대하여서는 <a href="{{ route('qa.index') }}" class="caption">일문일답</a>형식으로도 보여주었으므로 참고하여주십시오.</p>
     </div>
-
-
+    
     <div class="filtering-form">
       <div class="form-group" style="width:40%; margin: 0;">
         <label for="category" style="margin-right: 1rem;">분류:</label>
