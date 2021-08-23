@@ -11,6 +11,7 @@ use App\Models\Article;
 use App\Models\SubContent;
 use App\Models\ArticleCategory;
 use App\Models\Notice;
+use App\Models\Task;
 
 class ArticlesController extends Controller
 {
@@ -94,10 +95,22 @@ class ArticlesController extends Controller
       $isFollowing = Auth::user()->is_article_following($article->id);
     }
 
+    $task = Task::where('article_id', $article->id)
+      ->orderBy('end', 'desc')
+      ->first();
+
+    $isCleared = false;
+
+    if (!is_null($task) && Auth::guard('web')->check()) {
+      $isCleared = Auth::user()->is_cleared_task($task->id);
+    }
+
     return view('articles.show', [
       'article' => $article,
       'relatedArticles' => $relatedArticles,
       'isFollowing' => $isFollowing,
+      'task' => $task,
+      'isCleared' => $isCleared,
     ]);
   }
 

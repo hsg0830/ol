@@ -95,6 +95,11 @@
     @include('commons.favorite-btn')
     {{-- お気に入りボタン --}}
 
+    {{-- 課題状況 --}}
+    @include('commons.task-status')
+    {{-- 課題状況 --}}
+
+
     {{-- 関連記事 --}}
     <div id="list-container" class="list-container">
       <div class="list-container__related"><i class="fas fa-book-reader"></i> 관련기사</div>
@@ -143,6 +148,8 @@
           currenUserAgent: '',
           article: {!! $article !!},
           isFollowing: {{ $isFollowing ? 'true' : 'false' }},
+          task: {!! $task ?? 'null' !!},
+          isCleared: {{ $isCleared ? 'true' : 'false' }},
         }
       },
       methods: {
@@ -163,11 +170,23 @@
             this.currentTooltop = '';
           }
         },
-        follow() {
-          const url = `/articles/${this.article.id}/follow`;
+        changeFavoriteStatus() {
+          let url = `/articles/${this.article.id}/`;
+          let method = 'POST';
+
+          if (this.isFollowing == false) {
+            url += 'follow';
+          } else {
+            url += 'unfollow';
+            method = 'DELETE';
+          }
+
+          const params = {
+              _method: method,
+          };
 
           axios
-            .post(url)
+            .post(url, params)
             .then((response) => {
               if (response.data.result === true) {
                 this.isFollowing = response.data.isFollowing;
@@ -177,14 +196,25 @@
               console.log(error);
             });
         },
-        unfollow() {
-          const url = `/articles/${this.article.id}/unfollow`;
+        changeTaskStatus() {
+          let url = `/tasks/${this.task.id}/`;
+          let method = 'POST';
 
-          axios
-            .delete(url)
+          if (this.isCleared == false) {
+            url += 'cleared';
+          } else {
+            url += 'un-cleared';
+            method = 'DELETE';
+          }
+
+          const params = {
+              _method: method,
+          };
+
+          axios.post(url, params)
             .then((response) => {
               if (response.data.result === true) {
-                this.isFollowing = response.data.isFollowing;
+                this.isCleared = response.data.isCleared;
               }
             })
             .catch((error) => {

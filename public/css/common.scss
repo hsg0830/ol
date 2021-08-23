@@ -809,12 +809,14 @@ html.open,
       &.category-300 {
         background-color: $vermilion;
       }
-      &.category-400 {
+      &.category-400,
+      &.category-500 {
         background-color: $purple;
       }
     }
 
     &__title {
+      padding-top: 3rem;
       padding-left: 4.5rem;
       padding-right: 1.5rem;
     }
@@ -2033,100 +2035,188 @@ html.open,
   }
 }
 
-// .bbs {
-//   width: 100%;
-//   margin: 1rem 0;
-//   text-align: center;
+/*---------------------------
+  学習課題・旧質問掲示板トップページのメイン領域部分
+---------------------------*/
 
-//   & th {
-//     text-align: center;
-//     background-color: $brown;
-//     color: $white;
-//     padding: 1.5rem;
-//     letter-spacing: 0.3rem;
-//   }
+.bbs,
+.task-list {
+  width: 100%;
+  margin: 1rem 0;
+  text-align: center;
 
-//   & td {
-//     padding: 1rem;
-//     border-bottom: 1px solid #000;
-//     background-color: $yellow;
+  & th {
+    text-align: center;
+    background-color: $brown;
+    color: $white;
+    padding: 1.5rem;
+    letter-spacing: 0.3rem;
+  }
 
-//     &:first-child {
-//       text-align-last: left;
-//       // background-color: $yellow;
-//       color: $brown;
-//       width: 50%;
-//     }
+  & td {
+    padding: 1rem;
+    border-bottom: 1px solid #000;
+    background-color: $yellow;
 
-//     & .status-label,
-//     & .category-label {
-//       padding: 0.3rem 0.5rem;
-//       border-radius: 2rem;
-//       display: inline-block;
-//       width: 8rem;
-//       text-align: center;
-//       background-color: $green;
-//       color: $white;
-//       font-size: 1.4rem;
+    &:first-child {
+      text-align-last: left;
+      // background-color: $yellow;
+      color: $brown;
+      width: 50%;
+    }
 
-//       &.unanswered {
-//         background-color: $red;
-//       }
+    & .status-label,
+    & .category-label {
+      padding: 0.3rem 0.5rem;
+      border-radius: 2rem;
+      display: inline-block;
+      width: 8rem;
+      text-align: center;
+      background-color: $green;
+      color: $white;
+      font-size: 1.4rem;
 
-//       &.catergory-200 {
-//         background-color: $navy;
-//       }
-//       &.catergory-300 {
-//         background-color: $vermilion;
-//       }
-//       &.catergory-400,
-//       &.catergory-500 {
-//         background-color: $purple;
-//       }
-//     }
+      &.unanswered {
+        background-color: $red;
+      }
 
-//     & a {
-//       display: block;
-//     }
-//   }
+      &.catergory-200 {
+        background-color: $navy;
+      }
 
-//   @media screen and (max-width: 767px) {
-//     &__thead {
-//       display: none;
-//     }
+      &.catergory-300 {
+        background-color: $vermilion;
+      }
 
-//     & tr {
-//       width: 100%;
-//     }
+      &.catergory-400,
+      &.catergory-500 {
+        background-color: $purple;
+      }
+    }
 
-//     & td {
-//       background-color: $yellow;
-//       padding: 1rem 0.5rem;
-//       padding-left: 2rem;
-//       display: block;
-//       text-align: left;
-//       width: 100%;
+    & a {
+      display: block;
+    }
+  }
 
-//       &:before {
-//         // &:not(:first-child):before {
-//         content: attr(data-label);
-//         float: left;
-//         font-weight: bold;
-//         margin-right: 4rem;
-//         width: 22%;
-//       }
+  @media screen and (max-width: 767px) {
+    &__thead {
+      display: none;
+    }
 
-//       &:first-child {
-//         width: 100%;
-//         padding-left: 1.5rem;
-//         background-color: $lightBrown;
-//         color: #fff;
-//         font-weight: bold;
-//         text-align: center;
-//       }
-//     }
-//   }
-// }
+    & tr {
+      width: 100%;
+    }
+
+    & td {
+      background-color: $yellow;
+      padding: 1rem 0.5rem;
+      padding-left: 2rem;
+      display: block;
+      text-align: left;
+      width: 100%;
+
+      &:before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        margin-right: 4rem;
+        width: 22%;
+      }
+
+      &:first-child {
+        width: 100%;
+        padding-left: 1.5rem;
+        background-color: $lightBrown;
+        color: #fff;
+        font-weight: bold;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.task-date {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 3rem;
+
+  &__select {
+    // display: inline-block;
+    width: 40%;
+  }
+}
+
+.task-progress {
+  background-color: $yellow;
+
+  &__heading {
+    margin-top: 2.5rem;
+    background-color: $lightBrown;
+    color: $brown;
+    padding: 1rem 0;
+    text-align: center;
+
+    & span {
+      font-size: 2.4rem;
+      font-weight: bold;
+    }
+
+    position: relative;
+
+    & button {
+      position: absolute;
+      right: 3%;
+    }
+  }
+
+  &__title {
+    margin: 1.5rem 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px dashed $red;
+    text-align: center;
+  }
+
+  &__members {
+    margin: 2rem;
+
+    &__name {
+      margin-right: 3rem;
+    }
+  }
+}
+
+// 学習室や質問掲示板の詳細ページ用
+.task-status {
+  background-color: $beige;
+  margin: 2rem 0;
+  padding: 3rem 2rem;
+  border-radius: 1rem;
+
+  &__desc {
+    margin-bottom: 1rem;
+
+    & span {
+      color: $red;
+      font-weight: bold;
+    }
+  }
+
+  &__status {
+    &__badge {
+      display: inline-block;
+      padding: 0.6rem;
+      background-color: $green;
+      color: $white;
+      border-radius: 1rem;
+
+      &.un-cleared {
+        background-color: $red;
+      }
+    }
+  }
+}
 
 /*---------------------------
   質問掲示板詳細ページのメイン領域部分
@@ -2323,7 +2413,7 @@ html.open,
     & p {
       padding: 1rem;
     }
-    
+
     &__item {
       padding: 0.4rem 1rem;
 

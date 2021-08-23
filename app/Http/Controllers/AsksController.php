@@ -12,6 +12,7 @@ use App\Mail\AskReplyNotificationMail;
 use App\Models\Ask;
 use App\Models\QuestionCategory;
 use App\Models\Notice;
+use App\Models\Task;
 
 class AsksController extends Controller
 {
@@ -107,16 +108,28 @@ class AsksController extends Controller
       ->orderBy('replied_at', 'desc')
       ->take(3)->get();
 
-      $isFollowing = false;
+    $isFollowing = false;
 
-      if (Auth::guard('web')->check()) {
-        $isFollowing = Auth::user()->is_ask_following($ask->id);
-      }
+    if (Auth::guard('web')->check()) {
+      $isFollowing = Auth::user()->is_ask_following($ask->id);
+    }
+
+    $task = Task::where('ask_id', $ask->id)
+      ->orderBy('end', 'desc')
+      ->first();
+
+    $isCleared = false;
+
+    if (!is_null($task) && Auth::guard('web')->check()) {
+      $isCleared = Auth::user()->is_cleared_task($task->id);
+    }
 
     return view('bbs.show', [
       'ask' => $ask,
       'relatedAsks' => $relatedAsks,
       'isFollowing' => $isFollowing,
+      'task' => $task,
+      'isCleared' => $isCleared,
     ]);
   }
 

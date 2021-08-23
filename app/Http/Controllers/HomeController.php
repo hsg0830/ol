@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\Question;
 use App\Models\Ask;
 use App\Models\Notice;
+use App\Models\Task;
 
 class HomeController extends Controller
 {
@@ -51,6 +52,21 @@ class HomeController extends Controller
 
     $noticeCtegories = config('notices.category');
 
+    $today = new \DateTime();
+    $today = $today->format('Y-m-d');
+
+    $task = Task::orderBy('end', 'asc')
+      ->where('end', '>', $today)
+      ->first();
+
+    $pickUp = '';
+
+    if ($task->category_id === 1) {
+      $pickUp = Article::find($task->article_id);
+    } else {
+      $pickUp = Ask::find($task->ask_id);
+    }
+
     return view('home', [
       'recentArticles' => $recentArticles,
       'popularArticles' => $popularArticles,
@@ -59,6 +75,8 @@ class HomeController extends Controller
       // 'topNotice' => $topNotice,
       'notices' => $notices,
       'noticeCtegories' => $noticeCtegories,
+      'task' => $task,
+      'pickUp' => $pickUp,
     ]);
   }
 }
