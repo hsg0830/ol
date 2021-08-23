@@ -9,7 +9,8 @@
           class="pick-up__content__category category-{{ $pickUp->category_id }}">{{ $pickUp->category->name }}</span>
         <p class="pick-up__content__title">{{ $pickUp->title }}</p>
       </div>
-    </a>  @endif
+    </a>
+  @endif
   <div class="more">
     <a href="{{ route('tasks.index') }}"><i class="fas fa-angle-double-right"></i> 이달 과제 확인하기</a>
   </div>

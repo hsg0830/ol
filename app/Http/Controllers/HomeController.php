@@ -59,13 +59,16 @@ class HomeController extends Controller
       ->where('end', '>', $today)
       ->first();
 
-    $pickUp = '';
+    $pickUp = null;
 
-    if ($task->category_id === 1) {
-      $pickUp = Article::find($task->article_id);
-    } else {
-      $pickUp = Ask::find($task->ask_id);
+    if ($task) {
+      if ($task->category_id === 1) {
+        $pickUp = Article::find($task->article_id);
+      } else {
+        $pickUp = Ask::find($task->ask_id);
+      }
     }
+
 
     return view('home', [
       'recentArticles' => $recentArticles,
