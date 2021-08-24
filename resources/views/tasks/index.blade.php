@@ -43,7 +43,7 @@
         <tr class="task-list__thead">
           <th>제목</th>
           <th>기간</th>
-          <th>처리</th>
+          <th>정형</th>
         </tr>
 
         {{-- v-for開始 --}}
@@ -64,15 +64,17 @@
           {{-- 期間 --}}
           <td data-label="기간" v-text="`${task.start}〜${task.end}`"></td>
           {{-- 処理 --}}
-          <td data-label="처리">
+          <td data-label="정형">
               <span v-if="checkStatus(task)">
-                <button class="status-label" @click="changeClearedStatus(task.id, 1)">완료취소</button>
+                {{-- <button class="status-label" @click="changeClearedStatus(task.id, 1)">완료취소</button> --}}
+                <span class="status-label">완료</span>
               </span>
               <span v-else>
-                <button class="status-label unanswered" @click="changeClearedStatus(task.id, 0)">완료보고</button>
+                {{-- <button class="status-label unanswered" @click="changeClearedStatus(task.id, 0)">완료보고</button> --}}
+                <span class="status-label unanswered">미결</span>
               </span>
               @if (Auth::guard()->check() && Auth::user()->role > 0)
-                <button class="status-label catergory-200" @click="showProgress(task)">학습정형</button>
+                <button class="status-label catergory-200" @click="showProgress(task)">단위정형</button>
               @endif
           </td>
         </tr>
@@ -115,8 +117,8 @@
           tasks: [],
           year: new Date().getFullYear(),
           month: new Date().getMonth()+1,
-          isUser: {!! Auth::guard('web')->check() ? 'true' : 'false' !!},
-          userId: {!! Auth::guard('web')->id() ?? 'null' !!},
+          isUser: {!! $isAuthoried ?? 'false' !!},
+          userId: {!! $userId ?? 'null' !!},
           users: {!! $users ?? 'null' !!},
           progress: false,
           currentTask: '',
@@ -178,27 +180,27 @@
             return false;
           }
         },
-        changeClearedStatus(taskId, currentStatus) {
-          let url = `/tasks/${taskId}/`;
-          let method = 'POST';
+        // changeClearedStatus(taskId, currentStatus) {
+        //   let url = `/tasks/${taskId}/`;
+        //   let method = 'POST';
 
-          if (currentStatus == 0) {
-            url += 'cleared';
-          } else {
-            url += 'un-cleared';
-            method = 'DELETE';
-          }
+        //   if (currentStatus == 0) {
+        //     url += 'cleared';
+        //   } else {
+        //     url += 'un-cleared';
+        //     method = 'DELETE';
+        //   }
 
-          const params = {
-              _method: method,
-          };
+        //   const params = {
+        //       _method: method,
+        //   };
 
-          axios.post(url, params)
-            .then((response) => {
-              this.closeProgress();
-              this.getList();
-            });
-        },
+        //   axios.post(url, params)
+        //     .then((response) => {
+        //       this.closeProgress();
+        //       this.getList();
+        //     });
+        // },
         showProgress(task) {
           this.currentTask = task;
 

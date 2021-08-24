@@ -15,12 +15,18 @@ class TasksController extends Controller
 {
   public function index()
   {
-    $articles = Article::all();
-    $asks = Ask::all();
+    $articles = Article::where('status', 1)->get();
 
+    $asks = Ask::where('status', 1)->get();
+
+    $isAuthoried = false;
+    $userId = null;
     $users = [];
 
     if (Auth::guard('web')->check()) {
+      $isAuthoried = true;
+      $userId = Auth::id();
+
       if (Auth::guard('web')->user()->role > 0) {
         $users = User::where('school_id', Auth::user()->school_id)
           ->orderBy('name', 'asc')
@@ -31,6 +37,8 @@ class TasksController extends Controller
     return view('tasks.index', [
       'articles' => $articles,
       'asks' => $asks,
+      'isAuthoried' => $isAuthoried,
+      'user' => $userId,
       'users' => $users,
     ]);
   }
@@ -63,8 +71,13 @@ class TasksController extends Controller
 
   public function create()
   {
-    $articles = Article::where('status', 1)->orderBy('released_at', 'desc')->get();
-    $asks = Ask::where('status', 1)->orderBy('replied_at', 'desc')->get();
+    $articles = Article::where('status', 1)
+      ->orderBy('released_at', 'desc')
+      ->get();
+
+    $asks = Ask::where('status', 1)
+      ->orderBy('replied_at', 'desc')
+      ->get();
 
     return view('tasks.post', [
       'articles' => $articles,
@@ -74,8 +87,13 @@ class TasksController extends Controller
 
   public function edit(Request $request)
   {
-    $articles = Article::where('status', 1)->orderBy('released_at', 'desc')->get();
-    $asks = Ask::where('status', 1)->orderBy('replied_at', 'desc')->get();
+    $articles = Article::where('status', 1)
+      ->orderBy('released_at', 'desc')
+      ->get();
+
+    $asks = Ask::where('status', 1)
+      ->orderBy('replied_at', 'desc')
+      ->get();
 
     $year = $request->year;
     $month = $request->month;
