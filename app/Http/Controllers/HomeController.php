@@ -80,6 +80,9 @@ class HomeController extends Controller
       'noticeCtegories' => $noticeCtegories,
       'task' => $task,
       'pickUp' => $pickUp,
+      'range' => 1,
+      'category' => 1,
+      'word' => '',
     ]);
   }
 }
