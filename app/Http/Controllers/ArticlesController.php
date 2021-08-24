@@ -90,8 +90,10 @@ class ArticlesController extends Controller
       ->take(3)->get();
 
     $isFollowing = false;
+    $isAuthorized = false;
 
     if (Auth::guard('web')->check()) {
+      $isAuthorized = true;
       $isFollowing = Auth::user()->is_article_following($article->id);
     }
 
@@ -111,6 +113,7 @@ class ArticlesController extends Controller
       'isFollowing' => $isFollowing,
       'task' => $task,
       'isCleared' => $isCleared,
+      'isAuthorized' => $isAuthorized,
     ]);
   }
 

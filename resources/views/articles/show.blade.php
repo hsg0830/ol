@@ -150,6 +150,7 @@
           isFollowing: {{ $isFollowing ? 'true' : 'false' }},
           task: {!! $task ?? 'null' !!},
           isCleared: {{ $isCleared ? 'true' : 'false' }},
+          isAuthorized: {{ $isAuthorized ? 'true' : 'false' }},
         }
       },
       methods: {
@@ -171,6 +172,10 @@
           }
         },
         changeFavoriteStatus() {
+          if (this.isAuthorized === false) {
+            return alert('로그인하셔야 합니다.');
+          }
+          
           let url = `/articles/${this.article.id}/`;
           let method = 'POST';
 
