@@ -39,6 +39,7 @@ class RegisteredMembers
 
     }
 
-    return redirect()->route('prohibited');
+    // return redirect()->route('prohibited');
+    return redirect()->route('login');
   }
 }

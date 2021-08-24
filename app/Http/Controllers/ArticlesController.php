@@ -62,7 +62,8 @@ class ArticlesController extends Controller
       if (!Auth::guard('editors')->check()) {
 
         if (!Auth::check()) {
-          return redirect()->route('prohibited');
+          // return redirect()->route('prohibited');
+          return redirect()->route('login');
         }
 
         if (

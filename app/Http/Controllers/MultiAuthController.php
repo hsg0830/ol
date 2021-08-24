@@ -9,6 +9,11 @@ class MultiAuthController extends Controller
 {
   public function showLoginForm()
   {
+    // if (!session()->has('url.intended')) {
+    //   session(['url.intended' => session()->get('_previous')]);
+    // }
+    // dd(session()->all());
+
     return view('editors.login');
   }
 
@@ -17,9 +22,11 @@ class MultiAuthController extends Controller
     $credentials = $request->only(['email', 'password']);
     $guard = $request->guard;
     $remember = $request->has('remember');
+    $url = session()->get('url.intended');
 
     if (Auth::guard($guard)->attempt($credentials, $remember)) {
-      return redirect('editors');
+      // return redirect('editors');
+      return redirect($url);
     }
 
     return back()->withErrors([
