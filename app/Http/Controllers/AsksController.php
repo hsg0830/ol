@@ -109,8 +109,10 @@ class AsksController extends Controller
       ->take(3)->get();
 
     $isFollowing = false;
+    $isAuthorized = false;
 
     if (Auth::guard('web')->check()) {
+      $isAuthorized = true;
       $isFollowing = Auth::user()->is_ask_following($ask->id);
     }
 
@@ -130,6 +132,7 @@ class AsksController extends Controller
       'isFollowing' => $isFollowing,
       'task' => $task,
       'isCleared' => $isCleared,
+      'isAuthorized' => $isAuthorized,
     ]);
   }
 
