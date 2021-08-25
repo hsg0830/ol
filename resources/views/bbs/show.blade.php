@@ -69,15 +69,16 @@
             <a href="{{ $item->url }}">
               <div class="list-item__header">
                 @if ($item->category_id == 100)
-                  <img src="{{ asset('img/thum/bg_black-board_thum.png') }}" alt="" />
+                  <img src="{{ asset('img/thum/bg_post_it_light_01.png') }}" alt="" />
                 @elseif ($item->category_id == 200)
-                  <img src="{{ asset('img/thum/bg_white-board_thum.png') }}" alt="" />
+                  <img src="{{ asset('img/thum/bg_post_it_light_02.png') }}" alt="" />
                 @elseif ($item->category_id == 300)
-                  <img src="{{ asset('img/thum/bg_memo_thum.png') }}" alt="" />
+                  <img src="{{ asset('img/thum/bg_post_it_light_03.png') }}" alt="" />
                 @elseif ($item->category_id == 500)
-                  <img src="{{ asset('img/thum/bg_500_03.png') }}" alt="" />
+                  <img src="{{ asset('img/thum/bg_post_it_light_04.png') }}" alt="" />
                 @endif
-                <p class="title {{ $item->category_id == 100 ? 'color-white' : '' }}">
+                {{-- <p class="title {{ $item->category_id == 100 ? 'color-white' : '' }}"> --}}
+                <p class="title">
                   {{ $item->title }}</p>
               </div>
               <div class="list-item__content">
@@ -115,7 +116,7 @@
           if (this.isAuthorized === false) {
             return alert('로그인하셔야 합니다.');
           }
-          
+
           let url = `/bbs/${this.ask.id}/`;
           let method = 'POST';
 
