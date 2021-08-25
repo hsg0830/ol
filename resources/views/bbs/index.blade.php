@@ -88,11 +88,12 @@
         <div class="list-item" v-for="item in items.data">
           <a :href="item.url">
             <div class="list-item__header">
-              <img src="{{ asset('img/thum/bg_black-board_thum.png') }}" alt="" v-if="item.category.id === 100" />
-              <img src="{{ asset('img/thum/bg_white-board_thum.png') }}" alt="" v-else-if="item.category.id === 200" />
-              <img src="{{ asset('img/thum/bg_memo_thum.png') }}" alt="" v-else-if="item.category.id === 300" />
-              <img src="{{ asset('img/thum/bg_500_01.png') }}" alt="" v-else-if="item.category.id === 500" />
-              <p class="title" :class="getTextClass(item.category.id)" v-text="item.title"></p>
+              <img src="{{ asset('img/thum/bg_post_it_light_01.png') }}" alt="" v-if="item.category.id === 100" />
+              <img src="{{ asset('img/thum/bg_post_it_light_02.png') }}" alt="" v-else-if="item.category.id === 200" />
+              <img src="{{ asset('img/thum/bg_post_it_light_03.png') }}" alt="" v-else-if="item.category.id === 300" />
+              <img src="{{ asset('img/thum/bg_post_it_light_04.png') }}" alt="" v-else-if="item.category.id === 500" />
+              {{-- <p class="title" :class="getTextClass(item.category.id)" v-text="item.title"></p> --}}
+              <p class="title" v-text="item.title"></p>
             </div>
             <div class="list-item__content">
               <div class="list-item__content__info">
@@ -248,11 +249,11 @@
       getCategoryClass(index) {
         return `category-${index}`;
       },
-      getTextClass(index) {
-        if (parseInt(index) === 100) {
-          return 'color-white'
-        }
-      },
+      // getTextClass(index) {
+      //   if (parseInt(index) === 100) {
+      //     return 'color-white'
+      //   }
+      // },
       onSave() {
         if (this.authorized === false) {
           alert("로그인하셔야 합니다.");
