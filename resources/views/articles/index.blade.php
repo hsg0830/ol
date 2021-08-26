@@ -178,15 +178,15 @@
           location.hash = `${this.page}%${this.categoryNo}`;
           this.getItems();
         },
-      searchArticles() {
-        this.getHashValue();
-        // this.categoryNo = 0;
-        this.getItems();
-      },
-      clearSearchWord() {
-        this.searchWord = '';
-        this.getItems();
-      },
+        searchArticles() {
+          this.getHashValue();
+          // this.categoryNo = 0;
+          this.getItems();
+        },
+        clearSearchWord() {
+          this.searchWord = '';
+          this.getItems();
+        },
         getCategoryClass(index) {
           return `category-${index}`;
         },

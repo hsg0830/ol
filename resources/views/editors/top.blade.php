@@ -14,6 +14,8 @@
         {{-- <li><a href="{{ route('qa.list') }}">● QA管理画面</a></li> --}}
         {{-- <li><a href="{{ route('qa.create') }}">● QA投稿画面</a></li> --}}
         <li><a href="{{ route('bbs.list') }}">● 掲示板管理画面</a></li>
+        <li><a href="{{ route('materials.list') }}">● 資料管理画面</a></li>
+        <li><a href="{{ route('materials.create') }}">● 資料投稿画面</a></li>
         <li><a href="{{ route('contacts.list') }}">● 問い合わせ管理画面</a></li>
         <li><a href="{{ route('tasks.progress') }}">● 学習課題管理画面</a></li>
         <li><a href="{{ route('tasks.create') }}">● 学習課題追加画面</a></li>
