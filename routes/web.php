@@ -13,6 +13,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\NoticesController;
 use App\Http\Controllers\FavoritesController;
+use App\Http\Controllers\MaterialsController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TasksController;
 
@@ -77,11 +78,12 @@ Route::prefix('bbs')->group(function () {
   });
 });
 
-// 資料室   ←現在は臨時。6月〜7月に開発の予定。
-Route::prefix('materials')->group(function () {
-  Route::get('/', function () {
-    return view('materials.index');
-  })->name('materials.index');
+// 資料室
+Route::prefix('materials')->middleware(['registered'])->group(function () {
+  Route::get('/', [MaterialsController::class, 'index'])->name('materials.index');
+  Route::get('/get-list', [MaterialsController::class, 'getList']);
+  Route::get('/{material}', [MaterialsController::class, 'show'])->name('materials.show');
+  Route::get('/{material}/download', [MaterialsController::class, 'download'])->name('materials.download');
 });
 
 // マイページ <-email-verify後にだけアクセスできるルーティング
@@ -171,6 +173,16 @@ Route::prefix('editors')->group(function () {
       Route::put('/{ask}', [AsksController::class, 'update']);
       Route::put('/{ask}/change-status', [AsksController::class, 'changeStatus']);
       Route::delete('/{ask}', [AsksController::class, 'destroy']);
+    });
+
+    // 資料室
+    Route::prefix('materials')->group(function () {
+      Route::get('/list', [MaterialsController::class, 'list'])->name('materials.list');
+      Route::get('/create', [MaterialsController::class, 'create'])->name('materials.create');
+      Route::post('/', [MaterialsController::class, 'store'])->name('materials.store');
+      Route::get('{material}/edit', [MaterialsController::class, 'edit'])->name('materials.edit');
+      Route::put('{material}', [MaterialsController::class, 'update'])->name('materials.update');
+      Route::delete('{material}', [MaterialsController::class, 'destroy'])->name('materials.destroy');
     });
 
     // お知らせ管理
