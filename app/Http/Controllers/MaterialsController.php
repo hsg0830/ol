@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 use App\Models\Material;
+use App\Models\Notice;
 
 class MaterialsController extends Controller
 {
@@ -41,7 +44,7 @@ class MaterialsController extends Controller
     }
 
     $materials = $query->orderBy('released_at', 'desc')
-      ->paginate(5);
+      ->paginate(10);
 
     return [
       'materials' => $materials,
@@ -78,12 +81,26 @@ class MaterialsController extends Controller
 
   public function store(Request $request)
   {
+    $category_keys = $this->categories->keys()->toArray();
+    $type_keys = $this->types->keys()->toArray();
+
+    $request->validate([
+      'category_key' => ['required', Rule::in($category_keys)],
+      'type_key' => ['required', Rule::in($type_keys)],
+      'status' => ['required', Rule::in([0, 1])],
+      'file' => ['required', 'max:20000000'],
+      'title' => ['required', 'max:150'],
+      'description' => ['required']
+    ]);
+
     $file = $request->file('file');
 
     $result = null;
 
     if ($file) {
-      $file_name = $file->getClientOriginalName();
+      $origin_file_name = $file->getClientOriginalName();
+      $file_name = now()->format('ymd') . '_' . $origin_file_name;
+      $file_size = $file->getSize();
       $result = Storage::putFileAs($this->path, $file, $file_name);
     }
 
@@ -92,6 +109,7 @@ class MaterialsController extends Controller
       $material->category_key = $request->category_key;
       $material->type_key = $request->type_key;
       $material->file_name = $file_name;
+      $material->size = $file_size;
       $material->title = $request->title;
       $material->description = $request->description;
       $material->status = $request->status;
@@ -101,9 +119,13 @@ class MaterialsController extends Controller
       }
 
       $material->save();
+
+      if ($material->status == 1) {
+        $this->makeNotice($material);
+      }
     }
 
-    return back();
+    return redirect()->route('materials.list');
   }
 
   public function edit(Material $material)
@@ -117,14 +139,26 @@ class MaterialsController extends Controller
 
   public function update(Material $material, Request $request)
   {
+    $category_keys = $this->categories->keys()->toArray();
+    $type_keys = $this->types->keys()->toArray();
+
+    $request->validate([
+      'category_key' => ['required', Rule::in($category_keys)],
+      'type_key' => ['required', Rule::in($type_keys)],
+      'status' => ['required', Rule::in([0, 1])],
+      'title' => ['required', 'max:150'],
+      'description' => ['required']
+    ]);
+
     $material->category_key = $request->category_key;
     $material->type_key = $request->type_key;
     $material->title = $request->title;
     $material->description = $request->description;
     $material->status = $request->status;
 
-    if ($material->status == 1) {
+    if ($material->released_at == null && $material->status == 1) {
       $material->released_at = now()->format('Y-m-d');
+      $this->makeNotice($material);
     } else {
       $material->released_at = null;
     }
@@ -153,5 +187,18 @@ class MaterialsController extends Controller
     ];
 
     return Response::make(Storage::get($this->path . $file_name), 200, $headers);
+  }
+
+  private function makeNotice($material)
+  {
+    $notice = new Notice();
+    $notice->editor_id = Auth::id();
+    $notice->status = 1;
+    $notice->category = 3;
+    $notice->title = $material->title;
+    $notice->url = '/materials/' . $material->id;
+    $result = $notice->save();
+
+    return $result;
   }
 }

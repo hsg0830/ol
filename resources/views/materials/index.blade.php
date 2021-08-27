@@ -31,7 +31,7 @@
 
     <div id="list-container" class="list-container">
 
-      <h2><i class="fas fa-file-download"></i> 각종자료 내리적재</h2>
+      <h2 class="list-container__heading"><i class="fas fa-file-download"></i> 각종자료 내리적재</h2>
 
       {{-- 検索フォーム --}}
       <div class="search-box">
@@ -80,7 +80,7 @@
             <th>화일종류</th>
             <th>분류</th>
             <th>등록일</th>
-            <th>내리적재</th>
+            {{-- <th>내리적재</th> --}}
             {{-- <th>등록일</th> --}}
           </tr>
           <tr v-for="material in materials">
@@ -92,13 +92,13 @@
             </td>
             <td data-label="분류" v-text="categories[material.category_key]"></td>
             <td data-label="등록일" v-text="material.released_at"></td>
-            <td>
+            {{-- <td>
               <button type="button" class="global-btn" @click="modalOpen(material)">설명보기</button>
               <form :action="material.download_url">
                 @csrf
                 <button type="submit" class="global-btn">내리적재</button>
               </form>
-            </td>
+            </td> --}}
             {{-- <td>
               <button :id="`material-${material.id}`" class="global-btn" @click="showDescription(material)">설명보기</button>
             </td> --}}

@@ -1413,6 +1413,13 @@ html.open,
 .list-container {
   width: 100%;
   margin-top: 2rem;
+
+  &__heading {
+    margin-bottom: 2rem;
+    color: $brown;
+    font-size: 2.8rem;
+    font-weight: bold;
+  }
 }
 
 // カテゴリー選択用ボタンのリスト

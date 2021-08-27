@@ -18,6 +18,7 @@ class CreateMaterialsTable extends Migration
       $table->unsignedInteger('category_key')->comment('カテゴリー');
       $table->unsignedInteger('type_key')->comment('ファイルの種別');
       $table->string('file_name')->comment('ファイル名');
+      $table->unsignedInteger('size')->comment('ファイルのサイズ');
       $table->string('title')->comment('タイトル');
       $table->text('description')->comment('説明');
       // $table->string('file_ext')->comment('ファイルの拡張子');

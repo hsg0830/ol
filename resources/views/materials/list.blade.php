@@ -17,6 +17,8 @@
           <th>カテゴリー</th>
           <th>種別</th>
           <th>タイトル</th>
+          <th>ファイル名</th>
+          <th>サイズ</th>
           <th>公開状態</th>
           <th>公開日</th>
           <th>処理</th>
@@ -26,6 +28,8 @@
             <td>{{ $categories[$material->category_key] }}</td>
             <td>{{ $types[$material->type_key] }}</td>
             <td>{{ $material->title }}</td>
+            <td>{{ $material->file_name }}</td>
+            <td>{{ $material->file_size }}</td>
             <td>
               @if ($material->status == 1)
                 公開中
