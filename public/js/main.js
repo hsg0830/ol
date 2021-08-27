@@ -143,20 +143,20 @@ $(window).scroll(() => {
 /*------------------
 検索ボックスの切り替え
 ------------------*/
-const showTab = (selector) => {
-  $('.top-search__tabs > div').removeClass('active');
-  $(`#${selector}`).addClass('active');
+// const showTab = (selector) => {
+//   $('.top-search__tabs > div').removeClass('active');
+//   $(`#${selector}`).addClass('active');
 
-  const idStr = selector.slice(-1);
-  $('.top-search__box > div').hide();
-  $(`#search-box-${idStr}`).show();
-};
+//   const idStr = selector.slice(-1);
+//   $('.top-search__box > div').hide();
+//   $(`#search-box-${idStr}`).show();
+// };
 
-$('.top-search__tabs > div').on('click', (e) => {
-  const selector = $(e.target).attr('id');
-  showTab(selector);
-});
+// $('.top-search__tabs > div').on('click', (e) => {
+//   const selector = $(e.target).attr('id');
+//   showTab(selector);
+// });
 
-showTab('search-tab-a');
+// showTab('search-tab-a');
 
 

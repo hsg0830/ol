@@ -6,6 +6,9 @@
     <!-- 이번주기사 -->
     @include('commons.side-pick-up')
 
+    {{-- 조선말대사전 --}}
+    @include('commons.side-dic')
+
     <!-- 검색창 -->
     @include('commons.side-search')
 
