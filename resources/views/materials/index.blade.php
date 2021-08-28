@@ -77,40 +77,37 @@
         <table class="task-list">
           <tr class="task-list__thead">
             <th>제목</th>
-            <th>화일종류</th>
+            <th>종류</th>
+            <th>용량</th>
             <th>분류</th>
             <th>등록일</th>
-            {{-- <th>내리적재</th> --}}
+            <th></th>
+            {{-- <th>설명</th> --}}
             {{-- <th>등록일</th> --}}
           </tr>
           <tr v-for="material in materials">
-            <td>
+            <td class="narrow_width">
               <a :href="material.url" v-text="material.title" style="display: block"></a>
             </td>
-            <td data-label="화일종류">
+            <td data-label="종류">
               <img :src="getIconPath(material)" alt="" style="width:3rem;">
             </td>
+            <td data-label="용량" v-text="material.file_size"></td>
             <td data-label="분류" v-text="categories[material.category_key]"></td>
             <td data-label="등록일" v-text="material.released_at"></td>
-            {{-- <td>
+            <td style="text-align: center">
               <button type="button" class="global-btn" @click="modalOpen(material)">설명보기</button>
-              <form :action="material.download_url">
+              {{-- <form :action="material.download_url">
                 @csrf
-                <button type="submit" class="global-btn">내리적재</button>
-              </form>
-            </td> --}}
-            {{-- <td>
-              <button :id="`material-${material.id}`" class="global-btn" @click="showDescription(material)">설명보기</button>
-            </td> --}}
+                <button type="submit" class=""><i class="fas fa-file-download"></i></button>
+              </form> --}}
+            </td>
           </tr>
         </table>
-
-        {{-- <div :id="`material-desc-${material.id}`" class="material-desc" v-html="material.description" style="background-color: gray; margin: 1rem;"></div> --}}
-
       </div>
 
       <div v-else>
-        <p class="message"> 등록된 자료가 없습니다.</p>
+        <p class="message block"> 등록된 자료가 없습니다.</p>
       </div>
 
     </div>
@@ -119,22 +116,17 @@
     <div class="user-modal js-modal">
       <div class="user-modal__bg js-modal" @click="modalClose"></div>
 
-      <div class="user-modal__content" style="width: 30%">
-
-        <div style="background-color: antiquewhite; padding: 1rem 0.4rem">
-          <p v-text="currentMaterial.title"></p>
-
-          <div v-text="currentMaterial.description"></div>
-
-          <form :action="currentMaterial.download_url" class="user-modal__buttons">
-            @csrf
-            <button type="submit" class="global-btn">내리적재</button>
-          </form>
-        </div>
-
-        <div class="user-modal__buttons">
+      <div class="user-modal__content">
+        <i class="fas fa-times-circle" @click="modalClose"></i>
+        <p class="user-modal__content__header" v-text="currentMaterial.title"></p>
+        <div class="user-modal__content__description" v-html="currentMaterial.description"></div>
+        <form :action="currentMaterial.download_url" class="user-modal__buttons">
+          @csrf
+          <button type="submit" class="global-btn">내리적재</button>
+        </form>
+        {{-- <div class="user-modal__buttons">
           <button class="btn global-btn" @click="modalClose">닫기</button>
-        </div>
+        </div> --}}
       </div>
     </div>
 
@@ -170,9 +162,9 @@
       mounted() {
         this.getItems();
       },
-      updated() {
-        this.closeDescription();
-      },
+      // updated() {
+      //   this.closeDescription();
+      // },
       components: {
         'v-pagination': paginationComponent,
       },
@@ -201,15 +193,15 @@
         getIconPath(material) {
           return `/img/icons/file_type_${this.types[material.type_key]}.png`;
         },
-        showDescription(material) {
-          this.closeDescription();
+        // showDescription(material) {
+        //   this.closeDescription();
 
-          const id = `#material-desc-${material.id}`;
-          $(id).show();
-        },
-        closeDescription() {
-          $('.material-desc').hide();
-        },
+        //   const id = `#material-desc-${material.id}`;
+        //   $(id).show();
+        // },
+        // closeDescription() {
+        //   $('.material-desc').hide();
+        // },
         movePage(page) {
           this.page = page;
           location.hash = `${this.page}%${this.categoryNo}`;
@@ -256,8 +248,8 @@
           $('.js-modal').fadeIn();
         },
         modalClose() {
-          this.currentMaterial = {};
           $('.js-modal').fadeOut();
+          this.currentMaterial = {};
         },
       },
     });

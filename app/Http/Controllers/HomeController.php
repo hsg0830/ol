@@ -52,22 +52,22 @@ class HomeController extends Controller
 
     $noticeCtegories = config('notices.category');
 
-    $today = new \DateTime();
-    $today = $today->format('Y-m-d');
+    // $today = new \DateTime();
+    // $today = $today->format('Y-m-d');
 
-    $task = Task::orderBy('end', 'asc')
-      ->where('end', '>', $today)
-      ->first();
+    // $task = Task::orderBy('end', 'asc')
+    //   ->where('end', '>', $today)
+    //   ->first();
 
-    $pickUp = null;
+    // $pickUp = null;
 
-    if ($task) {
-      if ($task->category_id === 1) {
-        $pickUp = Article::find($task->article_id);
-      } else {
-        $pickUp = Ask::find($task->ask_id);
-      }
-    }
+    // if ($task) {
+    //   if ($task->category_id === 1) {
+    //     $pickUp = Article::find($task->article_id);
+    //   } else {
+    //     $pickUp = Ask::find($task->ask_id);
+    //   }
+    // }
 
 
     return view('home', [
@@ -78,8 +78,8 @@ class HomeController extends Controller
       // 'topNotice' => $topNotice,
       'notices' => $notices,
       'noticeCtegories' => $noticeCtegories,
-      'task' => $task,
-      'pickUp' => $pickUp,
+      // 'task' => $task,
+      // 'pickUp' => $pickUp,
       'range' => 1,
       'category' => 1,
       'word' => '',
