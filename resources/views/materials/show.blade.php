@@ -25,19 +25,19 @@
       <h1>자료실</h1>
     </div>
 
-    <div class="qa-item">
-      <div class="qa-item__question">
+    <div class="material-item">
+      <div class="material-item__header">
         <div class="mark_and_category">
           <span class="mark"><img src="{{ asset('img/icons/file_type_' . $types[$material->type_key] . '.png') }}" alt="">
           </span>
-          <span class="category category-">{{ $categories[$material->category_key] }}</span>
+          <span class="category">{{ $categories[$material->category_key] }}</span>
         </div>
-        <p class="question-sentence">{{ $material->title }}</p>
-        <span class="question-date">{{ $material->released_at }}</span>
+        <p class="material-title">{{ $material->title }}</p>
+        <span class="material-date">{{ $material->file_size }} / {{ $material->released_at }}</span>
       </div>
-      <div class="qa-item__answer at-show">
+      <div class="material-item__description">
         {{-- <span class="mark">설명</span> --}}
-        <div class="answer-message">{!! nl2br($material->description) !!}</div>
+        <div class="material-description">{!! nl2br($material->description) !!}</div>
         <form action="{{ route('materials.download', $material) }}">
           @csrf
           <button type="submit" class="global-btn">내리적재</button>
