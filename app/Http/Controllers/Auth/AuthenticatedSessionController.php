@@ -49,8 +49,11 @@ class AuthenticatedSessionController extends Controller
 
     $url = session()->get('url.intended.url');
 
-    // return redirect()->intended(RouteServiceProvider::HOME);
-    return redirect($url);
+    if ($url) {
+      return redirect($url);
+    }
+    
+    return redirect()->intended(RouteServiceProvider::HOME);
   }
 
   /**

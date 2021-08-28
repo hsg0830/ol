@@ -25,8 +25,12 @@ class MultiAuthController extends Controller
     $url = session()->get('url.intended');
 
     if (Auth::guard($guard)->attempt($credentials, $remember)) {
-      // return redirect('editors');
-      return redirect($url);
+
+      if ($url) {
+        return redirect($url);
+      }
+
+      return redirect('editors');
     }
 
     return back()->withErrors([
