@@ -38,7 +38,7 @@ class TasksController extends Controller
       'articles' => $articles,
       'asks' => $asks,
       'isAuthoried' => $isAuthoried,
-      'user' => $userId,
+      'userId' => $userId,
       'users' => $users,
     ]);
   }
