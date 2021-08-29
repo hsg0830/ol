@@ -597,7 +597,7 @@ html.open,
     padding: 0 0.5rem 0.6rem;
 
     &:not(:last-child) {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.7rem;
     }
 
     & a {
@@ -605,6 +605,23 @@ html.open,
       background-color: #fff;
       box-shadow: 0.2rem 0.2rem 0.5rem;
       position: relative;
+
+      &.ask {
+        padding: 1.2rem 0.4rem 1.2rem 1rem;
+        border-left: 8px solid $green;
+
+        &.category-200 {
+          border-color: $navy;
+        }
+
+        &.category-300 {
+          border-color: $orange;
+        }
+
+        &.category-500 {
+          border-color: $purple;
+        }
+      }
     }
 
     & .list__category {
@@ -660,6 +677,7 @@ html.open,
       vertical-align: bottom;
     }
   }
+
 }
 
 /*---------------------------
@@ -758,7 +776,7 @@ html.open,
   width: 95%;
   margin: 0 auto;
   background-color: $beige;
-  padding: 2rem 2rem 1rem;
+  padding: 2rem 1rem 1rem;
   box-shadow: 0 0 0 0.5rem $beige;
   border: dashed 0.2rem $yellow;
   border-radius: 0.9rem;
