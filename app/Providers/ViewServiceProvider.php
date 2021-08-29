@@ -13,29 +13,33 @@ class ViewServiceProvider extends ServiceProvider
   public function boot()
   {
     View::composer('*', function ($view) {
-      $topArticles = Article::where('status', 1)->orderBy('viewed_count', 'desc')->take(3)->get();
+      // $topArticles = Article::where('status', 1)->orderBy('viewed_count', 'desc')->take(3)->get();
+      $latestArticle = Article::where('status', 1)->latest()->first();
+      $recentAsks = Ask::where('status', 1)->latest()->take(3)->get();
 
-      $today = new \DateTime();
-      $today = $today->format('Y-m-d');
+      // $today = new \DateTime();
+      // $today = $today->format('Y-m-d');
 
-      $task = Task::orderBy('end', 'asc')
-        ->where('end', '>', $today)
-        ->first();
+      // $task = Task::orderBy('end', 'asc')
+      //   ->where('end', '>', $today)
+      //   ->first();
 
-      $pickUp = null;
+      // $pickUp = null;
 
-      if ($task) {
-        if ($task->category_id === 1) {
-          $pickUp = Article::find($task->article_id);
-        } else {
-          $pickUp = Ask::find($task->ask_id);
-        }
-      }
+      // if ($task) {
+      //   if ($task->category_id === 1) {
+      //     $pickUp = Article::find($task->article_id);
+      //   } else {
+      //     $pickUp = Ask::find($task->ask_id);
+      //   }
+      // }
 
       $view->with([
-        'topArticles'=> $topArticles,
-        'task'=> $task,
-        'pickUp'=> $pickUp,
+        // 'topArticles'=> $topArticles,
+        'latestArticle'=> $latestArticle,
+        'recentAsks' => $recentAsks,
+        // 'task'=> $task,
+        // 'pickUp'=> $pickUp,
       ]);
     });
   }

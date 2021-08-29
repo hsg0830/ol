@@ -30,7 +30,9 @@
           @foreach ($notices as $notice)
             <li>
               {{-- {{ dd($notice->url) }} --}}
+              {{-- @if ($notice->url) --}}
               <a href="{{ url('/') . $notice->url }}">
+              {{-- @endif --}}
                 <span class="info__date">
                   <span>{{ $notice->created_at->format('Y-m-d') }}</span>
                 </span>
@@ -40,7 +42,9 @@
                 <span class="info__title">
                   <span>{{ $notice->title }}</span>
                 </span>
+              {{-- @if ($notice->url) --}}
               </a>
+              {{-- @endif --}}
             </li>
           @endforeach
         </ul>
