@@ -15,7 +15,7 @@ class ViewServiceProvider extends ServiceProvider
     View::composer('*', function ($view) {
       // $topArticles = Article::where('status', 1)->orderBy('viewed_count', 'desc')->take(3)->get();
       $latestArticle = Article::where('status', 1)->latest()->first();
-      $recentAsks = Ask::where('status', 1)->latest()->take(3)->get();
+      $mostRecentAsks = Ask::where('status', 1)->latest()->take(3)->get();
 
       // $today = new \DateTime();
       // $today = $today->format('Y-m-d');
@@ -37,7 +37,7 @@ class ViewServiceProvider extends ServiceProvider
       $view->with([
         // 'topArticles'=> $topArticles,
         'latestArticle'=> $latestArticle,
-        'recentAsks' => $recentAsks,
+        'mostRecentAsks' => $mostRecentAsks,
         // 'task'=> $task,
         // 'pickUp'=> $pickUp,
       ]);
