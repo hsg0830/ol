@@ -60,6 +60,7 @@
           <th scope="col">공개상태</th>
           <th scope="col">작성일</th>
           <th scope="col">열람수</th>
+          <th scope="col">보관수</th>
           <th scope="col">처리</th>
         </tr>
       </thead>
@@ -76,6 +77,7 @@
           </td>
           <td v-text="article.date"></td>
           <td v-text="article.viewed_count"></td>
+          <td v-text="article.followers"></td>
           <td class="d-flex justify-content-around">
             <a :href="article.edit_url" target="_blank" class="btn btn-primary">편집</a>
             <button class="btn btn-danger" @click="onDelete(article)">삭제</button>
