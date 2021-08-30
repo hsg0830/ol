@@ -10,7 +10,14 @@ class Article extends Model
 {
   use HasFactory;
 
-  protected $appends = ['url', 'edit_url', 'date', 'head_line', 'short_title'];
+  protected $appends = [
+    'url',
+    'edit_url',
+    'date',
+    'head_line',
+    'short_title',
+    'followers'
+  ];
 
   protected $casts = [
     'released_at' => 'date'
@@ -33,6 +40,11 @@ class Article extends Model
   public function subContents()
   {
     return $this->hasMany(SubContent::class);
+  }
+
+  public function is_favorite()
+  {
+    return $this->belongsToMany(User::class);
   }
 
   public function getUrlAttribute()
@@ -58,5 +70,11 @@ class Article extends Model
   public function getShortTitleAttribute()
   {
     return mb_strimwidth($this->title, 0, 25, '…');
+  }
+
+  public function getFollowersAttribute()
+  {
+    $followers =  $this->is_favorite()->get();
+    return count($followers);
   }
 }

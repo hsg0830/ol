@@ -14,7 +14,13 @@ class Ask extends Model
     'replied_at' => 'date'
   ];
 
-  protected $appends = ['replied_date', 'url', 'edit_url', 'headline'];
+  protected $appends = [
+    'replied_date',
+    'url',
+    'edit_url',
+    'headline',
+    'followers',
+  ];
 
   public function category()
   {
@@ -29,6 +35,11 @@ class Ask extends Model
   public function user()
   {
     return $this->belongsTo(User::class);
+  }
+
+  public function is_favorite()
+  {
+    return $this->belongsToMany(User::class);
   }
 
   public function getRepliedDateAttribute()
@@ -49,5 +60,11 @@ class Ask extends Model
   public function getHeadlineAttribute()
   {
     return mb_strimwidth($this->draft, 0, 50, '…');
+  }
+
+  public function getFollowersAttribute()
+  {
+    $followers =  $this->is_favorite()->get();
+    return count($followers);
   }
 }

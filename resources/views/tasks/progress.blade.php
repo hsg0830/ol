@@ -65,7 +65,7 @@
     @if (count($tasks) > 0)
       @if (count($users) > 0)
         <table class="table table-striped">
-          <tr>
+          <tr style="background-color: silver">
             <th class="col-2"></th>
             @foreach ($tasks as $task)
               <th class="text-center">
@@ -75,6 +75,15 @@
                   {{ $task->ask->title }}
                 @endif
               </th>
+            @endforeach
+          </tr>
+
+          <tr style="background-color: yellow; font-weight: bold;">
+            <th>완료자</th>
+            @foreach ($tasks as $task)
+            <td  class="text-center">
+              {{ $task->count_cleared_users($school_id) }}
+            </td>
             @endforeach
           </tr>
 

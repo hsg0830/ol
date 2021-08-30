@@ -9,6 +9,10 @@ class Task extends Model
 {
   use HasFactory;
 
+  protected $appends = [
+    'cleared_users',
+  ];
+
   public function article() {
     return $this->belongsTo(Article::class);
   }
@@ -20,5 +24,19 @@ class Task extends Model
   public function cleared_users()
   {
     return $this->belongsToMany(User::class)->withTimestamps();
+  }
+
+  public function count_cleared_users($schoolId) {
+    if ($schoolId > 0) {
+      $users = $this->cleared_users()->where('school_id', $schoolId)->get();
+    } else {
+      $users = $this->cleared_users()->get();
+    }
+
+    return count($users);
+  }
+
+  public function getClearedUsersAttribute() {
+    return $this->count_cleared_users(0);
   }
 }
