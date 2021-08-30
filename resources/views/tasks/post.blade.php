@@ -32,6 +32,8 @@
     <div class="mb-4 d-flex align-item-center row" v-for="(task, index) in tasks">
       <div class="col" v-text="task.month_index"></div>
 
+      <div class="col"v-text="task.cleared_users"></div>
+
       <div class="col">
         <select name="category_id" class="form-select" v-model.number="task.category_id">
           <option value="1">학습</option>
@@ -100,6 +102,7 @@
           const newOrderNumber = this.tasks.length + 1;
           this.tasks.push({
             month_index: newOrderNumber,
+            cleared_users: 0,
             category_id: 1,
             article_id: 0,
             ask_id: 0,

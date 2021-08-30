@@ -21,6 +21,7 @@
           <th>サイズ</th>
           <th>公開状態</th>
           <th>公開日</th>
+          <th>DL回数</th>
           <th>処理</th>
         </tr>
         @foreach ($materials as $material)
@@ -41,6 +42,11 @@
               @if ($material->status == 1)
                 {{ $material->released_at }}
               @endif
+            </td>
+            <td>
+              @if ($material->status == 1)
+                {{ $material->download_count }}
+            @endif
             </td>
             <td class="d-flex">
               <a href="{{ route('materials.edit', $material) }}" class="btn btn-primary me-2">編集</a>

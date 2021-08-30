@@ -61,6 +61,7 @@
           <th scope="col">접수일</th>
           <th scope="col">공개일</th>
           <th scope="col">열람수</th>
+          <th scope="col">보관수</th>
           <th scope="col" class="col-2">처리</th>
         </tr>
       </thead>
@@ -71,9 +72,9 @@
             <a :href="getEmailLink(ask.user)" v-text="ask.user.name"></a>
           </td>
           <td>
-            <a v-if="ask.status === 0" class="btn btn-warning">미회답</a>
-            <a v-else-if="ask.status === 1" class="btn btn-success">회답완료</a>
-            <a v-else-if="ask.status === 2" class="btn btn-primary">집필중</a>
+            <a v-if="ask.status === 0" class="btn btn-warning">미결</a>
+            <a v-else-if="ask.status === 1" class="btn btn-success">완료</a>
+            <a v-else-if="ask.status === 2" class="btn btn-primary">집필</a>
             <a v-else-if="ask.status === 3" class="btn btn-secondary">기각</a>
           </td>
           <td>
@@ -86,6 +87,7 @@
           <td v-text="ask.created_at"></td>
           <td v-text="ask.replied_date"></td>
           <td v-text="ask.viewed_count"></td>
+          <td v-text="ask.followers"></td>
           <td>
             <a :href="ask.edit_url" class="btn btn-primary me-3" target="_blank">편집</a>
             <button class="btn btn-danger" @click="onDelete(ask)">삭제</button>

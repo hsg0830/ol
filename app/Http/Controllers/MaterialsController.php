@@ -186,6 +186,11 @@ class MaterialsController extends Controller
       'Content-Disposition' => 'attachment; filename="' . $file_name . '";'
     ];
 
+    if (Auth::guard('web')->check()) {
+      $material->download_count += 1;
+      $material->save();
+    }
+
     return Response::make(Storage::get($this->path . $file_name), 200, $headers);
   }
 
