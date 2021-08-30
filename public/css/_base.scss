@@ -42,12 +42,18 @@ a {
   }
 }
 
+.anchor {
+  display: block;
+  padding-top: 70px;
+  margin-top: -70px;
+}
+
 *:focus {
   outline: none;
 }
 
 //フォーム要素のスタイル
-input:not([type='radio']):not([type='checkbox']),
+input:not([type='radio']):not([type='checkbox']):not([type='submit']),
 select,
 textarea {
   display: block;

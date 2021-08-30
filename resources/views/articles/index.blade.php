@@ -31,16 +31,51 @@
     </div>
 
     <div id="list-container" class="list-container">
+
+      {{-- 検索フォーム --}}
+      <div class="search-box">
+        <p class="search-box__title">키워드로 제목안 검색</p>
+
+        <div class="filtering-form">
+          <div class="form-group">
+            <select type="select" id="category" v-model="categoryNo" @change="getItems">
+              <option value="0" selected>전체</option>
+              <option v-for="category in categories" v-text="category.name" :value="category.id"></option>
+            </select>
+          </div>
+
+          <div class="search-form">
+            <div class="search-form__wrapper">
+              <input type="text" class="form-control" v-model="searchWord" @keypress.enter="searchArticles">
+              <div class="search-form__btn-block">
+                <button class="global-btn" @click="searchArticles">검색</button>
+                <button class="global-btn" @click="clearSearchWord">지우기</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {{-- カテゴリーセレクトボタン --}}
       <div class="list-container__selector">
         <category-select-button :categories="categories" v-model="categoryNo" @child-click="selectCategory">
         </category-select-button>
       </div>
 
+      {{-- 件数 --}}
       <div class="list-container__count">
         <i class="fas fa-file-signature"></i> 해당되는 기사수: <span v-text="items.total"></span>건
       </div>
 
+      <div class="ask-sort">
+        {{-- 並べ替え --}}
+          <select type="select" id="sort" v-model="sort" @change="getItems">
+            <option value="0" selected>최신순</option>
+            <option value="1">인기순</option>
+          </select>
+      </div>
+
+      {{-- 一覧 --}}
       <div class="list-container__wrapper">
         <div class="list-item" v-for="item in items.data">
           <a :href="item.url">
@@ -52,10 +87,11 @@
               <p class="title" :class="getTextClass(item.category.id)" v-text="item.title"></p>
             </div>
             <div class="list-item__content">
-              <p class="lead" v-html="item.head_line"></p>
-              <div class="info">
+              {{-- <p class="lead" v-html="item.head_line"></p> --}}
+              <div class="list-item__content__info">
+                <p class="count">열람수: <span>@{{ item.viewed_count }}</span>번</p>
                 <p class="date" v-text="item.date"></p>
-                <p class="category" :class="getCategoryClass(item.category.id)" v-text="item.category.name"></p>
+                {{-- <p class="category" :class="getCategoryClass(item.category.id)" v-text="item.category.name"></p> --}}
               </div>
             </div>
           </a>
@@ -86,6 +122,8 @@
           categoryNo: 0,
           items: {},
           categories: [],
+          searchWord: '',
+          sort: 0,
         }
       },
       components: {
@@ -99,6 +137,8 @@
               params: {
                 page: this.page,
                 categoryNo: this.categoryNo,
+                searchWord: this.searchWord,
+                sort: this.sort,
               }
             })
             .then((response) => {
@@ -136,6 +176,15 @@
           this.categoryNo = categoryNo;
           this.page = 1;
           location.hash = `${this.page}%${this.categoryNo}`;
+          this.getItems();
+        },
+        searchArticles() {
+          this.getHashValue();
+          // this.categoryNo = 0;
+          this.getItems();
+        },
+        clearSearchWord() {
+          this.searchWord = '';
           this.getItems();
         },
         getCategoryClass(index) {

@@ -7,11 +7,15 @@ use App\Http\Controllers\MultiAuthController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ArticlesController;
-use App\Http\Controllers\QuestionsController;
+// use App\Http\Controllers\QuestionsController;
 use App\Http\Controllers\AsksController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\NoticesController;
+use App\Http\Controllers\FavoritesController;
+use App\Http\Controllers\MaterialsController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\TasksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,43 +38,52 @@ Route::get('/prohibited', function () {
   return view('errors.prohibited');
 })->name('prohibited');
 
-// 学習室
-Route::prefix('articles')->group(function () {
-  Route::get('/', [ArticlesController::class, 'index'])->name('articles.index');
-  Route::get('/pagination', [ArticlesController::class, 'paginate']);
-  Route::get('/{article}', [ArticlesController::class, 'show'])->name('articles.show');
-});
-
-// QA
-Route::prefix('qa')->group(function () {
-  Route::get('/', [QuestionsController::class, 'index'])->name('qa.index');
-  Route::get('/pagination', [QuestionsController::class, 'paginate']);
-  Route::get('{question}', [QuestionsController::class, 'show'])->name('qa.show');
-  Route::post('/{question}/increment', [QuestionsController::class, 'addViewedCount']);
-});
-
 // 規範原文
 Route::get('/norms/{filename}', function ($filename) {
   return view('norms.' . $filename);
 })->name('norms');
 
+// 検索結果
+Route::get('/search', [SearchController::class, 'index'])->name('search');
+Route::get('/all-search', function () {
+  return view('search.all-search');
+});
+
+// 学習室
+Route::prefix('articles')->group(function () {
+  Route::get('/', [ArticlesController::class, 'index'])->name('articles.index');
+  Route::get('/pagination', [ArticlesController::class, 'paginate']);
+  Route::get('/{article}', [ArticlesController::class, 'show'])->name('articles.show');
+
+  Route::middleware('auth:web')->group(function () {
+    Route::post('{article}/follow', [FavoritesController::class, 'article_store'])->name('articles.follow');
+    Route::delete('{article}/unfollow', [FavoritesController::class, 'article_destroy'])->name('articles.unfollow');
+  });
+});
+
 // bbs
 Route::prefix('bbs')->group(function () {
   Route::get('/', [AsksController::class, 'index'])->name('bbs.index');
   Route::get('/pagination', [AsksController::class, 'paginate']);
+  Route::get('/{ask}', [AsksController::class, 'show'])->name('bbs.show'); // 認証なしでOKに変更
+
+  Route::middleware('auth:web')->group(function () {
+    Route::post('{ask}/follow', [FavoritesController::class, 'ask_store'])->name('bbs.follow');
+    Route::delete('{ask}/unfollow', [FavoritesController::class, 'ask_destroy'])->name('bbs.unfollow');
+  });
 
   // email-verify後にだけアクセスできるルーティング
   Route::middleware(['registered'])->group(function () {
     Route::post('/', [AsksController::class, 'store']);
-    Route::get('/{ask}', [AsksController::class, 'show'])->name('bbs.show');
   });
 });
 
-// 資料室   ←現在は臨時。6月〜7月に開発の予定。
-Route::prefix('materials')->group(function () {
-  Route::get('/', function () {
-    return view('materials.index');
-  })->name('materials.index');
+// 資料室
+Route::prefix('materials')->middleware(['registered'])->group(function () {
+  Route::get('/', [MaterialsController::class, 'index'])->name('materials.index');
+  Route::get('/get-list', [MaterialsController::class, 'getList']);
+  Route::get('/{material}', [MaterialsController::class, 'show'])->name('materials.show');
+  Route::get('/{material}/download', [MaterialsController::class, 'download'])->name('materials.download');
 });
 
 // マイページ <-email-verify後にだけアクセスできるルーティング
@@ -83,6 +96,25 @@ Route::prefix('users')->middleware(['registered'])->group(function () {
 Route::prefix('contact')->group(function () {
   Route::get('/', [ContactsController::class, 'showForm'])->name('contact.form');
   Route::post('/', [ContactsController::class, 'send']);
+});
+
+// QA
+// Route::prefix('qa')->group(function () {
+//   Route::get('/', [QuestionsController::class, 'index'])->name('qa.index');
+//   Route::get('/pagination', [QuestionsController::class, 'paginate']);
+//   Route::get('{question}', [QuestionsController::class, 'show'])->name('qa.show');
+//   Route::post('/{question}/increment', [QuestionsController::class, 'addViewedCount']);
+// });
+
+// 学習課題
+Route::prefix('tasks')->middleware(['registered'])->group(function () {
+  Route::get('/', [TasksController::class, 'index'])->name('tasks.index');
+  Route::get('/get-list', [TasksController::class, 'getList']);
+
+  Route::middleware('auth:web')->group(function () {
+    Route::post('{task}/cleared', [TasksController::class, 'toCleared'])->name('tasks.cleared');
+    Route::delete('{task}/un-cleared', [TasksController::class, 'toUnCleared'])->name('tasks.uncleared');
+  });
 });
 
 // 管理者関連
@@ -122,16 +154,16 @@ Route::prefix('editors')->group(function () {
     });
 
     // QA管理
-    Route::prefix('qa')->group(function () {
-      Route::get('/create', [QuestionsController::class, 'create'])->name('qa.create');
-      Route::post('/', [QuestionsController::class, 'store']);
-      Route::get('{question}/edit', [QuestionsController::class, 'edit'])->name('qa.edit');
-      Route::put('/{question}', [QuestionsController::class, 'update']);
-      Route::get('/list', [QuestionsController::class, 'showQuestionsList'])->name('qa.list');
-      Route::get('/get-list', [QuestionsController::class, 'getQuestionsList']);
-      Route::post('/{question}/change-status', [QuestionsController::class, 'changeStatus']);
-      Route::delete('/{question}', [QuestionsController::class, 'destroy']);
-    });
+    // Route::prefix('qa')->group(function () {
+    //   Route::get('/create', [QuestionsController::class, 'create'])->name('qa.create');
+    //   Route::post('/', [QuestionsController::class, 'store']);
+    //   Route::get('{question}/edit', [QuestionsController::class, 'edit'])->name('qa.edit');
+    //   Route::put('/{question}', [QuestionsController::class, 'update']);
+    //   Route::get('/list', [QuestionsController::class, 'showQuestionsList'])->name('qa.list');
+    //   Route::get('/get-list', [QuestionsController::class, 'getQuestionsList']);
+    //   Route::post('/{question}/change-status', [QuestionsController::class, 'changeStatus']);
+    //   Route::delete('/{question}', [QuestionsController::class, 'destroy']);
+    // });
 
     // bbs管理
     Route::prefix('bbs')->group(function () {
@@ -141,6 +173,16 @@ Route::prefix('editors')->group(function () {
       Route::put('/{ask}', [AsksController::class, 'update']);
       Route::put('/{ask}/change-status', [AsksController::class, 'changeStatus']);
       Route::delete('/{ask}', [AsksController::class, 'destroy']);
+    });
+
+    // 資料室
+    Route::prefix('materials')->group(function () {
+      Route::get('/list', [MaterialsController::class, 'list'])->name('materials.list');
+      Route::get('/create', [MaterialsController::class, 'create'])->name('materials.create');
+      Route::post('/', [MaterialsController::class, 'store'])->name('materials.store');
+      Route::get('{material}/edit', [MaterialsController::class, 'edit'])->name('materials.edit');
+      Route::put('{material}', [MaterialsController::class, 'update'])->name('materials.update');
+      Route::delete('{material}', [MaterialsController::class, 'destroy'])->name('materials.destroy');
     });
 
     // お知らせ管理
@@ -170,6 +212,15 @@ Route::prefix('editors')->group(function () {
       Route::get('{contact}', [ContactsController::class, 'showReplyForm'])->name('contacts.reply');
       Route::put('{contact}', [ContactsController::class, 'reply']);
       Route::delete('{contact}', [ContactsController::class, 'destroy']);
+    });
+
+    // 学習課題投稿・編集
+    Route::prefix('tasks')->group(function () {
+      Route::get('/create', [TasksController::class, 'create'])->name('tasks.create');
+      Route::get('/edit', [TasksController::class, 'edit'])->name('tasks.edit');
+      Route::post('/', [TasksController::class, 'store']);
+      Route::put('/', [TasksController::class, 'update']);
+      Route::get('progress', [TasksController::class, 'showProgress'])->name('tasks.progress');
     });
   });
 });

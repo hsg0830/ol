@@ -48,6 +48,7 @@
           <button class="global-btn" @click="clearSearchWord">지우기</button>
         </div>
       </div>
+      
       <div class="list-container__count">
         <i class="fas fa-file-signature"></i> 해당되는 물음수: <span v-text="questions.total"></span>건
       </div>

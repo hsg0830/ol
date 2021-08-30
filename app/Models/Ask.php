@@ -10,10 +10,11 @@ class Ask extends Model
   use HasFactory;
 
   protected $casts = [
+    'created_at' => 'datetime:Y/m/d',
     'replied_at' => 'date'
   ];
 
-  protected $appends = ['date', 'url', 'edit_url', 'headline'];
+  protected $appends = ['replied_date', 'url', 'edit_url', 'headline'];
 
   public function category()
   {
@@ -30,7 +31,7 @@ class Ask extends Model
     return $this->belongsTo(User::class);
   }
 
-  public function getDateAttribute()
+  public function getRepliedDateAttribute()
   {
     return !is_null($this->replied_at) ? $this->replied_at->format('Y/m/d') : '';
   }

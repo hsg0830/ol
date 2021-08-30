@@ -47,9 +47,12 @@
       @else
         <div class="title-block__date color-white"><time>{{ $article->date }}</time></div>
       @endif
-
     </div>
     <!-- タイトル部 -->
+
+    {{-- お気に入りボタン --}}
+    @include('commons.favorite-btn')
+    {{-- お気に入りボタン --}}
 
     {{-- イントロダクション --}}
     <div class="introduction-block" @click="hideToolip">
@@ -57,11 +60,25 @@
     </div>
     {{-- イントロダクション --}}
 
+    {{-- 目次 --}}
+    <div class="table-of-contents">
+      <h2 class="table-of-contents__heading"><i class="fas fa-list-ul"></i> 차례</h2>
+      <ul class="table-of-contents__list">
+        @foreach ($article->subContents as $subContent)
+          <li>
+            <a href="#{{ $subContent->id }}"><i class="fas fa-chevron-circle-right"></i>
+              {{ $subContent->title }}</a>
+          </li>
+        @endforeach
+      </ul>
+    </div>
+    {{-- 目次 --}}
+
     <!-- 本文部 -->
     @if (count($article->subContents) > 0)
       <div class="content-block">
         @foreach ($article->subContents as $subContent)
-          <section class="content-section">
+          <section class="content-section anchor" id="{{ $subContent->id }}">
             <div class="section-title-block">
               <h3 class="section-title-block__title">{{ $subContent->title }}</h3>
             </div>
@@ -73,6 +90,15 @@
       </div>
     @endif
     <!-- 本文部 -->
+
+    {{-- お気に入りボタン --}}
+    @include('commons.favorite-btn')
+    {{-- お気に入りボタン --}}
+
+    {{-- 課題状況 --}}
+    @include('commons.task-status')
+    {{-- 課題状況 --}}
+
 
     {{-- 関連記事 --}}
     <div id="list-container" class="list-container">
@@ -96,10 +122,11 @@
                   {{ $item->title }}</p>
               </div>
               <div class="list-item__content">
-                <p class="lead">{!! $item->head_line !!}</p>
-                <div class="info">
+                {{-- <p class="lead">{!! $item->head_line !!}</p> --}}
+                <div class="list-item__content__info">
+                  <p class="count">열람수: <span>{{ $item->viewed_count }}</span>번</p>
                   <p class="date">{{ $item->date }}</p>
-                  <p class="category category-{{ $item->category_id }}">{{ $item->category->name }}</p>
+                  {{-- <p class="category category-{{ $item->category_id }}">{{ $item->category->name }}</p> --}}
                 </div>
               </div>
             </a>
@@ -119,6 +146,11 @@
         return {
           currentTooltop: '',
           currenUserAgent: '',
+          article: {!! $article !!},
+          isFollowing: {{ $isFollowing ? 'true' : 'false' }},
+          task: {!! $task ?? 'null' !!},
+          isCleared: {{ $isCleared ? 'true' : 'false' }},
+          isAuthorized: {{ $isAuthorized ? 'true' : 'false' }},
         }
       },
       methods: {
@@ -126,8 +158,8 @@
           this.currenUserAgent = navigator.userAgent;
 
           if (this.currenUserAgent.indexOf("iPhone") >= 0 ||
-          this.currenUserAgent.indexOf("iPad") >= 0 ||
-          this.currenUserAgent.indexOf("Android") >= 0
+            this.currenUserAgent.indexOf("iPad") >= 0 ||
+            this.currenUserAgent.indexOf("Android") >= 0
           ) {
             this.currentTooltop = $event.target;
             $(this.currentTooltop).addClass('isActive');
@@ -138,11 +170,65 @@
             $(this.currentTooltop).removeClass('isActive');
             this.currentTooltop = '';
           }
-        }
+        },
+        changeFavoriteStatus() {
+          if (this.isAuthorized === false) {
+            return alert('로그인하셔야 합니다.');
+          }
+          
+          let url = `/articles/${this.article.id}/`;
+          let method = 'POST';
+
+          if (this.isFollowing == false) {
+            url += 'follow';
+          } else {
+            url += 'unfollow';
+            method = 'DELETE';
+          }
+
+          const params = {
+              _method: method,
+          };
+
+          axios
+            .post(url, params)
+            .then((response) => {
+              if (response.data.result === true) {
+                this.isFollowing = response.data.isFollowing;
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        },
+        changeTaskStatus() {
+          let url = `/tasks/${this.task.id}/`;
+          let method = 'POST';
+
+          if (this.isCleared == false) {
+            url += 'cleared';
+          } else {
+            url += 'un-cleared';
+            method = 'DELETE';
+          }
+
+          const params = {
+              _method: method,
+          };
+
+          axios.post(url, params)
+            .then((response) => {
+              if (response.data.result === true) {
+                this.isCleared = response.data.isCleared;
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        },
       },
     });
 
     app.mount('#main');
-
   </script>
 @endsection

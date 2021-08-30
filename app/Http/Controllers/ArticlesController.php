@@ -10,6 +10,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Article;
 use App\Models\SubContent;
 use App\Models\ArticleCategory;
+use App\Models\Notice;
+use App\Models\Task;
 
 class ArticlesController extends Controller
 {
@@ -28,10 +30,21 @@ class ArticlesController extends Controller
       $query->where('category_id', $category_id);
     }
 
-    $articles = $query->where('status', 1)
-      ->with('category')
-      ->orderBy('released_at', 'desc')
-      ->paginate(12);
+    if ($request->searchWord) {
+      $keyword = '%' . $request->searchWord . '%';
+      $query->where('title', 'like', $keyword);
+    }
+
+    $query->where('status', 1)
+      ->with('category');
+
+    if ($request->sort == 0) {
+      $query->orderBy('created_at', 'desc');
+    } else {
+      $query->orderBy('viewed_count', 'desc');
+    }
+
+    $articles = $query->paginate(12);
 
     $categories = ArticleCategory::select('id', 'name')->get();
 
@@ -49,14 +62,15 @@ class ArticlesController extends Controller
       if (!Auth::guard('editors')->check()) {
 
         if (!Auth::check()) {
-          return redirect()->route('prohibited');
+          // return redirect()->route('prohibited');
+          return redirect()->route('login');
         }
 
         if (
           Auth::user() instanceof MustVerifyEmail
           && Auth::user()->email_verified_at == NULL
-          ) {
-            return redirect()->route('verification.notice');
+        ) {
+          return redirect()->route('verification.notice');
         }
       }
     }
@@ -76,9 +90,31 @@ class ArticlesController extends Controller
       ->orderBy('released_at', 'desc')
       ->take(3)->get();
 
+    $isFollowing = false;
+    $isAuthorized = false;
+
+    if (Auth::guard('web')->check()) {
+      $isAuthorized = true;
+      $isFollowing = Auth::user()->is_article_following($article->id);
+    }
+
+    $task = Task::where('article_id', $article->id)
+      ->orderBy('end', 'desc')
+      ->first();
+
+    $isCleared = false;
+
+    if (!is_null($task) && Auth::guard('web')->check()) {
+      $isCleared = Auth::user()->is_cleared_task($task->id);
+    }
+
     return view('articles.show', [
       'article' => $article,
       'relatedArticles' => $relatedArticles,
+      'isFollowing' => $isFollowing,
+      'task' => $task,
+      'isCleared' => $isCleared,
+      'isAuthorized' => $isAuthorized,
     ]);
   }
 
@@ -167,11 +203,13 @@ class ArticlesController extends Controller
       $article->sub_category_id = $request->sub_category_id;
       $article->introduction = $request->introduction;
       $article->status = $request->status;
+
       if (intval($article->status) === 1 && is_null($article->released_at)) {
         $article->released_at = now();
       } else if (intval($article->status !== 1)) {
         $article->released_at = null;
       }
+
       $article->save();
 
       if (count($request->subContents) > 0) {
@@ -193,8 +231,17 @@ class ArticlesController extends Controller
       DB::commit();
       $result = true;
     } catch (\Exception $e) {
-
       DB::rollBack();
+    }
+
+    if ($request->notice == 1) {
+      $notice = new Notice();
+      $notice->editor_id = $article->editor_id;
+      $notice->status = 1;
+      $notice->category = 1;
+      $notice->title = $article->title;
+      $notice->url = '/articles/' . $article->id;
+      $notice->save();
     }
 
     return [

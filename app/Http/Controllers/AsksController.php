@@ -11,6 +11,8 @@ use App\Mail\AsksRecievedAlertMail;
 use App\Mail\AskReplyNotificationMail;
 use App\Models\Ask;
 use App\Models\QuestionCategory;
+use App\Models\Notice;
+use App\Models\Task;
 
 class AsksController extends Controller
 {
@@ -25,7 +27,7 @@ class AsksController extends Controller
 
   public function paginate(Request $request)
   {
-    $category_id = intval($request->selectedCategory);
+    $category_id = intval($request->categoryNo);
 
     $query = Ask::query();
 
@@ -38,7 +40,16 @@ class AsksController extends Controller
       $query->where('title', 'like', $keyword);
     }
 
-    $asks = $query->where('status', 1)->with('category')->orderBy('replied_at', 'desc')->paginate(10);
+    $query->where('status', 1)
+      ->with('category');
+
+    if ($request->sort == 0) {
+      $query->orderBy('replied_at', 'desc');
+    } else {
+      $query->orderBy('viewed_count', 'desc');
+    }
+
+    $asks = $query->paginate(9);
 
     $notCompatible = Ask::where('status', 0)->count();
 
@@ -94,12 +105,34 @@ class AsksController extends Controller
     $relatedAsks = Ask::where('category_id', $ask->category_id)
       ->where('id', '<>', $ask->id)
       ->where('status', 1)
-      ->orderBy('replied_at')
+      ->orderBy('replied_at', 'desc')
       ->take(3)->get();
+
+    $isFollowing = false;
+    $isAuthorized = false;
+
+    if (Auth::guard('web')->check()) {
+      $isAuthorized = true;
+      $isFollowing = Auth::user()->is_ask_following($ask->id);
+    }
+
+    $task = Task::where('ask_id', $ask->id)
+      ->orderBy('end', 'desc')
+      ->first();
+
+    $isCleared = false;
+
+    if (!is_null($task) && Auth::guard('web')->check()) {
+      $isCleared = Auth::user()->is_cleared_task($task->id);
+    }
 
     return view('bbs.show', [
       'ask' => $ask,
       'relatedAsks' => $relatedAsks,
+      'isFollowing' => $isFollowing,
+      'task' => $task,
+      'isCleared' => $isCleared,
+      'isAuthorized' => $isAuthorized,
     ]);
   }
 
@@ -138,10 +171,22 @@ class AsksController extends Controller
     $ask->title = $request->title;
     $ask->description = $request->description;
     $ask->reply = $request->reply;
+
     if ($request->status == 1 && is_null($ask->replied_at)) {
       $ask->replied_at = now();
     }
+
     $result = $ask->save();
+
+    if ($request->notice == 1) {
+      $notice = new Notice();
+      $notice->editor_id = $ask->editor_id;
+      $notice->status = 1;
+      $notice->category = 2;
+      $notice->title = $ask->title;
+      $notice->url = '/bbs/' . $ask->id;
+      $notice->save();
+    }
 
     if ($request->status == 1 && $request->send_mail == true) {
       $email = $ask->user->email;

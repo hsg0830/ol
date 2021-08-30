@@ -17,6 +17,8 @@ class NoticesTableSeeder extends Seeder
     for ($i = 1; $i <= 30; $i++) {
       $notice = new Notice();
       $notice->editor_id = 1;
+      $notice->status = rand(0, 1);
+      $notice->category = rand(1, 4);
       $notice->role = rand(0, 1);
       $notice->title =$i . '番目のお知らせです。';
       if ($notice->role == 1) {

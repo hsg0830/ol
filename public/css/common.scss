@@ -426,6 +426,11 @@ html.open,
     display: flex;
     justify-content: space-around;
   }
+
+  // トップページの時だけ逆方向
+  &__top {
+    flex-direction: row-reverse;
+  }
 }
 
 #main {
@@ -592,7 +597,7 @@ html.open,
     padding: 0 0.5rem 0.6rem;
 
     &:not(:last-child) {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.7rem;
     }
 
     & a {
@@ -600,6 +605,23 @@ html.open,
       background-color: #fff;
       box-shadow: 0.2rem 0.2rem 0.5rem;
       position: relative;
+
+      &.ask {
+        padding: 1.2rem 0.4rem 1.2rem 1rem;
+        border-left: 8px solid $green;
+
+        &.category-200 {
+          border-color: $navy;
+        }
+
+        &.category-300 {
+          border-color: $orange;
+        }
+
+        &.category-500 {
+          border-color: $purple;
+        }
+      }
     }
 
     & .list__category {
@@ -655,6 +677,7 @@ html.open,
       vertical-align: bottom;
     }
   }
+
 }
 
 /*---------------------------
@@ -683,7 +706,7 @@ html.open,
 .line-link {
   text-align: center;
   width: 80%;
-  margin: 0 auto;
+  margin: 1.5rem auto;
   color: $brown;
 
   & p {
@@ -707,25 +730,21 @@ html.open,
 ---------------------------*/
 .ly-block {
   margin-top: 2rem;
-
-  @media screen and (min-width: 768px) {
-    margin-top: 5rem;
-  }
 }
 
 .flex-block {
   & .category-block {
     margin-bottom: 3rem;
+
+    @media screen and (min-width: 768px) {
+      width: 48%;
+    }
   }
 
   @media screen and (min-width: 768px) {
     margin-bottom: 0;
     display: flex;
     justify-content: space-between;
-
-    & > section {
-      width: calc(100% / 3.2);
-    }
   }
 }
 
@@ -753,136 +772,288 @@ html.open,
   }
 }
 
-// トップのお知らせ
-.top-notice-box {
-  margin: 2rem 0;
-  background-color: $pink;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.22);
+.pick-up {
+  width: 95%;
+  margin: 0 auto;
+  background-color: $beige;
+  padding: 2rem 1rem 1rem;
+  box-shadow: 0 0 0 0.5rem $beige;
+  border: dashed 0.2rem $yellow;
+  border-radius: 0.9rem;
+  margin-top: 2rem;
 
-  &__title {
-    font-size: 1.2em;
-    background-color: $red;
-    padding: 0.4rem;
+  &__heading {
     text-align: center;
-    color: #fff;
-    font-weight: bold;
-    letter-spacing: 0.05rem;
+    color: $brown;
+    font-family: $krJua;
+    letter-spacing: 0.4rem;
+    color: $brown;
+    font-size: 2.4rem;
+
+    @media screen and (min-width: 768px) {
+      font-size: 2.8rem;
+    }
+
+    &:before {
+      font-family: 'Font Awesome 5 Free';
+      font-weight: bold;
+      content: '\f303';
+
+      display: inline-block;
+      margin-right: 1rem;
+    }
   }
 
-  &__description {
-    padding: 1.5rem 2rem;
-    margin: 0;
+  &__content {
+    margin-top: 1.5rem;
+    background-color: $yellow;
+    padding: 1rem 0 2rem;
+    position: relative;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+
+    &__category {
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: $white;
+      padding: 0.1rem 0.5rem;
+      color: $white;
+      font-family: $krPoor;
+
+      &.category-100 {
+        background-color: $green;
+      }
+      &.category-200 {
+        background-color: $navy;
+      }
+      &.category-300 {
+        background-color: $vermilion;
+      }
+      &.category-400,
+      &.category-500 {
+        background-color: $purple;
+      }
+    }
+
+    &__title {
+      padding-top: 3rem;
+      padding-left: 4.5rem;
+      padding-right: 1.5rem;
+    }
+
+    // &::after {
+    //   position: absolute;
+    //   content: '';
+    //   bottom: 0;
+    //   right: 0;
+    //   border-width: 25px 25px 0 0;
+    //   border-style: solid;
+    //   border-color: $yellow rgba($lightBrown, 0.6);
+    //   box-shadow: -1px -1px 3px rgba(0, 0, 0, 0.15);
+    // }
+
+    &:hover {
+      opacity: 0.9;
+    }
   }
 }
 
-.recent-articles {
-  background-color: $beige;
-  padding: 1rem;
-  border-radius: 1rem;
+.top-search {
+  // background-color: rgba($lightBrown, 0.6);
+  width: 98%;
+  margin: 2rem auto 0;
+  padding: 2rem 2rem 1rem;
+  // box-shadow: 0 0 0 0.5rem rgba($lightBrown, 0.6);
+  border: dashed 0.2rem $yellow;
+  border: dashed 0.2rem $brown;
+  border-radius: 0.9rem;
 
-  &__info {
-    height: 8rem;
-    margin-bottom: 1rem;
-    background-color: $beige;
-    border-radius: 1rem;
-    position: relative;
+  &__heading {
+    // padding-top: 2rem;
+    text-align: center;
+    color: $brown;
+    font-family: $krJua;
+    letter-spacing: 0.4rem;
+    color: $brown;
+    font-size: 2.4rem;
 
     @media screen and (min-width: 768px) {
-      margin-bottom: 0;
-      width: 20%;
-      height: 14rem;
+      font-size: 2.8rem;
     }
 
-    & h3 {
-      width: 80%;
-      text-align: center;
+    &:before {
+      font-family: 'Font Awesome 5 Free';
       font-weight: bold;
-      color: $brown;
-      font-family: $krJua;
-      letter-spacing: 0.2rem;
-      font-size: 2.3rem;
-      position: absolute;
-      top: 40%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
+      content: '\f002';
 
-    & a {
-      color: rgba($brown, 0.7);
-      position: absolute;
-      bottom: 5%;
-      right: 7%;
+      display: inline-block;
+      margin-right: 1rem;
     }
   }
 
-  &__item {
-    display: block;
+  &__tabs {
+    display: flex;
+    justify-content: space-between;
+
+    & div {
+      width: 45%;
+      border-radius: 5px;
+      text-align: center;
+      background-color: $yellow;
+      color: $brown;
+
+      &.active {
+        background-color: $brown;
+        color: $yellow;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  &__all {
+    padding: 2rem 1rem;
+  }
+
+  &__select {
+    @media screen and (max-width: 768px) {
+      display: flex;
+      justify-content: space-between;
+
+      & select {
+        width: 40%;
+        margin-right: 1rem;
+      }
+    }
+
+    @media screen and (min-width: 1400px) {
+      display: flex;
+      justify-content: space-between;
+
+      & select {
+        width: 40%;
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  &__radio {
     margin-bottom: 1rem;
-    padding: 3.5rem 1rem 0.5rem;
-    background-color: $yellow;
-    box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.22);
-    position: relative;
+
+    @media screen and (max-width: 768px) {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    @media screen and (min-width: 1400px) {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    & label {
+      margin: 0 0.5rem;
+    }
+  }
+
+  &__submit {
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+}
+
+.info {
+  // margin-top: 5rem;
+  margin-bottom: 4rem;
+
+  &__heading {
+    width: 50%;
+    margin: 0 auto 1.5rem;
+    padding: 1rem 0 0.1rem;
+    text-align: center;
+    border-bottom: 2px solid $brown;
+
+    font-family: $krJua;
+    letter-spacing: 0.4rem;
+    color: $brown;
+    font-size: 2.4rem;
 
     @media screen and (min-width: 768px) {
-      width: 22%;
-      height: 14rem;
-      margin-bottom: 0;
-
-      &:last-child {
-        display: none;
-      }
-    }
-
-    @media screen and (min-width: 999px) {
-      width: 18%;
-
-      &:last-child {
-        display: block;
-      }
+      font-size: 2.8rem;
+      display: none;
     }
   }
 
-  &__category {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 0.5rem;
-    line-height: 1.9rem;
-    font-family: $krPoor;
-    color: $white;
+  &__list {
+    border: 2px solid $lightBrown;
+    height: 15vh;
+    overflow-y: scroll;
+    background-color: #fff;
 
-    &.category-100 {
-      background-color: $green;
-    }
-    &.category-200 {
-      background-color: $navy;
-    }
-    &.category-300 {
-      background-color: $vermilion;
-    }
-    &.category-400 {
-      background-color: $purple;
+    & ul {
+      & li {
+        display: flex;
+        padding: 0.5rem 2rem;
+
+        &:nth-child(even) {
+          background-color: rgba($beige, 0.2);
+        }
+
+        & a {
+          display: block;
+          width: 100%;
+        }
+      }
     }
   }
 
   &__date {
-    display: block;
-    font-size: 1.2rem;
-    text-align: right;
+    font-size: 1.4rem;
+    color: $gray;
+    margin-right: 1rem;
 
-    @media screen and (min-width: 768px) {
-      position: absolute;
-      bottom: 3%;
-      right: 3%;
+    // @media screen and (max-width: 767px) {
+    //   width: 24%;
+    // }
+  }
+
+  &__category {
+    margin-right: 1rem;
+
+    // @media screen and (max-width: 767px) {
+    //   width: 24%;
+    // }
+
+    & > span {
+      padding: 0.3rem 0.7rem;
+      border-radius: 1rem;
+      font-size: 1.4rem;
+      color: $white;
+
+      &.category-01 {
+        background-color: $green;
+      }
+
+      &.category-02 {
+        background-color: $orange;
+      }
+
+      &.category-03 {
+        background-color: $navy;
+      }
+
+      &.category-04 {
+        background-color: $purple;
+      }
     }
   }
-}
 
-.recent-common {
-  background-color: $yellow;
-  padding: 1.5rem;
-  border-radius: 1rem;
-  box-shadow: 5px 5px 10px silver;
+  // &__title {
+  //   @media screen and (max-width: 767px) {
+  //     width: 52%;
+  //   }
+  // }
 }
 
 .more {
@@ -891,11 +1062,55 @@ html.open,
   color: $brown;
 }
 
-.recent-qa {
+.recent {
+  &__introduction {
+    margin-bottom: 1.5rem;
+  }
+
+  &__tabs {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    font-family: $krSunflower;
+    font-size: 2rem;
+
+    & .tab {
+      width: 50%;
+      padding: 1rem;
+      border-style: solid;
+      border-width: 1px;
+      border-color: transparent;
+      border-bottom: $brown;
+      border-radius: 1rem 1rem 0 0;
+      background-color: rgba($lightBrown, 0.6);
+      // color: $white;
+      color: $brown;
+
+      &:not(.active):hover {
+        border-color: rgba($lightBrown, 0.6) rgba($lightBrown, 0.6) #999;
+        background-color: rgba($lightBrown, 0.6);
+      }
+
+      &.active {
+        background-color: $yellow;
+        border-color: #999 #999 transparent #999;
+        color: $brown;
+      }
+    }
+  }
+
+  &__item-block {
+    background-color: $yellow;
+    padding: 2rem 2rem 1rem;
+    border-left: 1px solid $brown;
+    border-right: 1px solid $brown;
+    border-bottom: 1px solid $brown;
+    border-radius: 0 0 1rem 1rem;
+  }
+
   &__item {
     background-color: $white;
     border: 1px solid $brown;
-    position: relative;
     margin-bottom: 1.5rem;
     box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.22);
 
@@ -905,58 +1120,54 @@ html.open,
     }
   }
 
-  &__category {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 0.1rem 0.5rem;
-    color: $white;
-    font-family: $krPoor;
+  // 학습실
+  &__item-01 {
+    position: relative;
 
+    &__category {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 0.1rem 0.5rem;
+      color: $white;
+      font-family: $krPoor;
+
+      &.category-100 {
+        background-color: $green;
+      }
+      &.category-200 {
+        background-color: $navy;
+      }
+      &.category-300 {
+        background-color: $vermilion;
+      }
+      &.category-400 {
+        background-color: $purple;
+      }
+    }
+
+    &__title {
+      padding: 4rem 1rem 1rem;
+    }
+  }
+
+  // 질문게시판
+  &__item-02 {
     &.category-100 {
-      background-color: $green;
+      border-left: 1rem solid $green;
     }
     &.category-200 {
-      background-color: $navy;
+      border-left: 1rem solid $navy;
     }
     &.category-300 {
-      background-color: $vermilion;
+      border-left: 1rem solid $vermilion;
     }
     &.category-500 {
-      background-color: $purple;
+      border-left: 1rem solid $purple;
     }
-  }
 
-  &__title {
-    padding: 4rem 1rem 1rem;
-  }
-
-  &__answer {
-    background-color: $yellow;
-    margin: 1rem;
-    padding: 2rem;
-    display: none;
-
-    & .global-btn {
-      display: block;
-      margin: 1.5rem auto 0;
-    }
-  }
-}
-
-.recent-ask {
-  & ul {
-    padding: 1rem 0;
-
-    & li {
-      margin-bottom: 1rem;
-      border-bottom: 1px dotted #000;
-
-      & p {
-        margin: 1rem 0;
-        border-left: 5px solid $brown;
-        padding-left: 1rem;
-      }
+    &__title {
+      padding: 2rem 1rem 1rem;
     }
   }
 }
@@ -1022,32 +1233,6 @@ html.open,
   }
 }
 
-.info-block {
-  margin-top: 2.5rem;
-  background-color: $beige;
-
-  & h2 {
-    width: 50%;
-    margin: 0 auto 1.5rem;
-    // padding: 1rem 0 0;
-    font-weight: bold;
-    text-align: center;
-    color: $brown;
-    border-bottom: 2px solid $brown;
-  }
-
-  & ul {
-    list-style-type: disc;
-    padding-left: 4rem;
-  }
-
-  &__date {
-    font-size: 1.4rem;
-    color: $gray;
-    margin-right: 1rem;
-  }
-}
-
 .top-banners {
   text-align: center;
 
@@ -1076,7 +1261,20 @@ html.open,
     margin-bottom: 1rem;
     color: $brown;
   }
+
+  &.line-link-pc {
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
+  }
+
+  &.line-link-sp {
+    @media screen and (min-width: 768px) {
+      display: none;
+    }
+  }
 }
+
 /*---------------------------
   各カテゴリーのトップページのメイン領域共通部
 ---------------------------*/
@@ -1216,7 +1414,7 @@ html.open,
 }
 
 /*---------------------------
-  解説一覧ページ・QAページのメイン領域共通部
+  解説・QA・BBS一覧ページのメイン領域共通部
 ---------------------------*/
 // ページタイトル
 .category-title {
@@ -1235,6 +1433,14 @@ html.open,
 // メイン領域の囲い
 .list-container {
   width: 100%;
+  margin-top: 2rem;
+
+  &__heading {
+    margin-bottom: 2rem;
+    color: $brown;
+    font-size: 2.8rem;
+    font-weight: bold;
+  }
 }
 
 // カテゴリー選択用ボタンのリスト
@@ -1353,8 +1559,12 @@ html.open,
   }
 }
 
-.search-form {
+// 検索フォーム
+.search-box {
   margin-bottom: 2rem;
+  padding: 1.5rem 2.5rem;
+  border: 1px dotted $brown;
+  border-radius: 0.6rem;
 
   &__title {
     font-weight: bold;
@@ -1362,11 +1572,55 @@ html.open,
     color: $brown;
     text-align: center;
   }
+}
 
-  &__wrapper {
+.filtering-form {
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0;
+
+  @media screen and (min-width: 768px) {
     display: flex;
-    justify-content: space-around;
     align-items: center;
+
+    & .form-group {
+      width: auto;
+      margin: 0 auto;
+
+      & input,
+      & select {
+        display: inline-block;
+        width: auto;
+      }
+
+      // &.radio {
+      //   border: 1px dashed $brown;
+      //   border-radius: 1rem;
+      //   padding: 0.5rem 2.2rem;
+
+      //   & input {
+      //     margin: 0;
+      //   }
+
+      //   & label {
+      //     margin: 0;
+      //   }
+      // }
+
+      & .btn {
+        margin: 0;
+      }
+    }
+  }
+}
+
+.search-form {
+  &__wrapper {
+    @media screen and (min-width: 768px) {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
 
     & .form-control {
       width: 70%;
@@ -1381,10 +1635,53 @@ html.open,
   &__btn-block {
     display: flex;
     justify-content: space-around;
+
+    & .global-btn {
+      margin: 0 1rem;
+    }
   }
 }
 
-// 個別記事ページの関連記事紹介
+/*---------------------------
+  解説・BBS詳細ページの共通部
+---------------------------*/
+// お気に入りボタン
+.favorite-btn {
+  // margin-left: auto;
+  text-align: right;
+  width: 95%;
+  margin: 2.5rem auto 0;
+
+  &__wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &__exp {
+    // width: 80%;
+    margin-right: 1rem;
+    color: $brown;
+  }
+
+  &__btn {
+    width: 5rem;
+    height: 5rem;
+    text-align: center;
+    font-size: 2.8rem;
+    background-color: $red;
+    color: $white;
+    border-radius: 5px;
+    box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.4);
+
+    &.active {
+      background-color: $white;
+      color: $red;
+    }
+  }
+}
+
+// 関連記事紹介
 .list-container__related {
   font-size: 2.2rem;
   font-weight: bold;
@@ -1456,10 +1753,19 @@ html.open,
         line-height: 1.5;
       }
 
-      & .info {
+      &__info {
         display: flex;
         justify-content: flex-end;
         font-size: 1.4rem;
+
+        & .count {
+          margin-right: 0.8rem;
+
+          & span {
+            color: $red;
+            font-weight: bold;
+          }
+        }
 
         & .date {
           color: $gray;
@@ -1560,6 +1866,31 @@ html.open,
 .content-block {
   width: 95%;
   margin: 2.5rem auto 0;
+}
+
+.table-of-contents {
+  width: 60%;
+  margin: 0 auto 4rem;
+
+  &__heading {
+    padding: 1rem 0;
+    background-color: $lightBrown;
+    color: $white;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1rem;
+  }
+
+  &__list {
+    padding: 2rem 1rem 2rem 3rem;
+    background-color: $yellow;
+    color: $brown;
+
+    // & li {
+    //   list-style: disc;
+    //   padding-left: 3rem;
+    // }
+  }
 }
 
 // 本文のセクションのタイトル
@@ -1693,226 +2024,51 @@ html.open,
 }
 
 /*---------------------------
-  QAページのメイン領域
+  質問掲示板トップページのメイン領域部分
 ---------------------------*/
-.qa-item {
-  width: 100%;
-  border-top: 1px solid $beige;
-  padding: 1rem 0;
+.ask-sort {
+  width: 40%;
+  margin-bottom: 2rem;
+}
 
-  &__question {
-    margin-bottom: 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.ask-link {
+  margin-top: 2rem;
+  text-align: right;
 
-    & span,
-    & i {
-      display: block;
-    }
+  & a {
+    display: inline-block;
+    padding: 0.2rem 1rem;
+    background-color: $brown;
+    color: $white;
+    border-radius: 0.4rem;
+  }
+}
 
-    & .mark_and_category {
-      margin-right: 1rem;
+.ask-form {
+  margin-top: 3rem;
 
-      @media screen and (min-width: 768px) {
-        margin-right: 2.5rem;
-      }
-
-      width: 20%;
-
-      @media screen and (min-width: 768px) {
-        width: 10%;
-      }
-
-      & .mark {
-        color: $red;
-        font-size: 3rem;
-        font-weight: bold;
-        text-align: center;
-      }
-
-      & .category {
-        // background-color: $lightBrown;
-        background-color: $red;
-        color: $white;
-        text-align: center;
-        border-radius: 0.5rem;
-        font-size: 1.2rem;
-
-        &.category-100 {
-          background-color: $green;
-        }
-        &.category-200 {
-          background-color: $navy;
-        }
-        &.category-300 {
-          background-color: $vermilion;
-        }
-        &.category-400,
-        &.category-500 {
-          background-color: $purple;
-        }
-      }
-    }
-
-    & .question-sentence {
-      width: 75%;
-      padding-top: 2rem;
-      // font-family: $krSunflower;
-      font-size: 2rem;
-      @media screen and (min-width: 768px) {
-        padding-top: 1rem;
-        // font-size: 2.5rem;
-        font-size: 2.2rem;
-      }
-    }
-
-    & .question-date {
-      color: $gray;
-      font-size: 1.2rem;
-      @media screen and (min-width: 768px) {
-        font-size: 1.8rem;
-      }
-    }
-
-    & i {
-      margin-left: 1rem;
-      width: 3rem;
-      height: 3rem;
-      line-height: 3rem;
+  &__message {
+    &__attention {
+      background-color: #fff;
       text-align: center;
-      // background-color: $brown;
-      background-color: $lightBrown;
-      color: $white;
+      color: $red;
+      margin-bottom: 1rem;
     }
   }
 
-  &__answer {
-    margin-left: 5rem;
-    padding: 1rem;
+  &__input {
     @media screen and (min-width: 768px) {
-      margin-left: 8rem;
-      // font-size: 2.2rem;
-    }
-
-    display: flex;
-    justify-content: space-between;
-    background-color: $yellow;
-    border-radius: 1rem;
-    position: relative;
-
-    &.at-show {
-      padding: 2rem 1.5rem;
-    }
-
-    &:before {
-      font-family: 'Font Awesome 5 Free';
-      content: '\f111';
-      font-weight: 900;
-      color: $yellow;
-      position: absolute;
-      font-size: 1rem;
-      top: -1rem;
-      left: -3rem;
-      @media screen and (min-width: 768px) {
-        font-size: 1.5rem;
-        // top: 0;
-        left: -5rem;
-      }
-    }
-
-    &:after {
-      font-family: 'Font Awesome 5 Free';
-      content: '\f111';
-      font-weight: 900;
-      color: $yellow;
-      position: absolute;
-      font-size: 1.5rem;
-      top: 0.5rem;
-      left: -2rem;
-      @media screen and (min-width: 768px) {
-        font-size: 2.5rem;
-        // top: 0.5rem;
-        left: -3rem;
-      }
-    }
-
-    & .mark {
-      display: block;
-      width: 40%;
-      @media screen and (min-width: 768px) {
-        width: 10%;
-      }
-      color: $orange;
-      font-size: 3rem;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    & .answer-message {
-      margin-left: 1rem;
+      width: 80%;
     }
   }
 }
 
 /*---------------------------
-  質問掲示板トップページのメイン領域部分
+  学習課題・旧質問掲示板トップページのメイン領域部分
 ---------------------------*/
-.filtering-form {
-  width: 100%;
-  margin-bottom: 0;
-  padding: 0;
 
-  & .form-group {
-    margin: 0 auto;
-
-    & .btn {
-      margin: 1rem auto;
-    }
-  }
-
-  @media screen and (min-width: 768px) {
-    display: flex;
-    // justify-content: flex-start;
-    align-items: center;
-
-    & .form-group {
-      width: auto;
-      margin: 0 auto;
-
-      & input,
-      & select {
-        display: inline-block;
-        width: auto;
-      }
-
-      &.radio {
-        border: 1px dashed $brown;
-        border-radius: 1rem;
-        padding: 0.5rem 2.2rem;
-
-        & input {
-          margin: 0;
-        }
-
-        & label {
-          margin: 0;
-        }
-      }
-
-      & .btn {
-        margin: 0;
-      }
-    }
-  }
-}
-
-.ask-link {
-  text-align: right;
-  color: $brown;
-}
-
-.bbs {
+.bbs,
+.task-list {
   width: 100%;
   margin: 1rem 0;
   text-align: center;
@@ -1935,6 +2091,12 @@ html.open,
       // background-color: $yellow;
       color: $brown;
       width: 50%;
+
+      @media screen and (min-width: 768px) {
+        &.narrow_width {
+          width: 35%;
+        }
+      }
     }
 
     & .status-label,
@@ -1955,9 +2117,11 @@ html.open,
       &.catergory-200 {
         background-color: $navy;
       }
+
       &.catergory-300 {
         background-color: $vermilion;
       }
+
       &.catergory-400,
       &.catergory-500 {
         background-color: $purple;
@@ -1987,7 +2151,6 @@ html.open,
       width: 100%;
 
       &:before {
-        // &:not(:first-child):before {
         content: attr(data-label);
         float: left;
         font-weight: bold;
@@ -2002,6 +2165,88 @@ html.open,
         color: #fff;
         font-weight: bold;
         text-align: center;
+      }
+    }
+  }
+}
+
+.task-date {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 3rem;
+
+  &__select {
+    // display: inline-block;
+    width: 40%;
+  }
+}
+
+.task-progress {
+  background-color: $yellow;
+
+  &__heading {
+    margin-top: 2.5rem;
+    background-color: $lightBrown;
+    color: $brown;
+    padding: 1rem 0;
+    text-align: center;
+
+    & span {
+      font-size: 2.4rem;
+      font-weight: bold;
+    }
+
+    position: relative;
+
+    & button {
+      position: absolute;
+      right: 3%;
+    }
+  }
+
+  &__title {
+    margin: 1.5rem 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px dashed $red;
+    text-align: center;
+  }
+
+  &__members {
+    margin: 2rem;
+
+    &__name {
+      margin-right: 3rem;
+    }
+  }
+}
+
+// 学習室や質問掲示板の詳細ページ用
+.task-status {
+  background-color: $beige;
+  margin: 2rem 0;
+  padding: 3rem 2rem;
+  border-radius: 1rem;
+
+  &__desc {
+    margin-bottom: 1rem;
+
+    & span {
+      color: $red;
+      font-weight: bold;
+    }
+  }
+
+  &__status {
+    &__badge {
+      display: inline-block;
+      padding: 0.6rem;
+      background-color: $green;
+      color: $white;
+      border-radius: 1rem;
+
+      &.un-cleared {
+        background-color: $red;
       }
     }
   }
@@ -2180,6 +2425,47 @@ html.open,
     font-size: 3rem;
     font-weight: bold;
     color: $brown;
+    margin-bottom: 2rem;
+
+    & i {
+      margin-right: 2rem;
+    }
+  }
+
+  &__category {
+    margin-bottom: 1.5rem;
+    border-bottom: 5px solid $brown;
+    color: $brown;
+    font-size: 2.5rem;
+    padding-left: 1rem;
+  }
+
+  &__list {
+    // border: 1px solid $brown;
+    margin-bottom: 3rem;
+
+    & p {
+      padding: 1rem;
+    }
+
+    &__item {
+      padding: 0.4rem 1rem;
+
+      // &:nth-child(even) {
+      //   background-color: $yellow;
+      // }
+
+      & a {
+        display: block;
+        width: 100%;
+      }
+
+      & i {
+        margin-right: 2rem;
+        color: $brown;
+        font-size: 1rem;
+      }
+    }
   }
 }
 
@@ -2189,6 +2475,7 @@ html.open,
   height: 100vh;
   width: 100vw;
   position: fixed;
+  z-index: 5000;
   top: 0;
   left: 0;
 
@@ -2209,11 +2496,33 @@ html.open,
     transform: translate(-50%, -50%);
     padding: 40px;
     width: 90%;
+
     @media screen and (min-width: 768px) {
       width: 50%;
     }
+
     max-height: 80%;
     overflow: auto;
+
+    &__header {
+      border-bottom: 3px solid $brown;
+      margin-bottom: 1.5rem;
+      font-weight: bold;
+    }
+
+    &__description {
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    & i {
+      position: absolute;
+      top: 0.5%;
+      right: 0;
+      color: $brown;
+      font-size: 2.8rem;
+      // font-weight: bold;
+    }
   }
 
   &__buttons {
@@ -2268,4 +2577,266 @@ html.open,
   color: $brown;
   text-align: center;
   padding: 1rem;
+}
+
+/*---------------------------
+  QAページのメイン領域、資料ダウンロード詳細ページ
+---------------------------*/
+.qa-item,
+.material-item {
+  width: 100%;
+  border-top: 1px solid $beige;
+  padding: 1rem 0;
+
+  &__question,
+  &__header {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & span,
+    & i {
+      display: block;
+    }
+
+    & .mark_and_category {
+      margin-right: 1rem;
+
+      @media screen and (min-width: 768px) {
+        margin-right: 2.5rem;
+      }
+
+      width: 20%;
+
+      @media screen and (min-width: 768px) {
+        width: 10%;
+      }
+
+      & .mark {
+        color: $red;
+        font-size: 3rem;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      & .category {
+        // background-color: $lightBrown;
+        background-color: $red;
+        color: $white;
+        text-align: center;
+        border-radius: 0.5rem;
+        font-size: 1.2rem;
+
+        &.category-100 {
+          background-color: $green;
+        }
+        &.category-200 {
+          background-color: $navy;
+        }
+        &.category-300 {
+          background-color: $vermilion;
+        }
+        &.category-400,
+        &.category-500 {
+          background-color: $purple;
+        }
+      }
+    }
+
+    & .question-sentence {
+      width: 75%;
+      padding-top: 2rem;
+      // font-family: $krSunflower;
+      font-size: 2rem;
+      @media screen and (min-width: 768px) {
+        padding-top: 1rem;
+        // font-size: 2.5rem;
+        font-size: 2.2rem;
+      }
+    }
+
+    & .question-date {
+      color: $gray;
+      font-size: 1.2rem;
+
+      @media screen and (min-width: 768px) {
+        font-size: 1.8rem;
+      }
+    }
+
+    & .material-title {
+      width: 65%;
+      padding-top: 2rem;
+      font-size: 2rem;
+      font-weight: bold;
+
+      @media screen and (min-width: 768px) {
+        padding-top: 1rem;
+        font-size: 2.2rem;
+      }
+    }
+
+    & .material-date {
+      width: 25%;
+      color: $gray;
+      font-size: 1.2rem;
+
+      @media screen and (min-width: 768px) {
+        font-size: 1.8rem;
+      }
+    }
+
+    & i {
+      margin-left: 1rem;
+      width: 3rem;
+      height: 3rem;
+      line-height: 3rem;
+      text-align: center;
+      // background-color: $brown;
+      background-color: $lightBrown;
+      color: $white;
+    }
+  }
+
+  &__answer {
+    margin-left: 5rem;
+    padding: 1rem;
+    @media screen and (min-width: 768px) {
+      margin-left: 8rem;
+      // font-size: 2.2rem;
+    }
+
+    display: flex;
+    justify-content: space-between;
+    background-color: $yellow;
+    border-radius: 1rem;
+    position: relative;
+
+    &.at-show {
+      padding: 2rem 1.5rem;
+    }
+
+    &:before {
+      font-family: 'Font Awesome 5 Free';
+      content: '\f111';
+      font-weight: 900;
+      color: $yellow;
+      position: absolute;
+      font-size: 1rem;
+      top: -1rem;
+      left: -3rem;
+      @media screen and (min-width: 768px) {
+        font-size: 1.5rem;
+        // top: 0;
+        left: -5rem;
+      }
+    }
+
+    &:after {
+      font-family: 'Font Awesome 5 Free';
+      content: '\f111';
+      font-weight: 900;
+      color: $yellow;
+      position: absolute;
+      font-size: 1.5rem;
+      top: 0.5rem;
+      left: -2rem;
+      @media screen and (min-width: 768px) {
+        font-size: 2.5rem;
+        // top: 0.5rem;
+        left: -3rem;
+      }
+    }
+
+    & .mark {
+      display: block;
+      width: 40%;
+      @media screen and (min-width: 768px) {
+        width: 10%;
+      }
+      color: $orange;
+      font-size: 3rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    & .answer-message {
+      margin-left: 1rem;
+    }
+  }
+
+  &__description {
+    margin-left: 5rem;
+    padding: 1rem;
+
+    @media screen and (min-width: 768px) {
+      margin-left: 8rem;
+      // font-size: 2.2rem;
+    }
+
+    // display: flex;
+    // justify-content: space-between;
+    background-color: $yellow;
+    border-radius: 1rem;
+    position: relative;
+
+    // &.at-show {
+    //   padding: 2rem 1.5rem;
+    // }
+
+    &:before {
+      font-family: 'Font Awesome 5 Free';
+      content: '\f111';
+      font-weight: 900;
+      color: $yellow;
+      position: absolute;
+      font-size: 1rem;
+      top: -1rem;
+      left: -3rem;
+      @media screen and (min-width: 768px) {
+        font-size: 1.5rem;
+        // top: 0;
+        left: -5rem;
+      }
+    }
+
+    &:after {
+      font-family: 'Font Awesome 5 Free';
+      content: '\f111';
+      font-weight: 900;
+      color: $yellow;
+      position: absolute;
+      font-size: 1.5rem;
+      top: 0.5rem;
+      left: -2rem;
+      @media screen and (min-width: 768px) {
+        font-size: 2.5rem;
+        // top: 0.5rem;
+        left: -3rem;
+      }
+    }
+
+    // & .mark {
+    //   display: block;
+    //   width: 40%;
+    //   @media screen and (min-width: 768px) {
+    //     width: 10%;
+    //   }
+    //   color: $orange;
+    //   font-size: 3rem;
+    //   font-weight: bold;
+    //   text-align: center;
+    // }
+
+    & .material-description {
+      margin-left: 1rem;
+      padding: 2rem;
+    }
+
+    & form {
+      margin: 2rem 0;
+      text-align: center;
+    }
+  }
 }
