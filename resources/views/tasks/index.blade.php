@@ -89,7 +89,7 @@
     <div v-if="progress" class="task-progress">
       <h2 class="task-progress__heading">
         <span>학습정형</span>
-        <button @click="closeProgress()"><i class="fas fa-times-circle"></i> 닫기</button>
+        <button @click="closeProgress"><i class="fas fa-times-circle"></i> 닫기</button>
       </h2>
 
       <p class="task-progress__title" v-text="currentTaskTitle"></p>
@@ -117,9 +117,9 @@
           tasks: [],
           year: new Date().getFullYear(),
           month: new Date().getMonth()+1,
-          isUser: {!! $isAuthoried ?? 'false' !!},
+          isUser: {!! $isAuthoried ? 'true' : 'false' !!},
           userId: {!! $userId ?? 'null' !!},
-          users: {!! $users ?? 'null' !!},
+          users: @json($users),
           progress: false,
           currentTask: '',
           currentTaskTitle: '',
