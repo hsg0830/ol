@@ -218,8 +218,11 @@ Route::prefix('editors')->group(function () {
     Route::prefix('tasks')->group(function () {
       Route::get('/create', [TasksController::class, 'create'])->name('tasks.create');
       Route::get('/edit', [TasksController::class, 'edit'])->name('tasks.edit');
+      Route::get('/get-tasks', [TasksController::class, 'get_tasks']);
       Route::post('/', [TasksController::class, 'store']);
-      Route::put('/', [TasksController::class, 'update']);
+      Route::post('add', [TasksController::class, 'addTask']);
+      Route::put('/{task}', [TasksController::class, 'update']);
+      Route::delete('/{task}', [TasksController::class, 'destroy']);
       Route::get('progress', [TasksController::class, 'showProgress'])->name('tasks.progress');
     });
   });

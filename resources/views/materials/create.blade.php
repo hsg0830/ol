@@ -17,11 +17,11 @@
       @csrf
 
       <div class="input-group mb-4">
-        <select name="category_key" class="form-select me-3">
+        {{-- <select name="category_key" class="form-select me-3">
           @foreach ($categories as $key => $category)
             <option value="{{ $key }}" @if(old('category_key') == $key) selected @endif>{{ $category }}</option>
           @endforeach
-        </select>
+        </select> --}}
 
         <select name="type_key" class="form-select me-3">
           @foreach ($types as $key => $type)

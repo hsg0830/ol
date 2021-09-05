@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
-use App\Models\Question;
 use App\Models\Ask;
+use App\Models\Material;
+use App\Models\Question;
 use App\Models\Notice;
 use App\Models\Task;
 
@@ -64,8 +65,10 @@ class HomeController extends Controller
     if ($task) {
       if ($task->category_id === 1) {
         $pickUp = Article::find($task->article_id);
-      } else {
+      } else if ($task->category_id === 2) {
         $pickUp = Ask::find($task->ask_id);
+      } else if ($task->category_id === 3) {
+        $pickUp = Material::find($task->material_id);
       }
     }
 

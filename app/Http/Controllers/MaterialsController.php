@@ -35,9 +35,9 @@ class MaterialsController extends Controller
   {
     $query = Material::query()->where('status', 1);
 
-    if ($request->categoryNo > 0) {
-      $query->where('category_key', $request->categoryNo);
-    }
+    // if ($request->categoryNo > 0) {
+    //   $query->where('category_key', $request->categoryNo);
+    // }
 
     if ($request->searchWord) {
       $query->where('title', 'like', '%' . $request->searchWord . '%');
@@ -55,7 +55,7 @@ class MaterialsController extends Controller
   {
     return view('materials.show', [
       'material' => $material,
-      'categories' => $this->categories,
+      // 'categories' => $this->categories,
       'types' => $this->types,
     ]);
   }
@@ -66,7 +66,7 @@ class MaterialsController extends Controller
 
     return view('materials.list', [
       'materials' => $materials,
-      'categories' => $this->categories,
+      // 'categories' => $this->categories,
       'types' => $this->types,
     ]);
   }
@@ -74,18 +74,18 @@ class MaterialsController extends Controller
   public function create()
   {
     return view('materials.create', [
-      'categories' => $this->categories,
+      // 'categories' => $this->categories,
       'types' => $this->types,
     ]);
   }
 
   public function store(Request $request)
   {
-    $category_keys = $this->categories->keys()->toArray();
+    // $category_keys = $this->categories->keys()->toArray();
     $type_keys = $this->types->keys()->toArray();
 
     $request->validate([
-      'category_key' => ['required', Rule::in($category_keys)],
+      // 'category_key' => ['required', Rule::in($category_keys)],
       'type_key' => ['required', Rule::in($type_keys)],
       'status' => ['required', Rule::in([0, 1])],
       'file' => ['required', 'max:20000000'],
@@ -106,7 +106,7 @@ class MaterialsController extends Controller
 
     if ($result) {
       $material = new Material();
-      $material->category_key = $request->category_key;
+      // $material->category_key = $request->category_key;
       $material->type_key = $request->type_key;
       $material->file_name = $file_name;
       $material->size = $file_size;
@@ -132,25 +132,25 @@ class MaterialsController extends Controller
   {
     return view('materials.edit', [
       'material' => $material,
-      'categories' => $this->categories,
+      // 'categories' => $this->categories,
       'types' => $this->types,
     ]);
   }
 
   public function update(Material $material, Request $request)
   {
-    $category_keys = $this->categories->keys()->toArray();
+    // $category_keys = $this->categories->keys()->toArray();
     $type_keys = $this->types->keys()->toArray();
 
     $request->validate([
-      'category_key' => ['required', Rule::in($category_keys)],
+      // 'category_key' => ['required', Rule::in($category_keys)],
       'type_key' => ['required', Rule::in($type_keys)],
       'status' => ['required', Rule::in([0, 1])],
       'title' => ['required', 'max:150'],
       'description' => ['required']
     ]);
 
-    $material->category_key = $request->category_key;
+    // $material->category_key = $request->category_key;
     $material->type_key = $request->type_key;
     $material->title = $request->title;
     $material->description = $request->description;
@@ -159,7 +159,7 @@ class MaterialsController extends Controller
     if ($material->released_at == null && $material->status == 1) {
       $material->released_at = now()->format('Y-m-d');
       $this->makeNotice($material);
-    } else {
+    } else if ($material->status == 0) {
       $material->released_at = null;
     }
 
