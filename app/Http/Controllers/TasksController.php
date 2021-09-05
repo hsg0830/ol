@@ -177,7 +177,7 @@ class TasksController extends Controller
       $task->material_id = null;
       $task->ask_id = $request->task['ask_id'];
     } else if ($request->task['category_id'] == 3) {
-      $task->ask_id = null;
+      $task->article_id = null;
       $task->ask_id = null;
       $task->material_id = $request->task['material_id'];
     }
