@@ -46,17 +46,17 @@
       {{-- 課題タイトル選択 --}}
       <div class="col-4">
         <select name="article_id" class="form-select" v-model.number="task.article_id" v-if="task.category_id == 1">
-          <option value="0">----- 학습실 -----</option>
+          <option value="default">----- 학습실 -----</option>
           <option v-for="(article, index) in articles" :value="article.id" v-text="article.title"></option>
         </select>
 
         <select name="ask_id" class="form-select" v-model.number="task.ask_id" v-else-if="task.category_id ==2">
-          <option value="0">----- 질문게시판 -----</option>
+          <option value="default">----- 질문게시판 -----</option>
           <option v-for="(ask, index) in asks" :value="ask.id" v-text="ask.title"></option></option>
         </select>
 
         <select name="material_id" class="form-select" v-model.number="task.material_id" v-else-if="task.category_id == 3">
-          <option value="0">----- 자료 -----</option>
+          <option value="default">----- 자료 -----</option>
           <option v-for="(material, index) in materials" :value="material.id" v-text="material.title"></option></option>
         </select>
       </div>
@@ -123,9 +123,9 @@
         addFormBlock() {
           this.tasks.push({
             category_id: 1,
-            article_id: 0,
-            ask_id: 0,
-            material_id: 0,
+            article_id: 'default',
+            ask_id: 'default',
+            material_id: 'default',
             start: '',
             end: '',
             cleared_users: 0,

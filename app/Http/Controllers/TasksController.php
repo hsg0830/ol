@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-// use App\Http\Requests\TaskRequest;
+use App\Http\Requests\TaskCreateRequest;
 use App\Models\Task;
 use App\Models\Article;
 use App\Models\Ask;
@@ -20,12 +20,12 @@ class TasksController extends Controller
     $asks = $this->get_asks();
     $materials = $this->get_materials();
 
-    $isAuthoried = false;
+    $isAuthorized = false;
     $userId = null;
     $users = [];
 
     if (Auth::guard('web')->check()) {
-      $isAuthoried = true;
+      $isAuthorized = true;
       $userId = Auth::id();
 
       if (Auth::guard('web')->user()->role > 0) {
@@ -39,7 +39,7 @@ class TasksController extends Controller
       'articles' => $articles,
       'asks' => $asks,
       'materials' => $materials,
-      'isAuthoried' => $isAuthoried,
+      'isAuthorized' => $isAuthorized,
       'userId' => $userId,
       'users' => $users,
     ]);
@@ -111,7 +111,7 @@ class TasksController extends Controller
     ]);
   }
 
-  public function store(Request $request)
+  public function store(TaskCreateRequest $request)
   {
     $result = false;
     $year = $request->year;
@@ -169,10 +169,16 @@ class TasksController extends Controller
     $task->category_id = $request->task['category_id'];
 
     if ($request->task['category_id'] == 1) {
+      $task->ask_id = null;
+      $task->material_id = null;
       $task->article_id = $request->task['article_id'];
     } else if ($request->task['category_id'] == 2) {
+      $task->article_id = null;
+      $task->material_id = null;
       $task->ask_id = $request->task['ask_id'];
     } else if ($request->task['category_id'] == 3) {
+      $task->ask_id = null;
+      $task->ask_id = null;
       $task->material_id = $request->task['material_id'];
     }
 

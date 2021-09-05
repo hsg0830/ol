@@ -45,10 +45,87 @@
       </div>
     </div>
 
+    {{-- 課題状況 --}}
+    @include('commons.task-status')
+    {{-- 課題状況 --}}
+
     <div class="message" style="margin-top: 2rem;">
       <a href="{{ route('materials.index')}}" class="text-underline">자료 전체보기</a>
     </div>
   </main>
 
   @include('commons.side')
+@endsection
+
+@section('js-script')
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          task: {!! $task ?? 'null' !!},
+          isCleared: {{ $isCleared ? 'true' : 'false' }},
+          isAuthorized: {{ $isAuthorized ? 'true' : 'false' }},
+        }
+      },
+      methods: {
+        // changeFavoriteStatus() {
+        //   if (this.isAuthorized === false) {
+        //     return alert('로그인하셔야 합니다.');
+        //   }
+
+        //   let url = `/articles/${this.article.id}/`;
+        //   let method = 'POST';
+
+        //   if (this.isFollowing == false) {
+        //     url += 'follow';
+        //   } else {
+        //     url += 'unfollow';
+        //     method = 'DELETE';
+        //   }
+
+        //   const params = {
+        //       _method: method,
+        //   };
+
+        //   axios
+        //     .post(url, params)
+        //     .then((response) => {
+        //       if (response.data.result === true) {
+        //         this.isFollowing = response.data.isFollowing;
+        //       }
+        //     })
+        //     .catch((error) => {
+        //       console.log(error);
+        //     });
+        // },
+        changeTaskStatus() {
+          let url = `/tasks/${this.task.id}/`;
+          let method = 'POST';
+
+          if (this.isCleared == false) {
+            url += 'cleared';
+          } else {
+            url += 'un-cleared';
+            method = 'DELETE';
+          }
+
+          const params = {
+              _method: method,
+          };
+
+          axios.post(url, params)
+            .then((response) => {
+              if (response.data.result === true) {
+                this.isCleared = response.data.isCleared;
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        },
+      },
+    });
+
+    app.mount('#main');
+  </script>
 @endsection
