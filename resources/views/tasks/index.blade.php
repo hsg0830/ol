@@ -124,7 +124,7 @@
           tasks: [],
           year: new Date().getFullYear(),
           month: new Date().getMonth()+1,
-          isUser: {!! $isAuthoried ? 'true' : 'false' !!},
+          isUser: {!! $isAuthorized ? 'true' : 'false' !!},
           userId: {!! $userId ?? 'null' !!},
           users: @json($users),
           progress: false,
@@ -171,7 +171,7 @@
         },
         getMaterialUrl(materialId) {
           const material = this.materials.find((material) => material.id == materialId);
-          return material.title;
+          return material.url;
         },
         checkStatus(task, userId) {
           let currentUserId;
