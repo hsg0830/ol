@@ -30,7 +30,7 @@
         <div class="mark_and_category">
           <span class="mark"><img src="{{ asset('img/icons/file_type_' . $types[$material->type_key] . '.png') }}" alt="">
           </span>
-          <span class="category">{{ $categories[$material->category_key] }}</span>
+          {{-- <span class="category">{{ $categories[$material->category_key] }}</span> --}}
         </div>
         <p class="material-title">{{ $material->title }}</p>
         <span class="material-date">{{ $material->file_size }} / {{ $material->released_at }}</span>

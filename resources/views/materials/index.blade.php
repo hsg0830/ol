@@ -39,15 +39,15 @@
 
         <div class="filtering-form">
           {{-- カテゴリー選択 --}}
-          <div class="form-group">
+          {{-- <div class="form-group">
             <select type="select" id="category" v-model.number="categoryNo" @change="getItems">
               <option value="0" selected>전체</option>
               <option v-for="(category, key) in categories" v-text="category" :value="key"></option>
             </select>
-          </div>
+          </div> --}}
 
           {{-- 検索ワード --}}
-          <div class="search-form">
+          <div class="search-form" style="margin: 0 auto;">
             <div class="search-form__wrapper">
               <input type="text" class="form-control" v-model="searchWord" @keypress.enter="searchMaterials">
               <div class="search-form__btn-block">
@@ -79,7 +79,7 @@
             <th>제목</th>
             <th>종류</th>
             <th>용량</th>
-            <th>분류</th>
+            {{-- <th>분류</th> --}}
             <th>등록일</th>
             <th></th>
             {{-- <th>설명</th> --}}
@@ -93,7 +93,7 @@
               <img :src="getIconPath(material)" alt="" style="width:3rem;">
             </td>
             <td data-label="용량" v-text="material.file_size"></td>
-            <td data-label="분류" v-text="categories[material.category_key]"></td>
+            {{-- <td data-label="분류" v-text="categories[material.category_key]"></td> --}}
             <td data-label="등록일" v-text="material.released_at"></td>
             <td style="text-align: center">
               <button type="button" class="global-btn" @click="modalOpen(material)">설명보기</button>
@@ -178,7 +178,7 @@
           const url = '/materials/get-list';
           const params = {
             page: this.page,
-            categoryNo: this.categoryNo,
+            // categoryNo: this.categoryNo,
             searchWord: this.searchWord,
           };
 
@@ -222,18 +222,18 @@
             this.page = 1;
           }
 
-          if (hashCategoryNo > 1) {
-            this.categoryNo = hashCategoryNo;
-          } else {
+          // if (hashCategoryNo > 1) {
+          //   this.categoryNo = hashCategoryNo;
+          // } else {
             this.categoryNo = 0;
-          }
+          // }
         },
-        selectCategory(categoryNo) {
-          this.categoryNo = categoryNo;
-          this.page = 1;
-          location.hash = `${this.page}%${this.categoryNo}`;
-          this.getItems();
-        },
+        // selectCategory(categoryNo) {
+        //   this.categoryNo = categoryNo;
+        //   this.page = 1;
+        //   location.hash = `${this.page}%${this.categoryNo}`;
+        //   this.getItems();
+        // },
         searchMaterials() {
           this.getHashValue();
           // this.categoryNo = 0;

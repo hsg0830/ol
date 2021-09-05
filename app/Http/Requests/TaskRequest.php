@@ -29,7 +29,7 @@ class TaskRequest extends FormRequest
    */
   public function rules()
   {
-    $mode = $this->mode;
+    // $mode = $this->mode;
     $taskIds = DB::table('task_user')->pluck('task_id')->toArray();
 
     return [
@@ -37,7 +37,7 @@ class TaskRequest extends FormRequest
       'month' => ['required'],
       'tasks.*.id' => [
         'nullable',
-        Rule::requiredIf($mode == 'edit'),
+        // Rule::requiredIf($mode == 'edit'),
         Rule::notIn($taskIds)
       ],
       'tasks.*.category_id' => [

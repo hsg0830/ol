@@ -14,7 +14,7 @@
     @if (count($materials) > 0)
       <table class="table table-striped">
         <tr class="text-center">
-          <th>カテゴリー</th>
+          {{-- <th>カテゴリー</th> --}}
           <th>種別</th>
           <th>タイトル</th>
           <th>ファイル名</th>
@@ -26,7 +26,7 @@
         </tr>
         @foreach ($materials as $material)
           <tr class="text-center">
-            <td>{{ $categories[$material->category_key] }}</td>
+            {{-- <td>{{ $categories[$material->category_key] }}</td> --}}
             <td>{{ $types[$material->type_key] }}</td>
             <td>{{ $material->title }}</td>
             <td>{{ $material->file_name }}</td>
