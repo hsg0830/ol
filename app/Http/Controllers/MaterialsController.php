@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 use App\Models\Material;
+use App\Models\Task;
 use App\Models\Notice;
 
 class MaterialsController extends Controller
@@ -53,10 +54,32 @@ class MaterialsController extends Controller
 
   public function show(Material $material)
   {
+    $isAuthorized = false;
+    // $userId = null;
+
+    if (Auth::guard('web')->check()) {
+      $isAuthorized = true;
+      // $userId = Auth::id();
+    }
+
+    $task = Task::where('material_id', $material->id)
+      ->orderBy('end', 'desc')
+      ->first();
+
+    $isCleared = false;
+
+    if (!is_null($task) && Auth::guard('web')->check()) {
+      $isCleared = Auth::user()->is_cleared_task($task->id);
+    }
+
     return view('materials.show', [
       'material' => $material,
       // 'categories' => $this->categories,
       'types' => $this->types,
+      'isAuthorized' => $isAuthorized,
+      // 'userId' => $userId,
+      'task' => $task,
+      'isCleared' => $isCleared,
     ]);
   }
 
