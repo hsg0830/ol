@@ -22,6 +22,7 @@
   <main id="one-column">
     <h1 class="category-title">월별학습과제</h1>
 
+    {{-- 年月選択 --}}
     <div class="task-date">
       <!-- 年 -->
       <select name="year" class="task-date__select" v-model.number="year">
@@ -55,9 +56,14 @@
                 <span v-text="selectArticle(task.article_id)"></span>
               </a>
             </template>
-            <template v-else>
+            <template v-else-if="task.ask_id > 0">
               <a :href="getAskUrl(task.ask_id)">
                 <span v-text="selectAsk(task.ask_id)"></span>
+              </a>
+            </template>
+            <template v-else-if="task.material_id > 0">
+              <a :href="getMaterialUrl(task.material_id)">
+                <span v-text="selectMaterial(task.material_id)"></span>
               </a>
             </template>
           </td>
@@ -114,6 +120,7 @@
         return {
           articles: {!! $articles !!},
           asks: {!! $asks !!},
+          materials: {!! $materials !!},
           tasks: [],
           year: new Date().getFullYear(),
           month: new Date().getMonth()+1,
@@ -150,6 +157,10 @@
           const ask = this.asks.find((ask) => ask.id == askId);
           return ask.title;
         },
+        selectMaterial(materialId) {
+          const material = this.materials.find((material) => material.id == materialId);
+          return material.title;
+        },
         getArticleUrl(articleId) {
           const article = this.articles.find((article) => article.id === articleId);
           return article.url;
@@ -157,6 +168,10 @@
         getAskUrl(askId) {
           const ask = this.asks.find((ask) => ask.id === askId);
           return ask.url;
+        },
+        getMaterialUrl(materialId) {
+          const material = this.materials.find((material) => material.id == materialId);
+          return material.title;
         },
         checkStatus(task, userId) {
           let currentUserId;
@@ -206,8 +221,10 @@
 
           if (this.currentTask.category_id == 1) {
             this.currentTaskTitle = this.selectArticle(task.article_id);
-          } else {
+          } else if (this.currentTask.category_id == 2) {
             this.currentTaskTitle = this.selectAsk(task.ask_id);
+          } else {
+            this.currentTaskTitle = this.selectMaterial(task.material_id);
           }
 
           return this.progress = true;

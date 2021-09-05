@@ -71,8 +71,10 @@
               <th class="text-center">
                 @if ($task->category_id == 1)
                   {{ $task->article->title }}
-                @else
+                @elseif ($task->category_id == 2)
                   {{ $task->ask->title }}
+                @elseif ($task->category_id == 3)
+                  {{ $task->material->title }}
                 @endif
               </th>
             @endforeach

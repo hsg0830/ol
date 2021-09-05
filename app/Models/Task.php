@@ -21,6 +21,10 @@ class Task extends Model
     return $this->belongsTo(Ask::class);
   }
 
+  public function material() {
+    return $this->belongsTo(Material::class);
+  }
+
   public function cleared_users()
   {
     return $this->belongsToMany(User::class)->withTimestamps();
