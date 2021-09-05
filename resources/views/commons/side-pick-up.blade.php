@@ -5,8 +5,15 @@
   @else
     <a href="{{ $pickUp->url }}">
       <div class="pick-up__content">
-        <span
-          class="pick-up__content__category category-{{ $pickUp->category_id }}">{{ $pickUp->category->name }}</span>
+        <span class="pick-up__content__category @if($task->category_id == 1) category-100 @elseif ($task->category_id == 2) category-200 @elseif ($task->category_id == 3) category-300 @endif">
+          @if($task->category_id == 1)
+            학습실
+          @elseif ($task->category_id == 2)
+            질문게시판
+          @elseif ($task->category_id == 3)
+            자료실
+          @endif
+        </span>
         <p class="pick-up__content__title">{{ $pickUp->title }}</p>
       </div>
     </a>
