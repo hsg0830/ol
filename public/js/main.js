@@ -78,7 +78,7 @@ updateButton();
 規範原文ページの内容の表示/非表示切り替え
 ------------------*/
 // 항 해설 표시 초기설정
-$('.term__description').hide();
+// $('.term__description').hide();
 
 // 항 해설 여닫기
 $('.ex-btn').on('click', (e) => {

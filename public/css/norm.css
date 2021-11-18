@@ -1,7 +1,17 @@
 @charset "UTF-8";
+@font-face {
+  font-family: 'Open Sans';
+  src: url("/fonts/DoulosSIL-R.woff") format("woff");
+}
+
 /*---------------------------
   変数
 ---------------------------*/
+@font-face {
+  font-family: 'Open Sans';
+  src: url("/fonts/DoulosSIL-R.woff") format("woff");
+}
+
 /*---------------------------
   変数
 ---------------------------*/
@@ -75,6 +85,62 @@
 /*---------------------------
   規範原文ページのメイン領域
 ---------------------------*/
+.foreign-table {
+  font-size: 1vw;
+  line-height: 2;
+  vertical-align: middle;
+}
+
+@media screen and (min-width: 768px) {
+  .foreign-table {
+    font-size: 1.2vw;
+  }
+}
+
+.sil {
+  font-family: "DoulosSIL";
+  font-size: 1.2vw;
+  line-height: 1.88;
+}
+
+@media screen and (min-width: 768px) {
+  .sil {
+    font-size: 1.35vw;
+  }
+}
+
+.text-kr {
+  line-height: 2.1;
+}
+
+.text-sm {
+  font-size: 0.5vw;
+}
+
+@media screen and (min-width: 768px) {
+  .text-sm {
+    font-size: 0.9vw;
+  }
+}
+
+.text-narrow {
+  letter-spacing: -0.1rem;
+}
+
+.text-em {
+  color: #ab243b;
+}
+
+.text-hide {
+  color: transparent;
+}
+
+@media screen and (max-width: 767px) {
+  .sp-hide {
+    display: none;
+  }
+}
+
 .page-title {
   width: 100%;
   margin: 2rem auto 1.1rem;
