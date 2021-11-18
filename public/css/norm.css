@@ -86,7 +86,7 @@
   規範原文ページのメイン領域
 ---------------------------*/
 .foreign-table {
-  font-size: 1vw;
+  font-size: 2vw;
   line-height: 2;
   vertical-align: middle;
 }
@@ -99,7 +99,7 @@
 
 .sil {
   font-family: "DoulosSIL";
-  font-size: 1.2vw;
+  font-size: 2.2vw;
   line-height: 1.88;
 }
 
@@ -114,7 +114,7 @@
 }
 
 .text-sm {
-  font-size: 0.5vw;
+  font-size: 0.6vw;
 }
 
 @media screen and (min-width: 768px) {
