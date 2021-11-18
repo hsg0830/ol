@@ -7,6 +7,68 @@
   規範原文ページのメイン領域
 ---------------------------*/
 
+// 外国語表記法
+.foreign-table {
+  // font-size: 1.3rem;
+  // font-size: 0.9vw;
+  font-size: 1vw;
+  line-height: 2;
+  vertical-align: middle;
+
+  @media screen and (min-width: 768px) {
+    // font-size: 1.6rem;
+    // font-size: 1.3vw;
+    font-size: 1.2vw;
+  }
+}
+
+// IPAフォント
+.sil {
+  font-family: $SIL;
+  // font-size: 1.5rem;
+  // font-size: 1.15vw;
+  font-size: 1.2vw;
+  line-height: 1.88;
+
+  @media screen and (min-width: 768px) {
+    // font-size: 1.8rem;
+    // font-size: 1.45vw;
+    font-size: 1.35vw;
+  }
+}
+
+.text-kr {
+  line-height: 2.1;
+}
+
+.text-sm {
+  font-size: 0.5vw;
+
+  @media screen and (min-width: 768px){
+    // font-size: 1vw;
+    font-size: 0.9vw;
+  }
+}
+
+.text-narrow {
+  letter-spacing: -0.1rem;
+}
+
+.text-em {
+  color: $red;
+}
+
+.text-hide {
+  color: transparent;
+}
+
+
+.sp-hide {
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
+}
+
 // ページのタイトル
 .page-title {
   width: 100%;

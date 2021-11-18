@@ -35,7 +35,7 @@
     <h1 class="page-title">문장부호법</h1>
     <button class="btn all-ex-btn">
       <i class="fas fa-bars"></i>&nbsp;
-      <span>전체해설보기</span>
+      <span>전체해설닫기</span>
     </button>
 
     <div class="introduction">

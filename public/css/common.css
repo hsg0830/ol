@@ -1,4 +1,9 @@
 @charset "UTF-8";
+@font-face {
+  font-family: 'Open Sans';
+  src: url("/fonts/DoulosSIL-R.woff") format("woff");
+}
+
 /*---------------------------
   変数
 ---------------------------*/
@@ -64,6 +69,11 @@
     -webkit-transform: scale(1, 1);
             transform: scale(1, 1);
   }
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url("/fonts/DoulosSIL-R.woff") format("woff");
 }
 
 /*---------------------------
@@ -422,6 +432,11 @@ select {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
   }
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url("/fonts/DoulosSIL-R.woff") format("woff");
 }
 
 /*---------------------------
@@ -1359,11 +1374,11 @@ html.open,
 }
 
 .pick-up__content__category.category-200 {
-  background-color: #d44a28;
+  background-color: #2a3773;
 }
 
 .pick-up__content__category.category-300 {
-  background-color: #2a3773;
+  background-color: #ed8400;
 }
 
 .pick-up__content__category.category-400, .pick-up__content__category.category-500 {
