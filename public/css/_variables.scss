@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+@font-face {
+  font-family: 'Open Sans';
+  src: url('/fonts/DoulosSIL-R.woff') format('woff');
+}
+
 /*---------------------------
   変数
 ---------------------------*/
@@ -29,6 +34,7 @@ $krSunflower: 'Sunflower', sans-serif;
 $krJua: 'Jua', sans-serif;
 $krPoor: 'Poor Story', cursive;
 $krSongmyong: 'Song Myung', serif;
+$SIL: 'DoulosSIL';
 
 //固定幅のサイズ
 $maxWidth: 1400px;
@@ -36,4 +42,3 @@ $maxInnerWidth: 1150px;
 
 // 余白の指定
 $sideSpace: 6vw;
-

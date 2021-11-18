@@ -162,7 +162,7 @@
         <p>
           여기서는 <span class="text-emphasis">2012년</span>에 나온 조선민주주의인민공화국 국어사정위원회 《외국말적기법》가운데서
           <span class="text-emphasis">《일본말단어를 우리 글자로 적는 법》</span>과
-          <span class="text-emphasis">《영어 단어를 우리 글자로 적는 법》</span>을 보여주었습니다.
+          <span class="text-emphasis"><a href="{{ url('/norms/foreign-en') }}" class="text-underline-link">《영어단어를 우리 글자로 적는 법》</a></span>을 보여주었습니다.
         </p>
         <!-- <p class="sub-description">
                   ※ 《외국말적기법》은 모두 51개 언어를 조선글자로 적는 법을 규정하였습니다. 일본말, 영어외 언어에 대한 자료가 요구되시는분은 문의하기를
