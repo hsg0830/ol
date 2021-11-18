@@ -2,7 +2,8 @@
 
 @font-face {
   font-family: 'Open Sans';
-  src: url('/fonts/DoulosSIL-R.woff') format('woff');
+  src: url('/fonts/DoulosSIL-R.woff') format('woff'),
+        url('/fonts/DoulosSIL-R.ttf') format('truetype');
 }
 
 /*---------------------------
