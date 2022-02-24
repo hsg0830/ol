@@ -1,6 +1,6 @@
 @charset "UTF-8";
 @font-face {
-  font-family: 'Open Sans';
+  font-family: 'DoulosSIL';
   src: url("/fonts/DoulosSIL-R.woff") format("woff"), url("/fonts/DoulosSIL-R.ttf") format("truetype");
 }
 
@@ -72,7 +72,7 @@
 }
 
 @font-face {
-  font-family: 'Open Sans';
+  font-family: 'DoulosSIL';
   src: url("/fonts/DoulosSIL-R.woff") format("woff"), url("/fonts/DoulosSIL-R.ttf") format("truetype");
 }
 
@@ -435,7 +435,7 @@ select {
 }
 
 @font-face {
-  font-family: 'Open Sans';
+  font-family: 'DoulosSIL';
   src: url("/fonts/DoulosSIL-R.woff") format("woff"), url("/fonts/DoulosSIL-R.ttf") format("truetype");
 }
 
