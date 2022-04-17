@@ -34,14 +34,14 @@ body {
 .wrapper {
   max-width: $maxWidth;
   margin: 0 auto;
-  padding: 1rem 2.5rem 2rem;
+  padding: 1rem 2rem 2rem;
 
   @media screen and (min-width: 560px) {
-    padding: 1rem 4rem 2rem;
+    padding: 1rem 3rem 2rem;
   }
 
   @media screen and (min-width: 768px) {
-    padding: 1rem 8rem 5.5rem;
+    padding: 1rem 3rem 5.5rem;
     display: flex;
     justify-content: space-around;
   }

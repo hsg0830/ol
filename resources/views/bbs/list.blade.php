@@ -3,7 +3,7 @@
 @section('title', '얼 -우리 말 배움터- 質問掲示板管理画面')
 
 @section('content')
-  <main id="main" class="container">
+  <main id="main">
     <h1 class="page-title">질문게시판관리</h1>
 
     {{-- フィルタリング・ソート --}}
@@ -37,6 +37,23 @@
         <label for="viewed-order">閲覧数</label>
       </div>
 
+      <div class="col-2 form-floating">
+        <select class="form-select" id="editor" v-model="editorId" @change="changeEditor">
+          <option value="0" selected>전체</option>
+          <option v-for="editor in editors" :value="editor.id" v-text="editor.name"></option>
+        </select>
+        <label for="editor">回答者</label>
+      </div>
+
+      <div class="col-3 text-center">
+        <div class="d-flex">
+          <input type="date" class="form-control" v-model="startDate">
+          〜
+          <input type="date" class="form-control" v-model="endDate">
+        </div>
+        <button class="btn btn-primary mt-2" @click="changePeriod">접수일 期間指定</button>
+      </div>
+
     </div>
 
     {{-- 件数 --}}
@@ -53,16 +70,17 @@
     <table class="table table-striped">
       <thead>
         <tr class="text-center">
-          <th scope="col">ID</th>
-          <th scope="col">질문자</th>
-          <th scope="col">공개상태</th>
-          <th scope="col">부류</th>
-          <th scope="col" class="col-4">제목</th>
-          <th scope="col">접수일</th>
-          <th scope="col">공개일</th>
-          <th scope="col">열람수</th>
-          <th scope="col">보관수</th>
-          <th scope="col" class="col-2">처리</th>
+          <th scope="col" class="text-center">ID</th>
+          <th scope="col" class="text-center">질문자</th>
+          <th scope="col" class="text-center">답변자</th>
+          <th scope="col" class="text-center">공개상태</th>
+          <th scope="col" class="text-center">부류</th>
+          <th scope="col" class="col-4 text-center">제목</th>
+          <th scope="col" class="text-center">접수일</th>
+          <th scope="col" class="text-center">공개일</th>
+          <th scope="col" class="text-center">열람수</th>
+          <th scope="col" class="text-center">보관수</th>
+          <th scope="col" class="text-center">처리</th>
         </tr>
       </thead>
       <tbody>
@@ -70,6 +88,10 @@
           <th scope="row" v-text="ask.id"></th>
           <td>
             <a :href="getEmailLink(ask.user)" v-text="ask.user.name"></a>
+          </td>
+          {{-- <td v-text="getEditorName(ask.editor_id)"></td> --}}
+          <td>
+            <span v-if="ask.editor_name" v-text="ask.editor_name.name"></span>
           </td>
           <td>
             <a v-if="ask.status === 0" class="btn btn-warning">미결</a>
@@ -118,6 +140,7 @@
       data() {
         return {
           categories: {!! $categories !!},
+          editors: {!! $editors !!},
           total: {{ $total }},
           data: {},
           asks: [],
@@ -125,6 +148,9 @@
           selectedCategory: 0,
           status: 4,
           viewedOrder: 0,
+          editorId: 0,
+          startDate: 0,
+          endDate: 0,
         };
       },
       components: {
@@ -140,6 +166,9 @@
                 category_id: this.selectedCategory,
                 status: this.status,
                 viewed_count: this.viewedOrder,
+                editor_id: this.editorId,
+                start_date: this.startDate,
+                end_date: this.endDate,
               }
             })
             .then((response) => {
@@ -154,12 +183,17 @@
             this.selectedCategory = 0;
           }
 
+          this.editorId = 0;
           this.viewedOrder = 0;
           this.getList();
         },
         changeCategory() {
           this.page = 1;
           this.status = 1;
+          this.getList();
+        },
+        changeEditor() {
+          this.page = 1;
           this.getList();
         },
         filteringStatus() {
@@ -173,8 +207,25 @@
 
           this.getList();
         },
+        changePeriod() {
+          const startDate = new Date(this.startDate);
+          const endDate = new Date(this.endDate);
+
+          if (endDate - startDate < 0) {
+            return alert('기간을 잘못 선택하셨습니다.');
+          }
+
+          this.getList();
+        },
         getEmailLink(user) {
           return `mailto:${user.email}`;
+        },
+        getDate() {
+          const today = new Date();
+          const year = today.getFullYear();
+          const month = ("0" + (today.getMonth() + 1)).slice(-2);
+          const day = today.getDate();
+          this.endDate = `${year}-${month}-${day}`;
         },
         movePage(page) {
           this.page = page;
@@ -201,11 +252,11 @@
         }
       },
       mounted() {
+        this.getDate();
         this.getList();
       },
     });
 
     app.mount('#main');
-
   </script>
 @endsection

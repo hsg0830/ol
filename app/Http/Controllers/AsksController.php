@@ -13,6 +13,8 @@ use App\Models\Ask;
 use App\Models\QuestionCategory;
 use App\Models\Notice;
 use App\Models\Task;
+use App\Models\Editor;
+use Carbon\Carbon;
 
 class AsksController extends Controller
 {
@@ -139,10 +141,12 @@ class AsksController extends Controller
   public function edit(Ask $ask)
   {
     $categories = $this->getCategories();
+    $editors = Editor::select('id', 'name')->get();
 
     return view('bbs.edit', [
       'ask' => $ask,
       'categories' => $categories,
+      'editors' => $editors,
     ]);
   }
 
@@ -164,7 +168,7 @@ class AsksController extends Controller
     $result = false;
 
     $ask->status = $request->status;
-    $ask->editor_id = Auth::id();
+    $ask->editor_id = $request->editor_id;
 
     $ask->category_id = $request->category_id;
     $ask->sub_category_id = $request->sub_category_id;
@@ -203,10 +207,12 @@ class AsksController extends Controller
   public function showAsksList()
   {
     $categories = QuestionCategory::select('id', 'name')->get();
+    $editors = Editor::select('id', 'name')->get();
     $total = Ask::count();
 
     return view('bbs.list', [
       'categories' => $categories,
+      'editors' => $editors,
       'total' => $total,
     ]);
   }
@@ -216,8 +222,19 @@ class AsksController extends Controller
     $category_id = intval($request->category_id);
     $status = intval($request->status);
     $viewed_count = intval($request->viewed_count);
+    $editor_id = intval($request->editor_id);
+    $start_date = 0;
+    if($request->start_date > 0) {
+      $start_date = new Carbon($request->start_date);
+    }
+    $end_date = new Carbon($request->end_date);
 
     $query = Ask::query();
+    $query->whereDate('created_at', '<=', $end_date);
+
+    if ($start_date) {
+      $query->whereDate('created_at', '>=', $start_date);
+    }
 
     if ($category_id > 0) {
       $query->where('category_id', $category_id);
@@ -225,6 +242,10 @@ class AsksController extends Controller
 
     if ($status < 4) {
       $query->where('status', $status);
+    }
+
+    if ($editor_id > 0) {
+      $query->where('editor_id', $editor_id);
     }
 
     if ($viewed_count == 1) {
@@ -235,7 +256,7 @@ class AsksController extends Controller
       $query->orderBy('created_at', 'desc');
     }
 
-    $asks = $query->with('category', 'user')->paginate(15);
+    $asks = $query->with('category', 'user')->paginate(30);
 
     return ['asks' => $asks];
   }

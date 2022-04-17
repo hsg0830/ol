@@ -32,6 +32,15 @@
       </div>
 
       <div class="me-5">
+        <p class="label">回答者</p>
+        {{-- <label for="category">カテゴリー：</label> --}}
+        <select id="editor" class="form-select" v-model="askEditor">
+          <option>--------</option>
+          <option v-for="editor in editors" v-text="editor.name" :value="editor.id"></option>
+        </select>
+      </div>
+
+      <div class="me-5">
         <p class="label">カテゴリー</p>
         {{-- <label for="category">カテゴリー：</label> --}}
         <select id="category" class="form-select" v-model="askCategory" @change="onChangeCategory">
@@ -136,8 +145,10 @@
         return {
           ask: {!! $ask !!},
           categories: {!! $categories !!},
+          editors: {!! $editors !!},
           askCategory: '',
           askSubCategory: '',
+          askEditor: '',
           treatment: '',
           status: 0,
           notice: 0,
@@ -151,6 +162,7 @@
       mounted() {
         this.askCategory = this.ask.category_id;
         this.askSubCategory = this.ask.sub_category_id;
+        this.askEditor = this.ask.editor_id;
         this.status = this.ask.status;
         this.title = this.ask.title;
         this.description = this.ask.description;
@@ -235,6 +247,7 @@
               _method: method,
               category_id: this.askCategory,
               sub_category_id: this.askSubCategory,
+              editor_id: this.askEditor,
               status: this.status,
               notice: this.notice,
               title: this.title,
