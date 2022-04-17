@@ -21,7 +21,7 @@
 @endsection
 
 @section('content')
-  <main id="main">
+<main id="main">
     <div class="category-page-title">
       <img src="{{ asset('img/title/category_title_05.png') }}" alt="" />
       <h1>질문게시판</h1>

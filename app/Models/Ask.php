@@ -16,6 +16,7 @@ class Ask extends Model
 
   protected $appends = [
     'replied_date',
+    'editor_name',
     'url',
     'edit_url',
     'headline',
@@ -37,6 +38,11 @@ class Ask extends Model
     return $this->belongsTo(User::class);
   }
 
+  public function editor()
+  {
+    return $this->belongsTo(Editor::class);
+  }
+
   public function is_favorite()
   {
     return $this->belongsToMany(User::class);
@@ -46,7 +52,9 @@ class Ask extends Model
   {
     return !is_null($this->replied_at) ? $this->replied_at->format('Y/m/d') : '';
   }
-
+  public function getEditorNameAttribute() {
+    return $this->editor()->select('id', 'name')->first();
+  }
   public function getUrlAttribute()
   {
     return route('bbs.show', $this->id);
