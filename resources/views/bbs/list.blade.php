@@ -176,7 +176,17 @@
               this.asks = response.data.asks.data;
             });
         },
+        checkPeriod() {
+          const startDate = new Date(this.startDate);
+          const endDate = new Date(this.endDate);
+          const period = endDate - startDate;
+          return period > 0;
+        },
         changeOrderAndCategory() {
+          if (!this.checkPeriod()) {
+            return alert('기간을 잘못 선택하셨습니다.');
+          }
+
           this.page = 1;
 
           if (this.status != 1) {
@@ -188,15 +198,27 @@
           this.getList();
         },
         changeCategory() {
+          if (!this.checkPeriod()) {
+            return alert('기간을 잘못 선택하셨습니다.');
+          }
+
           this.page = 1;
           this.status = 1;
           this.getList();
         },
         changeEditor() {
+          if (!this.checkPeriod()) {
+            return alert('기간을 잘못 선택하셨습니다.');
+          }
+
           this.page = 1;
           this.getList();
         },
         filteringStatus() {
+          if (!this.checkPeriod()) {
+            return alert('기간을 잘못 선택하셨습니다.');
+          }
+          
           this.page = 1;
 
           if (this.viewedOrder == 0) {
@@ -208,10 +230,7 @@
           this.getList();
         },
         changePeriod() {
-          const startDate = new Date(this.startDate);
-          const endDate = new Date(this.endDate);
-
-          if (endDate - startDate < 0) {
+          if (!this.checkPeriod()) {
             return alert('기간을 잘못 선택하셨습니다.');
           }
 
