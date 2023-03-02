@@ -24,13 +24,14 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
-
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3345178253932806"
+  crossorigin="anonymous"></script>
+  
   @hasSection('title')
     <title>@yield('title')</title>
   @else
     <title>얼 -우리 말 배움터-</title>
   @endif
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/editor.css') }}">
 
@@ -60,9 +61,7 @@
 </body>
 
 @env('local')
-
 @include('test.route_list')
-
 @endenv
 
 </html>
