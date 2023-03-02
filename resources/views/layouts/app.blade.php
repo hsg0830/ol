@@ -49,6 +49,8 @@
 
   <script src="https://kit.fontawesome.com/a57480febd.js" crossorigin="anonymous"></script>
 
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3345178253932806"
+    crossorigin="anonymous"></script>
   {{-- スタイルシート --}}
   <link rel="stylesheet" href="{{ asset('css/destyle.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
@@ -93,9 +95,7 @@
 </body>
 
 @env('local')
-
 @include('test.route_list')
-
 @endenv
 
 </html>
